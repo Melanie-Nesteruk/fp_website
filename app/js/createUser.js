@@ -28,7 +28,8 @@
     {
         btnSignup.addEventListener('click', e=> {
 
-            // Get email and password
+            const firstName = txtFirstName.value;
+            const lastName = txtLastName.value;
             const email = txtEmail.value;
             const pass = txtPassword.value;
             const pass2 = txtPassword2.value;
@@ -40,6 +41,13 @@
             {
                 firebase.auth().signOut();
                 alert("User already logged in. You have been logged out.");
+            }
+
+            // Verify name is given
+            if (!firstName || !lastName)
+            {
+                alert("Please enter your full name.");
+                return;
             }
 
             // Verify passwords match
