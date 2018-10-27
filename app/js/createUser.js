@@ -11,14 +11,15 @@
     };
     firebase.initializeApp(config);
 
-    // Get elements
-    const txtFirstName = document.getElementById('txtLastName');
-    const txtLastName = document.getElementById('txtLastName');
-    const txtEmail = document.getElementById('txtEmail');
-    const txtPassword = document.getElementById('txtPassword');
-    const txtPassword2 = document.getElementById('txtPassword2');
+    // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
     const userSelect = document.getElementById("user_type_selection");
+
+    const firstName = document.getElementById('txtLastName').value;
+    const lastName = document.getElementById('txtLastName').value;
+    const email = document.getElementById('txtEmail').value;
+    const password = document.getElementById('txtPassword').value;
+    const password2 = document.getElementById('txtPassword2').value;
     const userType = userSelect.options[userSelect.selectedIndex].text;
 
     var initialLoad = true;
@@ -28,15 +29,10 @@
     {
         btnSignup.addEventListener('click', e=> {
 
-            const firstName = txtFirstName.value;
-            const lastName = txtLastName.value;
-            const email = txtEmail.value;
-            const pass = txtPassword.value;
-            const pass2 = txtPassword2.value;
             const auth = firebase.auth();
             initialLoad = false;
 
-            // Logout any existing user
+            // Logout an existing user
             if (firebase.auth().currentUser)
             {
                 firebase.auth().signOut();
@@ -51,24 +47,37 @@
             }
 
             // Verify passwords match
-            if (pass != pass2)
+            if (password != password2)
             {
                 alert("Error: The passwords do not match.");
                 return;
             }
 
-            // Register user
-            const promise = auth.createUserWithEmailAndPassword(email, pass);
+            // Register user (not successful until onAuthStateChanged is called)
+            const promise = auth.createUserWithEmailAndPassword(email, password);
             promise.catch(e => alert(e.message));
         });
     }
 
+    function AddUserToDB()
+    {
+        // User input: firstName, lastName, email, userType
+        // Create pre-verified database input for current input fields
+
+
+
+        
+    }
 
     firebase.auth().onAuthStateChanged(user => {
         if(user && !initialLoad)
         {
+            // Successful account creation
             alert("Your account has been created! You are now logged in.");
+            AddUserToDB();
             console.log(user);
+
+            // Reload page to clear fields
             document.location.reload();
         }
     });
