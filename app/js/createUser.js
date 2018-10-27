@@ -18,7 +18,7 @@
     const txtPassword = document.getElementById('txtPassword');
     const txtPassword2 = document.getElementById('txtPassword2');
     const btnSignup = document.getElementById('btnSignup');
-    const userType = document.getElementById('user_type_selection').selected.value;
+    const userType = $("#user_type_selection :selected").text()
 
     var initialLoad = true;
 
