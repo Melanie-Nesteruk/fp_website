@@ -15,27 +15,40 @@
                       <span class="section-heading-upper">Student-Alumni Network</span>
                       <span class="section-heading-lower">Member Signup</span>
                     </h2>
-                        <div class="form-group" style="width: 50%; pointer-events: auto; text-align: left; margin: 0 auto;">
-                            <label for="user_name">Name:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input id="txtFirstName" type="text" placeholder="First Name" name="first_name" required="true">
-                            <input id="txtLastName" type="text" placeholder="Last Name" name="last_name" required="true"><br>
-                            <label for="user_type_combobox">User Type:</label>
-                            <select id="user_type_selection">
-                                <option value="1" selected>Student</option>
-                                <option value="2">Alumni</option>
-                                <option value="3">Faculty</option>
-                            </select>
-                            <br>
-                            <label for="user_email">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                            <input id="txtEmail" type="text" placeholder="Email" name="email" required="true">
-                            <br>
-                            <label for="user_password">Password:&nbsp;</label>
-                            <input id="txtPassword" type="password" placeholder="Password" name="psw" required="true">
-                            <br>
-                            <label for="user_password">Re-enter:&nbsp;&nbsp;</label>
-                            <input id="txtPassword2" type="password" placeholder="Password" name="psw" required="true">
-                            <br>
-                            <button id="btnSignup" type="submit">Register</button>
+                        <div class="form-group" style="width: 30%; pointer-events: auto; margin: 0 auto; display: flex;">
+                            <div style="flex: 0 0 40%;">
+                                <label for="user_firstName" syle="padding-top: 55px;">Name:</label>
+                                <br>
+                                   <label for="user_LastName" syle="padding-top: 55px;">&nbsp;</label>
+                                <br>
+                                <label for="user_type_combobox">User Type:</label>
+                                <br>
+                                <label for="user_email">Email:</label>
+                                <br>
+                                <label for="user_password">Password:</label>
+                                <br>
+                                <label for="user_password">Re-enter:</label>
+                              </div>
+                            
+                              <div>
+                                  <input id="txtFirstName" type="text" placeholder="First Name" name="first_name" required="true">
+                                  <input id="txtLastName" type="text" placeholder="Last Name" name="last_name" required="true">
+                                  <br>
+                                  <select id="user_type_selection">
+                                  <option value="1" selected>Student</option>
+                                  <option value="2">Alumni</option>
+                                  <option value="3">Faculty</option>
+                                </select>
+                                <br>
+                                <input id="txtEmail" type="text" placeholder="Email" name="email" required="true">
+                                <br>
+                                <input id="txtPassword" type="password" placeholder="Password" name="psw" required="true">
+                                <br>
+                                <input id="txtPassword2" type="password" placeholder="Password" name="psw" required="true">
+                                <br>
+                                <br>
+                                <button id="btnSignup" type="submit">Register</button>
+                              </div>
                         </div>
                   </div>
                 </div>
@@ -48,6 +61,13 @@
     <style>
         .hide {
             visibility: hidden;
+        }
+        label {
+        display: inline-block;
+            padding-top: 7.5px;
+        }
+        input, select, button {
+            margin-top: 5px;
         }
     </style>
 
