@@ -19,7 +19,7 @@
     const txtPassword2 = document.getElementById('txtPassword2');
     const btnSignup = document.getElementById('btnSignup');
     const userSelect = document.getElementById("user_type_selection");
-    const userType = userSelect.options[userSelect.selectedIndex].value;
+    const userType = userSelect.options[userSelect.selectedIndex].text;
 
     var initialLoad = true;
 
