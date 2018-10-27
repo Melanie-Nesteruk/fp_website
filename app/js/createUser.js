@@ -12,9 +12,13 @@
     firebase.initializeApp(config);
 
     // Get elements
+    const txtFirstName = document.getElementById('txtLastName');
+    const txtLastName = document.getElementById('txtLastName');
     const txtEmail = document.getElementById('txtEmail');
     const txtPassword = document.getElementById('txtPassword');
+    const txtPassword2 = document.getElementById('txtPassword2');
     const btnSignup = document.getElementById('btnSignup');
+    const userType = document.getElementById('user_type_selection').selected.value;
 
     var initialLoad = true;
 
@@ -26,6 +30,7 @@
             // Get email and password
             const email = txtEmail.value;
             const pass = txtPassword.value;
+            const pass2 = txtPassword2.value;
             const auth = firebase.auth();
             initialLoad = false;
 
@@ -33,7 +38,14 @@
             if (firebase.auth().currentUser)
             {
                 firebase.auth().signOut();
-                alert("You have been logged out.");
+                alert("User already logged in. You have been logged out.");
+            }
+
+            // Verify passwords match
+            if (pass != pass2)
+            {
+                alert("Error: The passwords do not match.");
+                return;
             }
 
             // Register user
@@ -48,6 +60,7 @@
         {
             alert("Your account has been created! You are now logged in.");
             console.log(user);
+            document.location.reload();
         }
     });
 
