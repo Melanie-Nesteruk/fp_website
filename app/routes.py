@@ -2,6 +2,12 @@ from flask import render_template
 from app import app
 from app.models import User
 
+def login_required():
+    if (User.isLoggedIn()):
+        return True
+    else:
+        login()
+
 @app.route('/')
 @app.route('/index')
 def index():
@@ -32,22 +38,17 @@ def subscribe():
     return render_template("subscribe.html", title='Subscribe', app=app)
 
 @app.route('/directory')
-@self.login_required()
+@login_required
 def directory():
     return render_template("directory.html", title='Directory', app=app)
 
 @app.route('/profile')
-@self.login_required()
+@login_required
 def profile():
     return render_template("profile.html", title='Profile', app=app)
 
 @app.route('/messages')
-@self.login_required()
+@login_required
 def messages():
     return render_template("messages.html", title='Messages', app=app)
 
-def login_required():
-    if (User.isLoggedIn()):
-        return True
-    else:
-        login()
