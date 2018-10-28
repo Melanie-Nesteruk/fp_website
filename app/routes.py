@@ -49,5 +49,5 @@ def messages():
 def login_required():
     if (User.isLoggedIn()):
         return True
-    else
+    else:
         login()
