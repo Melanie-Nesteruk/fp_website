@@ -47,11 +47,11 @@ def messages():
 
 @app.route('/jsLogin', methods = ['POST'])
 def jsLogin():
-    userInstance = request.get_json()
-    User.setState(userInstance, True)
+    #userInstance = request.get_json()
+    User.setState(User, True)
     return 
 
 @app.route('/jslogout', methods = ['POST'])
 def jsLogout():
-    userInstance = request.get_json()
-    User.setState(userInstance, False)
+    #userInstance = request.get_json()
+    User.setState(User, False)
