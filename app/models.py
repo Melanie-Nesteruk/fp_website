@@ -7,7 +7,7 @@ class User():
         userID = newID
 
     def isLoggedIn():
-        if (userID not ""):
+        if (userID != ""):
             return True
         else:
             return False
