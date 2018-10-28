@@ -1,10 +1,13 @@
 from app import app
 
-class User(user_id):
-    userID = user_id
+class User():
+    userID = ""
+
+    def setUserID(newID):
+        userID = newID
 
     def isLoggedIn():
-        if (userID):
+        if (userID not ""):
             return True
         else:
             return False
