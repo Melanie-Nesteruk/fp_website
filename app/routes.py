@@ -1,4 +1,4 @@
-from flask import render_template, url_for, redirect
+from flask import render_template, redirect
 from app import app
 from app.models import User
 
@@ -6,7 +6,7 @@ def login_required(self):
     if (User.isLoggedIn(User)):
         return True
     else:
-        return render_template("index.html", title='Home', app=app)
+        index()
 
 @app.route('/')
 @app.route('/index')
