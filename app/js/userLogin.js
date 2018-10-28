@@ -79,6 +79,7 @@
 
                 });
                 btnLogout.classList.add('hide');
+                document.location.reload();
             }
         }
     });
