@@ -1,15 +1,15 @@
 (function() {
 
     // Initialize Firebase
-    // var config = {
-    // apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
-    // authDomain: "focal-point-student-alumni-net.firebaseapp.com",
-    // databaseURL: "https://focal-point-student-alumni-net.firebaseio.com",
-    // projectId: "focal-point-student-alumni-net",
-    // storageBucket: "focal-point-student-alumni-net.appspot.com",
-    // messagingSenderId: "1002904582612"
-    // };
-    // firebase.initializeApp(config);
+    var config = {
+    apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
+    authDomain: "focal-point-student-alumni-net.firebaseapp.com",
+    databaseURL: "https://focal-point-student-alumni-net.firebaseio.com",
+    projectId: "focal-point-student-alumni-net",
+    storageBucket: "focal-point-student-alumni-net.appspot.com",
+    messagingSenderId: "1002904582612"
+    };
+    firebase.initializeApp(config);
 
     // Get elements
     const txtEmail = document.getElementById('txtEmail');
