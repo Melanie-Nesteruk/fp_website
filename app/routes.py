@@ -1,12 +1,12 @@
-from flask import render_template
+from flask import render_template, url_for, redirect
 from app import app
 from app.models import User
 
-def login_required():
+def login_required(self):
     if (User.isLoggedIn()):
         return True
     else:
-        login()
+        return redirect(url_for('login'))
 
 @app.route('/')
 @app.route('/index')

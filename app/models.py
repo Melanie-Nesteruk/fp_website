@@ -3,10 +3,10 @@ from app import app
 class User():
     userID = ""
 
-    def setUserID(newID):
+    def setUserID(self, newID):
         userID = newID
 
-    def isLoggedIn():
+    def isLoggedIn(self):
         if (userID != ""):
             return True
         else:
