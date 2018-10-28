@@ -1,6 +1,8 @@
-from flask import render_template
+from flask import render_template, request
 from app.models import User
 from app import app
+import json
+import sys
 
 @app.route('/')
 @app.route('/index')
@@ -50,4 +52,4 @@ def messages():
 def worker():
     data = request.get_json()
     User.setUserID(User, data)
-    return
+    return 

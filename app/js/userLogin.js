@@ -61,6 +61,7 @@
                 $.post("receiver", "TestID", function(){
 
                 });
+                event.preventDefault();
 
             }
             if (btnLogout != null)
