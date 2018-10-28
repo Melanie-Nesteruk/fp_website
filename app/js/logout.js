@@ -14,11 +14,11 @@
     var initialLoad = true;
 
     const linkLogout = document.getElementById('logout');
-    linkLogout.onclick = logout();
+    linkLogout.onclick = logout;
 
     function logout(){
         initialLoad = false;
-        
+
         const promise = firebase.auth().signOut();
         promise.catch(e => alert(e.message));
     }
