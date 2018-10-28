@@ -32,17 +32,17 @@ def subscribe():
     return render_template("subscribe.html", title='Subscribe', app=app)
 
 @app.route('/directory')
-@login_required
+@login_required()
 def directory():
     return render_template("directory.html", title='Directory', app=app)
 
 @app.route('/profile')
-@login_required
+@login_required()
 def profile():
     return render_template("profile.html", title='Profile', app=app)
 
 @app.route('/messages')
-@login_required
+@login_required()
 def messages():
     return render_template("messages.html", title='Messages', app=app)
 
