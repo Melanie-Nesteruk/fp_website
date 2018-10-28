@@ -57,15 +57,27 @@
             <li class="nav-item px-lg-4" id="events">
               <a class="nav-link text-uppercase text-expanded" href="/events">Events</a>
             </li>
-            <li class="nav-item px-lg-4" id="subscribe">
-                <a class="nav-link text-uppercase text-expanded" href="/subscribe">Mailing List</a>
+          {% if app.User.isLoggedIn() %}
+            <li class="nav-item px-lg-4" id="profile">
+              <a class="nav-link text-uppercase text-expanded" href="/profile">Profile</a>
             </li>
+            <li class="nav-item px-lg-4" id="directory">
+              <a class="nav-link text-uppercase text-expanded" href="/directory">Directory</a>
+            </li>
+            <li class="nav-item px-lg-4" id="messages">
+              <a class="nav-link text-uppercase text-expanded" href="/messages">Messages</a>
+            </li>
+            <li class="nav-item px-lg-4" id="logout">
+                <a class="nav-link text-uppercase text-expanded" href="/logout">Logout</a>
+            </li>
+          {% else %}
             <li class="nav-item px-lg-4" id="login">
                 <a class="nav-link text-uppercase text-expanded" href="/login">Login</a>
             </li>
             <li class="nav-item px-lg-4" id="register">
                 <a class="nav-link text-uppercase text-expanded" href="/register">Register</a>
             </li>
+          {% endif %}
           </ul>
         </div>
       </div>

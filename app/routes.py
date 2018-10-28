@@ -1,5 +1,6 @@
 from flask import render_template
 from app import app
+from app.models import User
 
 @app.route('/')
 @app.route('/index')
@@ -29,3 +30,24 @@ def store():
 @app.route('/subscribe')
 def subscribe():
     return render_template("subscribe.html", title='Subscribe', app=app)
+
+@app.route('/directory')
+@login_required
+def directory():
+    return render_template("directory.html", title='Directory', app=app)
+
+@app.route('/profile')
+@login_required
+def profile():
+    return render_template("profile.html", title='Profile', app=app)
+
+@app.route('/messages')
+@login_required
+def messages():
+    return render_template("messages.html", title='Messages', app=app)
+
+def login_required()
+    if (User.isLoggedIn()):
+        return True
+    else
+        login()
