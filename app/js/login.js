@@ -17,6 +17,7 @@
     const btnLogin = document.getElementById('btnLogin');
     const btnLogout = document.getElementById('btnLogout');
 
+    var userInstance = document.currentScript.getAttribute('userInstance');
     var initialLoad = true;
 
     // Add login event

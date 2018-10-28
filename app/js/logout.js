@@ -12,6 +12,7 @@
     firebase.initializeApp(config);
 
     var initialLoad = true;
+    var userInstance = document.currentScript.getAttribute('userInstance');
 
     const linkLogout = document.getElementById('logout');
     linkLogout.onclick = logout;
