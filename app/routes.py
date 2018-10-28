@@ -46,3 +46,9 @@ def profile():
 def messages():
     return render_template("messages.html", title='Messages', app=app, loggedIn=User.isLoggedIn(User))
 
+@app.route('/receiver', methods = ['POST'])
+def worker():
+	# read json + reply
+	data = request.get_json()
+
+    User.setUserID(User, data)

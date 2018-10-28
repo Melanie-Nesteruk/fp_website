@@ -18,7 +18,6 @@
     const btnLogout = document.getElementById('btnLogout');
 
     var initialLoad = true;
-    var user = document.currentScript.getAttribute('user_var');
 
     // Add login event
     if (btnLogin != null)
@@ -57,8 +56,12 @@
                 alert("You are now signed in!");
                 txtEmail.value = "";
                 txtPassword.value = "";
-                user.SetUserID("Test");
                 console.log(user);
+
+                $.post("receiver", "TestID", function(){
+
+                });
+
             }
             if (btnLogout != null)
             {
