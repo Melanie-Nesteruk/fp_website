@@ -4,10 +4,10 @@ class User():
     userID = ""
 
     def setUserID(self, newID):
-        userID = newID
+        self.userID = newID
 
     def isLoggedIn(self):
-        if (userID != ""):
+        if (self.userID != ""):
             return True
         else:
             return False
