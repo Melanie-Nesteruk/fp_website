@@ -62,6 +62,7 @@
 
                 });
                 event.preventDefault();
+                document.location.reload();
 
             }
             if (btnLogout != null)
@@ -74,6 +75,9 @@
             if (btnLogout != null && !btnLogout.classList.contains("hide"))
             {
                 alert("You have been signed out.");
+                $.post("receiver", false, function(){
+
+                });
                 btnLogout.classList.add('hide');
             }
         }
