@@ -4,7 +4,7 @@ from app import app
 import json
 import sys
 
-userInstance = User
+userInstance = User()
 
 @app.route('/')
 @app.route('/index')
