@@ -45,12 +45,11 @@ def profile():
 def messages():
     return render_template("messages.html", title='Messages', app=app, loggedIn=User.isLoggedIn(User))
 
-@app.route('/receiver', methods = ['POST'])
-def worker():
-    data = request.get_json()
-    User.setUserID(User, data)
+@app.route('/jsLogin', methods = ['POST'])
+def jsLogin():
+    User.setState(User, True)
     return 
 
-@app.route('/logout', methods = ['POST'])
-def logout():
-    User.setUserID(User, "")
+@app.route('/jslogout', methods = ['POST'])
+def jsLogout():
+    User.setState(User, False)

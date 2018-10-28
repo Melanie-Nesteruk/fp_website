@@ -2,13 +2,11 @@ from app import app
 
 class User():
     userID = ""
-
-    def setUserID(self, newID):
-        self.userID = newID
+    loginState = False
 
     def isLoggedIn(self):
-        if (self.userID != ""):
-            return True
-        else:
-            return False
+        return self.loginState
+    
+    def setState(self, state):
+        self.loginState = state
 
