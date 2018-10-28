@@ -1,9 +1,9 @@
 from flask import render_template, url_for, redirect
 from app import app
-from app.models.User import user
+from app.models import User
 
 def login_required(self):
-    if (user.isLoggedIn()):
+    if (User.isLoggedIn(User)):
         return True
     else:
         return redirect(url_for('login'))
