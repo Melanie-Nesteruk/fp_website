@@ -28,7 +28,7 @@
         if (!initialLoad)
         {
             alert("You have been signed out.");
-            $.post("jsLogout", function(){
+            $.post("jsLogout", userInstance, function(){
 
             });
             window.location.href = "/login";

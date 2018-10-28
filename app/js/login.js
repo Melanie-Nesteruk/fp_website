@@ -58,7 +58,7 @@
                 txtPassword.value = "";
                 console.log(user);
 
-                $.post("jsLogin", function(){
+                $.post("jsLogin", userInstance, function(){
 
                 });
                 event.preventDefault();
@@ -75,7 +75,7 @@
             if (btnLogout != null && !btnLogout.classList.contains("hide"))
             {
                 alert("You have been signed out.");
-                $.post("jsLogout", function(){
+                $.post("jsLogout", userInstance, function(){
                 });
                 btnLogout.classList.add('hide');
                 window.location.href = "/login";

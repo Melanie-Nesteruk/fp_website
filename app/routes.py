@@ -7,15 +7,15 @@ import sys
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html", title='Home', app=app, loggedIn=User.isLoggedIn(User))
+    return render_template("index.html", title='Home', app=app, loggedIn=User.isLoggedIn(User), userInstance=User)
 
 @app.route('/login')
 def login():
-    return render_template("login.html", title='Login', app=app, loggedIn=User.isLoggedIn(User), user=User)
+    return render_template("login.html", title='Login', app=app, loggedIn=User.isLoggedIn(User), userInstance=User)
 
 @app.route('/register')
 def register():
-    return render_template("register.html", title='Register', app=app, loggedIn=User.isLoggedIn(User))
+    return render_template("register.html", title='Register', app=app, loggedIn=User.isLoggedIn(User), userInstance=User)
 
 @app.route('/about')
 def about():
@@ -47,9 +47,11 @@ def messages():
 
 @app.route('/jsLogin', methods = ['POST'])
 def jsLogin():
-    User.setState(User, True)
+    userInstance = request.get_json()
+    User.setState(userInstance, True)
     return 
 
 @app.route('/jslogout', methods = ['POST'])
 def jsLogout():
-    User.setState(User, False)
+    userInstance = request.get_json()
+    User.setState(userInstance, False)
