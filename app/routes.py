@@ -48,7 +48,6 @@ def messages():
 
 @app.route('/receiver', methods = ['POST'])
 def worker():
-	# read json + reply
-	data = request.get_json()
-
-    User.setUserID(User, data)
+    data = request.get_json()
+    User.setUserID(data)
+    return
