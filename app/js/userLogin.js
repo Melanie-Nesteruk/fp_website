@@ -62,7 +62,7 @@
 
                 });
                 event.preventDefault();
-                document.location.reload();
+                window.location.href = "/index";
 
             }
             if (btnLogout != null)
@@ -78,7 +78,7 @@
                 $.post("receiver", false, function(){
                 });
                 btnLogout.classList.add('hide');
-                window.location.href = "/index";
+                window.location.href = "/login";
             }
         }
     });
