@@ -46,7 +46,7 @@ def profile():
 def messages():
     return render_template("messages.html", title='Messages', app=app)
 
-def login_required()
+def login_required():
     if (User.isLoggedIn()):
         return True
     else
