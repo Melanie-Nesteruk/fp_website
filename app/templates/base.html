@@ -68,7 +68,7 @@
               <a class="nav-link text-uppercase text-expanded" href="/messages">Messages</a>
             </li>
             <li class="nav-item px-lg-4" id="logout">
-                <a class="nav-link text-uppercase text-expanded" href="base.html" onclick="logout(); return false;">Logout</a>
+                <a class="nav-link text-uppercase text-expanded" href="logout.html" onclick="return false;">Logout</a>
             </li>
           {% else %}
             <li class="nav-item px-lg-4" id="login">
@@ -95,13 +95,6 @@
     <script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="app/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="app/js/navigation.js" title={{ title }}></script>
-    <script>
-      function logout()
-      {
-        $.post("receiver", false, function(){
-        });
-        window.location.href = "/login";
-      }
-    </script>
+    <script src="app/js/logout.js"></script>
     </body>
 </html>

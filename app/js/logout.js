@@ -11,23 +11,16 @@
     };
     firebase.initializeApp(config);
 
-    // Get elements
-    const txtEmail = document.getElementById('txtEmail');
-    const txtPassword = document.getElementById('txtPassword');
-    const btnLogin = document.getElementById('btnLogin');
-    const btnLogout = document.getElementById('btnLogout');
-
     var initialLoad = true;
 
-    // Add logout event
-    if (btnLogout != null)
-    {
-        btnLogout.addEventListener('click', e=> {
-            initialLoad = false;
+    const linkLogout = document.getElementById('logout');
+    linkLogout.onclick = logout();
 
-            const promise = firebase.auth().signOut();
-            promise.catch(e => alert(e.message));
-        });
+    function logout(){
+        initialLoad = false;
+        
+        const promise = firebase.auth().signOut();
+        promise.catch(e => alert(e.message));
     }
 
 
@@ -38,6 +31,7 @@
             $.post("receiver", false, function(){
 
             });
+            window.location.href = "/login";
         }
     });
 
