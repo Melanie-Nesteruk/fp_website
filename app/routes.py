@@ -54,4 +54,4 @@ def worker():
 @app.route('/logout', methods = ['POST'])
 def logout():
     User.setUserID(User, "")
-    return render_template("index.html", title='Home', app=app, loggedIn=User.isLoggedIn(User))
+    #return render_template("index.html", title='Home', app=app, loggedIn=User.isLoggedIn(User))
