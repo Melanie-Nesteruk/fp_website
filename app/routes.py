@@ -53,3 +53,9 @@ def worker():
     data = request.get_json()
     User.setUserID(User, data)
     return 
+
+@app.route('/logout', methods = ['POST'])
+def logout():
+    User.setUserID(User, "")
+    index()
+    return 
