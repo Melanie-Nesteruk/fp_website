@@ -6,7 +6,7 @@ def login_required(self):
     if (User.isLoggedIn(User)):
         return True
     else:
-        return render_template(url_for('login'))
+        return render_template("index.html", title='Home', app=app)
 
 @app.route('/')
 @app.route('/index')
