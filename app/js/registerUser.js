@@ -40,7 +40,7 @@
             }
 
             // Verify name is given
-            if (firstName != "" || lastName != "")
+            if (firstName == "" || lastName == "")
             {
                 alert("Please enter your full name.");
                 return;
