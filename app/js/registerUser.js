@@ -15,11 +15,11 @@
     const btnSignup = document.getElementById('btnSignup');
     const userSelect = document.getElementById("user_type_selection");
 
-    const firstName = document.getElementById('txtFirstName').value;
-    const lastName = document.getElementById('txtLastName').value;
-    const email = document.getElementById('txtEmail').value;
-    const password = document.getElementById('txtPassword').value;
-    const password2 = document.getElementById('txtPassword2').value;
+    const firstName = document.getElementById('txtFirstName');
+    const lastName = document.getElementById('txtLastName');
+    const email = document.getElementById('txtEmail');
+    const password = document.getElementById('txtPassword');
+    const password2 = document.getElementById('txtPassword2');
     const userType = userSelect.options[userSelect.selectedIndex].text;
 
     var initialLoad = true;
@@ -40,21 +40,21 @@
             }
 
             // Verify name is given
-            if (firstName == "" || lastName == "")
+            if (firstName.value == "" || lastName.value == "")
             {
                 alert("Please enter your full name.");
                 return;
             }
 
             // Verify passwords match
-            if (password != password2)
+            if (password.value != password2.value)
             {
                 alert("Error: The passwords do not match.");
                 return;
             }
 
             // Register user (not successful until onAuthStateChanged is called)
-            const promise = auth.createUserWithEmailAndPassword(email, password);
+            const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
             promise.catch(e => alert(e.message));
         });
     }
