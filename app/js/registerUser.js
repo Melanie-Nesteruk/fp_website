@@ -15,7 +15,7 @@
     const btnSignup = document.getElementById('btnSignup');
     const userSelect = document.getElementById("user_type_selection");
 
-    const firstName = document.getElementById('txtLastName').value;
+    const firstName = document.getElementById('txtFirstName').value;
     const lastName = document.getElementById('txtLastName').value;
     const email = document.getElementById('txtEmail').value;
     const password = document.getElementById('txtPassword').value;
@@ -40,7 +40,7 @@
             }
 
             // Verify name is given
-            if (!firstName || !lastName)
+            if (firstName || !lastName)
             {
                 alert("Please enter your full name.");
                 return;
