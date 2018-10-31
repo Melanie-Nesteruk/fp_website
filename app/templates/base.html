@@ -54,11 +54,11 @@
             <li class="nav-item px-lg-4 dropdown" id="about">
                 <a class="nav-link text-uppercase text-expanded" href="/about">About Us</a>
                 <div class="dropdown-content">
-                  <a class="nav-link text-uppercase text-expanded" href="/work">Work</a>
+                  <a class="nav-link text-uppercase text-expanded" id="work" href="/work">Work</a>
                 </div>
             </li>
             <li class="nav-item px-lg-4" id="events">
-                <a class="nav-link text-uppercase text-expanded" href="/events">Events</a>
+                <a class="nav-link text-uppercase text-expanded" id="events" href="/events">Events</a>
             </li>
           {% if loggedIn %}
             <li class="nav-item px-lg-4" id="profile">
@@ -71,14 +71,14 @@
               <a class="nav-link text-uppercase text-expanded" href="/messages">Messages</a>
             </li>
             <li class="nav-item px-lg-4" id="logout">
-                <a class="nav-link text-uppercase text-expanded" href="logout.html" onclick="return false;">Logout</a>
+                <a class="nav-link text-uppercase text-expanded" id="logout" href="logout.html" onclick="return false;">Logout</a>
             </li>
           {% else %}
             <li class="nav-item px-lg-4" id="subscribe">
-              <a class="nav-link text-uppercase text-expanded" href="/subscribe">Mailing List</a>
+              <a class="nav-link text-uppercase text-expanded" id="subscribe" href="/subscribe">Mailing List</a>
             </li>
             <li class="nav-item px-lg-4" id="login">
-                <a class="nav-link text-uppercase text-expanded" href="/login">Login</a>
+                <a class="nav-link text-uppercase text-expanded" id="login" href="/login">Login</a>
             </li>
           {% endif %}
           </ul>
