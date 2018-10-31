@@ -29,6 +29,15 @@
             const pass = txtPassword.value;
             const auth = firebase.auth();
 
+            initialLoad = true;
+
+            // Logout an existing user
+            if (firebase.auth().currentUser)
+            {
+                firebase.auth().signOut();
+                alert("User already logged in. You have been logged out.");
+            }
+            
             initialLoad = false;
 
             // Sign in
