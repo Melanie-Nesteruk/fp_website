@@ -64,9 +64,70 @@
         // User input: firstName, lastName, email, userType
         // Create pre-verified database input for current input fields
 
+        var currentUser = firebase.auth().currentUser;
+        const currentUID = CurrentUser.uid;
+        const currentUserType = 0;
 
+        // Set userType based on information given by user
+        // 1 == Student | 2 == Alumni | 3 == Faculty
+        if(userType == "Student"){
+            currentUserType = 1;
+        }
+        else if(userType == "Alumni"){
+            currentUserType = 2;
+        }
+        else{       
+            currentUserType = 3;
+        }
 
-        
+        // Create new document in 'Users' collection
+        db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
+            first_Name: firstName,
+            last_Name: lastName,
+            email: email,                          
+            userType: currentUserType,
+            verified: false
+        })
+        .then(function(){
+            console.log("Document successfully written!");
+        })
+        .catch(function(error){
+            console.error("Error writing document: ", error);
+        });
+
+        // Create new document in the 'Profiles' collection
+        // Fields must be populated later when users provide more information
+        db.collection("Profiles").doc(currentUID).set({
+            major: "Fill in Major",
+            minor: "Fill in Minor",
+            bio: "Bio goes here",
+            faculty_position: "test-position",
+            website: "test-website.com",
+            facebook: "facebook-link",
+            instagram: "insta-link",
+            twitter: "twitter-link",
+            graduation_year: "2010"
+        })
+        .then(function(){
+            console.log("Document successfully written!");
+        })
+        .catch(function(error){
+            console.error("Error writing document: ", error);
+        });
+
+        // Create new document in the 'Blocks' collection
+        // Feilds must be populated at the time of the block
+        // Blocking requires a merge with the existing feilds
+        db.collection("Blocks").doc(uid).set({                  
+            uid: currentUID,
+        })
+        .then(function(){
+            console.log("Document successfully written!");
+        })
+        .catch(function(error){
+            console.error("Error writing document: ", error);
+        });
+
     }
 
     firebase.auth().onAuthStateChanged(user => {
