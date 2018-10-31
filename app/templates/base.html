@@ -60,9 +60,6 @@
             <li class="nav-item px-lg-4" id="events">
               <a class="nav-link text-uppercase text-expanded" href="/events">Events</a>
             </li>
-            <li class="nav-item px-lg-4" id="subscribe">
-              <a class="nav-link text-uppercase text-expanded" href="/subscribe">Mailing List</a>
-            </li>
           {% if loggedIn %}
             <li class="nav-item px-lg-4" id="profile">
               <a class="nav-link text-uppercase text-expanded" href="/profile">Profile</a>
@@ -77,6 +74,9 @@
                 <a class="nav-link text-uppercase text-expanded" href="logout.html" onclick="return false;">Logout</a>
             </li>
           {% else %}
+            <li class="nav-item px-lg-4" id="subscribe">
+              <a class="nav-link text-uppercase text-expanded" href="/subscribe">Mailing List</a>
+            </li>
             <li class="nav-item px-lg-4" id="login">
                 <a class="nav-link text-uppercase text-expanded" href="/login">Login</a>
             </li>
