@@ -82,7 +82,11 @@
         }
         else
         {
-            if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad)
+            if (initialLoad)
+            {
+                return;
+            }
+            if (btnLogout != null && !btnLogout.classList.contains("hide"))
             {
                 alert("You have been signed out.");
                 $.post("jsLogout", userInstance, function(){
