@@ -52,13 +52,15 @@
               </a>
             </li>
             <li class="nav-item px-lg-4" id="about">
-              <a class="nav-link text-uppercase text-expanded dropbtn" href="/about">About Us<i class="fa fa-caret-down"></i></a>
               <div class="dropdown">
-                <div class="dropdown-content">
+                  <a class="nav-link text-uppercase text-expanded dropbtn" href="/about">About Us</a>
+                  <div class="dropdown-content">
                   <a class="nav-link text-uppercase text-expanded" href="/work">Work</a>
-                  <a class="nav-link text-uppercase text-expanded" href="/events">Events</a>
                 </div>
               </div>
+            </li>
+            <li class="nav-item px-lg-4" id="events">
+                <a class="nav-link text-uppercase text-expanded" href="/events">Events</a>
             </li>
           {% if loggedIn %}
             <li class="nav-item px-lg-4" id="profile">
@@ -100,9 +102,7 @@
     <script src="app/js/navigation.js" title={{ title }}></script>
     <script src="app/js/logout.js" userInstance={{ userInstance }}></script>
 
-    <!-- This link is for the carrot next to "About Us" in navigation -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <style>
+      <style>
       .dropdown {
           float: left;
           overflow: hidden;
