@@ -31,16 +31,23 @@
 
             initialLoad = false;
 
-            // Logout an existing user
+            // Check for an existing user
             if (firebase.auth().currentUser)
             {
-                alert("Error: User already logged in. You have been logged out.");
-                return;
+                alert("Error: User already logged in.");
             }
 
             // Sign in
-            const promise = auth.signInWithEmailAndPassword(email, pass);
-            promise.catch(e => alert(e.message));
+            else
+            {
+                const promise = auth.signInWithEmailAndPassword(email, pass);
+                promise.catch(e => alert(e.message));
+
+                $.post("jsLogin", userInstance, function(){
+
+                });
+                event.preventDefault();
+            }
         });
     }
 
@@ -65,11 +72,6 @@
                 txtEmail.value = "";
                 txtPassword.value = "";
                 console.log(user);
-
-                $.post("jsLogin", userInstance, function(){
-
-                });
-                event.preventDefault();
                 window.location.href = "/index";
 
             }
@@ -80,7 +82,7 @@
         }
         else
         {
-            if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad)
+            if (btnLogout != null && !btnLogout.classList.contains("hide"))
             {
                 alert("You have been signed out.");
                 $.post("jsLogout", userInstance, function(){

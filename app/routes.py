@@ -57,3 +57,4 @@ def jsLogin():
 def jsLogout():
     #userInstance = request.get_json()
     userInstance.setState(False)
+    return
