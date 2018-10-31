@@ -29,16 +29,14 @@
             const pass = txtPassword.value;
             const auth = firebase.auth();
 
-            initialLoad = true;
+            initialLoad = false;
 
             // Logout an existing user
             if (firebase.auth().currentUser)
             {
-                firebase.auth().signOut();
-                alert("User already logged in. You have been logged out.");
+                alert("Error: User already logged in. You have been logged out.");
+                return;
             }
-            
-            initialLoad = false;
 
             // Sign in
             const promise = auth.signInWithEmailAndPassword(email, pass);
@@ -82,11 +80,7 @@
         }
         else
         {
-            if (initialLoad)
-            {
-                return;
-            }
-            if (btnLogout != null && !btnLogout.classList.contains("hide"))
+            if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad)
             {
                 alert("You have been signed out.");
                 $.post("jsLogout", userInstance, function(){
