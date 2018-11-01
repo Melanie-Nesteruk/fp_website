@@ -1,4 +1,5 @@
 // Fetch an instance of the DB
+var firestore = firebase.firestore();
 var database = firebase.database();
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
@@ -13,7 +14,7 @@ if (user != null) {
 			   // you have one. Use User.getToken() instead.
 }
 
-var userRef = database.collection('Users').doc(uid);
+var userRef = firestore.collection('Users').doc(uid);
 var getDoc = userRef.get()
 	.then(doc => {
 		if (!doc.exists) {
