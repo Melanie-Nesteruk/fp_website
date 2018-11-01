@@ -13,6 +13,8 @@
 
     // Fetch an instance of the DB
     var db = firebase.firestore();
+    const settings = {/* Any additional settings... */ timestampsInSnapshots: true};
+    firestore.settings(settings);
 
     // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
@@ -62,6 +64,7 @@
         });
     }
 
+    // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB()
     {
         // User input: firstName, lastName, email, userType
@@ -70,6 +73,11 @@
         var currentUser = firebase.auth().currentUser;
         const currentUID = currentUser.uid;
         var currentUserType = 0;
+
+        // Convert HTMLElements to strings to store in DB
+        var sFirstName = String(firstName);
+        var sLastName = String(lastName);
+        var sEmail = String(email);
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
