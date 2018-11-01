@@ -13,7 +13,7 @@ if (user != null) {
 			   // this value to authenticate with your backend server, if
 			   // you have one. Use User.getToken() instead.
 }
-
+console.log('uid: ',uid);
 var userRef = firestore.collection('Users').doc(uid);
 var getDoc = userRef.get()
 	.then(doc => {
