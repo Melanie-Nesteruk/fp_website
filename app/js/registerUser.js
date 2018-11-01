@@ -73,7 +73,7 @@
         var currentUserType = 0;
 
         // Convert HTMLElements to strings to store in DB
-        var sFirstName = String(firstName);
+        var sFirstName = firstName.value;
         var sLastName = String(lastName);
         var sEmail = String(email);
 
@@ -91,9 +91,9 @@
 
         // Create new document in 'Users' collection
         db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
-            first_Name: firstName,
-            last_Name: lastName,
-            email: email,                          
+            first_Name: sFirstName,
+            last_Name: sLastName,
+            email: sEmail,                          
             userType: currentUserType,
             verified: false
         })
