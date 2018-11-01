@@ -68,7 +68,7 @@
         // Create pre-verified database input for current input fields
 
         var currentUser = firebase.auth().currentUser;
-        const currentUID = CurrentUser.uid;
+        const currentUID = currentUser.uid;
         const currentUserType = 0;
 
         // Set userType based on information given by user
