@@ -11,6 +11,9 @@
     };
     firebase.initializeApp(config);
 
+    // Fetch an instance of the DB
+    var db = firebase.firestore();
+
     // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
     const userSelect = document.getElementById("user_type_selection");
@@ -65,8 +68,8 @@
         // Create pre-verified database input for current input fields
 
         var currentUser = firebase.auth().currentUser;
-        const currentUID = CurrentUser.uid;
-        const currentUserType = 0;
+        const currentUID = currentUser.uid;
+        var currentUserType = 0;
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
@@ -118,7 +121,7 @@
         // Create new document in the 'Blocks' collection
         // Feilds must be populated at the time of the block
         // Blocking requires a merge with the existing feilds
-        db.collection("Blocks").doc(uid).set({                  
+        db.collection("Blocks").doc(currentUID).set({                  
             uid: currentUID,
         })
         .then(function(){
@@ -135,8 +138,8 @@
         {
             // Successful account creation
             alert("Your account has been created! You are now logged in.");
-            AddUserToDB();
             console.log(user);
+            AddUserToDB();
 
             // Reload page to clear fields
             document.location.reload();
