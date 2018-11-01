@@ -13,8 +13,6 @@
 
     // Fetch an instance of the DB
     var db = firebase.firestore();
-    const settings = {/* Any additional settings... */ timestampsInSnapshots: true};
-    firestore.settings(settings);
 
     // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
