@@ -31,6 +31,10 @@ def products():
 def store():
     return render_template("events.html", title='Events', app=app, loggedIn=userInstance.isLoggedIn())
 
+@app.route('/socialmedia')
+def socialMedia():
+    return render_template("socialmedia.html", title='Social Media', app=app, loggedIn=userInstance.isLoggedIn())
+
 @app.route('/subscribe')
 def subscribe():
     return render_template("subscribe.html", title='Subscribe', app=app, loggedIn=userInstance.isLoggedIn())
