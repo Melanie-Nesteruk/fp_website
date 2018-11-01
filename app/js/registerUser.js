@@ -69,7 +69,7 @@
 
         var currentUser = firebase.auth().currentUser;
         const currentUID = currentUser.uid;
-        const currentUserType = 0;
+        var currentUserType = 0;
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
