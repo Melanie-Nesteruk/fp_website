@@ -14,6 +14,11 @@
     // Fetch an instance of the DB
     var db = firebase.firestore();
 
+    // Disable deprecated features
+    db.settings({
+        timestampsInSnapshots: true
+    });
+
     // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
     const userSelect = document.getElementById("user_type_selection");
