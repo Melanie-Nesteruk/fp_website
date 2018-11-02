@@ -94,6 +94,17 @@
             currentUserType = 3;
         }
 
+        db.collection("Users").doc("TEST_CREATION").set({
+            first_Name: "TEST_FIRSTNAME",
+            verified: false
+        })
+        .then(function() {
+            console.log("Document successfully written!");
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+
         // Create new document in 'Users' collection
         db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
             first_Name: sFirstName,
