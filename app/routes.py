@@ -5,7 +5,7 @@ import json
 import sys
 
 userInstance = User()
-initializeUser()
+# initializeUser()
 
 
 @app.route('/')
