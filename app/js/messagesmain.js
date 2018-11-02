@@ -1,4 +1,5 @@
 
+console.log("in messagesmain.js");
     // Initialize Firebase
 var config = {
     apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
@@ -9,6 +10,7 @@ var config = {
     messagingSenderId: "1002904582612"
 };
 firebase.initializeApp(config);
+console.log("initializeApp");
 
 // Fetch an instance of the DB
 var firestore = firebase.firestore();
