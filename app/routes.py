@@ -5,7 +5,7 @@ import json
 import sys
 
 userInstance = User()
-initializeUser()
+//initializeUser()
 
 
 @app.route('/')
@@ -62,4 +62,4 @@ def jsLogout():
     userInstance.setLoginState(False)
 
 def initializeUser():
-    render_template("navigation_authentication.html", title='Authentication', app=app, loggedIn=userInstance.isLoggedIn())
+    render_template("navigation_authentication.html")
