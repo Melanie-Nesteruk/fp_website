@@ -1,7 +1,7 @@
 (function() {
 
     // Initialize Firebase
-    /*
+    
     var config = {
     apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
     authDomain: "focal-point-student-alumni-net.firebaseapp.com",
@@ -11,7 +11,7 @@
     messagingSenderId: "1002904582612"
     };
     firebase.initializeApp(config);
-    */
+    
     var initialLoad = true;
     var userInstance = document.currentScript.getAttribute('userInstance');
 
