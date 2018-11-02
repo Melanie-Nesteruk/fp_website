@@ -1,12 +1,17 @@
 from app import app
 
 class User:
-    userID = ""
-    loginState = False
+    isLoggedIn = False
+    isInitialized = False
 
-    def isLoggedIn(self):
-        return self.loginState
+    def getLoginState(self):
+        return self.isLoggedIn
     
-    def setState(self, state):
-        self.loginState = state
+    def setLoginState(self, newLoginState):
+        self.isLoggedIn = newLoginState
+        return
+
+    def setInitialized(self, bool):
+        self.isInitialized = bool
+        return
 

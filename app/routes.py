@@ -5,6 +5,8 @@ import json
 import sys
 
 userInstance = User()
+initializeUser()
+
 
 @app.route('/')
 @app.route('/index')
@@ -53,12 +55,11 @@ def messages():
 
 @app.route('/jsLogin', methods = ['POST'])
 def jsLogin():
-    #userInstance = request.get_json()
-    userInstance.setState(True)
-    return 
+    userInstance.setLoginState(True)
 
 @app.route('/jslogout', methods = ['POST'])
 def jsLogout():
-    #userInstance = request.get_json()
-    userInstance.setState(False)
-    return
+    userInstance.setLoginState(False)
+
+def initializeUser():
+    render_template("navigation_authentication.html", title='Authentication', app=app, loggedIn=userInstance.isLoggedIn())
