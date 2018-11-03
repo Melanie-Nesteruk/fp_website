@@ -94,8 +94,8 @@ if (!firebase.apps.length) {
 
         // Convert HTMLElements to strings to store in DB
         var sFirstName = firstName.value;
-        var sLastName = String(lastName);
-        var sEmail = String(email);
+        var sLastName = lastName.value;
+        var sEmail = email.value;
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
