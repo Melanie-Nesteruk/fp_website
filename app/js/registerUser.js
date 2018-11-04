@@ -12,9 +12,9 @@
     firebase.initializeApp(config);
  */
  	//console.log(firebase.apps.length);
-//if (!firebase.apps.length) {
+if (!firebase.apps.length) {
 
-	var config = {
+    var config = {
 		apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
 		authDomain: "focal-point-student-alumni-net.firebaseapp.com",
 		databaseURL: "https://focal-point-student-alumni-net.firebaseio.com",
@@ -25,7 +25,7 @@
 			
 	firebase.initializeApp(config);
 	console.log("initializeApp in registerUser.js");
-//}
+}
 
     const firebase = require("firebase");
     // Required for side-effects
