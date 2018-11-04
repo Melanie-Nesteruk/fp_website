@@ -11,7 +11,7 @@
     };
     firebase.initializeApp(config);
  */
- 	console.log(firebase.apps.length);
+ 	//console.log(firebase.apps.length);
 if (!firebase.apps.length) {
 
 	var config = {
