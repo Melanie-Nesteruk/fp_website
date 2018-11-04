@@ -1,7 +1,26 @@
 
 console.log("in messagesmain.js");
-    // Initialize Firebase
-	console.log(firebase.apps.length);
+
+const connectedUserList = document.querySelector('#connected-user-list');
+
+// create element and render users
+function renderConnectedUsers(doc){
+	let li = document.createElement('li');
+	let email = document.createElement('span');
+	let user_id = document.createElement('span');
+	// let 'element' = document.createElement('span');
+	
+	li.setAttribute('data-id', doc.id);
+	email.textContent = doc.data().email;
+	user_id.textContent = doc.data().user_id;
+	// 'element'.textContent = doc.data().'element';
+	
+	li.appendChild(email);
+	li.appendChild(user_id);
+	
+	connectedUserList.appendChild(li);
+}
+
 if (!firebase.apps.length) {
 
 	var config = {
@@ -19,8 +38,7 @@ if (!firebase.apps.length) {
 
 // Fetch an instance of the DB
 const firestore = firebase.firestore();
-const settings = {timestampsInSnapshots: true};
-firestore.settings(settings);
+firestore.settings( {timestampsInSnapshots: true} );
 const database = firebase.database();
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
@@ -35,17 +53,11 @@ if (user != null) {
 			   // you have one. Use User.getToken() instead.
 }
 console.log('uid: ', user.uid);
-var userRef = firestore.collection('Users').doc(user.uid);
-var getDoc = userRef.get()
-	.then(doc => {
-		if (!doc.exists) {
-			console.log('No such document!');
-		} else {
-			console.log('Document data:', doc.data());
-		}
+firestore.collection('Users').get().then((snapshot) => {
+	snapshot.docs.forEach(doc => {
+		renderConnectedUsers(doc);
 	})
-	.catch(err => {
-		console.log('Error getting document', err);
+	
 	});
 	
 document.getElementById("connectedUser").innerHTML = "Paragraph changed.";
