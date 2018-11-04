@@ -12,7 +12,7 @@
     firebase.initializeApp(config);
  */
  	//console.log(firebase.apps.length);
-if (!firebase.apps.length) {
+//if (!firebase.apps.length) {
 
 	var config = {
 		apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
@@ -25,7 +25,7 @@ if (!firebase.apps.length) {
 			
 	firebase.initializeApp(config);
 	console.log("initializeApp in registerUser.js");
-}
+//}
 
     const firebase = require("firebase");
     // Required for side-effects
