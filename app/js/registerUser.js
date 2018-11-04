@@ -25,7 +25,7 @@ if (!firebase.apps.length) {
 			
 	firebase.initializeApp(config);
 	console.log("initializeApp in registerUser.js");
-
+}
     // Fetch an instance of the DB
     var db = firebase.firestore(app);
 
@@ -197,4 +197,4 @@ if (!firebase.apps.length) {
         }
     });
 
-}());
+});
