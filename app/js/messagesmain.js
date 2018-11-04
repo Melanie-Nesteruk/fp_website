@@ -18,8 +18,10 @@ if (!firebase.apps.length) {
 }
 
 // Fetch an instance of the DB
-var firestore = firebase.firestore();
-var database = firebase.database();
+const firestore = firebase.firestore();
+const settings = {timestampsInSnapshots: true};
+firestore.settings(settings);
+const database = firebase.database();
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
 
@@ -32,8 +34,8 @@ if (user != null) {
 			   // this value to authenticate with your backend server, if
 			   // you have one. Use User.getToken() instead.
 }
-console.log('uid: ',uid);
-var userRef = firestore.collection('Users').doc(uid);
+console.log('uid: ', user.uid);
+var userRef = firestore.collection('Users').doc(user.uid);
 var getDoc = userRef.get()
 	.then(doc => {
 		if (!doc.exists) {
