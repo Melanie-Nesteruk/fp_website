@@ -21,13 +21,18 @@ if (!firebase.apps.length) {
 		projectId: "focal-point-student-alumni-net",
 		storageBucket: "focal-point-student-alumni-net.appspot.com",
 		messagingSenderId: "1002904582612"
-	} 
+	};
 			
 	firebase.initializeApp(config);
-	console.log("initializeApp");
+	console.log("initializeApp in registerUser.js");
 }
+
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+
     // Fetch an instance of the DB
-    var db = firebase.firestore();
+    var db = firebase.firestore(app);
 
     // Disable deprecated features
     db.settings({
@@ -89,13 +94,27 @@ if (!firebase.apps.length) {
         // Create pre-verified database input for current input fields
 
         var currentUser = firebase.auth().currentUser;
-        const currentUID = currentUser.uid;
+        var currentUID = currentUser.uid;
         var currentUserType = 0;
 
         // Convert HTMLElements to strings to store in DB
         var sFirstName = firstName.value;
         var sLastName = lastName.value;
         var sEmail = email.value;
+
+        // Test DB references
+        var ref = db.collection('Users').doc('test_document');
+
+        ref.set({
+            first_Name: "TEST_FIRSTNAME",
+            verified: false
+        })
+        .then(function(docRef) {
+            console.log("Document written with ID: ", ref.id);
+        })
+        .catch(function(error) {
+            console.error("Error adding document: ", error);
+        });
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
@@ -109,7 +128,7 @@ if (!firebase.apps.length) {
             currentUserType = 3;
         }
 
-        db.collection("Users").doc("TEST_CREATION").set({
+        db.collection('Users').doc("TEST_CREATION").set({
             first_Name: "TEST_FIRSTNAME",
             verified: false
         })
@@ -121,7 +140,7 @@ if (!firebase.apps.length) {
         });
 
         // Create new document in 'Users' collection
-        db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
+        db.collection('Users').doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
             first_Name: sFirstName,
             last_Name: sLastName,
             email: sEmail,                          
@@ -137,7 +156,7 @@ if (!firebase.apps.length) {
 
         // Create new document in the 'Profiles' collection
         // Fields must be populated later when users provide more information
-        db.collection("Profiles").doc(currentUID).set({
+        db.collection('Profiles').doc(currentUID).set({
             major: "Fill in Major",
             minor: "Fill in Minor",
             bio: "Bio goes here",
@@ -158,7 +177,7 @@ if (!firebase.apps.length) {
         // Create new document in the 'Blocks' collection
         // Feilds must be populated at the time of the block
         // Blocking requires a merge with the existing feilds
-        db.collection("Blocks").doc(currentUID).set({                  
+        db.collection('Blocks').doc(currentUID).set({                  
             uid: currentUID,
         })
         .then(function(){
