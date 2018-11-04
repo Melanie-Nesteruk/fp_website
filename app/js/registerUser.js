@@ -25,11 +25,6 @@ if (!firebase.apps.length) {
 			
 	firebase.initializeApp(config);
 	console.log("initializeApp in registerUser.js");
-}
-
-    const firebase = require("firebase");
-    // Required for side-effects
-    require("firebase/firestore");
 
     // Fetch an instance of the DB
     var db = firebase.firestore(app);
