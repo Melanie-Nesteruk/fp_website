@@ -19,7 +19,6 @@
     const btnLogin = document.getElementById('btnLogin');
     const btnLogout = document.getElementById('btnLogout');
 
-    var userInstance = document.currentScript.getAttribute('userInstance');
     var initialLoad = true;
 
     // Add login event
@@ -61,11 +60,6 @@
                 txtEmail.value = "";
                 txtPassword.value = "";
                 console.log(user);
-
-                $.post("jsLogin", userInstance, function() {
-
-                });
-                event.preventDefault();
                 //window.location.href = "/index";
             }
 
@@ -76,9 +70,6 @@
         else {
             if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad) {
                 alert("You have been signed out.");
-                $.post("jsLogout", userInstance, function(){
-                });
-                event.preventDefault();
                 btnLogout.classList.add('hide');
                 window.location.href = "/login";
             }

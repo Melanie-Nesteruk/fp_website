@@ -14,7 +14,6 @@
     }
 
     var initialLoad = true;
-    var userInstance = document.currentScript.getAttribute('userInstance');
 
     const linkLogout = document.getElementById('logout');
     linkLogout.onclick = logout();
@@ -29,9 +28,6 @@
     firebase.auth().onAuthStateChanged(user => {
         if (!initialLoad) {
             alert("You have been signed out.");
-            $.post("jsLogout", userInstance, function(){
-
-            });
             window.location.href = "/login";
         }
     });
