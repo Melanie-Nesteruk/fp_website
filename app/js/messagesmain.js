@@ -44,6 +44,7 @@ var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+	  console.log('usertoken: ', user.getToken());
     	name = user.displayName;
 		email = user.email;
 		photoUrl = user.photoURL;
