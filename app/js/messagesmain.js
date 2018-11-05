@@ -1,4 +1,3 @@
-
 console.log("in messagesmain.js");
 
 const connectedUserList = document.querySelector('#connected-user-list');
@@ -22,7 +21,6 @@ function renderConnectedUsers(doc){
 }
 
 if (!firebase.apps.length) {
-
 	var config = {
 		apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
 		authDomain: "focal-point-student-alumni-net.firebaseapp.com",
@@ -49,19 +47,15 @@ if (user != null) {
 	photoUrl = user.photoURL;
 	emailVerified = user.emailVerified;
 	uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-			   // this value to authenticate with your backend server, if
-			   // you have one. Use User.getToken() instead.
+			         // this value to authenticate with your backend server, if
+			         // you have one. Use User.getToken() instead.
 }
+
 console.log('uid: ', user.uid);
 firestore.collection('Users').get().then((snapshot) => {
 	snapshot.docs.forEach(doc => {
 		renderConnectedUsers(doc);
 	})
-	
-	});
+});
 	
 document.getElementById("connectedUser").innerHTML = "Paragraph changed.";
-
-
-
-
