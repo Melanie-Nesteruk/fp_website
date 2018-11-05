@@ -12,16 +12,18 @@
         firebase.initializeApp(config);
     }
 
-    if (firebase.auth().currentUser)
-    {
-        // Show "Profile", "Directory", "Messages", and "Logout"
-        setNavigation(true);
-    }
-    else
-    {
-        // Show "Mailing List" and "Login"
-        setNavigation(false);
-    }
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (firebase.auth().currentUser)
+        {
+            // Show "Profile", "Directory", "Messages", and "Logout"
+            setNavigation(true);
+        }
+        else
+        {
+            // Show "Mailing List" and "Login"
+            setNavigation(false);
+        }
+    });
         
     function setNavigation(loggedIn)
     {
