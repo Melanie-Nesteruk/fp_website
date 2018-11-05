@@ -105,9 +105,9 @@
         }
         else
         {
-            var profile = document.getElementById("profileNav").remove();
-            var directory = document.getElementById("directoryNav").remove();
-            var messages = document.getElementById("messagesNav").remove();
+            var profile = document.getElementById("profileNav");
+            var directory = document.getElementById("directoryNav");
+            var messages = document.getElementById("messagesNav");
             if (profile) profile.remove();
             if (directory) directory.remove();
             if (messages) messages.remove();
