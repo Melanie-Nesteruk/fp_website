@@ -12,20 +12,35 @@
                       <span class="section-heading-upper">Student-Alumni Network</span>
                       <span class="section-heading-lower">Reset Password</span>
                     </h2>
-					<p class="address mb-5">
-						<em>
-						<strong>This is not the password reset you are looking for...</strong>
-						</em>
+                        <div class="form-group" style="width: 35%; pointer-events: auto; margin:0 auto; display: flex;">
+                            <div style="flex: 0 0 30%; text-align: left;">
+                                <label for="user_email">Email:</label>
+                            </div>
+                            <div style="text-align: left;">
+                                <input id=txtEmail" type=text" placeholder="Email" name=email" required="true">
+                                <br>
+                                <button id="btnReset" type="submit">Reset</button>
+                            </div>
+                        </div>
 					</p>
                   </div>
                 </div>
               </div>
             </div>
           </section>
+
     <script src="app/js/reset.js"></script>
+    <script src="app/bootstrap/vendor/jquery/jquery.min.js></script>
     <style>
         .hide {
             visibility: hidden;
+        }
+        label {
+            display: inline-block;
+            padding-top: 3px;
+        }
+        input, select, button {
+            margin-top: 5px;
         }
     </style>
 
