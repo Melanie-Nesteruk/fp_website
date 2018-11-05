@@ -68,6 +68,7 @@
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB() {
+		console.log('Adding user to firestore.');
         // User input: firstName, lastName, email, userType
         // Create pre-verified database input for current input fields
         var currentUser = firebase.auth().currentUser;

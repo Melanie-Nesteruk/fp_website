@@ -53,7 +53,7 @@ if (user != null) {
 			         // you have one. Use User.getToken() instead.
 }
 console.log('name: ', name);
-console.log('uid: ', uid);
+console.log('uid: ', user.uid);
 
 //	Pulls all docs from 'Users' collection in firebase
 //	and lists them
