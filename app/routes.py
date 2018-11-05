@@ -7,11 +7,6 @@ from app import app
 from app.models import User
 from flask import render_template, request
 
-
-userInstance = User()
-initializeUser()
-
-
 @app.route('/')
 @app.route('/index')
 def index():
@@ -85,3 +80,7 @@ def jsLogout():
 
 def initializeUser():
     render_template("navigation_authentication.html")
+
+
+userInstance = User()
+initializeUser()
