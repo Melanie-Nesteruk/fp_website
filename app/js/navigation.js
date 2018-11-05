@@ -117,8 +117,8 @@
                 linkNode.classList.add("text-uppercase");
                 linkNode.classList.add("text-expanded");
                 linkNode.id = "logout";
-                linkNode.href = "/logout.html";
-                linkNode.onclick="return false;";
+                linkNode.href = "logout.html";
+                linkNode.onclick.add("return&nbsp;false;");
                 var textNode = document.createTextNode("Logout");
     
                 linkNode.appendChild(textNode); 
