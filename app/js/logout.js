@@ -17,7 +17,7 @@
     var userInstance = document.currentScript.getAttribute('userInstance');
 
     const linkLogout = document.getElementById('logout');
-    linkLogout.onclick = logout;
+    linkLogout.onclick = logout();
 
     function logout() {
         initialLoad = false;
