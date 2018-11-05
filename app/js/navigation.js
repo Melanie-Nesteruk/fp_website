@@ -30,8 +30,8 @@
         var tempFragment;
         if (loggedIn)
         {
-            var subscribe = document.getElementById("subscibeNav");
-            var login = document.getElementById("LoginNav");
+            var subscribe = document.getElementById("subscribeNav");
+            var login = document.getElementById("loginNav");
             if (subscribe) subscribe.remove();
             if (login) login.remove();
 
