@@ -52,8 +52,8 @@ if (user != null) {
 			         // this value to authenticate with your backend server, if
 			         // you have one. Use User.getToken() instead.
 }
-
-console.log('uid: ', user.uid);
+console.log('name: ', name);
+console.log('uid: ', uid);
 
 //	Pulls all docs from 'Users' collection in firebase
 //	and lists them
