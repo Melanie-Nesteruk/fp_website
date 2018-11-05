@@ -12,7 +12,7 @@
         firebase.initializeApp(config);
     }
 
-    firebase.auth().onAuthStateChanged(function(user) {
+    firebase.auth().onAuthStateChanged(function() {
         if (firebase.auth().currentUser)
         {
             // Show "Profile", "Directory", "Messages", and "Logout"
@@ -32,9 +32,81 @@
         {
             document.getElementById("subscibeNav").remove();
             document.getElementById("LoginNav").remove();
+
+            // Add "Profile" nav link
+            var node = document.getElementById("profileNav");
+            if (!node)
+            {
+                node = document.createElement("LI");
+                node.classList.add("nav-item");
+                node.classList.add("px-lg-4");
+                node.id = "profileNav";
+                
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+
+                linkNode.id = "profile";
+                linkNode.href = "/profile";
+                var textNode = document.createTextNode("Profile");
+
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+            }
+
+            // Add "Directory" nav link
+            var node = document.getElementById("directoryNav");
+            if (!node)
+            {
+                node = document.createElement("LI");
+                node.classList.add("nav-item");
+                node.classList.add("px-lg-4");
+                node.id = "directoryNav";
+                
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+    
+                linkNode.id = "directory";
+                linkNode.href = "/directory";
+                var textNode = document.createTextNode("Directory");
+    
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+            }
+
+            // Add "Messages" nav link
+            node = document.getElementById("messagesNav");
+            if (!node)
+            {
+                node = document.createElement("LI");
+                node.classList.add("nav-item");
+                node.classList.add("px-lg-4");
+                node.id = "messagesNav";
+                
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+                linkNode.id = "messages";
+                linkNode.href = "/messages";
+                var textNode = document.createTextNode("Messages");
+    
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+            }
         }
         else
         {
+            document.getElementById("profileNav").remove();
+            document.getElementById("directoryNav").remove();
+            document.getElementById("messagesNav").remove();
+            
             // Add "Mailing List" nav link
             var node = document.getElementById("subscibeNav");
             if (!node)

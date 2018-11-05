@@ -66,7 +66,7 @@
 
                 });
                 event.preventDefault();
-                window.location.href = "/index";
+                //window.location.href = "/index";
             }
 
             if (btnLogout != null) {
