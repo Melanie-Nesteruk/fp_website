@@ -30,8 +30,10 @@
         var tempFragment;
         if (loggedIn)
         {
-            document.getElementById("subscibeNav").remove();
-            document.getElementById("LoginNav").remove();
+            var subscribe = document.getElementById("subscibeNav");
+            var login = document.getElementById("LoginNav");
+            if (subscribe) subscribe.remove();
+            if (login) login.remove();
 
             // Add "Profile" nav link
             var node = document.getElementById("profileNav");
@@ -103,10 +105,13 @@
         }
         else
         {
-            document.getElementById("profileNav").remove();
-            document.getElementById("directoryNav").remove();
-            document.getElementById("messagesNav").remove();
-            
+            var profile = document.getElementById("profileNav").remove();
+            var directory = document.getElementById("directoryNav").remove();
+            var messages = document.getElementById("messagesNav").remove();
+            if (profile) profile.remove();
+            if (directory) directory.remove();
+            if (messages) messages.remove();
+
             // Add "Mailing List" nav link
             var node = document.getElementById("subscibeNav");
             if (!node)
