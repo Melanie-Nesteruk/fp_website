@@ -16,14 +16,14 @@
     var initialLoad = true;
 
     const linkLogout = document.getElementById('logout');
-    linkLogout.onclick = function()
+    if (linkLogout)
     {
-        initialLoad = false;
+        linkLogout.addEventListener('click', e=> {
+            initialLoad = false;
 
-        const promise = firebase.auth().signOut();
-        promise.catch(e => alert(e.message));
-
-        return false;
+            const promise = firebase.auth().signOut();
+            promise.catch(e => alert(e.message));
+        });
     }
 
     firebase.auth().onAuthStateChanged(user => {
