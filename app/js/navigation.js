@@ -118,7 +118,7 @@
                 linkNode.classList.add("text-expanded");
                 linkNode.id = "logout";
                 linkNode.href = "logout.html";
-                linkNode.onclick.add("return&nbsp;false;");
+                linkNode.onclick = "return false;";
                 var textNode = document.createTextNode("Logout");
     
                 linkNode.appendChild(textNode); 
