@@ -79,7 +79,7 @@ def jsLogout():
 
 
 def initializeUser():
-    render_template("navigation_authentication.html", app=app)
+    return render_template("navigation_authentication.html", app=app)
 
 
 userInstance = User()
