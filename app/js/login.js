@@ -78,6 +78,7 @@
                 alert("You have been signed out.");
                 $.post("jsLogout", userInstance, function(){
                 });
+                event.preventDefault();
                 btnLogout.classList.add('hide');
                 window.location.href = "/login";
             }

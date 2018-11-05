@@ -9,7 +9,7 @@ from flask import render_template, request
 
 
 userInstance = User()
-# initializeUser()
+initializeUser()
 
 
 @app.route('/')

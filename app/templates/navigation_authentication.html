@@ -17,10 +17,12 @@
     {
         $.post("jsLogin", userInstance, function(){
         });
+        event.preventDefault();
     }
     else
     {
         $.post("jsLogout", userInstance, function(){
         });
+        event.preventDefault();
     }
 </script>
