@@ -18,8 +18,9 @@
     }
 
     // Fetch an instance of the DB
-    var db = firebase.firestore(app);
+    var db = firebase.firestore();
     console.log(db);
+    console.log(firebase.app().name);
 
     // Disable deprecated features
     db.settings({
@@ -86,18 +87,19 @@
         var sEmail = email.value;
 
         // Test DB references
-        var ref = db.collection('Users').doc('test_document');
+        var ref = db.collection("Users").doc("test_document");
 
         ref.set({
             first_Name: "TEST_FIRSTNAME",
             verified: false
         })
-        .then(function(docRef) {
-            console.log("Document written with ID: ", ref.id);
+        .then(function() {
+            console.log("Document written successfully!");
         })
         .catch(function(error) {
             console.error("Error adding document: ", error);
         });
+        
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
@@ -111,7 +113,7 @@
             currentUserType = 3;
         }
 
-        db.collection('Users').doc("TEST_CREATION").set({
+        db.collection("Users").doc("TEST_CREATION").set({
             first_Name: "TEST_FIRSTNAME",
             verified: false
         })
@@ -123,7 +125,7 @@
         });
 
         // Create new document in 'Users' collection
-        db.collection('Users').doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
+        db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
             first_Name: sFirstName,
             last_Name: sLastName,
             email: sEmail,                          
@@ -139,7 +141,7 @@
 
         // Create new document in the 'Profiles' collection
         // Fields must be populated later when users provide more information
-        db.collection('Profiles').doc(currentUID).set({
+        db.collection("Profiles").doc(currentUID).set({
             major: "Fill in Major",
             minor: "Fill in Minor",
             bio: "Bio goes here",
@@ -160,8 +162,8 @@
         // Create new document in the 'Blocks' collection
         // Feilds must be populated at the time of the block
         // Blocking requires a merge with the existing feilds
-        db.collection('Blocks').doc(currentUID).set({                  
-            uid: currentUID,
+        db.collection("Blocks").doc(currentUID).set({                  
+            uid: currentUID
         })
         .then(function() {
             console.log("Document successfully written!");
