@@ -32,6 +32,14 @@
         }
         
     });
+
+    function logout()
+    {
+        initialLoad = false;
+        
+        const promise = firebase.auth().signOut();
+        promise.catch(e => alert(e.message));
+    }
         
     function setNavigation(loggedIn)
     {
@@ -190,14 +198,6 @@
                 document.getElementById("navBarList").appendChild(node);
             }
         }
-    }
-
-    function logout()
-    {
-        initialLoad = false;
-        
-        const promise = firebase.auth().signOut();
-        promise.catch(e => alert(e.message));
     }
 
     var currentPage = document.currentScript.getAttribute('title').toLowerCase();
