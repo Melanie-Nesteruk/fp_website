@@ -23,8 +23,7 @@
     var initialLoad = true;
 
     // Add login event
-    if (btnLogin != null)
-    {
+    if (btnLogin != null) {
         btnLogin.addEventListener('click', e=> {
             // Get email and password
             const email = txtEmail.value;
@@ -34,8 +33,7 @@
             initialLoad = false;
 
             // Logout an existing user
-            if (firebase.auth().currentUser)
-            {
+            if (firebase.auth().currentUser) {
                 alert("Error: User already logged in. You have been logged out.");
                 return;
             }
@@ -47,8 +45,7 @@
     }
 
     // Add logout event
-    if (btnLogout != null)
-    {
+    if (btnLogout != null) {
         btnLogout.addEventListener('click', e=> {
             initialLoad = false;
 
@@ -57,33 +54,27 @@
         });
     }
 
-
     firebase.auth().onAuthStateChanged(user => {
-        if(user)
-        {
-            if (!initialLoad)
-            {
+        if (user) {
+            if (!initialLoad) {
                 alert("You are now signed in!");
                 txtEmail.value = "";
                 txtPassword.value = "";
                 console.log(user);
 
-                $.post("jsLogin", userInstance, function(){
+                $.post("jsLogin", userInstance, function() {
 
                 });
                 event.preventDefault();
                 window.location.href = "/index";
-
             }
-            if (btnLogout != null)
-            {
+
+            if (btnLogout != null) {
                 btnLogout.classList.remove('hide');
             }
         }
-        else
-        {
-            if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad)
-            {
+        else {
+            if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad) {
                 alert("You have been signed out.");
                 $.post("jsLogout", userInstance, function(){
                 });

@@ -19,17 +19,15 @@
     const linkLogout = document.getElementById('logout');
     linkLogout.onclick = logout;
 
-    function logout(){
+    function logout() {
         initialLoad = false;
 
         const promise = firebase.auth().signOut();
         promise.catch(e => alert(e.message));
     }
 
-
     firebase.auth().onAuthStateChanged(user => {
-        if (!initialLoad)
-        {
+        if (!initialLoad) {
             alert("You have been signed out.");
             $.post("jsLogout", userInstance, function(){
 
@@ -37,5 +35,4 @@
             window.location.href = "/login";
         }
     });
-
 }());
