@@ -70,10 +70,14 @@
 
           // Add "Mailing List" nav link
           var node = document.createElement("LI");
-          node.classList.add("nav-item px-lg-4");
+          node.classList.add("nav-item");
+          node.classList.add("px-lg-4");
         
           var linkNode = document.createElement("a");
-          linkNode.classList.add("nav-link text-uppercase text-expanded");
+          linkNode.classList.add("nav-link");
+          linkNode.classList.add("text-uppercase");
+          linkNode.classList.add("text-expanded");
+
           linkNode.id = "subscribe";
           linkNode.href = "/subscribe";
           var textNode = document.createTextNode("Mailing List");
@@ -86,10 +90,13 @@
 
           // Add "Login" nav link
           var node = document.createElement("LI");
-          node.classList.add("nav-item px-lg-4");
+          node.classList.add("nav-item");
+          node.classList.add("px-lg-4");
         
           var linkNode = document.createElement("a");
-          linkNode.classList.add("nav-link text-uppercase text-expanded");
+          linkNode.classList.add("nav-link");
+          linkNode.classList.add("text-uppercase");
+          linkNode.classList.add("text-expanded");
           linkNode.id = "login";
           linkNode.href = "/login";
           var textNode = document.createTextNode("Login");
