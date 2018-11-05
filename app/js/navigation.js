@@ -102,15 +102,40 @@
                 node.appendChild(linkNode);
                 document.getElementById("navBarList").appendChild(node);
             }
+
+            // Add "Logout" nav link
+            node = document.getElementById("logoutNav");
+            if (!node)
+            {
+                node = document.createElement("LI");
+                node.classList.add("nav-item");
+                node.classList.add("px-lg-4");
+                node.id = "logoutNav";
+                
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+                linkNode.id = "logout";
+                linkNode.href = "/logout.html";
+                linkNode.onclick="return false;";
+                var textNode = document.createTextNode("Logout");
+    
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+            }
         }
         else
         {
             var profile = document.getElementById("profileNav");
             var directory = document.getElementById("directoryNav");
             var messages = document.getElementById("messagesNav");
+            var logout = document.getElementById("logoutNav");
             if (profile) profile.remove();
             if (directory) directory.remove();
             if (messages) messages.remove();
+            if (logout) logout.remove();
 
             // Add "Mailing List" nav link
             var node = document.getElementById("subscibeNav");
