@@ -11,6 +11,8 @@
         };
         firebase.initializeApp(config);
     }
+    
+    var initialLoad = true;
 
     firebase.auth().onAuthStateChanged(function() {
         if (firebase.auth().currentUser)
@@ -22,7 +24,13 @@
         {
             // Show "Mailing List" and "Login"
             setNavigation(false);
+            if (!initialLoad) 
+            {
+                alert("You have been signed out.");
+                window.location.href = "/login";
+            }
         }
+        
     });
         
     function setNavigation(loggedIn)
@@ -118,6 +126,12 @@
                 linkNode.classList.add("text-expanded");
                 linkNode.id = "logout";
                 linkNode.href = "javascript:void(0);";
+                linkLogout.addEventListener('click', e=> {
+                    initialLoad = false;
+        
+                    const promise = firebase.auth().signOut();
+                    promise.catch(e => alert(e.message));
+                });
                 var textNode = document.createTextNode("Logout");
     
                 linkNode.appendChild(textNode); 
