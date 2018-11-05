@@ -46,6 +46,60 @@
       
       console.log(DB);
       console.log(app);   // List of all initialized apps
+
+      if (firebase.auth().currentUser)
+      {
+          // Show "Profile", "Directory", "Messages", and "Logout"
+          setNavigation(loggedIn=true);
+      }
+      else
+      {
+          // Show "Mailing List" and "Login"
+          setNavigation(loggedIn=false);
+      }
+      
+      function setNavigation(loggedIn)
+      {
+        var tempFragment;
+        if (loggedIn)
+        {
+          
+        }
+        else
+        {
+
+          // Add "Mailing List" nav link
+          var node = document.createElement("LI");
+          node.classList.add("nav-item px-lg-4");
+        
+          var linkNode = document.createElement("a");
+          linkNode.classList.add("nav-link text-uppercase text-expanded");
+          linkNode.id = "subscribe";
+          linkNode.href = "/subscribe";
+          var textNode = document.createTextNode("Mailing List");
+
+          linkNode.appendChild(textNode); 
+          node.appendChild(linkNode);
+          document.getElementById("navBarList").appendChild(node);
+
+          // --------------------------------------------------
+
+          // Add "Login" nav link
+          var node = document.createElement("LI");
+          node.classList.add("nav-item px-lg-4");
+        
+          var linkNode = document.createElement("a");
+          linkNode.classList.add("nav-link text-uppercase text-expanded");
+          linkNode.id = "login";
+          linkNode.href = "/login";
+          var textNode = document.createTextNode("Login");
+
+          linkNode.appendChild(textNode); 
+          node.appendChild(linkNode);
+          document.getElementById("navBarList").appendChild(node);
+        }
+      }
+
     </script> 
 
     <!--<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script>-->
@@ -68,7 +122,7 @@
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav mx-auto">
+          <ul class="navbar-nav mx-auto" id="navBarList">
             <li class="nav-item px-lg-4" id="home">
               <a class="nav-link text-uppercase text-expanded" href="/index">Home
               </a>
@@ -81,7 +135,7 @@
                   <a class="nav-link text-uppercase text-expanded" id="socialmedia" href="/socialmedia">Social Media</a>
                 </div>
             </li>
-          {% if loggedIn %}
+          <!-- {% if loggedIn %}
             <li class="nav-item px-lg-4" id="profile">
               <a class="nav-link text-uppercase text-expanded" href="/profile">Profile</a>
             </li>
@@ -101,7 +155,7 @@
             <li class="nav-item px-lg-4" id="login">
                 <a class="nav-link text-uppercase text-expanded" id="login" href="/login">Login</a>
             </li>
-          {% endif %}
+          {% endif %} -->
           </ul>
         </div>
       </div>
