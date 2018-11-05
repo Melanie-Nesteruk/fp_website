@@ -68,6 +68,11 @@ def messages():
     return render_template("messages.html", title='Messages', app=app, loggedIn=userInstance.getLoginState())
 
 
+@app.route('/reset')
+def reset():
+    return render_template("reset.html", title='Reset', app=app, loggedIn=userInstance.getLoginState(), userInstance=userInstance)
+
+
 @app.route('/jsLogin', methods = ['POST'])
 def jsLogin():
     userInstance.setLoginState(True)
