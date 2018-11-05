@@ -42,7 +42,7 @@ const firestore = firebase.firestore();
 firestore.settings( {timestampsInSnapshots: true} );
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
-
+console.log(user);
 if (user != null) {
 	console.log('User is not null');
 	name = user.displayName;
