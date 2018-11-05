@@ -17,6 +17,7 @@
 
     // Fetch an instance of the DB
     var db = firebase.firestore();
+    console.log(db);
 
     // Disable deprecated features
     db.settings({

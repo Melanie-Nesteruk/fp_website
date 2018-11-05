@@ -42,7 +42,7 @@
         messagingSenderId: "1002904582612"
       };
       var app = firebase.initializeApp(config);
-      var DB = firebase.firestore();
+      var DB = firebase.firestore(app);
       
       console.log(DB);
       console.log(app);   // List of all initialized apps
