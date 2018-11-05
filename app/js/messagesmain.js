@@ -40,7 +40,15 @@ if (!firebase.apps.length) {
 // Fetch an instance of the DB
 const firestore = firebase.firestore();
 firestore.settings( {timestampsInSnapshots: true} );
+
 var user = firebase.auth().currentUser;
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+	user = firebase.auth().currentUser;
+  } else {
+    console.log('no user is signed in');
+  }
+})
 var name, email, photoUrl, uid, emailVerified;
 console.log(user);
 if (user != null) {
