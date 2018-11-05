@@ -138,7 +138,8 @@
           var tempFragment;
           if (loggedIn)
           {
-            
+            document.getElementById("subscibeNav").remove();
+            document.getElementById("LoginNav").remove();
           }
           else
           {
@@ -147,6 +148,7 @@
             var node = document.createElement("LI");
             node.classList.add("nav-item");
             node.classList.add("px-lg-4");
+            node.id = "subscribeNav";
           
             var linkNode = document.createElement("a");
             linkNode.classList.add("nav-link");
@@ -167,6 +169,7 @@
             var node = document.createElement("LI");
             node.classList.add("nav-item");
             node.classList.add("px-lg-4");
+            node.id = "loginNav";
           
             var linkNode = document.createElement("a");
             linkNode.classList.add("nav-link");
