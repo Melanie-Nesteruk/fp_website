@@ -11,7 +11,7 @@
 		    messagingSenderId: "1002904582612"
 	    };
 			
-	    firebase.initializeApp(config);
+	    var app = firebase.initializeApp(config);
 	    console.log("initializeApp in registerUser.js");
     }
 
@@ -68,7 +68,9 @@
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB() {
-		console.log('Adding user to firestore.');
+
+        console.log('Adding user to firestore.');
+
         // User input: firstName, lastName, email, userType
         // Create pre-verified database input for current input fields
         var currentUser = firebase.auth().currentUser;
