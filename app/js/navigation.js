@@ -126,12 +126,7 @@
                 linkNode.classList.add("text-expanded");
                 linkNode.id = "logout";
                 linkNode.href = "javascript:void(0);";
-                linkLogout.addEventListener('click', e=> {
-                    initialLoad = false;
-        
-                    const promise = firebase.auth().signOut();
-                    promise.catch(e => alert(e.message));
-                });
+                linkNode.onclick = logout;
                 var textNode = document.createTextNode("Logout");
     
                 linkNode.appendChild(textNode); 
@@ -195,6 +190,14 @@
                 document.getElementById("navBarList").appendChild(node);
             }
         }
+    }
+
+    function logout()
+    {
+        initialLoad = false;
+        
+        const promise = firebase.auth().signOut();
+        promise.catch(e => alert(e.message));
     }
 
     var currentPage = document.currentScript.getAttribute('title').toLowerCase();
