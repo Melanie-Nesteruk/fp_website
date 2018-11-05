@@ -20,7 +20,7 @@ function renderConnectedUsers(doc){
 	li.appendChild(user_id);
 	
 	connectedUserList.appendChild(li);
-	console.log('User added.');
+	console.log('User listed.');
 }
 
 if (!firebase.apps.length) {
