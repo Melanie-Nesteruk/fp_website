@@ -40,19 +40,11 @@ if (!firebase.apps.length) {
 // Fetch an instance of the DB
 const firestore = firebase.firestore();
 firestore.settings( {timestampsInSnapshots: true} );
-
 var user = firebase.auth().currentUser;
+var name, email, photoUrl, uid, emailVerified;
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-	user = firebase.auth().currentUser;
-  } else {
-    console.log('no user is signed in');
-  }
-})
-var name, email, photoUrl, uid, emailVerified;
-console.log(user);
-if (user != null) {
-	console.log('User is not null');
+    console.log('User is signed in');
 	name = user.displayName;
 	email = user.email;
 	photoUrl = user.photoURL;
@@ -60,9 +52,14 @@ if (user != null) {
 	uid = user.getToken();  // The user's ID, unique to the Firebase project. Do NOT use
 			         // this value to authenticate with your backend server, if
 			         // you have one. Use User.getToken() instead.
-}
-console.log('name: ', name);
-console.log('uid: ', user.uid);
+					 console.log('name: ', name);
+	console.log('uid: ', uid);
+  } else {
+    console.log('no user signed in');
+  }
+});
+
+
 
 //	Pulls all docs from 'Users' collection in firebase
 //	and lists them
