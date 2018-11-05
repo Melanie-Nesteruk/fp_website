@@ -12,7 +12,7 @@
 	    };
 			
 	    firebase.initializeApp(config);
-	    console.log("initializeApp in registerUser.js");
+	    console.log("initializeApp in reset.js");
     }
 
     // Fetch an instance of the DB
