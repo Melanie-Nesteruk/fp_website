@@ -32,14 +32,6 @@
         }
         
     });
-
-    function logout()
-    {
-        initialLoad = false;
-        
-        const promise = firebase.auth().signOut();
-        promise.catch(e => alert(e.message));
-    }
         
     function setNavigation(loggedIn)
     {
@@ -134,7 +126,12 @@
                 linkNode.classList.add("text-expanded");
                 linkNode.id = "logout";
                 linkNode.href = "javascript:void(0);";
-                linkNode.onclick = logout();
+                linkNode.addEventListener('click', e=> {
+                    initialLoad = false;
+        
+                    const promise = firebase.auth().signOut();
+                    promise.catch(e => alert(e.message));
+                });
                 var textNode = document.createTextNode("Logout");
     
                 linkNode.appendChild(textNode); 
