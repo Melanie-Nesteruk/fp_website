@@ -177,4 +177,4 @@
             document.location.reload();
         }
     });
-});
+}());
