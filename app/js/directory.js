@@ -1,5 +1,5 @@
 
-const connectedUserList = document.querySelector('#connected-user-list');
+const connectedUserList = document.querySelector('#user-list');
 
 // create element and render users
 function renderConnectedUsers(doc){
@@ -52,8 +52,8 @@ if (user != null) {
 			   // this value to authenticate with your backend server, if
 			   // you have one. Use User.getToken() instead.
 }
-console.log('uid: ', user.uid);
 
+//
 //	Pulls all docs from 'Users' collection in firebase
 //	and lists them
 firestore.collection('Users').get().then((snapshot) => {
@@ -62,7 +62,4 @@ firestore.collection('Users').get().then((snapshot) => {
 	})
 	
 });
-
-
-
 
