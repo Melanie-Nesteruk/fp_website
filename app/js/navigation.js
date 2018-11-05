@@ -36,43 +36,49 @@
         else
         {
             // Add "Mailing List" nav link
-            var node = document.createElement("LI");
-            node.classList.add("nav-item");
-            node.classList.add("px-lg-4");
-            node.id = "subscribeNav";
-            
-            var linkNode = document.createElement("a");
-            linkNode.classList.add("nav-link");
-            linkNode.classList.add("text-uppercase");
-            linkNode.classList.add("text-expanded");
-
-            linkNode.id = "subscribe";
-            linkNode.href = "/subscribe";
-            var textNode = document.createTextNode("Mailing List");
-
-            linkNode.appendChild(textNode); 
-            node.appendChild(linkNode);
-            document.getElementById("navBarList").appendChild(node);
-
-            // --------------------------------------------------
+            var node = document.getElementById("subscibeNav");
+            if (!node)
+            {
+                node = document.createElement("LI");
+                node.classList.add("nav-item");
+                node.classList.add("px-lg-4");
+                node.id = "subscribeNav";
+                
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+    
+                linkNode.id = "subscribe";
+                linkNode.href = "/subscribe";
+                var textNode = document.createTextNode("Mailing List");
+    
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+            }
 
             // Add "Login" nav link
-            var node = document.createElement("LI");
-            node.classList.add("nav-item");
-            node.classList.add("px-lg-4");
-            node.id = "loginNav";
-            
-            var linkNode = document.createElement("a");
-            linkNode.classList.add("nav-link");
-            linkNode.classList.add("text-uppercase");
-            linkNode.classList.add("text-expanded");
-            linkNode.id = "login";
-            linkNode.href = "/login";
-            var textNode = document.createTextNode("Login");
-
-            linkNode.appendChild(textNode); 
-            node.appendChild(linkNode);
-            document.getElementById("navBarList").appendChild(node);
+            node = document.getElementById("loginNav");
+            if (!node)
+            {
+                node = document.createElement("LI");
+                node.classList.add("nav-item");
+                node.classList.add("px-lg-4");
+                node.id = "loginNav";
+                
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+                linkNode.id = "login";
+                linkNode.href = "/login";
+                var textNode = document.createTextNode("Login");
+    
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+            }
         }
     }
 
