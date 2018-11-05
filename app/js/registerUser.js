@@ -12,11 +12,12 @@
 	    };
 			
 	    var app = firebase.initializeApp(config);
-	    console.log("initializeApp in registerUser.js");
+        console.log("initializeApp in registerUser.js");
+        console.log(app);
     }
 
     // Fetch an instance of the DB
-    var db = firebase.firestore();
+    var db = firebase.firestore(app);
     console.log(db);
 
     // Disable deprecated features
