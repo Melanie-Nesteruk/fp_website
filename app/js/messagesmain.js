@@ -109,9 +109,10 @@ firestore.collection('Users').get().then((snapshot) => {
 //
 
 /* implement friends list here */
+
+		console.log('uid: ', uid);
 firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
 	snapshot.docs.forEach(doc => {
-		console.log('uid: ', uid);
 		renderFriendsList(doc);
 	})
 });
