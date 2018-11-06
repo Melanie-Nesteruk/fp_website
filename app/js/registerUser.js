@@ -181,13 +181,25 @@
             console.error("Error writing document: ", error);
         });
         */
-    }
+    };
 
     firebase.auth().onAuthStateChanged(user => {
         if(user && !initialLoad) {
             // Successful account creation
             alert("Your account has been created! You are now logged in.");
             console.log(user);
+
+            // Testing addition before call to function
+            db.collection("Profiles").doc("test_doc3").set({
+                test_success: true
+            })
+            .then(function(){
+                console.log("Test DB write was successful!");
+            })
+            .catch(function(error){
+                console.error("Could not write to DB: ", error);
+            });
+
             AddUserToDB(user.uid);
 
             // Reload page to clear fields
