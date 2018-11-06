@@ -35,14 +35,14 @@ function renderUsers(doc){
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
 
-	let but = document.createElement('button');
-	but.innerHTML = doc.id;
+	let button = document.createElement('button');
+	button.innerHTML = doc.id;
 	// let 'element' = document.createElement('span');
 	
-	but.setAttribute('value', doc.id);
+	button.setAttribute('value', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	but.addEventListener('click', openMessengerWith());
+	button.addEventListener('click', openMessengerWith());
 	
 	connectedFriendsList.appendChild(button);
 	console.log('Friend listed.');
