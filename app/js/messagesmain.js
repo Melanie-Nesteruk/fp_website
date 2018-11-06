@@ -34,7 +34,7 @@ function renderUsers(doc){
 //
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
-	friend-id = doc.id;
+	var friend-id = doc.id;
 	let button = document.createElement('button');
 	button.innerHTML = uid;
 	// let 'element' = document.createElement('span');
@@ -51,11 +51,11 @@ function renderFriendsList(doc){
 // =======================================================
 //	Create elements and render friends list
 //
-function openMessengerWith(friend-id){
+function openMessengerWith(user-id){
 	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
 			friends: true
 		})
-		console.log('Opening messenger with : ', friend-id);
+		console.log('Opening messenger with : ', user-id);
 }
 
 
@@ -81,7 +81,7 @@ if (!firebase.apps.length) {
 const firestore = firebase.firestore();
 firestore.settings( {timestampsInSnapshots: true} );
 var user = firebase.auth().currentUser;
-var name, email, photoUrl, uid, emailVerified, friend-id;
+var name, email, photoUrl, uid, emailVerified;
 
 // =======================================================
 // Check for user being logged in
