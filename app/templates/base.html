@@ -30,6 +30,8 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
+
+    <!-- Moved location of ths initilization to after footer for testing
     <script>
       // Initialize Firebase
       if (!firebase.apps.length) {
@@ -60,7 +62,7 @@
           console.error("Could not write to DB: ", error);
       });
       */
-    </script> 
+    </script> -->
     <!--<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script>-->
 
     </head>
@@ -106,6 +108,26 @@
         <p class="m-0 small">Copyright &copy; Focal Point 2018</p>
       </div>
     </footer>
+
+    <!-- Experimental Firebase Initialization -->
+    <script>
+      // Initialize Firebase
+      if (!firebase.apps.length) {
+        var config = {
+          apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
+          authDomain: "focal-point-student-alumni-net.firebaseapp.com",
+          databaseURL: "https://focal-point-student-alumni-net.firebaseio.com",
+          projectId: "focal-point-student-alumni-net",
+          storageBucket: "focal-point-student-alumni-net.appspot.com",
+          messagingSenderId: "1002904582612"
+        };
+        var app = firebase.initializeApp(config);
+      }
+        var DB = firebase.firestore(app);
+        
+      console.log(DB);
+      console.log(app);   // List of all initialized apps
+    </script> 
 
     <!-- Bootstrap core JavaScript -->
     <script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>

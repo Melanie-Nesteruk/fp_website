@@ -18,7 +18,7 @@
     }
 
     // Fetch an instance of the DB
-    var db = firebase.firestore();
+    var db = firebase.firestore(app);
     console.log(db);
     console.log(firebase.app().name);
 
@@ -86,21 +86,6 @@
         var sLastName = lastName.value;
         var sEmail = email.value;
 
-        // Test DB references
-        var ref = db.collection("Users").doc("test_document");
-
-        ref.set({
-            first_Name: "TEST_FIRSTNAME",
-            verified: false
-        })
-        .then(function() {
-            console.log("Document written successfully!");
-        })
-        .catch(function(error) {
-            console.error("Error adding document: ", error);
-        });
-        
-
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
         if(userType == "Student") {
@@ -112,6 +97,17 @@
         else {       
             currentUserType = 3;
         }
+
+        // Test additions
+        db.collection("Profiles").doc("test_doc").set({
+            test_sucess: true
+        })
+        .then(function(){
+            console.log("Test DB write was successful!");
+        })
+        .catch(function(error){
+            console.error("Could not write to DB: ", error);
+        });
 
         db.collection("Users").doc("TEST_CREATION").set({
             first_Name: "TEST_FIRSTNAME",
