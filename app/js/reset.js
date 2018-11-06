@@ -30,24 +30,6 @@
     const btnReset = document.getElementById('btnReset');
     const email = document.getElementById('txtEmail');
 
-    // Send a password reset email
-    var actionCodeSettings = {
-        // Redirection domain
-        url = 'https://focalpointkent.pythonanywhere.com/',
-        // Only account verification needs to be handled in-app
-        handleCodeInApp = false,
-        // iOS support
-        iOS: {
-            bundleId: 'com.example.ios'
-        },
-        // Android support
-        android: {
-            packageName: 'com.example.android',
-            installApp: true,
-            minimumVersion: '12'
-        }
-    }
-
     // Add password reset event
     if (btnReset != null) {
         btnReset.addEventListener('click', e=> {
@@ -56,22 +38,17 @@
                 return;
             }
 
-            alert("A password reset link has been sent to your email.");
-
-            /*
             const auth = firebase.auth();
-            auth.sendSignInLinkToEmail(email, actionCodeSettings)
-            .then(function() {
-                // Link was sent successfully, so let the user know
+            auth.sendPasswordResetEmail(email.value).then(function() {
+                // Send the link and inform the user
                 alert("A password reset link has been sent to your email.");
                 console.log("A password reset has been requested for" + email.value);
                 //window.localStorage.setItem("emailForSignIn", email);
-            })
-            .catch(function(error) {
+            }).catch(function(error) {
                 alert("Something went wrong...");
                 console.log("Password reset failed in reset.js");
                 return;
-            });*/
+            });
         });
     }
 });
