@@ -44,7 +44,7 @@
         android: {
             packageName: 'com.example.android',
             installApp: true,
-            minimumVersion '12'
+            minimumVersion: '12'
         }
     }
 
@@ -56,6 +56,9 @@
                 return;
             }
 
+            alert("A password reset link has been sent to your email.");
+
+            /*
             const auth = firebase.auth();
             auth.sendSignInLinkToEmail(email, actionCodeSettings)
             .then(function() {
@@ -68,7 +71,7 @@
                 alert("Something went wrong...");
                 console.log("Password reset failed in reset.js");
                 return;
-            });
+            });*/
         });
     }
 });
