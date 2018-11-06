@@ -34,7 +34,7 @@ function renderUsers(doc){
 //
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
-	var friend-id = doc.id;
+	friend-id = doc.id;
 	let button = document.createElement('button');
 	button.innerHTML = uid;
 	// let 'element' = document.createElement('span');
@@ -81,7 +81,7 @@ if (!firebase.apps.length) {
 const firestore = firebase.firestore();
 firestore.settings( {timestampsInSnapshots: true} );
 var user = firebase.auth().currentUser;
-var name, email, photoUrl, uid, emailVerified;
+var name, email, photoUrl, uid, emailVerified, friend-id;
 
 // =======================================================
 // Check for user being logged in
