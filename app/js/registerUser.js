@@ -18,14 +18,14 @@
     }
 
     // Fetch an instance of the DB
-    var db = firebase.firestore(app);
-    console.log(db);
-    console.log(firebase.app().name);
+    //var db = firebase.firestore(app);
+    //console.log(db);
+    //console.log(firebase.app().name);
 
     // Disable deprecated features
-    db.settings({
-        timestampsInSnapshots: true
-    });
+    //db.settings({
+     //   timestampsInSnapshots: true
+    //});
 
     // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
@@ -97,6 +97,9 @@
         else {       
             currentUserType = 3;
         }
+
+        // Fetch database instance
+        var db = firebase.firestore(app);
 
         // Test additions
         db.collection("Profiles").doc("test_doc").set({
