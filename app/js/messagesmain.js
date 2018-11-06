@@ -42,7 +42,7 @@ function renderFriendsList(doc){
 	button.setAttribute('value', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	button.setAttribute('onclick', openMessengerWith());
+	button.addEventListener('click', openMessengerWith());
 	
 	connectedFriendsList.appendChild(button);
 	console.log('Friend listed.');
@@ -53,10 +53,7 @@ function renderFriendsList(doc){
 //
 function openMessengerWith(){
 	var friend_id = this.innerHTML;
-	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
-			friends: true
-		})
-		console.log('Opening messenger with : ', friend_id);
+	console.log('Opening messenger with : ', friend_id);	
 }
 
 
@@ -113,7 +110,9 @@ firebase.auth().onAuthStateChanged(function(user) {
 		})
 	});
 	*/
-
+	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
+			friends: true
+		});
 	// =======================================================
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them. Friend's list will show each friend's
