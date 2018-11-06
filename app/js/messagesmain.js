@@ -35,14 +35,14 @@ function renderUsers(doc){
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
 
-	let button = document.createElement('button');
+	var button = document.createElement('button');
 	button.innerHTML = doc.id;
 	// let 'element' = document.createElement('span');
-	
+	button.name = doc.id;
 	button.setAttribute('value', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	button.addEventListener('click', function(){
+	button.onclick = function(){
 		var friend_id = this.innerHTML;
 		console.log('Opening messenger with : ', friend_id);	
 	}, false);
