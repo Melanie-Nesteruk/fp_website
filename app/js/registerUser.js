@@ -111,9 +111,13 @@
             currentUserType = 3;
         }
 
+        var data ={
+            test_success: true
+        };
+
         // Test additions
         db.collection("Profiles").doc("test_doc4").set({
-            test_success: true
+            data
         });/*
         .then(function(){
             console.log("Test DB write was successful!");
