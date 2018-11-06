@@ -35,17 +35,19 @@ function renderUsers(doc){
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
 	
-	let li = document.createElement('li');
-	let user_id = document.createElement('span');
+	let button = document.createElement('button');
+	button.innerHTML = user.uid;
 	// let 'element' = document.createElement('span');
 	
-	li.setAttribute('data-id', doc.id);
-	user_id.textContent = doc.id;
+	button.setAttribute('data-id', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	li.appendChild(user_id);
-	
-	connectedFriendsList.appendChild(li);
+	button.onclick = function(){
+		firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
+			friends: true
+		})
+	}
+	connectedFriendsList.appendChild(button);
 	console.log('Friend listed.');
 }
 
@@ -121,9 +123,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
-		friends: true
-	})
+	
 
 
 
