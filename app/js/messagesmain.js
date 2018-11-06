@@ -42,7 +42,7 @@ function renderFriendsList(doc){
 	button.setAttribute('value', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	button.setAttribute('onclick', openMessengerWith);
+	button.setAttribute('onclick', openMessengerWith());
 	
 	connectedFriendsList.appendChild(button);
 	console.log('Friend listed.');
