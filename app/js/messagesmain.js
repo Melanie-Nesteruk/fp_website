@@ -7,6 +7,7 @@ const connectedFriendsList = document.querySelector('#connected-friends-list');
 // =======================================================
 // create element and render users
 //
+/*
 function renderUsers(doc){
 	console.log('Rendering user...');
 	
@@ -26,7 +27,7 @@ function renderUsers(doc){
 	connectedUserList.appendChild(li);
 	console.log('User listed.');
 }
-
+*/
 
 // =======================================================
 //	Create elements and render friends list
