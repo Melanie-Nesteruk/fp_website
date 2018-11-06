@@ -1,7 +1,7 @@
 (function() {
 
     console.log(firebase.apps.length);
-    var app;
+    var app, db;
     if (!firebase.apps.length) {
         var config = {
 		    apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
@@ -12,7 +12,8 @@
 		    messagingSenderId: "1002904582612"
 	    };
 			
-	    app = firebase.initializeApp(config);
+        app = firebase.initializeApp(config);
+        db = firebase.firestore(app);
         console.log("initializeApp in registerUser.js");
         console.log(app);
     }
@@ -98,11 +99,8 @@
             currentUserType = 3;
         }
 
-        // Fetch database instance
-        var db = firebase.firestore(app);
-
         // Test additions
-        db.collection("Profiles").doc("test_doc").set({
+        db.collection("Profiles").doc("test_doc2").set({
             test_sucess: true
         })
         .then(function(){
