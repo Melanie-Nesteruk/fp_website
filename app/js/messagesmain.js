@@ -1,11 +1,12 @@
 
 console.log("in messagesmain.js");
 const connectedUserList = document.querySelector('#connected-user-list');
+const connectedFriendsList = document.querySelector('#connected-friends-list');
 
 // =======================================================
 // create element and render users
 //
-function renderConnectedUsers(doc){
+function renderUsers(doc){
 	console.log('Rendering user...');
 	
 	let li = document.createElement('li');
@@ -23,6 +24,27 @@ function renderConnectedUsers(doc){
 	
 	connectedUserList.appendChild(li);
 	console.log('User listed.');
+}
+
+
+// =======================================================
+//	Create elements and render friends list
+//
+function renderFriendsList(doc){
+	console.log('Rendering friend...');
+	
+	let li = document.createElement('li');
+	let user_id = document.createElement('span');
+	// let 'element' = document.createElement('span');
+	
+	li.setAttribute('data-id', doc.id);
+	user_id.textContent = doc.id;
+	// 'element'.textContent = doc.data().'element';
+	
+	li.appendChild(user_id);
+	
+	connectedFriendsList.appendChild(li);
+	console.log('Friend listed.');
 }
 
 // =======================================================
@@ -74,7 +96,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 //
 firestore.collection('Users').get().then((snapshot) => {
 	snapshot.docs.forEach(doc => {
-		renderConnectedUsers(doc);
+		renderUsers(doc);
 	})
 });
 
@@ -89,7 +111,8 @@ firestore.collection('Users').get().then((snapshot) => {
 /* implement friends list here */
 firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
 	snapshot.docs.forEach(doc => {
-		renderConnectedUsers(doc);
+		console.log('uid: ', uid);
+		renderFriendsList(doc);
 	})
 });
 
