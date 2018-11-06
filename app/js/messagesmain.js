@@ -34,7 +34,7 @@ function renderUsers(doc){
 //
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
-	var friend-id = doc.id;
+
 	let button = document.createElement('button');
 	button.innerHTML = uid;
 	// let 'element' = document.createElement('span');
@@ -42,7 +42,7 @@ function renderFriendsList(doc){
 	button.setAttribute('data-id', friend-id);
 	// 'element'.textContent = doc.data().'element';
 	
-	button.onclick = openMessengerWith(friend-id);
+	button.onclick = openMessengerWith;
 	
 	connectedFriendsList.appendChild(button);
 	console.log('Friend listed.');
@@ -51,11 +51,12 @@ function renderFriendsList(doc){
 // =======================================================
 //	Create elements and render friends list
 //
-function openMessengerWith(user-id){
+function openMessengerWith(){
 	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
 			friends: true
 		})
-		console.log('Opening messenger with : ', user-id);
+	var friend-id = this.innerHTML;
+		console.log('Opening messenger with : ', friend-id);
 }
 
 
