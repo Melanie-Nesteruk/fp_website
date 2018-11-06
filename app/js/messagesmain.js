@@ -39,7 +39,7 @@ function renderFriendsList(doc){
 	button.innerHTML = uid;
 	// let 'element' = document.createElement('span');
 	
-	button.setAttribute('data-id', friend-id);
+	button.setAttribute('value', friend-id);
 	// 'element'.textContent = doc.data().'element';
 	
 	button.onclick = openMessengerWith;
@@ -52,10 +52,10 @@ function renderFriendsList(doc){
 //	Create elements and render friends list
 //
 function openMessengerWith(){
+	var friend-id = this.innerHTML;
 	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
 			friends: true
 		});
-	var friend-id = this.innerHTML;
 		console.log('Opening messenger with : ', friend-id);
 }
 
