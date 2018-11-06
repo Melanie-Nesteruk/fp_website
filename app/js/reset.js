@@ -46,7 +46,6 @@
             installApp: true,
             minimumVersion '12'
         }
-
     }
 
     // Add password reset event
@@ -63,7 +62,7 @@
                 // Link was sent successfully, so let the user know
                 alert("A password reset link has been sent to your email.");
                 console.log("A password reset has been requested for" + email.value);
-                window.localStorage.setItem("emailForSignIn", email);
+                //window.localStorage.setItem("emailForSignIn", email);
             })
             .catch(function(error) {
                 alert("Something went wrong...");
