@@ -120,7 +120,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').add({
+	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
 		friends: true
 	})
 
