@@ -116,9 +116,7 @@
         };
 
         // Test additions
-        db.collection("Profiles").doc("test_doc4").set({
-            data
-        });/*
+        db.collection("Profiles").doc("test_doc4").set(data);/*
         .then(function(){
             console.log("Test DB write was successful!");
         })
