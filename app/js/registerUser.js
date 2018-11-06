@@ -17,7 +17,7 @@
     }
 
     // Fetch an instance of the DB
-    var db = firebase.firestore(app);
+    const db = firebase.firestore(app);
     console.log(db);
     console.log(firebase.app().name);
 
@@ -35,9 +35,8 @@
     */
 
     // Disable deprecated features
-    //db.settings({
-     //   timestampsInSnapshots: true
-    //});
+    const settings = { timestampsInSnapshots: true };
+    db.settings(settings);
 
     // Get elements/user input
     const btnSignup = document.getElementById('btnSignup');
