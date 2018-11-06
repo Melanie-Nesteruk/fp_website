@@ -111,7 +111,7 @@
 
         // Test additions
         db.collection("Profiles").doc("test_doc3").set({
-            test_sucess: true
+            test_success: true
         })
         .then(function(){
             console.log("Test DB write was successful!");
@@ -119,7 +119,7 @@
         .catch(function(error){
             console.error("Could not write to DB: ", error);
         });
-
+        /*
         db.collection("Users").doc("TEST_CREATION").set({
             first_Name: "TEST_FIRSTNAME",
             verified: false
@@ -139,10 +139,10 @@
             userType: currentUserType,
             verified: false
         })
-        .then(function() {
+        .then(function(){
             console.log("Document successfully written!");
         })
-        .catch(function(error) {
+        .catch(function(error){
             console.error("Error writing document: ", error);
         });
 
@@ -159,10 +159,10 @@
             twitter: "twitter-link",
             graduation_year: "2010"
         })
-        .then(function() {
+        .then(function(){
             console.log("Document successfully written!");
         })
-        .catch(function(error) {
+        .catch(function(error){
             console.error("Error writing document: ", error);
         });
 
@@ -172,12 +172,13 @@
         db.collection("Blocks").doc(currentUID).set({                  
             uid: currentUID
         })
-        .then(function() {
+        .then(function(){
             console.log("Document successfully written!");
         })
-        .catch(function(error) {
+        .catch(function(error){
             console.error("Error writing document: ", error);
         });
+        */
     }
 
     firebase.auth().onAuthStateChanged(user => {
