@@ -35,19 +35,20 @@ function renderUsers(doc){
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
 
-	var button = document.createElement('button');
-	button.innerHTML = doc.id;
+	var but = document.createElement('button');
+	but.type = 'button';
+	but.innerHTML = doc.id;
 	// let 'element' = document.createElement('span');
-	button.name = doc.id;
-	button.setAttribute('value', doc.id);
+	but.name = doc.id;
+	but.setAttribute('value', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	button.addEventListener('click', e=> {
+	but.addEventListener('click', e=> {
 		var friend_id = this.innerHTML;
 		console.log('Opening messenger with : ', friend_id);
 	});
 	
-	connectedFriendsList.appendChild(button);
+	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
 }
 
