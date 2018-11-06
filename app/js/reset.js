@@ -27,19 +27,20 @@
     db.settings(settings);
 
     // Get elements/user input
+    const txtEmail = document.getElementById('txtEmail');
     const btnReset = document.getElementById('btnReset');
-    const email = document.getElementById('txtEmail');
 
     // Add password reset event
     if (btnReset != null) {
+        email = txtEmail.value;
         btnReset.addEventListener('click', e=> {
-            if (email.value != "*@kent.edu") {
+            if (email != "*@kent.edu") {
                 alert("Error: The email is invalid, expected a kent.edu address.");
                 return;
             }
 
             const auth = firebase.auth();
-            auth.sendPasswordResetEmail(email.value).then(function() {
+            auth.sendPasswordResetEmail(email).then(function() {
                 // Send the link and inform the user
                 alert("A password reset link has been sent to your email.");
                 console.log("A password reset has been requested for" + email.value);
