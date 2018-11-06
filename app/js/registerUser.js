@@ -121,6 +121,8 @@
         .catch(function(error){
             console.error("Could not write to DB: ", error);
         });
+
+        console.log("Exiting addUsertoDB...");
         /*
         db.collection("Users").doc("TEST_CREATION").set({
             first_Name: "TEST_FIRSTNAME",
