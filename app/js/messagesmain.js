@@ -1,5 +1,6 @@
 
 console.log("in messagesmain.js");
+	
 const connectedUserList = document.querySelector('#connected-user-list');
 const connectedFriendsList = document.querySelector('#connected-friends-list');
 
@@ -74,8 +75,10 @@ var name, email, photoUrl, uid, emailVerified;
 // =======================================================
 // Check for user being logged in
 //
+
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
+	  
     console.log('User is signed in');
 	name = user.displayName;
 	email = user.email;
@@ -84,40 +87,43 @@ firebase.auth().onAuthStateChanged(function(user) {
 	uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
 			         // this value to authenticate with your backend server, if
 			         // you have one. Use User.getToken() instead.
+	
+
+	// =======================================================
+	//	Pulls all docs from 'Users' collection in firebase
+	//	and lists them
+	//
+	firestore.collection('Users').get().then((snapshot) => {
+		snapshot.docs.forEach(doc => {
+			renderUsers(doc);
+		})
+	});
+
+	// =======================================================
+	//	Pulls all docs from 'Friends' collection in firebase
+	//	and lists them. Friend's list will show each friend's
+	//  display name or user name. 'Message' button next to
+	//  each friend's name. 'Message' button click will bring
+	//	up the conversation.
+	//
+
+	/* implement friends list here */
+
+	console.log('uid: ', uid);
+	firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
+		snapshot.docs.forEach(doc => {
+			renderFriendsList(doc);
+		})
+	});
+
+	// =======================================================
+	//	Pulls all docs from 'Friends' collection in firebase
+	//	and lists them
+	//
+
+
+
   } else {
     console.log('User is not authorized to access this webpage');
   }
 });
-
-
-// =======================================================
-//	Pulls all docs from 'Users' collection in firebase
-//	and lists them
-//
-firestore.collection('Users').get().then((snapshot) => {
-	snapshot.docs.forEach(doc => {
-		renderUsers(doc);
-	})
-});
-
-// =======================================================
-//	Pulls all docs from 'Friends' collection in firebase
-//	and lists them. Friend's list will show each friend's
-//  display name or user name. 'Message' button next to
-//  each friend's name. 'Message' button click will bring
-//	up the conversation.
-//
-
-/* implement friends list here */
-
-		console.log('uid: ', uid);
-firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
-	snapshot.docs.forEach(doc => {
-		renderFriendsList(doc);
-	})
-});
-
-// =======================================================
-//	Pulls all docs from 'Friends' collection in firebase
-//	and lists them
-//
