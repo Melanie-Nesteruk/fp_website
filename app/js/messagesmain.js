@@ -2,7 +2,9 @@
 console.log("in messagesmain.js");
 const connectedUserList = document.querySelector('#connected-user-list');
 
+// =======================================================
 // create element and render users
+//
 function renderConnectedUsers(doc){
 	console.log('Rendering user...');
 	
@@ -23,6 +25,9 @@ function renderConnectedUsers(doc){
 	console.log('User listed.');
 }
 
+// =======================================================
+// Check for initialized firebase connection
+//
 if (!firebase.apps.length) {
 	var config = {
 		apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
@@ -36,12 +41,17 @@ if (!firebase.apps.length) {
 	firebase.initializeApp(config);
 	console.log("initializeApp");
 }
-
+// =======================================================
 // Fetch an instance of the DB
+//
 const firestore = firebase.firestore();
 firestore.settings( {timestampsInSnapshots: true} );
 var user = firebase.auth().currentUser;
 var name, email, photoUrl, uid, emailVerified;
+
+// =======================================================
+// Check for user being logged in
+//
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
     console.log('User is signed in');
@@ -52,21 +62,38 @@ firebase.auth().onAuthStateChanged(function(user) {
 	uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
 			         // this value to authenticate with your backend server, if
 			         // you have one. Use User.getToken() instead.
-					 console.log('name: ', name);
-	console.log('uid: ', uid);
   } else {
-    console.log('no user signed in');
+    console.log('User is not authorized to access this webpage');
   }
 });
 
 
-
+// =======================================================
 //	Pulls all docs from 'Users' collection in firebase
 //	and lists them
+//
 firestore.collection('Users').get().then((snapshot) => {
 	snapshot.docs.forEach(doc => {
 		renderConnectedUsers(doc);
 	})
-
 });
 
+// =======================================================
+//	Pulls all docs from 'Friends' collection in firebase
+//	and lists them. Friend's list will show each friend's
+//  display name or user name. 'Message' button next to
+//  each friend's name. 'Message' button click will bring
+//	up the conversation.
+//
+
+/* implement friends list here */
+firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
+	snapshot.docs.forEach(doc => {
+		renderConnectedUsers(doc);
+	})
+});
+
+// =======================================================
+//	Pulls all docs from 'Friends' collection in firebase
+//	and lists them
+//
