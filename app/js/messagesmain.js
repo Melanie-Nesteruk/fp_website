@@ -39,7 +39,7 @@ function renderFriendsList(doc){
 	button.innerHTML = uid;
 	// let 'element' = document.createElement('span');
 	
-	button.setAttribute('value', friend-id);
+	button.setAttribute('value', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
 	button.onclick = openMessengerWith;
