@@ -22,6 +22,7 @@
     console.log(firebase.app().name);
 
     // Test quick add to DB
+    /* This addition is successful, So why are additions not working inside the function?
     db.collection("Profiles").doc("test_doc2").set({
         test_sucess: true
     })
@@ -31,6 +32,7 @@
     .catch(function(error){
         console.error("Could not write to DB: ", error);
     });
+    */
 
     // Disable deprecated features
     //db.settings({
@@ -81,20 +83,20 @@
     }
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
-    function AddUserToDB() {
+    function AddUserToDB(){
 
         console.log('Adding user to firestore.');
 
         // User input: firstName, lastName, email, userType
         // Create pre-verified database input for current input fields
-        var currentUser = firebase.auth().currentUser;
-        var currentUID = currentUser.uid;
+        const currentUser = firebase.auth().currentUser;
+        const currentUID = currentUser.uid;
         var currentUserType = 0;
 
         // Convert HTMLElements to strings to store in DB
-        var sFirstName = firstName.value;
-        var sLastName = lastName.value;
-        var sEmail = email.value;
+        const sFirstName = firstName.value;
+        const sLastName = lastName.value;
+        const sEmail = email.value;
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
@@ -109,7 +111,7 @@
         }
 
         // Test additions
-        db.collection("Profiles").doc("test_doc2").set({
+        db.collection("Profiles").doc("test_doc3").set({
             test_sucess: true
         })
         .then(function(){
@@ -123,10 +125,10 @@
             first_Name: "TEST_FIRSTNAME",
             verified: false
         })
-        .then(function() {
+        .then(function(){
             console.log("Document successfully written!");
         })
-        .catch(function(error) {
+        .catch(function(error){
             console.error("Error writing document: ", error);
         });
 
@@ -177,7 +179,6 @@
         .catch(function(error) {
             console.error("Error writing document: ", error);
         });
-
     }
 
     firebase.auth().onAuthStateChanged(user => {
