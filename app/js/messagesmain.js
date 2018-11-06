@@ -36,7 +36,7 @@ function renderFriendsList(doc){
 	console.log('Rendering friend...');
 	
 	let button = document.createElement('button');
-	button.innerHTML = user.uid;
+	button.innerHTML = uid;
 	// let 'element' = document.createElement('span');
 	
 	button.setAttribute('data-id', doc.id);
