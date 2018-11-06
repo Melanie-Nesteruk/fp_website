@@ -69,9 +69,7 @@
         }
         else {
             if (btnLogout != null && !btnLogout.classList.contains("hide") && !initialLoad) {
-                alert("You have been signed out.");
                 btnLogout.classList.add('hide');
-                window.location.href = "/login";
             }
         }
     });
