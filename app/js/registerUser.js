@@ -114,13 +114,13 @@
         // Test additions
         db.collection("Profiles").doc("test_doc4").set({
             test_success: true
-        })
+        });/*
         .then(function(){
             console.log("Test DB write was successful!");
         })
         .catch(function(error){
             console.error("Could not write to DB: ", error);
-        });
+        });*/
 
         console.log("Exiting addUsertoDB...");
         /*
