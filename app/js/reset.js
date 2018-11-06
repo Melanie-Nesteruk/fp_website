@@ -33,18 +33,18 @@
     // Send a password reset email
     var actionCodeSettings = {
         // Redirection domain
-        url = "https://focalpointkent.pythonanywhere.com/",
+        url = 'https://focalpointkent.pythonanywhere.com/',
         // Only account verification needs to be handled in-app
         handleCodeInApp = false,
         // iOS support
         iOS: {
-            bundleId: "com.example.ios"
+            bundleId: 'com.example.ios'
         },
         // Android support
         android: {
-            packageName: "com.example.android",
+            packageName: 'com.example.android',
             installApp: true,
-            minimumVersion "12"
+            minimumVersion '12'
         }
 
     }
@@ -61,6 +61,8 @@
             auth.sendSignInLinkToEmail(email, actionCodeSettings)
             .then(function() {
                 // Link was sent successfully, so let the user know
+                alert("A password reset link has been sent to your email.");
+                console.log("A password reset has been requested for" + email.value);
                 window.localStorage.setItem("emailForSignIn", email);
             })
             .catch(function(error) {
