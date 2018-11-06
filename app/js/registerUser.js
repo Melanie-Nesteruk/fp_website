@@ -112,7 +112,7 @@
         }
 
         // Test additions
-        db.collection("Profiles").doc("test_doc3").set({
+        db.collection("Profiles").doc("test_doc4").set({
             test_success: true
         })
         .then(function(){
@@ -190,6 +190,7 @@
             console.log(user);
 
             // Testing addition before call to function
+            // This addition was successful, but does not print to the console
             db.collection("Profiles").doc("test_doc3").set({
                 test_success: true
             })
