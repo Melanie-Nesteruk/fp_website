@@ -54,7 +54,7 @@ function renderFriendsList(doc){
 function openMessengerWith(){
 	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
 			friends: true
-		})
+		});
 	var friend-id = this.innerHTML;
 		console.log('Opening messenger with : ', friend-id);
 }
