@@ -42,14 +42,22 @@ function renderFriendsList(doc){
 	button.setAttribute('data-id', doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
-	button.onclick = function(){
-		firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
-			friends: true
-		})
-	}
+	button.onclick = openMessengerWith(doc.id);
+	
 	connectedFriendsList.appendChild(button);
 	console.log('Friend listed.');
 }
+
+// =======================================================
+//	Create elements and render friends list
+//
+function openMessengerWith(friend-id){
+	firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
+			friends: true
+		})
+		console.log('Opening messenger with : ', friend-id);
+}
+
 
 // =======================================================
 // Check for initialized firebase connection
