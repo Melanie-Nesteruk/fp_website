@@ -211,6 +211,7 @@
     for (index in navLinks) {
         if (navLinks.hasOwnProperty(index)) {
             var link = navLinks[index];
+            // TypeError: link is null, next line
             if (currentPage == link.id) {
                 if (!link.classList.contains("active")) {
                     link.classList.add('active');

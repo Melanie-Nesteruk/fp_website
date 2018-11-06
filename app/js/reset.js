@@ -32,8 +32,8 @@
 
     // Add password reset event
     if (btnReset != null) {
-        const email = txtEmail.value;
         btnReset.addEventListener('click', e=> {
+            const email = txtEmail.value;
             if (email != "*@kent.edu") {
                 alert("Error: The email is invalid, expected a kent.edu address.");
                 return;
