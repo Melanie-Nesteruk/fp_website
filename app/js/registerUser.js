@@ -1,7 +1,6 @@
 (function() {
 
     console.log(firebase.apps.length);
-    var app, db;
     if (!firebase.apps.length) {
         var config = {
 		    apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
@@ -12,16 +11,26 @@
 		    messagingSenderId: "1002904582612"
 	    };
 			
-        app = firebase.initializeApp(config);
-        db = firebase.firestore(app);
+        var app = firebase.initializeApp(config);
         console.log("initializeApp in registerUser.js");
         console.log(app);
     }
 
     // Fetch an instance of the DB
-    //var db = firebase.firestore(app);
-    //console.log(db);
-    //console.log(firebase.app().name);
+    var db = firebase.firestore(app);
+    console.log(db);
+    console.log(firebase.app().name);
+
+    // Test quick add to DB
+    db.collection("Profiles").doc("test_doc2").set({
+        test_sucess: true
+    })
+    .then(function(){
+        console.log("Test DB write was successful!");
+    })
+    .catch(function(error){
+        console.error("Could not write to DB: ", error);
+    });
 
     // Disable deprecated features
     //db.settings({
