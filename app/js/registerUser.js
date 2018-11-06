@@ -82,15 +82,17 @@
     }
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
-    function AddUserToDB(){
+    function AddUserToDB(currentUID){
 
         console.log('Adding user to firestore.');
 
         // User input: firstName, lastName, email, userType
         // Create pre-verified database input for current input fields
-        const currentUser = firebase.auth().currentUser;
-        const currentUID = currentUser.uid;
+        /*const currentUser = firebase.auth().currentUser;
+        const currentUID = currentUser.uid;*/
         var currentUserType = 0;
+
+        //const currentUID = user.uid;
 
         // Convert HTMLElements to strings to store in DB
         const sFirstName = firstName.value;
@@ -186,7 +188,7 @@
             // Successful account creation
             alert("Your account has been created! You are now logged in.");
             console.log(user);
-            AddUserToDB();
+            AddUserToDB(user.uid);
 
             // Reload page to clear fields
             document.location.reload();
