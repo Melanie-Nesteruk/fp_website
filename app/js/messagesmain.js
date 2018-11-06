@@ -96,11 +96,14 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Users' collection in firebase
 	//	and lists them
 	//
+	
+	/*
 	firestore.collection('Users').get().then((snapshot) => {
 		snapshot.docs.forEach(doc => {
 			renderUsers(doc);
 		})
 	});
+	*/
 
 	// =======================================================
 	//	Pulls all docs from 'Friends' collection in firebase
