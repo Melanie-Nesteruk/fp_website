@@ -33,8 +33,12 @@
     // Add password reset event
     if (btnReset != null) {
         btnReset.addEventListener('click', e=> {
+<<<<<<< HEAD
             const email = txtEmail.value;
             if (email != "*@kent.edu") {
+=======
+            if (email.value != "*@kent.edu") {
+>>>>>>> staging
                 alert("Error: The email is invalid, expected a kent.edu address.");
                 return;
             }
@@ -52,4 +56,4 @@
             });
         });
     }
-});
+}());
