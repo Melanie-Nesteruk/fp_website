@@ -45,7 +45,7 @@ function renderFriendsList(doc){
 	but.onclick = function(){
 		var friend_id = this.innerHTML;
 		console.log('Opening messenger with : ', friend_id);
-	});
+	};
 	
 	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
