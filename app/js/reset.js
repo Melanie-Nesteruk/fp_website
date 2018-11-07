@@ -43,9 +43,9 @@
             const auth = firebase.auth();
             auth.sendPasswordResetEmail(email).then(function() {
                 // Send the link and inform the user
-                alert("A password reset link has been sent to your email.");
+                alert("The link to reset your password has been sent to your email.");
                 console.log("A password reset has been requested for " + email);
-                window.localStorage.setItem("emailForSignIn", email);
+                window.location.href = "/login";
             }).catch(function(error) {
                 alert("Something went wrong...");
                 console.log("Password reset failed in reset.js");
