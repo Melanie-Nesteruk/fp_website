@@ -33,17 +33,16 @@
     // Add password reset event
     if (btnReset != null) {
         btnReset.addEventListener('click', e=> {
-<<<<<<< HEAD
             const email = txtEmail.value;
             if (email != "*@kent.edu") {
-=======
-            if (email.value != "*@kent.edu") {
->>>>>>> staging
                 alert("Error: The email is invalid, expected a kent.edu address.");
                 return;
             }
 
-            const auth = firebase.auth();
+            alert("Button event registered.");
+            console.log("Button event registered on reset.js");
+
+            /*const auth = firebase.auth();
             auth.sendPasswordResetEmail(email).then(function() {
                 // Send the link and inform the user
                 alert("A password reset link has been sent to your email.");
@@ -53,7 +52,7 @@
                 alert("Something went wrong...");
                 console.log("Password reset failed in reset.js");
                 return;
-            });
+            });*/
         });
     }
 }());
