@@ -48,7 +48,7 @@ function renderFriendsList(doc){
 	but.addEventListener('click', function(){
 	openMessengerWith();
 });
-	
+	console.log(but);
 	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
 }
