@@ -36,7 +36,7 @@
             const email = txtEmail.value;
             // Regex to find "@kent.edu"
             if (/@kent.edu\s*$/.test(email) == false) {
-                alert("Error: The email is invalid, expected a kent.edu address.");
+                alert("The email is invalid, expected a kent.edu address.");
                 return;
             }
 
@@ -44,7 +44,7 @@
             auth.sendPasswordResetEmail(email).then(function() {
                 // Send the link and inform the user
                 alert("A password reset link has been sent to your email.");
-                console.log("A password reset has been requested for" + email.value);
+                console.log("A password reset has been requested for " + email);
                 //window.localStorage.setItem("emailForSignIn", email);
             }).catch(function(error) {
                 alert("Something went wrong...");

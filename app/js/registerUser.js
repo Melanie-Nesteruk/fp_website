@@ -69,6 +69,12 @@
                 return;
             }
 
+            // Verify email is from kent.edu
+            if (/@kent.edu\s*$/.test(email.value) == false) {
+                alert("The email is invalid, expected a kent.edu address.");
+                return;
+            }
+
             // Verify passwords match
             if (password.value != password2.value) {
                 alert("Error: The passwords do not match.");
