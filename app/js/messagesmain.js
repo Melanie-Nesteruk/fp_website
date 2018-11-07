@@ -35,12 +35,11 @@ function renderUsers(doc){
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
 
-	var but = document.createElement('button');
+	var but = document.createElement('input');
 	but.type = 'button';
-	but.innerHTML = doc.id;
 	// let 'element' = document.createElement('span');
-	but.name = doc.id;
-	but.setAttribute('value', doc.id);
+
+	but.value = doc.id);
 	// 'element'.textContent = doc.data().'element';
 	
 	but.addEventListener('click', e=> {
