@@ -50,7 +50,7 @@ function renderFriendsList(doc){
 	but.setAttribute("value", doc.id);
 	but.setAttribute("type", 'button');
 	but.id = doc.id;
-};
+
 	console.log(but);
 	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
