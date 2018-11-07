@@ -1,4 +1,3 @@
-
 console.log("in messagesmain.js");
 	
 const connectedUserList = document.querySelector('#connected-user-list');
@@ -41,7 +40,6 @@ function openMessengerWith(e){
 //	Create elements and render friends list
 //
 
-
 var but;
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
@@ -69,7 +67,6 @@ function attachClickEvents(){
 	console.log('click events attached');
 }
 
-
 // =======================================================
 // Check for initialized firebase connection
 //
@@ -86,6 +83,7 @@ if (!firebase.apps.length) {
 	firebase.initializeApp(config);
 	console.log("initializeApp");
 }
+
 // =======================================================
 // Fetch an instance of the DB
 //
@@ -100,7 +98,6 @@ var name, email, photoUrl, uid, emailVerified;
 
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
-	  
     console.log('User is signed in');
 	name = user.displayName;
 	email = user.email;
@@ -110,7 +107,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 			         // this value to authenticate with your backend server, if
 			         // you have one. Use User.getToken() instead.
 	
-
 	// =======================================================
 	//	Pulls all docs from 'Users' collection in firebase
 	//	and lists them
@@ -128,7 +124,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	// firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
 			// friends: true
 		// })
-		
 		
 	// =======================================================
 	//	Pulls all docs from 'Friends' collection in firebase
@@ -151,9 +146,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-	
-
-
 
   } else {
     console.log('User is not authorized to access this webpage');

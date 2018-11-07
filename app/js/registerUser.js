@@ -1,5 +1,4 @@
 (function() {
-
     console.log(firebase.apps.length);
     if (!firebase.apps.length) {
         var config = {

@@ -15,17 +15,14 @@
     var initialLoad = true;
 
     firebase.auth().onAuthStateChanged(function() {
-        if (firebase.auth().currentUser)
-        {
+        if (firebase.auth().currentUser) {
             // Show "Profile", "Directory", "Messages", and "Logout"
             setNavigation(true);
         }
-        else
-        {
+        else {
             // Show "Mailing List" and "Login"
             setNavigation(false);
-            if (!initialLoad) 
-            {
+            if (!initialLoad) {
                 alert("You have been signed out.");
                 window.location.href = "/login";
             }
@@ -33,11 +30,9 @@
         
     });
         
-    function setNavigation(loggedIn)
-    {
+    function setNavigation(loggedIn) {
         var tempFragment;
-        if (loggedIn)
-        {
+        if (loggedIn) {
             var subscribe = document.getElementById("subscribeNav");
             var login = document.getElementById("loginNav");
             if (subscribe) subscribe.remove();
@@ -45,8 +40,7 @@
 
             // Add "Profile" nav link
             var node = document.getElementById("profileNav");
-            if (!node)
-            {
+            if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
@@ -68,8 +62,7 @@
 
             // Add "Directory" nav link
             var node = document.getElementById("directoryNav");
-            if (!node)
-            {
+            if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
@@ -91,8 +84,7 @@
 
             // Add "Messages" nav link
             node = document.getElementById("messagesNav");
-            if (!node)
-            {
+            if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
@@ -113,8 +105,7 @@
 
             // Add "Logout" nav link
             node = document.getElementById("logoutNav");
-            if (!node)
-            {
+            if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
@@ -139,8 +130,7 @@
                 document.getElementById("navBarList").appendChild(node);
             }
         }
-        else
-        {
+        else {
             var profile = document.getElementById("profileNav");
             var directory = document.getElementById("directoryNav");
             var messages = document.getElementById("messagesNav");
@@ -152,8 +142,7 @@
 
             // Add "Mailing List" nav link
             var node = document.getElementById("subscibeNav");
-            if (!node)
-            {
+            if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
@@ -175,8 +164,7 @@
 
             // Add "Login" nav link
             node = document.getElementById("loginNav");
-            if (!node)
-            {
+            if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
@@ -224,5 +212,4 @@
             }
         }
     };
-
 }());
