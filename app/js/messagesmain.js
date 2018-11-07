@@ -36,15 +36,17 @@ var but;
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
 
-	but = document.createElement('input');
-	but.type = 'button';
+	but = document.createElement("input");
+	but.setAttribute("value", doc.id);
+	but.setAttribute("type", 'button');
+	but.id = doc.id;
 	// let 'element' = document.createElement('span');
 
-	but.value = doc.id;
+	
 	// 'element'.textContent = doc.data().'element';
 	
 	but.addEventListener('click', function(){
-	openMessengerWith(but);
+	openMessengerWith();
 });
 	
 	connectedFriendsList.appendChild(but);
@@ -54,7 +56,7 @@ function renderFriendsList(doc){
 // =======================================================
 //	Create elements and render friends list
 //
-function openMessengerWith(but){
+function openMessengerWith(){
 	var friend_id = this.innerHTML;
 	console.log('Opening messenger with : ', friend_id);	
 }
