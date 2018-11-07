@@ -61,9 +61,10 @@ function attachClickEvents(){
 	
 	var listLength = butList.length;
 	var i = 0;
-	
+	console.log('list length : ', listLength);
 	for(;i<listLength; i++){
 		butList[i].addEventListener("click", openMessengerWith);
+		console.log(butList[i]);
 	}
 	console.log('click events attached');
 }
