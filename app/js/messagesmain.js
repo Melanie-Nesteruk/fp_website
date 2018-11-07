@@ -32,14 +32,16 @@ function renderUsers(doc){
 // =======================================================
 //	Create elements and render friends list
 //
-function openMessengerWith(){
-	var friend_id = this.value;
+function openMessengerWith(e){
+	var friend_id = e.value;
 	console.log('Opening messenger with : ', friend_id);	
 }
 
 // =======================================================
 //	Create elements and render friends list
 //
+
+
 var but;
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
@@ -48,17 +50,22 @@ function renderFriendsList(doc){
 	but.setAttribute("value", doc.id);
 	but.setAttribute("type", 'button');
 	but.id = doc.id;
-	// let 'element' = document.createElement('span');
-
-	
-	// 'element'.textContent = doc.data().'element';
-	
-	but.onclick = function(){
-	console.log('clicked');
 };
 	console.log(but);
 	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
+}
+
+function attachClickEvents(){
+	var butList = document.getElementsByClassName('friend-list');
+	
+	var listLength = butList.length;
+	var i = 0;
+	
+	for(;i<listLength; i++){
+		butList[i].addEventListener("click", openMessengerWith);
+	}
+	console.log('click events attached');
 }
 
 
@@ -138,7 +145,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			renderFriendsList(doc);
 		})
 	});
-
+	attachClickEvents();
 	// =======================================================
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
