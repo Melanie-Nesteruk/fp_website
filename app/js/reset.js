@@ -40,10 +40,7 @@
                 return;
             }
 
-            alert("Button event registered.");
-            console.log("Button event registered on reset.js");
-
-            /*const auth = firebase.auth();
+            const auth = firebase.auth();
             auth.sendPasswordResetEmail(email).then(function() {
                 // Send the link and inform the user
                 alert("A password reset link has been sent to your email.");
@@ -53,7 +50,7 @@
                 alert("Something went wrong...");
                 console.log("Password reset failed in reset.js");
                 return;
-            });*/
+            });
         });
     }
 }());
