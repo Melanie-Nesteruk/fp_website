@@ -33,7 +33,7 @@ function renderUsers(doc){
 //	Create elements and render friends list
 //
 function openMessengerWith(){
-	var friend_id = this.innerHTML;
+	var friend_id = this.value;
 	console.log('Opening messenger with : ', friend_id);	
 }
 
