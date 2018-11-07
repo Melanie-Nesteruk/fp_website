@@ -32,6 +32,14 @@ function renderUsers(doc){
 // =======================================================
 //	Create elements and render friends list
 //
+function openMessengerWith(){
+	var friend_id = this.innerHTML;
+	console.log('Opening messenger with : ', friend_id);	
+}
+
+// =======================================================
+//	Create elements and render friends list
+//
 var but;
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
@@ -51,14 +59,6 @@ function renderFriendsList(doc){
 	console.log(but);
 	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
-}
-
-// =======================================================
-//	Create elements and render friends list
-//
-function openMessengerWith(){
-	var friend_id = this.innerHTML;
-	console.log('Opening messenger with : ', friend_id);	
 }
 
 
