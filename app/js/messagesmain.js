@@ -39,7 +39,7 @@ function renderFriendsList(doc){
 	but.type = 'button';
 	// let 'element' = document.createElement('span');
 
-	but.value = doc.id);
+	but.value = doc.id;
 	// 'element'.textContent = doc.data().'element';
 	
 	but.addEventListener('click', e=> {
