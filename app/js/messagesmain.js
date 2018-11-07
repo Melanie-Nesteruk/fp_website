@@ -53,9 +53,9 @@ function renderFriendsList(doc){
 	
 	// 'element'.textContent = doc.data().'element';
 	
-	but.addEventListener('click', function(){
+	but.onclick = function(){
 	console.log('clicked');
-}, false);
+};
 	console.log(but);
 	connectedFriendsList.appendChild(but);
 	console.log('Friend listed.');
