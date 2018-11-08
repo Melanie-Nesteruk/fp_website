@@ -35,7 +35,7 @@
             const email = txtEmail.value;
             // Regex to find "@kent.edu"
             if (/@kent.edu\s*$/.test(email) == false) {
-                alert("The email is invalid, expected a kent.edu address.");
+                swal("The email is invalid, expected a kent.edu address.");
                 return;
             }
 
