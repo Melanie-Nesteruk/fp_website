@@ -31,8 +31,8 @@ function renderUsers(doc){
 // =======================================================
 //	Create elements and render friends list
 //
-function openMessengerWith(e){
-	var friend_id = e.value;
+function openMessengerWith(value){
+	var friend_id = value;
 	console.log('Opening messenger with : ', friend_id);	
 }
 
@@ -51,6 +51,10 @@ function renderFriendsList(doc){
 
 	console.log(but);
 	connectedFriendsList.appendChild(but);
+	but.addEventListener('click', function() {
+		let value = this.value;
+		openMessengerWith(value);
+	}, false);
 	console.log('Friend listed.');
 }
 
@@ -141,7 +145,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 			renderFriendsList(doc);
 		})
 	});
-	attachClickEvents();
+	// attachClickEvents();
 	// =======================================================
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
