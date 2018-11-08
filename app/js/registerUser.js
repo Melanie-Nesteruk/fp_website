@@ -205,7 +205,11 @@
             var IDVal = String(currentUID);
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
-            db.collection("Profiles").doc([IDVal]).set({
+            var data = { test_success: true }
+            data.userRef = db.doc("" + firebase.auth().currentUser.uid);
+            db.collection("Profiles").add(data);
+
+            db.collection("Profiles").doc(IDVal).set({
                 test_success: true
             })
             .then(function(){
