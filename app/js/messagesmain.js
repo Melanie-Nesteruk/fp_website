@@ -2,7 +2,7 @@ console.log("in messagesmain.js");
 	
 const connectedUserList = document.querySelector('#connected-user-list');
 const connectedFriendsList = document.querySelector('#connected-friends-list');
-var friendList = [];
+
 // =======================================================
 // create element and render users
 //
@@ -51,16 +51,15 @@ function renderFriendsList(doc){
 	but.id = doc.id;
 	but.innerHTML = doc.id;
 	connectedFriendsList.appendChild(but);
-	friendList.push(doc.id);
-	// attachClickEvent(doc.id);
+	attachClickEvent(doc.id);
 	console.log('Friend listed.');
 }
 
 function attachClickEvent(value){
-	var but1 = document.getElementById(value);
-	but1.onclick = function(){
+	document.getElementById(value).addEventListener("click", 
+	function(){
 		openMessengerWith(value);
-	};
+	});
 	console.log(but1);
 	console.log('click events attached');
 }
@@ -144,12 +143,6 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-	console.log(friendList);
-	friendList.forEach(friendList => {document
-	.getElementById(friendList)
-	.addEventListener('click', () => openMessengerWith(friendList), false);
-	console.log('getting element... ',document.getElementById(friendList));
-	});
 	
 	
   } else {
