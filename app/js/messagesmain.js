@@ -40,11 +40,10 @@ function openMessengerWith(value){
 //	Create elements and render friends list
 //
 
-var but;
+
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
-
-	but = document.createElement("input");
+	var but = document.createElement("input");
 	but.setAttribute("value", doc.id);
 	but.setAttribute("type", 'button');
 	but.id = doc.id;
@@ -56,7 +55,7 @@ function renderFriendsList(doc){
 	but2.addEventListener('click', function() {
 		let value = this.value;
 		openMessengerWith(value);
-	}, false);
+	});
 	console.log('Friend listed.');
 }
 
