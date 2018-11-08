@@ -31,15 +31,17 @@ function renderUsers(doc){
 // =======================================================
 //	Create elements and render friends list
 //
-function openMessengerWith(value){
-	var friend_id = value;
-	console.log('Opening messenger with : ', friend_id);	
-}
+
 
 // =======================================================
 //	Create elements and render friends list
 //
 
+
+function openMessengerWith(value){
+	var friend_id = value;
+	console.log('Opening messenger with : ', friend_id);	
+}
 
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
@@ -47,18 +49,15 @@ function renderFriendsList(doc){
 	but.setAttribute("value", doc.id);
 	but.setAttribute("type", 'button');
 	but.id = doc.id;
-
-	console.log(but);
 	connectedFriendsList.appendChild(but);
-	
-	var but2 = document.getElementById(doc.id);
-	attachClickEvents(doc.id);
+	attachClickEvent(doc.id);
 	console.log('Friend listed.');
 }
 
-function attachClickEvents(value){
+function attachClickEvent(value){
 	var but1 = document.getElementById(value);
-	but1.addEventListener("click", openMessengerWith(value));
+	but1.addEventListener("onclick", openMessengerWith(value), false);
+		console.log(but1);
 	console.log('click events attached');
 }
 
