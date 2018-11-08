@@ -45,24 +45,36 @@
             // Logout an existing user
             if (firebase.auth().currentUser) {
                 firebase.auth().signOut();
-                swal("User already logged in. You have been logged out.");
+                swal({
+                    text: "User already logged in. You have been logged out.",
+                    icon: "error"
+                });
             }
 
             // Verify name is given
             if (firstName.value == "" || lastName.value == "") {
-                swal("Please enter your full name.");
+                swal({
+                    text: "Please enter your full name.",
+                    icon: "error"
+                });
                 return;
             }
 
             // Verify email is from kent.edu
             if (/@kent.edu\s*$/.test(email.value) == false) {
-                swal("The email is invalid, expected a kent.edu address.");
+                swal({
+                    text: "The email is invalid, expected a kent.edu address.",
+                    icon: "error"
+                });
                 return;
             }
 
             // Verify passwords match
             if (password.value != password2.value) {
-                swal("Error: The passwords do not match.");
+                swal({
+                    text: "The passwords do not match.",
+                    icon: "error"
+                });
                 return;
             }
 
@@ -147,7 +159,10 @@
     firebase.auth().onAuthStateChanged(user => {
         if(user && !initialLoad) {
             // Successful account creation
-            swal("Your account has been created! You are now logged in.");
+            swal({
+                text: "Your account has been created! You are now logged in.",
+                icon: "success"
+            });
             console.log(user);
 
             // Get current user ID  & email and convert them to strings

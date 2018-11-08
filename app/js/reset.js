@@ -35,18 +35,27 @@
             const email = txtEmail.value;
             // Regex to find "@kent.edu"
             if (/@kent.edu\s*$/.test(email) == false) {
-                swal("The email is invalid, expected a kent.edu address.");
+                swal({
+                    text: "The email is invalid, expected a kent.edu address.",
+                    icon: "error"
+                });
                 return;
             }
 
             const auth = firebase.auth();
             auth.sendPasswordResetEmail(email).then(function() {
                 // Send the link and inform the user
-                swal("The link to reset your password has been sent to your email.");
+                swal({
+                    text: "The link to reset your password has been sent to your email.",
+                    icon: "success"
+                });
                 console.log("A password reset has been requested for " + email);
                 window.location.href = "/login";
             }).catch(function(error) {
-                swal("Something went wrong...");
+                swal({
+                    text: "Something went wrong...",
+                    icon: "error"
+                });
                 console.log("Password reset failed in reset.js");
                 return;
             });
