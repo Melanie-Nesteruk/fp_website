@@ -160,6 +160,11 @@
 
             // Reload page to clear fields
             //document.location.reload();       // This breaks database additions
+            firstName = document.getElementById('txtFirstName');
+            lastName = document.getElementById('txtLastName');
+            email = document.getElementById('txtEmail');
+            password = document.getElementById('txtPassword');
+            password2 = document.getElementById('txtPassword2');
         }
     });
 }());
