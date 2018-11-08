@@ -48,12 +48,6 @@
     const password2 = document.getElementById('txtPassword2');
     const userType = userSelect.options[userSelect.selectedIndex].text;
 
-    // Convert HTMLElements to strings to store in DB
-    const sFirstName = String(firstName.value);
-    const sLastName = String(lastName.value);
-    var sEmail = String(email.value);
-    var currentUserType = 0;
-
     var initialLoad = true;
 
     // Add signup event
@@ -93,8 +87,13 @@
     }
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
-    function AddUserToDB(currentUID){
+    function AddUserToDB(currentUID, currentEmail){
         console.log('Adding user to firestore.');
+
+        // Convert HTMLElements to strings to store in DB
+        var sFirstName = String(firstName.value);
+        var sLastName = String(lastName.value);
+        var currentUserType = 0;
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
@@ -112,7 +111,7 @@
         db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
             first_Name: sFirstName,
             last_Name: sLastName,
-            email: sEmail,                          
+            email: currentEmail,                          
             userType: currentUserType,
             userID: currentUID,
             verified: false
@@ -165,13 +164,16 @@
             alert("Your account has been created! You are now logged in.");
             console.log(user);
 
+            // Get current user ID  & email and convert it to a string
             var currentUID = user.uid;
-            var IDVal = String(currentUID);
+            var sID = String(currentUID);
+            var currentEmail = user.email;
+            var sEmail = String(currentEmail);
 
-            AddUserToDB(IDVal);
+            AddUserToDB(sID, sEmail);
 
             // Reload page to clear fields
-            //document.location.reload();
+            //document.location.reload();       // This breaks database additions
         }
     });
 }());
