@@ -49,9 +49,9 @@
     const userType = userSelect.options[userSelect.selectedIndex].text;
 
     // Convert HTMLElements to strings to store in DB
-    const sFirstName = firstName.value;
-    const sLastName = lastName.value;
-    const sEmail = email.value;
+    const sFirstName = String(firstName.value);
+    const sLastName = String(lastName.value);
+    var sEmail = String(email.value);
     var currentUserType = 0;
 
     var initialLoad = true;
@@ -114,6 +114,7 @@
             last_Name: sLastName,
             email: sEmail,                          
             userType: currentUserType,
+            userID: currentUID,
             verified: false
         })
         .then(function(){
@@ -134,7 +135,8 @@
             facebook: "facebook-link",
             instagram: "insta-link",
             twitter: "twitter-link",
-            graduation_year: "2010"
+            graduation_year: "2010",
+            userID: currentUID
         })
         .then(function(){
             console.log("Document successfully written!");
@@ -165,77 +167,6 @@
 
             var currentUID = user.uid;
             var IDVal = String(currentUID);
-            // Testing addition before call to function
-            // This addition was successful, but does not print to the console
-            //var data = { test_success: true }
-            //data.userRef = db.doc("Profiles/" + firebase.auth().currentUser.uid);
-            //db.collection("Profiles").add(data);
-
-            /*db.collection("Profiles").doc(String(IDVal)).set({
-                test_success: true
-            })
-            .then(function(){
-                console.log("Test DB write was successful!");
-            })
-            .catch(function(error){
-                console.error("Could not write to DB: ", error);
-            });*/
-
-            // Add user info to DB
-            
-            // Set userType based on information given by user
-            // 1 == Student | 2 == Alumni | 3 == Faculty
-            /*if(userType == "Student") {
-                currentUserType = 1;
-            }
-            else if(userType == "Alumni") {
-                currentUserType = 2;
-            }
-            else {       
-                currentUserType = 3;
-            }
-
-            db.collection("Users").doc(IDVal).set({   // Need to confirm that 'currentUID' is properly converted to a string
-                first_Name: sFirstName,
-                last_Name: sLastName,
-                email: sEmail,                          
-                userType: currentUserType,
-                verified: false
-            })
-            .then(function(){
-            console.log("Document successfully written!");
-            })
-            .catch(function(error){
-            console.error("Error writing document: ", error);
-            });
-
-            db.collection("Profiles").doc(IDVal).set({
-                major: "Fill in Major",
-                minor: "Fill in Minor",
-                bio: "Bio goes here",
-                faculty_position: "test-position",
-                website: "test-website.com",
-                facebook: "facebook-link",
-                instagram: "insta-link",
-                twitter: "twitter-link",
-                graduation_year: "2010"
-            })
-            .then(function(){
-                console.log("Document successfully written!");
-            })
-            .catch(function(error){
-                console.error("Error writing document: ", error);
-            });
-
-            db.collection("Blocks").doc(IDVal).set({                  
-                uid: user.uid
-            })
-            .then(function(){
-                console.log("Document successfully written!");
-            })
-            .catch(function(error){
-                console.error("Error writing document: ", error);
-            });*/
 
             AddUserToDB(IDVal);
 
