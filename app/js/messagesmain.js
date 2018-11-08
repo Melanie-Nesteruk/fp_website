@@ -60,12 +60,13 @@
         var test1 = document.getElementById(value);
         console.log('current obj',test1);
 		if (test1 != null) {
+			
+			console.log('click events attached');
 			test1.addEventListener("click", 
 			function(){
 				openMessengerWith(value);
 			});
 		}
-        console.log('click events attached');
     }
 
     // =======================================================
