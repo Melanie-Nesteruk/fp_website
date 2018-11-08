@@ -52,23 +52,13 @@ function renderFriendsList(doc){
 	connectedFriendsList.appendChild(but);
 	
 	var but2 = document.getElementById(doc.id);
-	but2.addEventListener('click', function() {
-		let value = this.value;
-		openMessengerWith(value);
-	});
+	attachClickEvents(doc.id);
 	console.log('Friend listed.');
 }
 
-function attachClickEvents(){
-	var butList = document.getElementsByClassName('friend-list');
-	
-	var listLength = butList.length;
-	var i = 0;
-	console.log('list length : ', listLength);
-	for(;i<listLength; i++){
-		butList[i].addEventListener("click", openMessengerWith);
-		console.log(butList[i]);
-	}
+function attachClickEvents(value){
+	var but1 = document.getElementsById(value);
+	but1.addEventListener("click", openMessengerWith(value));
 	console.log('click events attached');
 }
 
