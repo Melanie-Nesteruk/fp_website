@@ -148,7 +148,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	friendList.forEach(friendList => {document
 	.getElementById(friendList)
 	.addEventListener('click', () => openMessengerWith(friendList), false);
-	console.log('getting element... ',document.getElementById(friendList);
+	console.log('getting element... ',document.getElementById(friendList));
 	);
 	
 	
