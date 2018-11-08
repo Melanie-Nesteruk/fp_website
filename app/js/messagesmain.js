@@ -59,7 +59,7 @@
 
     function attachClickEvent(value){
         var test1 = document.getElementById(value);
-        console.log('current obj',test1);
+        console.log('pre click',test1);
 		if (test1 != null) {
 			
 			console.log('click events attached');
@@ -68,6 +68,7 @@
 				openMessengerWith(value);
 			});
 		}
+		console.log('post click',test1);
     }
 
     // =======================================================
