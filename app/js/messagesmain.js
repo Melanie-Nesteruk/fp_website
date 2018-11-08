@@ -56,23 +56,15 @@
         console.log('Friend listed.');
     }
 
-function attachClickEvent(value){
-	var test1 = document.getElementById(value);
-	console.log('current obj',test1);
-	if (test1 != null) {
-        test1.addEventListener('click', e=> {
-		openMessengerWith(value);
-		});
-	}
-	console.log('click events attached');
-}
     function attachClickEvent(value){
         var test1 = document.getElementById(value);
         console.log('current obj',test1);
-        document.getElementById(value).addEventListener("click", 
-        function(){
-            openMessengerWith(value);
-        });
+		if (test1 != null) {
+			test1.addEventListener("click", 
+			function(){
+				openMessengerWith(value);
+			});
+		}
         console.log('click events attached');
     }
 
