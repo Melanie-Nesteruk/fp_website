@@ -12,26 +12,12 @@
 			
         var app = firebase.initializeApp(config);
         console.log("initializeApp in registerUser.js");
-        console.log(app);
+        //console.log(app);
     }
 
     // Fetch an instance of the DB
     const db = firebase.firestore(app);
-    console.log(db);
-    console.log(firebase.app().name);
-
-    // Test quick add to DB
-    /* This addition is successful, So why are additions not working inside the function?
-    db.collection("Profiles").doc("test_doc2").set({
-        test_sucess: true
-    })
-    .then(function(){
-        console.log("Test DB write was successful!");
-    })
-    .catch(function(error){
-        console.error("Could not write to DB: ", error);
-    });
-    */
+    //console.log(db);
 
     // Disable deprecated features
     const settings = { timestampsInSnapshots: true };
@@ -117,7 +103,7 @@
             verified: false
         })
         .then(function(){
-            console.log("Document successfully written!");
+            console.log("Users documents successfully written!");
         })
         .catch(function(error){
             console.error("Error writing document: ", error);
@@ -138,7 +124,7 @@
             userID: currentUID
         })
         .then(function(){
-            console.log("Document successfully written!");
+            console.log("Profile documents successfully written!");
         })
         .catch(function(error){
             console.error("Error writing document: ", error);
@@ -151,7 +137,7 @@
             uid: currentUID
         })
         .then(function(){
-            console.log("Document successfully written!");
+            console.log("Blocks documents successfully written!");
         })
         .catch(function(error){
             console.error("Error writing document: ", error);
@@ -164,7 +150,7 @@
             alert("Your account has been created! You are now logged in.");
             console.log(user);
 
-            // Get current user ID  & email and convert it to a string
+            // Get current user ID  & email and convert them to strings
             var currentUID = user.uid;
             var sID = String(currentUID);
             var currentEmail = user.email;
