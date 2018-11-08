@@ -38,7 +38,7 @@
 
             // Sign in
             const promise = auth.signInWithEmailAndPassword(email, pass);
-            promise.catch(e => alert(e.message));
+            promise.catch(e => swal(e.message));
         });
     }
 
@@ -48,7 +48,7 @@
             initialLoad = false;
 
             const promise = firebase.auth().signOut();
-            promise.catch(e => alert(e.message));
+            promise.catch(e => swal(e.message));
         });
     }
 

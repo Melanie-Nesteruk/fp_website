@@ -68,7 +68,7 @@
 
             // Register user (not successful until onAuthStateChanged is called)
             const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
-            promise.catch(e => alert(e.message));
+            promise.catch(e => swal(e.message));
         });
     }
 

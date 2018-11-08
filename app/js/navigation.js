@@ -122,7 +122,7 @@
                     initialLoad = false;
         
                     const promise = firebase.auth().signOut();
-                    promise.catch(e => alert(e.message));
+                    promise.catch(e => swal(e.message));
                 });
                 var textNode = document.createTextNode("Logout");
     
