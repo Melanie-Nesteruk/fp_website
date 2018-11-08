@@ -50,7 +50,6 @@
         console.log('Rendering friend...');
         var but = document.createElement("button");
         but.setAttribute("value", doc.id);
-        but.setAttribute("type", 'button');
         but.id = doc.id;
         but.innerHTML = doc.id;
         connectedFriendsList.appendChild(but);
@@ -64,10 +63,7 @@
 		if (test1 != null) {
 			
 			console.log('click events attached');
-			test1.addEventListener("click", 
-			function(){
-				openMessengerWith(value);
-			});
+			test1.addEventListener("click", openMessengerWith(value);
 		}
     }
 
