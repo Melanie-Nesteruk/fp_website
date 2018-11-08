@@ -202,9 +202,10 @@
             console.log(user);
 
             const currentUID = user.uid;
+            const IDVal = currentUID.value;
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
-            db.collection("Profiles").doc(currentUID).set({
+            db.collection("Profiles").doc(IDVal).set({
                 test_success: true
             })
             .then(function(){
