@@ -207,13 +207,13 @@
             // This addition was successful, but does not print to the console
             db.collection("Profiles").doc(IDVal).set({
                 test_success: true
-            })/*
+            })
             .then(function(){
                 console.log("Test DB write was successful!");
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
-            });*/
+            });
 
             // Add user info to DB
             
