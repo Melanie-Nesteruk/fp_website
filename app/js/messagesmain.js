@@ -47,12 +47,12 @@
     function renderFriendsList(doc){
         console.log('Rendering friend...');
         var but = document.createElement("button");
-        but.setAttribute("value", doc.id);
+        but.setAttribute("value", test);
         but.setAttribute("type", 'button');
-        but.id = doc.id;
-        but.innerHTML = doc.id;
+        but.id = 'test';
+        but.innerHTML = 'test';
         connectedFriendsList.appendChild(but);
-        attachClickEvent(doc.id);
+        attachClickEvent('test');
         console.log('Friend listed.');
     }
 
