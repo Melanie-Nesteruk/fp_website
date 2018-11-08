@@ -33,8 +33,8 @@
             // Logout an existing user
             if (firebase.auth().currentUser) {
                 swal({
-                    title: "Error: User already logged in.",
-                    text: "You have been logged out.",
+                    text: "User already logged in. You have been logged out.",
+                    icon: "error"
                 });
                 return;
             }
