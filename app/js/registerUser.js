@@ -142,6 +142,17 @@
         .catch(function(error){
             console.error("Error writing document: ", error);
         });
+		
+		// Create new collection 'Friends' for each user
+		db.collection("Users").doc(currentUID).collection("Friends").set({
+			uid: currentUID
+		})
+		.then(function(){
+            console.log("Friends collection successfully written!");
+        })
+        .catch(function(error){
+            console.error("Error writing collection: ", error);
+        });
     };
 
     firebase.auth().onAuthStateChanged(user => {
