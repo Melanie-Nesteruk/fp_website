@@ -3,7 +3,7 @@
         
     const connectedUserList = document.querySelector('#connected-user-list');
     const connectedFriendsList = document.querySelector('#connected-friends-list');
-	document.addEventListener('DOMContentLoaded', attachClickEvent, false);
+
 	
     // =======================================================
     // create element and render users
@@ -53,12 +53,12 @@
         but.id = doc.id;
         but.innerHTML = doc.id;
         connectedFriendsList.appendChild(but);
-        //attachClickEvent(doc.id);
+        attachClickEvent(doc.id);
         console.log('Friend listed.');
     }
 
-    function attachClickEvent(){
-        var test1 = document.getElementById('J1EbJJ9iZKTspqiSKawZN7i5pPh2');
+    function attachClickEvent(value){
+        var test1 = document.getElementById(value);
         console.log('current obj',test1);
 		if (test1 != null) {
 			
