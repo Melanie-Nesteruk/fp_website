@@ -142,7 +142,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-
+	var button= document.createElement("button");
+	button.setAttribute("type", 'button');
+	button.setAttribute("value", 'test-value');
+	button.id = 'test-id';
+	button.onclick = function(){
+		openMessengerWith('test-value');
+	};
   } else {
     console.log('User is not authorized to access this webpage');
   }
