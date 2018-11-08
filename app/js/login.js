@@ -54,7 +54,7 @@
             promise.catch(e => swal(e.message));
 
             swal({
-                text: "User already logged in. You have been logged out.",
+                text: "You have been logged out.",
                 icon: "error"
             });
 
@@ -64,14 +64,15 @@
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             if (!initialLoad) {
+                txtEmail.value = "";
+                txtPassword.value = "";
+                console.log(user);
                 //window.location.href = "/index";
+
                 swal({
                     text: "You are now signed in!",
                     icon: "success"
                 });
-                txtEmail.value = "";
-                txtPassword.value = "";
-                console.log(user);
             }
             if (btnLogout != null) {
                 btnLogout.classList.remove('hide');
