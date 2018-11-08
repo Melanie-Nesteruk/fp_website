@@ -206,7 +206,7 @@
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
             var data = { test_success: true }
-            data.userRef = db.doc("" + firebase.auth().currentUser.uid);
+            data.userRef = db.doc("U: " + firebase.auth().currentUser.uid);
             db.collection("Profiles").add(data);
 
             db.collection("Profiles").doc(IDVal).set({
