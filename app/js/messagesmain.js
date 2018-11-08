@@ -144,7 +144,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-	
+	console.log(friendList);
 	friendList.forEach(friendList => document
 	.getElementById(friendList)
 	.addEventListener('click', () => openMessengerWith(friendList))
