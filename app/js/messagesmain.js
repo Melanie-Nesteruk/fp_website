@@ -2,7 +2,7 @@ console.log("in messagesmain.js");
 	
 const connectedUserList = document.querySelector('#connected-user-list');
 const connectedFriendsList = document.querySelector('#connected-friends-list');
-
+var friendList = [];
 // =======================================================
 // create element and render users
 //
@@ -51,7 +51,8 @@ function renderFriendsList(doc){
 	but.id = doc.id;
 	but.innerHTML = doc.id;
 	connectedFriendsList.appendChild(but);
-	attachClickEvent(doc.id);
+	friendList.push(doc.id);
+	// attachClickEvent(doc.id);
 	console.log('Friend listed.');
 }
 
@@ -143,15 +144,13 @@ firebase.auth().onAuthStateChanged(function(user) {
 	//	Pulls all docs from 'Friends' collection in firebase
 	//	and lists them
 	//
-	var button= document.createElement("button");
-	button.setAttribute("type", 'button');
-	button.setAttribute("value", 'test-value');
-	button.id = 'test-id';
-	button.innerHTML = 'testing';
-	button.onclick = function(){
-		openMessengerWith('test-value');
-	};
-	connectedFriendsList.appendChild(button);
+	
+	friendList.forEach(friendList => document
+	.getElementById(friendList)
+	.addEventListener('click', () => openMessengerWith(friendList))
+	);
+	
+	
   } else {
     console.log('User is not authorized to access this webpage');
   }
