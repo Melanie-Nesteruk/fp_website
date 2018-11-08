@@ -55,7 +55,7 @@
 
             swal({
                 text: "You have been logged out.",
-                icon: "error"
+                icon: "success"
             });
 
         });
