@@ -205,19 +205,19 @@
             var IDVal = String(currentUID);
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
-            var data = { test_success: true }
-            data.userRef = db.doc("Users/" + firebase.auth().currentUser.uid);
-            db.collection("Profiles").add(data);
+            //var data = { test_success: true }
+            //data.userRef = db.doc("Profiles/" + firebase.auth().currentUser.uid);
+            //db.collection("Profiles").add(data);
 
-            db.collection("Profiles").doc("Profiles/" + IDVal).set({
+            db.collection("Profiles").doc(String(IDVal).set({
                 test_success: true
-            })
+            })/*
             .then(function(){
                 console.log("Test DB write was successful!");
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
-            });
+            });*/
 
             // Add user info to DB
             
