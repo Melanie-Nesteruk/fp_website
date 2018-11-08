@@ -34,8 +34,8 @@
             if (firebase.auth().currentUser) {
                 user.auth().signOut();
                 swal({
-                    text: "User already logged in. You have been logged out.",
-                    icon: "error"
+                    text: "You have been logged out.",
+                    icon: "success"
                 });
                 return;
             }
