@@ -149,7 +149,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	.getElementById(friendList)
 	.addEventListener('click', () => openMessengerWith(friendList), false);
 	console.log('getting element... ',document.getElementById(friendList));
-	);
+	});
 	
 	
   } else {
