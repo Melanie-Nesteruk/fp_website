@@ -45,7 +45,7 @@ function openMessengerWith(value){
 
 function renderFriendsList(doc){
 	console.log('Rendering friend...');
-	var but = document.createElement("input");
+	var but = document.createElement("button");
 	but.setAttribute("value", doc.id);
 	but.setAttribute("type", 'button');
 	but.id = doc.id;
