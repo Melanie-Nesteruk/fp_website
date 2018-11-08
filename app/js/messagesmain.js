@@ -60,7 +60,7 @@ function attachClickEvent(value){
 	function(){
 		openMessengerWith(value);
 	});
-	console.log(but1);
+	console.log(value);
 	console.log('click events attached');
 }
 
