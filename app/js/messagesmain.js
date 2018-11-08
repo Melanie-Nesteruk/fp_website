@@ -56,7 +56,6 @@
         console.log('Friend listed.');
     }
 
-<<<<<<< HEAD
 function attachClickEvent(value){
 	var test1 = document.getElementById(value);
 	console.log('current obj',test1);
@@ -67,7 +66,6 @@ function attachClickEvent(value){
 	}
 	console.log('click events attached');
 }
-=======
     function attachClickEvent(value){
         var test1 = document.getElementById(value);
         console.log('current obj',test1);
@@ -77,7 +75,6 @@ function attachClickEvent(value){
         });
         console.log('click events attached');
     }
->>>>>>> 51424f32760ed55fd99b4e2018603f2979dee454
 
     // =======================================================
     // Check for initialized firebase connection
