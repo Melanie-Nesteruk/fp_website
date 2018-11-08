@@ -66,7 +66,7 @@
 			test1.addEventListener('click', 
 			function(){
 				openMessengerWith(value);
-			});
+			}, false);
 		}
 		console.log('post click',test1);
     }
