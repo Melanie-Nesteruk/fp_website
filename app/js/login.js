@@ -34,8 +34,8 @@
             if (firebase.auth().currentUser) {
                 user.auth().signOut();
                 swal({
-                    text: "You have been logged out.",
-                    icon: "success"
+                    text: "User is already logged in. You have been logged out.",
+                    icon: "warning"
                 });
                 return;
             }
@@ -64,8 +64,6 @@
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             if (!initialLoad) {
-                txtEmail.value = "";
-                txtPassword.value = "";
                 console.log(user);
                 //window.location.href = "/index";
 
@@ -73,7 +71,11 @@
                     text: "You are now signed in!",
                     icon: "success"
                 });
+
+                txtEmail.value = "";
+                txtPassword.value = "";
             }
+
             if (btnLogout != null) {
                 btnLogout.classList.remove('hide');
             }
