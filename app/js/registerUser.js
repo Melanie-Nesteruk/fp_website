@@ -211,13 +211,13 @@
 
             db.collection("Profiles").doc(String(IDVal)).set({
                 test_success: true
-            })/*
+            })
             .then(function(){
                 console.log("Test DB write was successful!");
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
-            });*/
+            });
 
             // Add user info to DB
             
