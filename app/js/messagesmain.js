@@ -56,7 +56,7 @@ function renderFriendsList(doc){
 
 function attachClickEvent(value){
 	var but1 = document.getElementById(value);
-	but1.onclick = funtion(){
+	but1.onclick = function(){
 		openMessengerWith(value);
 	};
 	console.log(but1);
