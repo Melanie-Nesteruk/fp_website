@@ -1,3 +1,4 @@
+(function() {
 console.log("in messagesmain.js");
 	
 const connectedUserList = document.querySelector('#connected-user-list');
@@ -150,3 +151,4 @@ firebase.auth().onAuthStateChanged(function(user) {
     console.log('User is not authorized to access this webpage');
   }
 });
+}());
