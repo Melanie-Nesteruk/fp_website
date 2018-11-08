@@ -201,8 +201,8 @@
             alert("Your account has been created! You are now logged in.");
             console.log(user);
 
-            const currentUID = user.uid;
-            const IDVal = currentUID.value;
+            var currentUID = user.uid;
+            const IDVal = toString(currentUID);
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
             db.collection("Profiles").doc(IDVal).set({
