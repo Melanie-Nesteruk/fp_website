@@ -56,11 +56,12 @@ function renderFriendsList(doc){
 }
 
 function attachClickEvent(value){
+	var test1 = document.getElementById(value);
+	console.log('current obj',test1);
 	document.getElementById(value).addEventListener("click", 
 	function(){
 		openMessengerWith(value);
 	});
-	console.log(value);
 	console.log('click events attached');
 }
 
