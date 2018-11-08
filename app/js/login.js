@@ -32,6 +32,7 @@
 
             // Logout an existing user
             if (firebase.auth().currentUser) {
+                user.auth().signOut();
                 swal({
                     text: "User already logged in. You have been logged out.",
                     icon: "error"
@@ -49,9 +50,14 @@
     if (btnLogout != null) {
         btnLogout.addEventListener('click', e=> {
             initialLoad = false;
-
             const promise = firebase.auth().signOut();
             promise.catch(e => swal(e.message));
+
+            swal({
+                text: "User already logged in. You have been logged out.",
+                icon: "error"
+            });
+
         });
     }
 
