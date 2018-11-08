@@ -202,18 +202,18 @@
             console.log(user);
 
             var currentUID = user.uid;
-            const IDVal = String(currentUID);
+            var IDVal = String(currentUID);
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
             db.collection("Profiles").doc(IDVal).set({
                 test_success: true
-            })
+            })/*
             .then(function(){
                 console.log("Test DB write was successful!");
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
-            });
+            });*/
 
             // Add user info to DB
             
