@@ -200,7 +200,7 @@
 
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
-            db.collection("Profiles").doc("test_doc3").set({
+            /*db.collection("Profiles").doc("test_doc3").set({
                 test_success: true
             })
             .then(function(){
@@ -208,9 +208,71 @@
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
+            });*/
+
+            // Add user info to DB
+            var currentUserType = 0;
+
+            // Convert HTMLElements to strings to store in DB
+            const sFirstName = firstName.value;
+            const sLastName = lastName.value;
+            const sEmail = email.value;
+
+            // Set userType based on information given by user
+            // 1 == Student | 2 == Alumni | 3 == Faculty
+            if(userType == "Student") {
+                currentUserType = 1;
+            }
+            else if(userType == "Alumni") {
+                currentUserType = 2;
+            }
+            else {       
+                currentUserType = 3;
+            }
+
+            db.collection("Users").doc(user.uid).set({   // Need to confirm that 'currentUID' is properly converted to a string
+            first_Name: sFirstName,
+            last_Name: sLastName,
+            email: sEmail,                          
+            userType: currentUserType,
+            verified: false
+            })
+            .then(function(){
+            console.log("Document successfully written!");
+            })
+            .catch(function(error){
+            console.error("Error writing document: ", error);
             });
 
-            AddUserToDB(user.uid);
+            db.collection("Profiles").doc(user.uid).set({
+                major: "Fill in Major",
+                minor: "Fill in Minor",
+                bio: "Bio goes here",
+                faculty_position: "test-position",
+                website: "test-website.com",
+                facebook: "facebook-link",
+                instagram: "insta-link",
+                twitter: "twitter-link",
+                graduation_year: "2010"
+            })
+            .then(function(){
+                console.log("Document successfully written!");
+            })
+            .catch(function(error){
+                console.error("Error writing document: ", error);
+            });
+
+            db.collection("Blocks").doc(user.uid).set({                  
+                uid: user.uid
+            })
+            .then(function(){
+                console.log("Document successfully written!");
+            })
+            .catch(function(error){
+                console.error("Error writing document: ", error);
+            });
+
+            //AddUserToDB(user.uid);
 
             // Reload page to clear fields
             document.location.reload();
