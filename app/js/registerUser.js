@@ -45,24 +45,24 @@
             // Logout an existing user
             if (firebase.auth().currentUser) {
                 firebase.auth().signOut();
-                alert("User already logged in. You have been logged out.");
+                swal("User already logged in. You have been logged out.");
             }
 
             // Verify name is given
             if (firstName.value == "" || lastName.value == "") {
-                alert("Please enter your full name.");
+                swal("Please enter your full name.");
                 return;
             }
 
             // Verify email is from kent.edu
             if (/@kent.edu\s*$/.test(email.value) == false) {
-                alert("The email is invalid, expected a kent.edu address.");
+                swal("The email is invalid, expected a kent.edu address.");
                 return;
             }
 
             // Verify passwords match
             if (password.value != password2.value) {
-                alert("Error: The passwords do not match.");
+                swal("Error: The passwords do not match.");
                 return;
             }
 
@@ -147,7 +147,7 @@
     firebase.auth().onAuthStateChanged(user => {
         if(user && !initialLoad) {
             // Successful account creation
-            alert("Your account has been created! You are now logged in.");
+            swal("Your account has been created! You are now logged in.");
             console.log(user);
 
             // Get current user ID  & email and convert them to strings
