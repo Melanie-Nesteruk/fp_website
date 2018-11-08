@@ -94,21 +94,7 @@
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB(currentUID){
-
         console.log('Adding user to firestore.');
-
-        // User input: firstName, lastName, email, userType
-        // Create pre-verified database input for current input fields
-        /*const currentUser = firebase.auth().currentUser;
-        const currentUID = currentUser.uid;*/
-        var currentUserType = 0;
-
-        //const currentUID = user.uid;
-
-        // Convert HTMLElements to strings to store in DB
-        const sFirstName = firstName.value;
-        const sLastName = lastName.value;
-        const sEmail = email.value;
 
         // Set userType based on information given by user
         // 1 == Student | 2 == Alumni | 3 == Faculty
@@ -121,29 +107,6 @@
         else {       
             currentUserType = 3;
         }
-
-    
-        // Test additions
-        db.collection("Profiles").doc("test_doc4").set(data);/*
-        .then(function(){
-            console.log("Test DB write was successful!");
-        })
-        .catch(function(error){
-            console.error("Could not write to DB: ", error);
-        });*/
-
-        console.log("Exiting addUsertoDB...");
-        /*
-        db.collection("Users").doc("TEST_CREATION").set({
-            first_Name: "TEST_FIRSTNAME",
-            verified: false
-        })
-        .then(function(){
-            console.log("Document successfully written!");
-        })
-        .catch(function(error){
-            console.error("Error writing document: ", error);
-        });
 
         // Create new document in 'Users' collection
         db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
@@ -192,7 +155,6 @@
         .catch(function(error){
             console.error("Error writing document: ", error);
         });
-        */
     };
 
     firebase.auth().onAuthStateChanged(user => {
@@ -223,7 +185,7 @@
             
             // Set userType based on information given by user
             // 1 == Student | 2 == Alumni | 3 == Faculty
-            if(userType == "Student") {
+            /*if(userType == "Student") {
                 currentUserType = 1;
             }
             else if(userType == "Alumni") {
@@ -273,9 +235,9 @@
             })
             .catch(function(error){
                 console.error("Error writing document: ", error);
-            });
+            });*/
 
-            //AddUserToDB(user.uid);
+            AddUserToDB(IDVal);
 
             // Reload page to clear fields
             //document.location.reload();
