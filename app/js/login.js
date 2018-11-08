@@ -32,7 +32,10 @@
 
             // Logout an existing user
             if (firebase.auth().currentUser) {
-                swal("Error: User already logged in. You have been logged out.");
+                swal({
+                    text: "User already logged in. You have been logged out.",
+                    icon: "error"
+                });
                 return;
             }
 
@@ -55,7 +58,10 @@
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             if (!initialLoad) {
-                swal("You are now signed in!");
+                swal({
+                    text: "You are now signed in!",
+                    icon: "success"
+                });
                 txtEmail.value = "";
                 txtPassword.value = "";
                 console.log(user);
