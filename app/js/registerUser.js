@@ -209,7 +209,7 @@
             data.userRef = db.doc("Users/" + firebase.auth().currentUser.uid);
             db.collection("Profiles").add(data);
 
-            db.collection("Profiles").doc(IDVal).set({
+            db.collection("Profiles").doc("Profiles/" + IDVal).set({
                 test_success: true
             })
             .then(function(){
