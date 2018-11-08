@@ -48,6 +48,12 @@
     const password2 = document.getElementById('txtPassword2');
     const userType = userSelect.options[userSelect.selectedIndex].text;
 
+    // Convert HTMLElements to strings to store in DB
+    const sFirstName = firstName.value;
+    const sLastName = lastName.value;
+    const sEmail = email.value;
+    var currentUserType = 0;
+
     var initialLoad = true;
 
     // Add signup event
@@ -116,10 +122,7 @@
             currentUserType = 3;
         }
 
-        var data ={
-            test_success: true
-        };
-
+    
         // Test additions
         db.collection("Profiles").doc("test_doc4").set(data);/*
         .then(function(){
@@ -198,9 +201,10 @@
             alert("Your account has been created! You are now logged in.");
             console.log(user);
 
+            const currentUID = user.uid;
             // Testing addition before call to function
             // This addition was successful, but does not print to the console
-            /*db.collection("Profiles").doc("test_doc3").set({
+            db.collection("Profiles").doc(currentUID).set({
                 test_success: true
             })
             .then(function(){
@@ -208,19 +212,13 @@
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
-            });*/
+            });
 
             // Add user info to DB
-            var currentUserType = 0;
-
-            // Convert HTMLElements to strings to store in DB
-            const sFirstName = firstName.value;
-            const sLastName = lastName.value;
-            const sEmail = email.value;
-
+            
             // Set userType based on information given by user
             // 1 == Student | 2 == Alumni | 3 == Faculty
-            if(userType == "Student") {
+            /*if(userType == "Student") {
                 currentUserType = 1;
             }
             else if(userType == "Alumni") {
@@ -231,11 +229,11 @@
             }
 
             db.collection("Users").doc(user.uid).set({   // Need to confirm that 'currentUID' is properly converted to a string
-            first_Name: sFirstName,
-            last_Name: sLastName,
-            email: sEmail,                          
-            userType: currentUserType,
-            verified: false
+                first_Name: sFirstName,
+                last_Name: sLastName,
+                email: sEmail,                          
+                userType: currentUserType,
+                verified: false
             })
             .then(function(){
             console.log("Document successfully written!");
@@ -270,7 +268,7 @@
             })
             .catch(function(error){
                 console.error("Error writing document: ", error);
-            });
+            });*/
 
             //AddUserToDB(user.uid);
 
