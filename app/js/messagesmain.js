@@ -63,7 +63,7 @@
 		if (test1 != null) {
 			
 			console.log('click events attached');
-			test1.addEventListener("click", 
+			test1.addEventListener('click', 
 			function(){
 				openMessengerWith(value);
 			});
