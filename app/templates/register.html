@@ -4,6 +4,9 @@
 {% block content %}
 
     <section class="page-section cta">
+
+            <script type="text/javascript" src="../js/registerUser.js>"></script>
+
             <div class="container">
               <div class="row">
                 <div class="col-xl-12 mx-auto">
@@ -43,7 +46,7 @@
                                 <br>
                                 <input id="txtPassword2" type="password" placeholder="Password" name="psw" required="true">
                                 <br>
-                                <button id="btnSignup" type="submit">Register</button>
+                                <button type="button" id="btnSignup" onclick="submitUser()">Register</button>
                               </div>
                         </div>
                   </div>
@@ -52,8 +55,8 @@
             </div>
           </section>
 
-    <script src="app/js/registerUser.js"></script>
-    <script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
+          <script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
+    
     <style>
         .hide {
             visibility: hidden;

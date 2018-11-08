@@ -51,8 +51,7 @@
     var initialLoad = true;
 
     // Add signup event
-    if (btnSignup != null) {
-        btnSignup.addEventListener('click', e=> {
+    btnSignup.onclick() = function submitUser(){ 
             const auth = firebase.auth();
             initialLoad = false;
 
@@ -83,8 +82,7 @@
             // Register user (not successful until onAuthStateChanged is called)
             const promise = auth.createUserWithEmailAndPassword(email.value, password.value);
             promise.catch(e => alert(e.message));
-        });
-    }
+    };
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB(currentUID){
