@@ -209,7 +209,7 @@
             //data.userRef = db.doc("Profiles/" + firebase.auth().currentUser.uid);
             //db.collection("Profiles").add(data);
 
-            db.collection("Profiles").doc(String(IDVal)).set({
+            /*db.collection("Profiles").doc(String(IDVal)).set({
                 test_success: true
             })
             .then(function(){
@@ -217,13 +217,13 @@
             })
             .catch(function(error){
                 console.error("Could not write to DB: ", error);
-            });
+            });*/
 
             // Add user info to DB
             
             // Set userType based on information given by user
             // 1 == Student | 2 == Alumni | 3 == Faculty
-            /*if(userType == "Student") {
+            if(userType == "Student") {
                 currentUserType = 1;
             }
             else if(userType == "Alumni") {
@@ -233,7 +233,7 @@
                 currentUserType = 3;
             }
 
-            db.collection("Users").doc(user.uid).set({   // Need to confirm that 'currentUID' is properly converted to a string
+            db.collection("Users").doc(IDVal).set({   // Need to confirm that 'currentUID' is properly converted to a string
                 first_Name: sFirstName,
                 last_Name: sLastName,
                 email: sEmail,                          
@@ -247,7 +247,7 @@
             console.error("Error writing document: ", error);
             });
 
-            db.collection("Profiles").doc(user.uid).set({
+            db.collection("Profiles").doc(IDVal).set({
                 major: "Fill in Major",
                 minor: "Fill in Minor",
                 bio: "Bio goes here",
@@ -265,7 +265,7 @@
                 console.error("Error writing document: ", error);
             });
 
-            db.collection("Blocks").doc(user.uid).set({                  
+            db.collection("Blocks").doc(IDVal).set({                  
                 uid: user.uid
             })
             .then(function(){
@@ -273,7 +273,7 @@
             })
             .catch(function(error){
                 console.error("Error writing document: ", error);
-            });*/
+            });
 
             //AddUserToDB(user.uid);
 
