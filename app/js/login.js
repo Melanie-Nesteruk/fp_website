@@ -58,6 +58,7 @@
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
             if (!initialLoad) {
+                //window.location.href = "/index";
                 swal({
                     text: "You are now signed in!",
                     icon: "success"
@@ -65,7 +66,6 @@
                 txtEmail.value = "";
                 txtPassword.value = "";
                 console.log(user);
-                //window.location.href = "/index";
             }
             if (btnLogout != null) {
                 btnLogout.classList.remove('hide');
