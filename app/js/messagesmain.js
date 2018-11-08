@@ -149,6 +149,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	button.onclick = function(){
 		openMessengerWith('test-value');
 	};
+	connectedFriendsList.appendChild(button);
   } else {
     console.log('User is not authorized to access this webpage');
   }
