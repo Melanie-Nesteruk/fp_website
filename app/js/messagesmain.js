@@ -49,6 +49,7 @@ function renderFriendsList(doc){
 	but.setAttribute("value", doc.id);
 	but.setAttribute("type", 'button');
 	but.id = doc.id;
+	but.innerHTML = doc.id;
 	connectedFriendsList.appendChild(but);
 	attachClickEvent(doc.id);
 	console.log('Friend listed.');
@@ -146,6 +147,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 	button.setAttribute("type", 'button');
 	button.setAttribute("value", 'test-value');
 	button.id = 'test-id';
+	button.innerHTML = 'testing';
 	button.onclick = function(){
 		openMessengerWith('test-value');
 	};
