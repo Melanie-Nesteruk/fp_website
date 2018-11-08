@@ -160,7 +160,7 @@
 
             // Reload page to clear fields
             //document.location.reload();       // This breaks database additions
-            window.location.href = "/index";
+            //window.location.href = "/index";
         }
     });
 }());
