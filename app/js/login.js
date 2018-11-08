@@ -65,15 +65,14 @@
         if (user) {
             if (!initialLoad) {
                 console.log(user);
+                txtEmail.value = "";
+                txtPassword.value = "";
                 //window.location.href = "/index";
 
                 swal({
                     text: "You are now signed in!",
                     icon: "success"
                 });
-
-                txtEmail.value = "";
-                txtPassword.value = "";
             }
 
             if (btnLogout != null) {
