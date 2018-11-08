@@ -35,15 +35,16 @@
     //
 
 
-    // =======================================================
-    //	Create elements and render friends list
-    //
-
-
     function openMessengerWith(value){
         var friend_id = value;
         console.log('Opening messenger with : ', friend_id);	
     }
+
+	
+    // =======================================================
+    //	Create elements and render friends list
+    //
+
 
     function renderFriendsList(doc){
         console.log('Rendering friend...');
