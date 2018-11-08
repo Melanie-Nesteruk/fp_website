@@ -278,7 +278,7 @@
             //AddUserToDB(user.uid);
 
             // Reload page to clear fields
-            document.location.reload();
+            //document.location.reload();
         }
     });
 }());
