@@ -24,7 +24,7 @@
                                             <div class="bioLabel">Graduation: <span class="labelValue" id="graduation">2019</span></div>
                                             <p></p>
                                             <div class="bioLabel">Email: <span class="labelValue" id="email">amis@kent.edu</span></div>
-                                            <div class="bioLabel">Website: <a class="labelValue" id="website" href="http://www.urbanvirtues.com"></a>www.urbanvirtues.com</div>
+                                            <div class="bioLabel">Website: <a class="labelValue" id="website" href="http://www.urbanvirtues.com">www.urbanvirtues.com</a></div>
                                             <div id="socialmedia" style="padding: 5 0 0 0;">
                                                     <a href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-facebook-square"></i></a>
                                                     <a href="https://instagram.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-instagram"></i></a>
@@ -33,7 +33,7 @@
                                             </div>
                                         </div>
                                         <div class="divTableCell" style="text-align: right; vertical-align: top; background: white;">
-                                            <button class="fa fa-ellipsis-h" style="font-size: 24px; color:gray; padding-right: 8px;"></button>
+                                            <button class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button>
                                         </div>
                                     </div>
                                 </div>
@@ -68,5 +68,7 @@
     .divTableBody { display: table-row-group;}
     .bioHeader { font-size: larger; font-weight: bold; font-family: sans-serif; }
     .bioLabel { font-size: initial; font-weight: bold; }
+    .labelValue { font-weight: normal; }
+    .btnBlock { background-color: Transparent; background-repeat:no-repeat; border: none;cursor:pointer; overflow: hidden; outline:none; padding-right: 8px;}
     </style>
 {% endblock %}
