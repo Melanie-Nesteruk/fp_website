@@ -37,6 +37,7 @@
     function setNavigation(loggedIn) {
         var tempFragment;
         if (loggedIn) {
+            user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             var subscribe = document.getElementById("subscribeNav");
             var login = document.getElementById("loginNav");
             if (subscribe) subscribe.remove();
@@ -56,7 +57,7 @@
                 linkNode.classList.add("text-expanded");
 
                 linkNode.id = "profile";
-                linkNode.href = "/profile";
+                linkNode.href = "/profile?user=" + user;
                 var textNode = document.createTextNode("Profile");
 
                 linkNode.appendChild(textNode); 
