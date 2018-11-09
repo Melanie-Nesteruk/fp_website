@@ -18,18 +18,12 @@
                                             <img src="app/img/default-avatar.png"/>
                                         </div>
                                         <div class="divTableCell" style="text-align: left; vertical-align: top; background: white; padding: 0 0 0 10; border: 1px solid black; border-right: none;">
-                                            <span><span class="bioHeader" id="name">Andrew Mis</span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
-                                            <div class="bioLabel">Major: <span class="labelValue" id="major">Computer Science</span></div>
-                                            <div class="bioLabel">Minor: <span class="labelValue" id="minor">Italian</span></div>
+                                            <span><span class="bioHeader" id="name">Your Name</span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
+                                            <div class="bioLabel">Major: <span class="labelValue" id="major">Your Major</span></div>
+                                            <div class="bioLabel">Minor: <span class="labelValue" id="minor">Your Minor</span></div>
                                             <div class="bioLabel">Graduation: <span class="labelValue" id="graduation">2019</span></div>
                                             <p></p>
-                                            <div class="bioLabel">Email: <span class="labelValue" id="email">
-                                                {% if user %}
-                                                    {{user}}@kent.edu
-                                                {% else %}
-                                                    amis
-                                                {% endif %}
-                                            </span></div>
+                                            <div class="bioLabel">Email: <span class="labelValue" id="email">youremail@kent.edu</span></div>
                                             <div class="bioLabel">Website: <a class="labelValue" id="website" href="http://www.urbanvirtues.com" style="pointer-events: auto;">www.urbanvirtues.com</a></div>
                                             <div id="socialmedia" style="padding: 5 0 5 0;">
                                                     <a class="btnSocialMedia" href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-facebook-square"></i></a>
@@ -82,4 +76,6 @@
     .btnSocialMedia {padding: 0 5px; }
     .btnBlock { background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; padding-right: 8px; pointer-events: auto;}
     </style>
+
+    <script src="app/js/loadProfile.js" user={{ user }}></script>
 {% endblock %}
