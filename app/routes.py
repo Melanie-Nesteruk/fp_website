@@ -51,7 +51,7 @@ def subscribe():
 def directory():
     return render_template("directory.html", title='Directory', app=app)
 
-
+@app.route('/profile')
 @app.route('/profile/<username>')
 def profile(username):
     return render_template("profile.html", title='Profile', app=app, username=username)
