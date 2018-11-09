@@ -51,10 +51,12 @@ def subscribe():
 def directory():
     return render_template("directory.html", title='Directory', app=app)
 
-@app.route('/profile')
-def profile():
-    return render_template("profile.html", title='Profile', app=app)
-
+@app.route('/profile/<user>')
+def profile(user):
+    if (user):
+        return render_template("profile.html", title='Profile', app=app, user=user)
+    else:
+        return render_template("profile.html", title='Profile', app=app)
 
 @app.route('/messages')
 def messages():
