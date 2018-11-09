@@ -23,15 +23,15 @@
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
 
-    // Get elements/user input
-    const btnSignup = document.getElementById('btnSignup');
-    const userSelect = document.getElementById("user_type_selection");
+    // // Get elements/user input
+    // const btnSignup = document.getElementById('btnSignup');
+    // const userSelect = document.getElementById("user_type_selection");
 
-    const firstName = document.getElementById('txtFirstName');
-    const lastName = document.getElementById('txtLastName');
-    const password = document.getElementById('txtPassword');
-    const password2 = document.getElementById('txtPassword2');
-    const userType = userSelect.options[userSelect.selectedIndex].text;
+    // const firstName = document.getElementById('txtFirstName');
+    // const lastName = document.getElementById('txtLastName');
+    // const password = document.getElementById('txtPassword');
+    // const password2 = document.getElementById('txtPassword2');
+    // const userType = userSelect.options[userSelect.selectedIndex].text;
 
     var initialLoad = true;
     var user = document.currentScript.getAttribute('user');
