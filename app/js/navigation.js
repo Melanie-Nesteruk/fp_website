@@ -37,7 +37,7 @@
     function setNavigation(loggedIn) {
         var tempFragment;
         if (loggedIn) {
-            user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
+            var user = FirebaseAuth.getInstance().getCurrentUser().getEmail();
             var subscribe = document.getElementById("subscribeNav");
             var login = document.getElementById("loginNav");
             if (subscribe) subscribe.remove();
