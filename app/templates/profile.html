@@ -25,11 +25,11 @@
                                             <p></p>
                                             <div class="bioLabel">Email: <span class="labelValue" id="email">amis@kent.edu</span></div>
                                             <div class="bioLabel">Website: <a class="labelValue" id="website" href="http://www.urbanvirtues.com">www.urbanvirtues.com</a></div>
-                                            <div id="socialmedia" style="padding: 5 0 0 0;">
-                                                    <a href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-facebook-square"></i></a>
-                                                    <a href="https://instagram.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-instagram"></i></a>
-                                                    <a href="https://twitter.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-twitter-square"></i></a>
-                                                    <button id="btnMessage" type="submit" style="vertical-align: middle;">Send Message</button>
+                                            <div id="socialmedia" style="padding: 5 0 5 0;">
+                                                    <a class="btnSocialMedia" href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-facebook-square"></i></a>
+                                                    <a class="btnSocialMedia" href="https://instagram.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-instagram"></i></a>
+                                                    <a class="btnSocialMedia" href="https://twitter.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-twitter-square"></i></a>
+                                                    <button id="btnMessage" type="submit" style="vertical-align: middle; pointer-events: auto;">Send Message</button>
                                             </div>
                                         </div>
                                         <div class="divTableCell" style="text-align: right; vertical-align: top; background: white;">
@@ -69,6 +69,7 @@
     .bioHeader { font-size: larger; font-weight: bold; font-family: sans-serif; }
     .bioLabel { font-size: initial; font-weight: bold; }
     .labelValue { font-weight: normal; }
-    .btnBlock { background-color: Transparent; background-repeat:no-repeat; border: none;cursor:pointer; overflow: hidden; outline:none; padding-right: 8px;}
+    .btnSocialMedia {padding: 0 5px; }
+    .btnBlock { background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; padding-right: 8px; pointer-events: auto;}
     </style>
 {% endblock %}
