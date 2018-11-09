@@ -29,7 +29,6 @@
 
     const firstName = document.getElementById('txtFirstName');
     const lastName = document.getElementById('txtLastName');
-    const email = document.getElementById('txtEmail');
     const password = document.getElementById('txtPassword');
     const password2 = document.getElementById('txtPassword2');
     const userType = userSelect.options[userSelect.selectedIndex].text;
