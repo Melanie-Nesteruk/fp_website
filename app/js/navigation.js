@@ -35,9 +35,7 @@
     });
         
     function setNavigation(loggedIn) {
-        var tempFragment;
         if (loggedIn) {
-            var user = firebase.auth().currentUser.email.split('@')[0];
             var subscribe = document.getElementById("subscribeNav");
             var login = document.getElementById("loginNav");
             if (subscribe) subscribe.remove();
@@ -57,7 +55,7 @@
                 linkNode.classList.add("text-expanded");
 
                 linkNode.id = "profile";
-                linkNode.href = "/profile?user=" + user;
+                linkNode.href = "/profile";
                 var textNode = document.createTextNode("Profile");
 
                 linkNode.appendChild(textNode); 
