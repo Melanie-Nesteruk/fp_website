@@ -12,13 +12,17 @@
                       <span class="section-heading-upper">Student-Alumni Network</span>
                       <span class="section-heading-lower">Messages</span>
                     </h2>
-					<div class ="friend-list" id = "connected-friends-list">
+					<div class="form-group" style="width: 35%; pointer-events: auto; margin: 0 auto; display: flex;">
+						<div style="flex: 0 0 30%; text-align: left;">
+							<div class ="friend-list" id = "connected-friends-list">
+							</div>
+							<br>
+							<form action="messenger.html" method="GET">
+								<input type="text" name="friendID" />
+								<input type="submit" value="Submit" />
+							</form>
+						</div>
 					</div>
-					<br>
-					<form action="messenger.html" method="GET">
-						<input type="text" name="friendID" />
-						<input type="submit" value="Submit" />
-					</form>
                   </div>
                 </div>
               </div>
@@ -26,6 +30,7 @@
           </section>
 		  
     <script src="app/js/messagesmain.js"></script>
+	<script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
     <style>
         .hide {
             visibility: hidden;
