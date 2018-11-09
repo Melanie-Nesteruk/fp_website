@@ -23,57 +23,61 @@
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
 
-    // // Get elements/user input
-    // const btnSignup = document.getElementById('btnSignup');
-    // const userSelect = document.getElementById("user_type_selection");
+    // Get page elements to load
 
-    // const firstName = document.getElementById('txtFirstName');
-    // const lastName = document.getElementById('txtLastName');
-    // const password = document.getElementById('txtPassword');
-    // const password2 = document.getElementById('txtPassword2');
-    // const userType = userSelect.options[userSelect.selectedIndex].text;
+    const fullName = document.getElementById('name');
+    const major = document.getElementById('major');
+    const minor = document.getElementById('minor');
+    const graduation = document.getElementById('graduation');
+    const email = document.getElementById('minor');
+    const website = document.getElementById('website');
 
     var initialLoad = true;
-    var user = document.currentScript.getAttribute('user');
-    var profileToLoad; 
+    var currentUser = firebase.auth().currentUser;
+    var inputUser = document.currentScript.getAttribute('inputUser');
 
-    if (user)
+    if (currentUser)
     {
-        var email = user + "@kent.edu";
-
-        firebase.auth().fetchProvidersForEmail(email)
-        .then(providers => {
-          if (providers.length === 0) {
-            // User not registered. Show an error on the page that says there is no profile for that user
-          } else {
-            // User is registered
-            profileToLoad = providers[0].uid;
-          }
-        });   
+        // View this user's profile
+        if (inputUser)
+        {
+            var email = inputUser + "@kent.edu";
+            
+            // firebase.auth().fetchProvidersForEmail(email)
+            // .then(providers => {
+            //   if (providers.length === 0) {
+            //     // User not registered. Show an error on the page that says there is no profile for that user
+            //   } else {
+            //     // User is registered
+            //     profileToLoad = providers[0].uid;
+            //   }
+            // });   
+            // LoadProfile(inputUser.uid);
+        }
+    
+        // View your own
+        else
+        {
+            LoadProfile(currentUser.uid);
+        }
+    }
+    else
+    {
+        // User is not logged in and shouldn't be able to see anyone's profile.
     }
 
     
+    function LoadProfile(uidToLoad)
+    {
+        var firstName;
+        var lastName;
+        db.collection("Users").doc(uidToLoad).get().then((snapshot) => {
+            firstName = snapshot.get("first_Name");
+        });
+    };
+
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB(currentUID, currentEmail){
-        console.log('Adding user to firestore.');
-
-        // Convert HTMLElements to strings to store in DB
-        var sFirstName = String(firstName.value);
-        var sLastName = String(lastName.value);
-        var currentUserType = 0;
-
-        // Set userType based on information given by user
-        // 1 == Student | 2 == Alumni | 3 == Faculty
-        if(userType == "Student") {
-            currentUserType = 1;
-        }
-        else if(userType == "Alumni") {
-            currentUserType = 2;
-        }
-        else {       
-            currentUserType = 3;
-        }
-
         // Create new document in 'Users' collection
         db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
             first_Name: sFirstName,
