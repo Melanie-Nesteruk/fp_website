@@ -53,9 +53,9 @@ def directory():
 
 @app.route('/profile')
 def profile():
-    user = request.args.get('user', '')
+    user = request.args.get['user']
     if (user):
-        return render_template("profile.html", title='Profile', app=app)
+        return render_template("profile.html", title='Profile', app=app, user=user)
     else:
         return render_template("profile.html", title='Profile', app=app)
 
