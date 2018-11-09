@@ -18,17 +18,17 @@
                                             <img src="app/img/default-avatar.png"/>
                                         </div>
                                         <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
-                                            <div id="name">Andrew Mis</div>
-                                            <div>Major: <span id="major"></span></div>
-                                            <div>Minor: <span id="minor"></span></div>
-                                            <div>Graduation: <span id="graduation"></span></div>
+                                            <div class="bioHeader" id="name">Andrew Mis</div>
+                                            <div class="bioLabel">Major: <span id="major"></span></div>
+                                            <div class="bioLabel">Minor: <span id="minor"></span></div>
+                                            <div class="bioLabel">Graduation: <span id="graduation"></span></div>
                                             <p></p>
-                                            <div>Email: <span id="email"></span></div>
-                                            <div>Website: <span id="website"></span></div>
-                                            <div id="socialmedia">
-                                                    <a href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41);"><i class="fab fa-facebook-square"></i></a>
-                                                    <a href="https://twitter.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41);"><i class="fab fa-twitter-square"></i></a>
-                                                    <a href="https://twitter.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41);"><i class="fab fa-instagram-square"></i></a>
+                                            <div class="bioLabel">Email: <span id="email"></span></div>
+                                            <div class="bioLabel">Website: <span id="website"></span></div>
+                                            <div id="socialmedia" style="padding: 8 0 0 0;">
+                                                    <a href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-facebook-square"></i></a>
+                                                    <a href="https://twitter.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-twitter-square"></i></a>
+                                                    <a href="https://instagram.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-insta-square"></i></a>
                                                     <button id="btnMessage" type="submit" style="vertical-align: middle;">Send Message</button>
                                             </div>
                                         </div>
@@ -40,7 +40,10 @@
                             <div class="divTable">
                                 <div class="divTableBody">
                                     <div class="divTableRow">
-                                        <div class="divTableCell">About Me</div>
+                                        <div class="divTableCell">
+                                            <div class="bioHeader">About Me</div>
+                                            <div>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</div>
+                                        </div>
                                         <div class="divTableCell">Interests</div>
                                     </div>
                                 </div>
@@ -59,5 +62,7 @@
     .divTableHeading { display: table-header-group;}
     .divTableFoot { display: table-footer-group;}
     .divTableBody { display: table-row-group;}
+    .bioHeader { font-size: larger; font-weight: bold; font-family: sans-serif; }
+    .bioLabel { font-size: initial; font-weight: bold; }
     </style>
 {% endblock %}
