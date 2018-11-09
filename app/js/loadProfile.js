@@ -35,46 +35,6 @@
     var initialLoad = true;
     var currentUser = firebase.auth().currentUser;
     var inputUser = document.currentScript.getAttribute('inputUser');
-
-    if (currentUser)
-    {
-        // View this user's profile
-        if (inputUser)
-        {
-            var email = inputUser + "@kent.edu";
-            
-            var usersRef = db.collection("Users");
-            var query = usersRef.where("email" == email);
-            query.get().then((snapShot) => {
-                var doc = snapShot.docs[0];
-                var inputUsersID = doc.id;
-            }).catch((error) => console.log(error));
-
-            LoadProfile(inputUsersID);
-
-            // firebase.auth().fetchProvidersForEmail(email)
-            // .then(providers => {
-            //   if (providers.length === 0) {
-            //     // User not registered. Show an error on the page that says there is no profile for that user
-            //   } else {
-            //     // User is registered
-            //     profileToLoad = providers[0].uid;
-            //   }
-            // });   
-            // LoadProfile(inputUser.uid);
-        }
-    
-        // View your own
-        else
-        {
-            LoadProfile(currentUser.uid);
-        }
-    }
-    else
-    {
-        // User is not logged in and shouldn't be able to see anyone's profile.
-    }
-
     
     function LoadProfile(uidToLoad)
     {
@@ -150,13 +110,34 @@
     };
 
     firebase.auth().onAuthStateChanged(user => {
-        if(user && !initialLoad) {
+        if (user)
+        {
+            currentUser = user;
 
-            // Get current user ID  & email and convert them to strings
-            var currentUID = user.uid;
-            var sID = String(currentUID);
-            var currentEmail = user.email;
-            var sEmail = String(currentEmail);
+            // View this user's profile
+            if (inputUser)
+            {
+                var email = inputUser + "@kent.edu";
+                
+                var usersRef = db.collection("Users");
+                var query = usersRef.where("email" == email);
+                query.get().then((snapShot) => {
+                    var doc = snapShot.docs[0];
+                    var inputUsersID = doc.id;
+                }).catch((error) => console.log(error));
+
+                LoadProfile(inputUsersID);
+            }
+        
+            // View your own
+            else
+            {
+                LoadProfile(currentUser.uid);
+            }
+        }
+        else
+        {
+            // User is not logged in and shouldn't be able to see anyone's profile.
         }
     });
 }());
