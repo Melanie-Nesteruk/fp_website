@@ -51,8 +51,9 @@ def subscribe():
 def directory():
     return render_template("directory.html", title='Directory', app=app)
 
-@app.route('/profile/<user>')
-def profile(user):
+@app.route('/profile')
+def profile():
+    user = request.args.get('user', '')
     if (user):
         return render_template("profile.html", title='Profile', app=app)
     else:
