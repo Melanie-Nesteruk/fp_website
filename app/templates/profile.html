@@ -2,30 +2,32 @@
 
 
 {% block content %}
-<section class="page-section cta">
-    <div class="container divTable">
-        <div class="divTableBody">
-            <div class="divTableRow">
-                <div class="divTableCell"><img src="app/img/default-avatar.png"/></div>
-                <div class="divTableCell">cell2_1</div>
-                <div class="divTableCell">cell3_1</div>
-            </div>
-            <hr>
-            <div class="divTableRow">
-                <div class="divTableCell">cell1_1</div>
-                <div class="divTableCell">cell2_1</div>
+    <section class="page-section cta">
+        <div class="container">
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                        <div class="divTableCell"><img src="app/img/default-avatar.png"/></div>
+                        <div class="divTableCell">cell2_1</div>
+                        <div class="divTableCell">cell3_1</div>
+                    </div>
+                    <hr>
+                    <div class="divTableRow">
+                        <div class="divTableCell">cell1_1</div>
+                        <div class="divTableCell">cell2_1</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<style>
-.divTable{ display: table; width: 90%; }
-.divTableRow { display: table-row; }
-.divTableHeading { display: table-header-group;}
-.divTableCell, .divTableHead { display: table-cell;}
-.divTableHeading { display: table-header-group;}
-.divTableFoot { display: table-footer-group;}
-.divTableBody { display: table-row-group;}
-</style>
+    <style>
+    .divTable{ display: table; width: 90%; }
+    .divTableRow { display: table-row; }
+    .divTableHeading { display: table-header-group;}
+    .divTableCell, .divTableHead { display: table-cell;}
+    .divTableHeading { display: table-header-group;}
+    .divTableFoot { display: table-footer-group;}
+    .divTableBody { display: table-row-group;}
+    </style>
 {% endblock %}
