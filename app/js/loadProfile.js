@@ -25,12 +25,12 @@
 
     // Get page elements to load
 
-    const fullName = document.getElementById('name');
-    const major = document.getElementById('major');
-    const minor = document.getElementById('minor');
-    const graduation = document.getElementById('graduation');
-    const email = document.getElementById('minor');
-    const website = document.getElementById('website');
+    const fullNameDOM = document.getElementById('name');
+    const majorDOM = document.getElementById('major');
+    const minorDOM = document.getElementById('minor');
+    const graduationDOM = document.getElementById('graduation');
+    const emaiDOM = document.getElementById('minor');
+    const websiteDOM = document.getElementById('website');
 
     var initialLoad = true;
     var currentUser = firebase.auth().currentUser;
@@ -43,6 +43,15 @@
         {
             var email = inputUser + "@kent.edu";
             
+            var usersRef = db.collection("Users");
+            var query = usersRef.where("email" == email);
+            query.get().then((snapShot) => {
+                var doc = snapShot.docs[0];
+                var inputUsersID = doc.id;
+            }).catch((error) => console.log(error));
+
+            LoadProfile(inputUsersID);
+
             // firebase.auth().fetchProvidersForEmail(email)
             // .then(providers => {
             //   if (providers.length === 0) {
