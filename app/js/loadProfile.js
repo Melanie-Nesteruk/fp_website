@@ -119,7 +119,7 @@
                 var email = inputUser + "@kent.edu";
                 
                 var usersRef = db.collection("Users");
-                var query = usersRef.where("email" == email);
+                var query = usersRef.where("email", "==", email);
                 query.get().then((snapShot) => {
                     var doc = snapShot.docs[0];
                     var inputUsersID = doc.get("userID");
