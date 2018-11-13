@@ -63,6 +63,9 @@ def profile():
 def messages():
     return render_template("messages.html", title='Messages', app=app)
 
+@app.route('/messenger')
+def messenger():
+    return render_template("messenger.html", title='Messenger', app=app)
 
 @app.route('/reset')
 def reset():
