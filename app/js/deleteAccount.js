@@ -38,6 +38,7 @@
                 showCancelButton:  true,
                 confirmButtonText: "Delete It!"
             });
+            return;
         });
     }
 }());
