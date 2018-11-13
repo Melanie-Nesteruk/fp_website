@@ -122,7 +122,7 @@
                 var query = usersRef.where("email" == email);
                 query.get().then((snapShot) => {
                     var doc = snapShot.docs[0];
-                    var inputUsersID = doc.id;
+                    var inputUsersID = doc.get("userID");
                 }).catch((error) => console.log(error));
 
                 LoadProfile(inputUsersID);
