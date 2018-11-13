@@ -32,25 +32,30 @@
     if (btnDelAcct != null) {
         btnDelAcct.addEventListener('click', e=> {
             swal({
-                title:      "Confirm your password to delete your account.",
-                icon:       "warning",
-                content:    "input",
-                dangerMode: true,
+                title: "To delete your account, enter your password.",
+                content: "input",
                 buttons: {
                     cancel: {
-                        text:  "Cancel",
-                        value: "cancel",
+                        text:       "Nevermind",
+                        closeModal: true,
                     },
                     confirm: {
-                        text:  "Delete",
-                        value: "delete",
-                    },
-                },
+                        text:       "Delete",
+                        closeModal: true,
+                        value:      1
+                    }
+                }
+
             })
             .then(value => {
-                case "delete":
-                    swal("Account Deletion Cancelled.");
-                    break;
+                if (value == 1) {
+                    // testing
+                    swal({
+                        text: "Account Deleted Successfully",
+                        icon: "success"
+                    });
+                    return;
+                }
             });
             return;
         });
