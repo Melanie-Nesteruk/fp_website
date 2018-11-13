@@ -47,7 +47,7 @@
                 }
 
             })
-            .then(value) => {
+            .then(value => {
                 if (value == 1) {
                     // testing
                     swal({
@@ -56,7 +56,7 @@
                     });
                     return;
                 }
-            }
+            });
             return;
         });
     }
