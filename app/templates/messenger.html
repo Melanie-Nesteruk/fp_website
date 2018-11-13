@@ -1,29 +1,56 @@
-{% extends "base.html" %}
+<html>
+	<body>
+	
+	
 
-{% block content %}
+<ul>
+ <li class="him">By Other User</li>
+ <li class="me">By this User, first message</li>
+ <li class="me">By this User, secondmessage</li>
+ <li class="me">By this User, third message</li>
+ <li class="me">By this User, fourth message</li>
+</ul>
 
-   <section class="page-section cta">
-            <div class="container">
-              <div class="row">
-                <div class="col-xl-12 mx-auto">
-                  <div class="cta-inner text-center rounded" style="pointer-events:none;">
-                    <h2 class="section-heading mb-5">
-                      <span class="section-heading-upper">Student-Alumni Network</span>
-                      <span class="section-heading-lower">Messenger</span>
-                    </h2>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-		  
-    <script src="app/js/messenger.js"></script>
-	<script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
+<style>
+ul{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
-    <style>
-        .hide {
-            visibility: hidden;
-        }
-    </style>
+ul li{
+  display:inline-block;
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+}
 
-{% endblock %}
+.him{
+  background: #eee;
+  float: left;
+}
+
+.me{
+  float: right;
+  background: #0084ff;
+  color: #fff;
+}
+
+.him + .me{
+  border-bottom-right-radius: 5px;
+}
+
+.me + .me{
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.me:last-of-type {
+  border-bottom-right-radius: 30px;
+}
+</style>
+
+	</body>
+</html>
