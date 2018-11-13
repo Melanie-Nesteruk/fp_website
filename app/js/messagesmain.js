@@ -42,8 +42,8 @@
 		// var newWindowTitle = 'Messenger - ' + value;
 		
 		// REDIRECT USER TO THE MESSENGER
-		// var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger.html' + value;
-		window.open('http://google.com', '_blank', 'height=500,width=400,top=100,left=100');
+		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?' + value;
+		window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
     }
 
 	
