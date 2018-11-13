@@ -1,5 +1,4 @@
 (function() {
-    console.log(firebase.apps.length);
     if (!firebase.apps.length) {
         var config = {
 		    apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
