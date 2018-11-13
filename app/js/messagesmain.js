@@ -29,6 +29,15 @@
         console.log('User listed.');
     }
     */
+	
+    // =======================================================
+    //	Check if users are on blocked list
+    //
+
+	// function isUserBlocked(currentID, friendID){ }
+	
+	
+	
 
     // =======================================================
     //	Create elements and render friends list
@@ -38,12 +47,9 @@
         var friend_id = value;
         console.log('Opening messenger with : ', friend_id);
 		
-		// USE THE USERNAME FOR NEW WINDOW TITLE
-		var newWindowTitle = 'Messenger - ' + value;
-		
 		// REDIRECT USER TO THE MESSENGER
 		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?' + value;
-		window.open(messengerURL, newWindowTitle, 'height=500,width=400,top=100,left=100');
+		window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
     }
 
 	

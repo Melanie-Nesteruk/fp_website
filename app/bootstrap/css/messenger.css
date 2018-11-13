@@ -1,17 +1,3 @@
-<html>
-	<body>
-	
-	
-
-<ul>
- <li class="him">By Other User</li>
- <li class="me">By this User, first message</li>
- <li class="me">By this User, secondmessage</li>
- <li class="me">By this User, third message</li>
- <li class="me">By this User, fourth message</li>
-</ul>
-
-<style>
 ul{
   list-style: none;
   margin: 0;
@@ -50,7 +36,3 @@ ul li{
 .me:last-of-type {
   border-bottom-right-radius: 30px;
 }
-</style>
-
-	</body>
-</html>
