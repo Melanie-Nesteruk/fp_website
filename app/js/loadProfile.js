@@ -1,5 +1,4 @@
 (function() {
-    console.log(firebase.apps.length);
     if (!firebase.apps.length) {
         var config = {
 		    apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
@@ -11,7 +10,7 @@
 	    };
 			
         var app = firebase.initializeApp(config);
-        console.log("initializeApp in registerUser.js");
+        console.log("initializeApp in loadProfile.js");
         //console.log(app);
     }
 
@@ -120,10 +119,10 @@
                 var email = inputUser + "@kent.edu";
                 
                 var usersRef = db.collection("Users");
-                var query = usersRef.where("email" == email);
+                var query = usersRef.where("email", "==", email);
                 query.get().then((snapShot) => {
                     var doc = snapShot.docs[0];
-                    var inputUsersID = doc.id;
+                    var inputUsersID = doc.get("userID");
                 }).catch((error) => console.log(error));
 
                 LoadProfile(inputUsersID);

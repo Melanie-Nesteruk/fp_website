@@ -29,25 +29,40 @@
         console.log('User listed.');
     }
     */
+	
+    // =======================================================
+    //	Check if users are on blocked list
+    //
+
+	// function isUserBlocked(currentID, friendID){ }
+	
+	
+	
 
     // =======================================================
     //	Create elements and render friends list
     //
 
-
     function openMessengerWith(value){
         var friend_id = value;
-        console.log('Opening messenger with : ', friend_id);	
+        console.log('Opening messenger with : ', friend_id);
+		
+		// REDIRECT USER TO THE MESSENGER
+		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?' + value;
+		window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
     }
 
+	
 	
     // =======================================================
     //	Create elements and render friends list
     //
 
-
     function renderFriendsList(doc){
         console.log('Rendering friend...');
+		
+		// GET THE USERNAMES INSTEAD OF THE ID FROM FIREBASE
+		
         var but = document.createElement("button");
         but.setAttribute("value", doc.id);
         but.id = doc.id;
@@ -58,19 +73,17 @@
     }
 
     function attachClickEvent(value){
-        var test1 = document.getElementById(value);
-        console.log('pre click',test1);
-		if (test1 != null) {
-			
-			console.log('click events attached');
-			test1.addEventListener('click', 
+        var friendButton = document.getElementById(value); // Button object for friend uid
+		if (friendButton != null) {
+			friendButton.addEventListener('click', 
 			function(){
 				openMessengerWith(value);
 			}, false);
 		}
-		console.log('post click',test1);
     }
 
+	
+	
     // =======================================================
     // Check for initialized firebase connection
     //
@@ -101,7 +114,7 @@
     //
 
     firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
+    if (user) { // if user is authorized
         console.log('User is signed in');
         name = user.displayName;
         email = user.email;
@@ -112,24 +125,6 @@
                         // you have one. Use User.getToken() instead.
         
         // =======================================================
-        //	Pulls all docs from 'Users' collection in firebase
-        //	and lists them
-        //
-        
-        /*
-        firestore.collection('Users').get().then((snapshot) => {
-            snapshot.docs.forEach(doc => {
-                renderUsers(doc);
-            })
-        });
-        */
-        
-        // Adding friends list
-        // firestore.collection('Users').doc('J1EbJJ9iZKTspqiSKawZN7i5pPh2').collection('Friends').set({
-                // friends: true
-            // })
-            
-        // =======================================================
         //	Pulls all docs from 'Friends' collection in firebase
         //	and lists them. Friend's list will show each friend's
         //  display name or user name. 'Message' button next to
@@ -137,23 +132,22 @@
         //	up the conversation.
         //
 
-        /* implement friends list here */
-
         console.log('uid: ', uid);
         firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
+				
+				// DO A CHECK 'BLOCK' Function
+				// if (!blocked)
+					// renderFriendsList(doc);
+				// else do nothing
+				
                 renderFriendsList(doc);
             })
         });
-        // attachClickEvents();
-        // =======================================================
-        //	Pulls all docs from 'Friends' collection in firebase
-        //	and lists them
-        //
         
-        
-    } else {
+    } else { // If user is not authorized
         console.log('User is not authorized to access this webpage');
     }
+	
     });
 }());
