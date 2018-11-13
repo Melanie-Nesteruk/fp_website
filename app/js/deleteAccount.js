@@ -31,35 +31,26 @@
     // Add password reset event
     if (btnDelAcct != null) {
         btnDelAcct.addEventListener('click', e=> {
-            swal("To delete your account, enter your password.", {
-                content: "input",
+            swal({
+                title:      "Confirm your password to delete your account.",
+                icon:       "warning",
+                content:    "input",
+                dangerMode: true,
                 buttons: {
                     cancel: {
-                        text:       "Nevermind",
-                        closeModal: true,
+                        text:  "Cancel",
+                        value: "cancel",
                     },
                     confirm: {
-                        text:       "Delete",
-                        closeModal: true,
-                        value:      "del",
+                        text:  "Delete",
+                        value: "delete",
                     },
                 },
             })
             .then(value => {
-                switch (value) {
-                    case "del":
-                        // testing
-                        swal({
-                            text: "Account Deletion Successful",
-                            icon: "success",
-                        });
-                        break;
-                    default:
-                        swal({
-                            text: "Account Deletion Cancelled",
-                            icon: "error",
-                        });
-                }
+                case "delete":
+                    swal("Account Deletion Cancelled.");
+                    break;
             });
             return;
         });
