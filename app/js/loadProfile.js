@@ -137,7 +137,7 @@
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-
+                    console.log(inputUsersID, " + ", firstName, " + ", lastName);
                 LoadProfile(inputUsersID, firstName, lastName); // Should pass stored first & last name but doesnt?
             }
         
