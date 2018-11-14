@@ -35,13 +35,12 @@
     var currentUser = firebase.auth().currentUser;
     var inputUser = document.currentScript.getAttribute('inputUser');
     
-    function LoadProfile(uidToLoad)
+    function LoadProfile(uidToLoad, firstName, lastName)
     {
-        var firstName;
-        var lastName;
-        db.collection("Users").doc(uidToLoad).get().then((snapshot) => {
-            firstName = snapshot.get("first_Name");
-        });
+        var fName = firstName;
+        //db.collection("Users").doc(uidToLoad).get().then((snapshot) => {
+        //    firstName = snapshot.get("first_Name");
+        //});
     };
 
     // TO-DO: Add some sort of parsing functionality to sanitize user-input
@@ -120,7 +119,9 @@
                 
                 //var usersRef = db.collection("Users");
                 //var query = usersRef.where("email", "==", email);
-                var inputUsersID;
+                var inputUsersID = "";
+                var firstName = "";
+                var lastName = "";
 
                 /*query.get().then((snapShot) => {
                     var doc = snapShot.docs[0];
@@ -132,7 +133,9 @@
                     .get()
                     .then(function(querySnapshot){
                         querySnapshot.forEach(function(doc){
-                            inputUsersID = doc.id;
+                            inputUsersID = String(doc.id);
+                            firstName = String(doc.get("first_Name"));
+                            lastName = String(doc.get("last_Name"));
                             console.log(doc.id, " => ", doc.data());
                         });
                     })
