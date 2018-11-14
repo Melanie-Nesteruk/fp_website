@@ -192,17 +192,17 @@
                 db.collection('Profiles').doc(currentUser.uid).get()
                 .then(function(querySnapshot){
                     var doc = querySnapshot;
-                        facultyPos = String(doc.get("faculty_position"));
-                        major = String(doc.get("major"));
-                        minor = String(doc.get("minor"));
-                        gradYear = String(doc.get("graduation_year"));
-                        website = String(doc.get("website"));
-                        bio = String(doc.get("bio"));
-                        facebook = String(doc.get("facebook"));
-                        instagram = String(doc.get("instagram"));
-                        twitter = String(doc.get("twitter"));
+                    facultyPos = String(doc.get("faculty_position"));
+                    major = String(doc.get("major"));
+                    minor = String(doc.get("minor"));
+                    gradYear = String(doc.get("graduation_year"));
+                    website = String(doc.get("website"));
+                    bio = String(doc.get("bio"));
+                    facebook = String(doc.get("facebook"));
+                    instagram = String(doc.get("instagram"));
+                    twitter = String(doc.get("twitter"));
 
-                        CheckState();
+                    CheckState();
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
@@ -213,8 +213,5 @@
         {
             // User is not logged in and shouldn't be able to see anyone's profile.
         }
-    }).then(function()
-    {
-        CheckState();
     });
 }());
