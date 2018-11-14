@@ -153,7 +153,7 @@
                 });
                     // const promise = firebase.auth().signOut();
                     // promise.catch(e => swal(e.message));
-                });
+                
                 var textNode = document.createTextNode("Logout");
     
                 linkNode.appendChild(textNode); 
