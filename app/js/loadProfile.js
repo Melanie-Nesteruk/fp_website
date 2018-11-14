@@ -32,7 +32,7 @@
     const websiteDOM = document.getElementById('website');
     const facebookDOM = document.getElementById('facebook');
     const instagramDOM = document.getElementById('instagram');
-    const twitterDom = document.getElementById('twitter');
+    const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
 
     var initialLoad = true;
@@ -44,16 +44,16 @@
     var fName = "";
     var lName = "";
     var userType = 0;
-    var facultyPos = "No Data";
-    var major = "No Data";
-    var minor = "No Data";
-    var gradYear = "No Data";
+    var facultyPos = "";
+    var major = "";
+    var minor = "";
+    var gradYear = "";
     var email = "";
-    var website = "No Data";
-    var bio = "No Data";
-    var facebook = "No Data";
-    var instagram = "No Data";
-    var twitter = "No Data";
+    var website = "";
+    var bio = "";
+    var facebook = "";
+    var instagram = "";
+    var twitter = "";
     var isVerified = false;
     
     function LoadProfile(uID, isVerified)
@@ -65,8 +65,10 @@
             // Get additional fields & allow editing of fields (if current user's profile)
         }
 
+        GetAdditionalFields(uID);
+
         SetBasicFields();
-        SetAdditionalFields(uID);
+        SetAdditionalFields();
     };
     
     function SetBasicFields()
@@ -97,11 +99,11 @@
         userTypeDOM.innerHTML = userType;
     };
 
-    function SetAdditionalFields(userID)
+    function GetAdditionalFields(userID)
     {
         db.collection('Profiles').doc(userID).get()
         .then(function(querySnapshot){
-            var doc = querySnapshot.docs[0];
+            var doc = querySnapshot;
                 facultyPos = String(doc.get("faculty_position"));
                 major = String(doc.get("major"));
                 minor = String(doc.get("minor"));
@@ -117,7 +119,10 @@
         .catch(function(error){
             console.log("Error getting document ID: ", error);
         });
+    };
 
+    function SetAdditionalFields()
+    {
         majorDOM.innerHTML = major;
         minorDOM.innerHTML = minor;
         graduationDOM.innerHTML = gradYear;
@@ -161,14 +166,14 @@
             {
                 db.collection('Users').doc(currentUser.uid).get()
                 .then(function(querySnapshot){
-                    var doc = querySnapshot.docs[0];
-                        fName = String(doc.get("first_Name"));
-                        lName = String(doc.get("last_Name"));
-                        email = String(doc.get("email"));
-                        userType = doc.get("userType");
-                        isVerified = doc.get("verified");
+                    var doc = querySnapshot;
+                    fName = String(doc.get("first_Name"));
+                    lName = String(doc.get("last_Name"));
+                    email = String(doc.get("email"));
+                    userType = doc.get("userType");
+                    isVerified = doc.get("verified");
 
-                        LoadProfile(currentUser.uid, isVerified);
+                    LoadProfile(currentUser.uid, isVerified);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
