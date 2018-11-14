@@ -139,7 +139,7 @@
                             lastName = String(doc.get("last_Name"));
                             console.log(inputUsersID, " + ", firstName, " + ", lastName);
                             console.log(doc.id, " => ", doc.data());
-                        });
+                        //});
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
