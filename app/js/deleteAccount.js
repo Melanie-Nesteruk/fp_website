@@ -34,17 +34,7 @@
             swal({
                 title: "To delete your account, enter your password.",
                 content: "input",
-                buttons: {
-                    cancel: {
-                        text:       "Nevermind",
-                        closeModal: true,
-                    },
-                    confirm: {
-                        text:       "Delete",
-                        closeModal: true,
-                        value:      1
-                    },
-                },
+                closeModal: true,
             })
             .then(value => {
                 if (value == 1) {
