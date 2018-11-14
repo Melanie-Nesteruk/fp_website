@@ -34,6 +34,7 @@
     const instagramDOM = document.getElementById('instagram');
     const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
+    var editDOM = document.getElementById('editor');
 
     var initialLoad = true;
     var currentUser = firebase.auth().currentUser;
@@ -55,18 +56,8 @@
     var instagramName = "";
     var twitterName = "";
     var isVerified = false;
-    
-    var calledUser = false;
-    var calledProfile = false;
-    
-    function CheckState()
-    {
-        if (calledUser && calledProfile)
-        {
-            LoadProfile(isVerified);
-        }
-    }
-
+    var isCurrentUser = false;
+ 
     function LoadProfile(isVerified)
     {
         console.log("Inside loadProfile()");
@@ -76,6 +67,17 @@
             // Get additional fields & allow editing of fields (if current user's profile)
         }
 
+        if (isCurrentUser)
+        {
+            editDOM.classList.remove("hide");
+        }
+        else
+        {
+            if (!editDOM.classList.contains("hide"))
+            {
+                editDOM.classList.add("hide");
+            }
+        }
         SetBasicFields();
         SetAdditionalFields();
     };
@@ -162,7 +164,6 @@
                         lName = String(doc.get("last_Name"));
                         userType = doc.get("userType");
                         isVerified = doc.get("verified");
-                        calledUser = true;
 
                         GetAdditionalFields(inputUsersID);
                     })
@@ -182,8 +183,7 @@
                     email = String(doc.get("email"));
                     userType = doc.get("userType");
                     isVerified = doc.get("verified");
-                    calledUser = true;
-
+                    isCurrentUser = true;
                     GetAdditionalFields(currentUser.uid);
                 })
                 .catch(function(error){

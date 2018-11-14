@@ -20,6 +20,7 @@
                                         <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
                                             <span class="bioHeader" id="name">Your Name</span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
                                             <span class="labelValue" id="userType"> User Type</span>
+                                            <span class="btnEdit hide" id="editor"><a href="/profile?edit=true">Edit Profile</a></span>
                                             <div class="bioLabel">Major: <span class="labelValue" id="major">Your Major</span></div>
                                             <div class="bioLabel">Minor: <span class="labelValue" id="minor">Your Minor</span></div>
                                             <div class="bioLabel">Graduation: <span class="labelValue" id="graduation">2019</span></div>
@@ -81,6 +82,7 @@
     .labelValue { font-weight: normal; }
     .btnSocialMedia {padding: 0 5px; }
     .btnBlock { background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; padding-right: 8px; pointer-events: auto;}
+    .hide { visibility: hidden; }
     </style>
 
     <script src="app/js/loadProfile.js" inputUser={{ user }}></script>
