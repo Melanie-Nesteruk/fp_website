@@ -22,14 +22,18 @@
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
 
-    // Get page elements to load
-
+    // Get page elements to alter
     const fullNameDOM = document.getElementById('name');
+    const userTypeDOM = document.getElementById('userType');
     const majorDOM = document.getElementById('major');
     const minorDOM = document.getElementById('minor');
     const graduationDOM = document.getElementById('graduation');
-    const emaiDOM = document.getElementById('minor');
+    const emailDOM = document.getElementById('email');
     const websiteDOM = document.getElementById('website');
+    const facebookDOM = document.getElementById('facebook');
+    const instagramDOM = document.getElementById('instagram');
+    const twitterDom = document.getElementById('twitter');
+    const bioDOM = document.getElementById('bio');
 
     var initialLoad = true;
     var currentUser = firebase.auth().currentUser;
@@ -37,17 +41,58 @@
 
     // Used by queries in onAuthStateChange()
     var inputUsersID = "";
-    var firstName = "";
-    var lastName = "";
+    var fName = "";
+    var lName = "";
+    var userType = 0;
+    var major = "";
+    var minor = "";
+    var gradYear = "";
+    var email = "";
+    var website = "";
+    var bio = "";
+    var facebook = "";
+    var instagram = "";
+    var twitter = "";
+    var isVerified = false;
     
-    function LoadProfile(uidToLoad, fName, lName)
+    function LoadProfile(isVerified)
     {
         console.log("Inside loadProfile()");
-        var FN = fName;
+
+        fullNameDOM.innerHTML = fName + lName;
+
+        switch (userType)
+        {
+            case 1:
+            userType = "Student";
+            break;
+            case 2:
+            userType = "Alumni";
+            break;
+            case 3:
+            userType = "Faculty";
+            break;
+            default:
+            userType = "None";
+            break;
+        }
+
+        userTypeDOM.innerHTML = userType;
+        
+        if (isVerified)
+        {
+            // Get additional fields & allow editing of fields (if current user's profile)
+            major = "";
+            minor = "";
+            gradYear = "";
+            email = "";
+            website = "";
+            bio = "";
+            facebook = "";
+            instagram = "";
+            twitter = "";
+        }
         console.log(uidToLoad, "+", fName, "+", lName);
-        //db.collection("Users").doc(uidToLoad).get().then((snapshot) => {
-        //    firstName = snapshot.get("first_Name");
-        //});
     };
 
     function AddUserToDB(currentUID, currentEmail){
@@ -121,18 +166,19 @@
             // View this user's profile
             if (inputUser)
             {
-                var email = String(inputUser + "@kent.edu");
+                email = String(inputUser + "@kent.edu");
 
                 db.collection("Users").where("email", "==", email)
                     .get()
                     .then(function(querySnapshot){
                         var doc = querySnapshot.docs[0];
                             inputUsersID = String(doc.id);
-                            firstName = String(doc.get("first_Name"));
-                            lastName = String(doc.get("last_Name"));
-                            //console.log(inputUsersID, " + ", firstName, " + ", lastName);
-                            console.log(doc.id, " => ", doc.data());
-                            LoadProfile(inputUsersID, firstName, lastName); // Function call must be here otherwise values aren't passed
+                            fName = String(doc.get("first_Name"));
+                            lName = String(doc.get("last_Name"));
+                            userType = doc.get("userType");
+                            isVerified = doc.get("verified");
+
+                            LoadProfile(isVerified);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -142,7 +188,19 @@
             // View your own
             else
             {
-                LoadProfile(currentUser.uid, " ", " "); // Filled in empty passed variables for now
+                firestore.collection('Users').doc(currentUser.uid).get()
+                .then(function(querySnapshot){
+                    var doc = querySnapshot.docs[0];
+                        fName = String(doc.get("first_Name"));
+                        lName = String(doc.get("last_Name"));
+                        userType = doc.get("userType");
+                        isVerified = doc.get("verified");
+
+                        LoadProfile(isVerified);
+                })
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                });
             }
         }
         else
