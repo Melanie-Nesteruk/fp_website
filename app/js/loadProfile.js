@@ -132,7 +132,8 @@
                 db.collection("Users").where("email", "==", email)
                     .get()
                     .then(function(querySnapshot){
-                        querySnapshot.forEach(function(doc){
+                        //querySnapshot.forEach(function(doc){
+                        var doc = querySnapshot.docs[0];
                             inputUsersID = String(doc.id);
                             firstName = String(doc.get("first_Name"));
                             lastName = String(doc.get("last_Name"));
