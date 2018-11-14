@@ -144,18 +144,18 @@
                     .get()
                     .then(function(querySnapshot){
                         var doc = querySnapshot.docs[0];
-                            inputUsersID = String(doc.id);
-                            fName = String(doc.get("first_Name"));
-                            lName = String(doc.get("last_Name"));
-                            userType = doc.get("userType");
-                            isVerified = doc.get("verified");
+                        inputUsersID = String(doc.id);
+                        fName = String(doc.get("first_Name"));
+                        lName = String(doc.get("last_Name"));
+                        userType = doc.get("userType");
+                        isVerified = doc.get("verified");
+
+                        GetAdditionalFields(inputUsersID);
+                        LoadProfile(inputUsersID, isVerified);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-
-                GetAdditionalFields(inputUsersID);
-                LoadProfile(inputUsersID, isVerified);
             }
         
             // View your own
@@ -169,13 +169,13 @@
                     email = String(doc.get("email"));
                     userType = doc.get("userType");
                     isVerified = doc.get("verified");
+
+                    GetAdditionalFields(currentUser.uid)
+                    LoadProfile(isVerified);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
                 });
-
-                GetAdditionalFields(currentUser.uid)
-                LoadProfile(isVerified);
             }
         }
         else
