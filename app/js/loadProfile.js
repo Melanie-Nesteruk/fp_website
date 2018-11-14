@@ -116,7 +116,7 @@
             // View this user's profile
             if (inputUser)
             {
-                var email = inputUser + "@kent.edu";
+                var email = String(inputUser + "@kent.edu");
                 
                 //var usersRef = db.collection("Users");
                 //var query = usersRef.where("email", "==", email);
@@ -133,6 +133,7 @@
                     .then(function(querySnapshot){
                         querySnapshot.forEach(function(doc){
                             inputUsersID = doc.id;
+                            console.log(doc.id, " => ", doc.data());
                         });
                     })
                     .catch(function(error){
