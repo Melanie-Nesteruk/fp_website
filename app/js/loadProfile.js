@@ -56,7 +56,7 @@
     var twitter = "";
     var isVerified = false;
     
-    function LoadProfile(uID, isVerified)
+    function LoadProfile(isVerified)
     {
         console.log("Inside loadProfile()");
 
@@ -64,8 +64,6 @@
         {
             // Get additional fields & allow editing of fields (if current user's profile)
         }
-
-        GetAdditionalFields(uID);
 
         SetBasicFields();
         SetAdditionalFields();
@@ -113,8 +111,6 @@
                 facebook = String(doc.get("facebook"));
                 instagram = String(doc.get("instagram"));
                 twitter = String(doc.get("twitter"));
-
-                LoadProfile(isVerified);
         })
         .catch(function(error){
             console.log("Error getting document ID: ", error);
@@ -153,12 +149,13 @@
                             lName = String(doc.get("last_Name"));
                             userType = doc.get("userType");
                             isVerified = doc.get("verified");
-
-                            LoadProfile(inputUsersID, isVerified);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
+
+                GetAdditionalFields(inputUsersID);
+                LoadProfile(inputUsersID, isVerified);
             }
         
             // View your own
@@ -172,12 +169,13 @@
                     email = String(doc.get("email"));
                     userType = doc.get("userType");
                     isVerified = doc.get("verified");
-
-                    LoadProfile(currentUser.uid, isVerified);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
                 });
+
+                GetAdditionalFields(currentUser.uid)
+                LoadProfile(isVerified);
             }
         }
         else
