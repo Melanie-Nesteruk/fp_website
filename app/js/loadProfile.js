@@ -44,6 +44,7 @@
     var fName = "";
     var lName = "";
     var userType = 0;
+    var facultyPos = "No Data";
     var major = "No Data";
     var minor = "No Data";
     var gradYear = "No Data";
@@ -55,27 +56,17 @@
     var twitter = "No Data";
     var isVerified = false;
     
-    function LoadProfile(isVerified)
+    function LoadProfile(uID, isVerified)
     {
         console.log("Inside loadProfile()");
-        
+
         if (isVerified)
         {
             // Get additional fields & allow editing of fields (if current user's profile)
-            major = "";
-            minor = "";
-            gradYear = "";
-            email = "";
-            website = "";
-            bio = "";
-            facebook = "";
-            instagram = "";
-            twitter = "";
         }
 
         SetBasicFields();
-        SetAdditionalFields();
-        console.log(uidToLoad, "+", fName, "+", lName);
+        SetAdditionalFields(uID);
     };
     
     function SetBasicFields()
@@ -106,79 +97,36 @@
         userTypeDOM.innerHTML = userType;
     };
 
-    function SetAdditionalFields()
+    function SetAdditionalFields(userID)
     {
+        db.collection('Profiles').doc(userID).get()
+        .then(function(querySnapshot){
+            var doc = querySnapshot.docs[0];
+                facultyPos = String(doc.get("faculty_position"));
+                major = String(doc.get("major"));
+                minor = String(doc.get("minor"));
+                gradYear = String(doc.get("graduation_year"));
+                website = String(doc.get("website"));
+                bio = String(doc.get("bio"));
+                facebook = String(doc.get("facebook"));
+                instagram = String(doc.get("instagram"));
+                twitter = String(doc.get("twitter"));
+
+                LoadProfile(isVerified);
+        })
+        .catch(function(error){
+            console.log("Error getting document ID: ", error);
+        });
+
         majorDOM.innerHTML = major;
         minorDOM.innerHTML = minor;
         graduationDOM.innerHTML = gradYear;
         websiteDOM.innerHTML = website;
+        websiteDOM.html = website;
         bioDOM.innerHTML = bio;
-        facebookDOM.innerHTML = facebook;
-        instagramDOM.innerHTML = instagram;
-        twitterDOM.innerHTML = twitter;
-    };
-
-    function AddUserToDB(currentUID, currentEmail){
-        // Create new document in 'Users' collection
-        db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
-            first_Name: sFirstName,
-            last_Name: sLastName,
-            email: currentEmail,                          
-            userType: currentUserType,
-            userID: currentUID,
-            verified: false
-        })
-        .then(function(){
-            console.log("Users documents successfully written!");
-        })
-        .catch(function(error){
-            console.error("Error writing document: ", error);
-        });
-
-        // Create new document in the 'Profiles' collection
-        // Fields must be populated later when users provide more information
-        db.collection("Profiles").doc(currentUID).set({
-            major: "Fill in Major",
-            minor: "Fill in Minor",
-            bio: "Bio goes here",
-            faculty_position: "test-position",
-            website: "test-website.com",
-            facebook: "facebook-link",
-            instagram: "insta-link",
-            twitter: "twitter-link",
-            graduation_year: "2010",
-            userID: currentUID
-        })
-        .then(function(){
-            console.log("Profile documents successfully written!");
-        })
-        .catch(function(error){
-            console.error("Error writing document: ", error);
-        });
-
-        // Create new document in the 'Blocks' collection
-        // Feilds must be populated at the time of the block
-        // Blocking requires a merge with the existing feilds
-        db.collection("Blocks").doc(currentUID).set({                  
-            uid: currentUID
-        })
-        .then(function(){
-            console.log("Blocks documents successfully written!");
-        })
-        .catch(function(error){
-            console.error("Error writing document: ", error);
-        });
-		
-		// Create new collection 'Friends' for each user
-		db.collection("Users").doc(currentUID).collection("Friends").doc(currentUID).set({
-			uid: currentUID
-		})
-		.then(function(){
-            console.log("Friends collection successfully written!");
-        })
-        .catch(function(error){
-            console.error("Error writing collection: ", error);
-        });
+        facebookDOM.href = facebook;
+        instagramDOM.href = instagram;
+        twitterDOM.href = twitter;
     };
 
     firebase.auth().onAuthStateChanged(user => {
@@ -201,7 +149,7 @@
                             userType = doc.get("userType");
                             isVerified = doc.get("verified");
 
-                            LoadProfile(isVerified);
+                            LoadProfile(inputUsersID, isVerified);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -220,7 +168,7 @@
                         userType = doc.get("userType");
                         isVerified = doc.get("verified");
 
-                        LoadProfile(isVerified);
+                        LoadProfile(currentUser.uid, isVerified);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
