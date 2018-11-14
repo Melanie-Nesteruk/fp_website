@@ -133,10 +133,10 @@
                     .get()
                     .then(function(querySnapshot){
                         querySnapshot.forEach(function(doc){
-                            inputUsersID = String(doc.get("userID"));
+                            inputUsersID = String(doc.id);
                             firstName = String(doc.get("first_Name"));
                             lastName = String(doc.get("last_Name"));
-                            console.log(inputUser, " + ", firstName, " + ", lastName);
+                            console.log(inputUserID, " + ", firstName, " + ", lastName);
                             console.log(doc.id, " => ", doc.data());
                         });
                     })
