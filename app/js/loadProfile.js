@@ -56,7 +56,6 @@
     var instagramName = "";
     var twitterName = "";
     var isVerified = false;
-    var isCurrentUser = false;
  
     function LoadProfile(isVerified)
     {
@@ -67,17 +66,6 @@
             // Get additional fields & allow editing of fields (if current user's profile)
         }
 
-        if (isCurrentUser)
-        {
-            editDOM.classList.remove("hide");
-        }
-        else
-        {
-            if (!editDOM.classList.contains("hide"))
-            {
-                editDOM.classList.add("hide");
-            }
-        }
         SetBasicFields();
         SetAdditionalFields();
     };

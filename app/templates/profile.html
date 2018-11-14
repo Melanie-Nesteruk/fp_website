@@ -7,17 +7,16 @@
                 <div class="row">
                     <div class="col-xl-12 mx-auto">
                         <div class="cta-inner text-center rounded" style="pointer-events:none;">
-                            <h2 class="section-heading mb-5">
-                            <span class="section-heading-upper">Student-Alumni Network</span>
-                            <span class="section-heading-lower">Profile</span>
-                            </h2>
                             {% if editmode %}
+                            <h2 class="section-heading mb-5">
+                                <span class="section-heading-upper">Student-Alumni Network</span>
+                                <span class="section-heading-lower">Edit Profile</span>
+                                </h2>
                             <div class="form-group" style="pointer-events: auto; margin: 0 auto;">
                                 <div style="text-align: left;">
                                     <button id="btnDelAcct" type="submit" style="margin-top: 5px;">Delete Account</button>
                                 </div>
                             </div>
-                            {% else %}
                             <div class="divTable">
                                 <div class="divTableBody">
                                     <div class="divTableRow">
@@ -25,9 +24,8 @@
                                             <img src="app/img/default-avatar.png"/>
                                         </div>
                                         <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
-                                            <span class="bioHeader" id="name"></span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
+                                            <span class="bioHeader" id="name"></span>
                                             <span class="labelValue" id="userType"></span>
-                                            <span class="btnEdit hide" id="editor"><a href="/profile?edit=true" style="pointer-events: auto;">Edit Profile</a></span>
                                             <div class="bioLabel">Major: <span class="labelValue" id="major"></span></div>
                                             <div class="bioLabel">Minor: <span class="labelValue" id="minor"></span></div>
                                             <div class="bioLabel">Graduation: <span class="labelValue" id="graduation"></span></div>
@@ -56,11 +54,65 @@
                                         <div class="divTableCell bioHeader" style="text-align: center;">Photo Interests</div>
                                     </div>
                                     <div class="divTableRow">
-                                        <div class="divTableCell" style="text-align: left; padding: 10; width: 50%; height: 300px; background: white; border: 1px solid black; margin: 0 10% 0 0;">
+                                        <div class="divTableCell" style="text-align: left; padding: 10; width: 50%; height: 300px; background: white; border: 1px solid #c0bcbc; margin: 0 10% 0 0;">
                                             <p id="bio" style="width: 80%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel dui enim. Vivamus dictum mauris id libero gravida dapibus. Nullam mattis nisl dolor, sed varius tellus tempus vitae. Fusce consectetur luctus consectetur. Nulla id ipsum finibus, convallis ligula id, interdum nulla. Duis congue quis ante nec consectetur. Donec eu ipsum id sapien lobortis sodales.</p>
                                         </div>
                                         <div class="divTableCell" style="width: 20%;"></div>
-                                        <div class="divTableCell" style="text-align: right; background: white; border: 1px solid black;">
+                                        <div class="divTableCell" style="text-align: right; background: white; border: 1px solid #c0bcbc">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% else %}
+                            <h2 class="section-heading mb-5">
+                                <span class="section-heading-upper">Student-Alumni Network</span>
+                                <span class="section-heading-lower">Profile</span>
+                                </h2>
+                            <div class="divTable">
+                                <div class="divTableBody">
+                                    <div class="divTableRow">
+                                        <div class="divTableCell" style="width: 210px; height: 200px; text-align: left;">
+                                            <img src="app/img/default-avatar.png"/>
+                                        </div>
+                                        <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
+                                            <span class="bioHeader" id="name"></span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
+                                            <span class="labelValue" id="userType"></span>
+                                            {% if !user && !edit %}
+                                            <span class="btnEdit" id="editor"><a href="/profile?edit=true" style="pointer-events: auto;">Edit Profile</a></span>
+                                            {% endif %}
+                                            <div class="bioLabel">Major: <span class="labelValue" id="major"></span></div>
+                                            <div class="bioLabel">Minor: <span class="labelValue" id="minor"></span></div>
+                                            <div class="bioLabel">Graduation: <span class="labelValue" id="graduation"></span></div>
+                                            <p></p>
+                                            <div class="bioLabel">Email: <span class="labelValue" id="email"></span></div>
+                                            <div class="bioLabel">Website: <a class="labelValue" id="website" href="http://www.yourwebsite.com" style="pointer-events: auto;"></a></div>
+                                            <div id="socialmedia" style="padding: 5 0 5 0;">
+                                                    <a class="btnSocialMedia" id="facebook" href="https://www.facebook.com/groups/1498559753764185/" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-facebook-square"></i></a>
+                                                    <a class="btnSocialMedia" id="instagram" href="https://instagram.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-instagram"></i></a>
+                                                    <a class="btnSocialMedia" id="twitter" href="https://twitter.com/KSUFocalPoint" style="pointer-events: auto; font-size: 2em; color:rgba(33, 37, 41); vertical-align: middle;"><i class="fab fa-twitter-square"></i></a>
+                                                    <button id="btnMessage" type="submit" style="vertical-align: middle; pointer-events: auto;">Send Message</button>
+                                            </div>
+                                        </div>
+                                        <div class="divTableCell" style="text-align: right; vertical-align: top; border-left: none;">
+                                            <button class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="divTable">
+                                <div class="divTableBody">
+                                    <div class="divTableRow">
+                                        <div class="divTableCell bioHeader" style="text-align: center; width: 50%;">About Me</div>
+                                        <div class="divTableCell" style="width: 20%;"></div>
+                                        <div class="divTableCell bioHeader" style="text-align: center;">Photo Interests</div>
+                                    </div>
+                                    <div class="divTableRow">
+                                        <div class="divTableCell" style="text-align: left; padding: 10; width: 50%; height: 300px; background: white; border: 1px solid #c0bcbc; margin: 0 10% 0 0;">
+                                            <p id="bio" style="width: 80%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed vel dui enim. Vivamus dictum mauris id libero gravida dapibus. Nullam mattis nisl dolor, sed varius tellus tempus vitae. Fusce consectetur luctus consectetur. Nulla id ipsum finibus, convallis ligula id, interdum nulla. Duis congue quis ante nec consectetur. Donec eu ipsum id sapien lobortis sodales.</p>
+                                        </div>
+                                        <div class="divTableCell" style="width: 20%;"></div>
+                                        <div class="divTableCell" style="text-align: right; background: white; border: 1px solid #c0bcbc">
                                         </div>
                                     </div>
                                 </div>
@@ -86,6 +138,7 @@
     .btnBlock { background-color: Transparent; background-repeat:no-repeat; border: none; cursor:pointer; overflow: hidden; outline:none; padding-right: 8px; pointer-events: auto;}
     .hide { visibility: hidden; }
     </style>
+
 
     <script src="app/js/loadProfile.js" inputUser={{ user }}></script>
     <script type="text/javascript" src="app/js/deleteAccount.js"></script>
