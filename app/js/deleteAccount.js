@@ -32,7 +32,8 @@
     if (btnDelAcct != null) {
         btnDelAcct.addEventListener('click', e=> {
             swal({
-                title: "To delete your account, enter your password.",
+                title: "Are you sure?",
+                text:  "Click anywhere else to cancel.",
                 buttons: {
                     cancel: {
                         closeModal: true,

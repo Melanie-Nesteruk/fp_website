@@ -57,7 +57,7 @@
                 text: "You have been logged out.",
                 icon: "success"
             });
-
+            return;
         });
     }
 
