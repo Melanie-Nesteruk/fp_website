@@ -44,24 +44,50 @@
     var fName = "";
     var lName = "";
     var userType = 0;
-    var major = "";
-    var minor = "";
-    var gradYear = "";
+    var major = "No Data";
+    var minor = "No Data";
+    var gradYear = "No Data";
     var email = "";
-    var website = "";
-    var bio = "";
-    var facebook = "";
-    var instagram = "";
-    var twitter = "";
+    var website = "No Data";
+    var bio = "No Data";
+    var facebook = "No Data";
+    var instagram = "No Data";
+    var twitter = "No Data";
     var isVerified = false;
     
     function LoadProfile(isVerified)
     {
         console.log("Inside loadProfile()");
+        
+        if (isVerified)
+        {
+            // Get additional fields & allow editing of fields (if current user's profile)
+            major = "";
+            minor = "";
+            gradYear = "";
+            email = "";
+            website = "";
+            bio = "";
+            facebook = "";
+            instagram = "";
+            twitter = "";
+        }
 
-        fullNameDOM.innerHTML = fName + lName;
+        SetBasicFields();
+        SetAdditionalFields();
+        console.log(uidToLoad, "+", fName, "+", lName);
+    };
+    
+    function SetBasicFields()
+    {
+        fullNameDOM.innerHTML = fName + " " + lName;
+        emailDOM.innerHTML = email;
+        SetUserType(userType);
+    };
 
-        switch (userType)
+    function SetUserType(type)
+    {
+        switch (type)
         {
             case 1:
             userType = "Student";
@@ -78,21 +104,18 @@
         }
 
         userTypeDOM.innerHTML = userType;
-        
-        if (isVerified)
-        {
-            // Get additional fields & allow editing of fields (if current user's profile)
-            major = "";
-            minor = "";
-            gradYear = "";
-            email = "";
-            website = "";
-            bio = "";
-            facebook = "";
-            instagram = "";
-            twitter = "";
-        }
-        console.log(uidToLoad, "+", fName, "+", lName);
+    };
+
+    function SetAdditionalFields()
+    {
+        majorDOM.innerHTML = major;
+        minorDOM.innerHTML = minor;
+        graduationDOM.innerHTML = gradYear;
+        websiteDOM.innerHTML = website;
+        bioDOM.innerHTML = bio;
+        facebookDOM.innerHTML = facebook;
+        instagramDOM.innerHTML = instagram;
+        twitterDOM.innerHTML = twitter;
     };
 
     function AddUserToDB(currentUID, currentEmail){
@@ -188,11 +211,12 @@
             // View your own
             else
             {
-                firestore.collection('Users').doc(currentUser.uid).get()
+                db.collection('Users').doc(currentUser.uid).get()
                 .then(function(querySnapshot){
                     var doc = querySnapshot.docs[0];
                         fName = String(doc.get("first_Name"));
                         lName = String(doc.get("last_Name"));
+                        email = String(doc.get("email"));
                         userType = doc.get("userType");
                         isVerified = doc.get("verified");
 
