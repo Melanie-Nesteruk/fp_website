@@ -37,7 +37,9 @@
     
     function LoadProfile(uidToLoad, firstName, lastName)
     {
+        console.log("Inside loadProfile()");
         var fName = firstName;
+        console.log(uidToLoad, "+", firstName, "+", lastName);
         //db.collection("Users").doc(uidToLoad).get().then((snapshot) => {
         //    firstName = snapshot.get("first_Name");
         //});
