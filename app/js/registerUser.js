@@ -130,7 +130,7 @@
             facebook: "Not_yet_set",
             instagram: "Not_yet_set",
             twitter: "Not_yet_set",
-            graduation_year: "2010",
+            graduation_year: "2022",
             userID: currentUID
         })
         .then(function(){
