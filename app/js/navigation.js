@@ -23,13 +23,13 @@
         else {
             // Show "Mailing List" and "Login"
             setNavigation(false);
-            if (!initialLoad) {
-                window.location.href = "/login";
-                swal({
-                    text: "You have been signed out.",
-                    icon: "success"
-                });
-            }
+            // if (!initialLoad) {
+            //     window.location.href = "/login";
+            //     swal({
+            //         text: "You have been signed out.",
+            //         icon: "success"
+            //     });
+            // }
         }
         
     });
