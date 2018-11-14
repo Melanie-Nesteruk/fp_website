@@ -122,9 +122,37 @@
                 linkNode.href = "javascript:void(0);";
                 linkNode.addEventListener('click', e=> {
                     initialLoad = false;
-        
-                    const promise = firebase.auth().signOut();
-                    promise.catch(e => swal(e.message));
+                    swal({
+                        title: "Are you sure you want to logout?",
+                        text:  "Click anywhere else to cancel.",
+                        buttons: {
+                            cancel: {
+                                closeModal: true,
+                                value:      0
+                            },
+                            confirm: {
+                                text:       "Logout",
+                                closeModal: true,
+                                value:      1
+                            }
+                        }
+                    })
+                    .then(value => {
+                        if (value == 1) {
+                            const promise = firebase.auth().signOut().then(function() {
+                                window.location.href = "/login";
+                                swal({
+                                    text: "Logout Successful",
+                                    icon: "success"
+                                });
+                            });
+                            return;
+                        }
+                    });
+                    return;
+                });
+                    // const promise = firebase.auth().signOut();
+                    // promise.catch(e => swal(e.message));
                 });
                 var textNode = document.createTextNode("Logout");
     
