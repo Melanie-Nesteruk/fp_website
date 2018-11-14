@@ -49,12 +49,12 @@
             .then(value => {
                 if (value == 1) {
                     var user = firebase.auth().currentUser;
-                    user.auth().signOut();
                     user.delete().then(function() {
-                    window.location.href = "/login";
+                        //user.auth().signOut();
+                        //window.location.href = "/login";
                         swal({
-                        text: "Account Deletion Successful",
-                        icon: "success"
+                            text: "Account Deletion Successful",
+                            icon: "success"
                         });
                     });
                     return;
