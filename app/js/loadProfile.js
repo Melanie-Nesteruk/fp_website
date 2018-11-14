@@ -34,12 +34,17 @@
     var initialLoad = true;
     var currentUser = firebase.auth().currentUser;
     var inputUser = document.currentScript.getAttribute('inputUser');
+
+    // Used by queries in onAuthStateChange()
+    var inputUsersID = "";
+    var firstName = "";
+    var lastName = "";
     
-    function LoadProfile(uidToLoad, firstName, lastName)
+    function LoadProfile(uidToLoad, fName, lName)
     {
         console.log("Inside loadProfile()");
-        var fName = firstName;
-        console.log(uidToLoad, "+", firstName, "+", lastName);
+        var FN = fName;
+        console.log(uidToLoad, "+", fName, "+", lName);
         //db.collection("Users").doc(uidToLoad).get().then((snapshot) => {
         //    firstName = snapshot.get("first_Name");
         //});
@@ -118,36 +123,22 @@
             if (inputUser)
             {
                 var email = String(inputUser + "@kent.edu");
-                
-                //var usersRef = db.collection("Users");
-                //var query = usersRef.where("email", "==", email);
-                var inputUsersID = "";
-                var firstName = "";
-                var lastName = "";
-
-                /*query.get().then((snapShot) => {
-                    var doc = snapShot.docs[0];
-                    inputUsersID = doc.get("userID");
-                }).catch((error) => console.log(error));
-                */
 
                 db.collection("Users").where("email", "==", email)
                     .get()
                     .then(function(querySnapshot){
-                        //querySnapshot.forEach(function(doc){
                         var doc = querySnapshot.docs[0];
                             inputUsersID = String(doc.id);
                             firstName = String(doc.get("first_Name"));
                             lastName = String(doc.get("last_Name"));
                             console.log(inputUsersID, " + ", firstName, " + ", lastName);
                             console.log(doc.id, " => ", doc.data());
-                        //});
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
 
-                LoadProfile(inputUsersID, firstName, lastName);
+                LoadProfile(inputUsersID, firstName, lastName); // Should pass stored first & last name but doesnt?
             }
         
             // View your own
