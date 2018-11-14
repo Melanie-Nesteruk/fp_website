@@ -77,7 +77,7 @@
                                         <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
                                             <span class="bioHeader" id="name"></span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
                                             <span class="labelValue" id="userType"></span>
-                                            {% if !user && !edit %}
+                                            {% if not user and not edit %}
                                             <span class="btnEdit" id="editor"><a href="/profile?edit=true" style="pointer-events: auto;">Edit Profile</a></span>
                                             {% endif %}
                                             <div class="bioLabel">Major: <span class="labelValue" id="major"></span></div>
