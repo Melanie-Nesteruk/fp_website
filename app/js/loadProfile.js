@@ -180,7 +180,8 @@
                     email = String(doc.get("email"));
                     userType = doc.get("userType");
                     isVerified = doc.get("verified");
-
+                    calledUser = true;
+                    
                     CheckState();
                     //GetAdditionalFields(currentUser.uid)
                     //LoadProfile(isVerified);
@@ -201,6 +202,7 @@
                     facebook = String(doc.get("facebook"));
                     instagram = String(doc.get("instagram"));
                     twitter = String(doc.get("twitter"));
+                    calledProfile = true;
 
                     CheckState();
                 })
