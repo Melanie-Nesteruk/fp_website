@@ -39,6 +39,7 @@
     var initialLoad = true;
     var currentUser = firebase.auth().currentUser;
     var inputUser = document.currentScript.getAttribute('inputUser');
+    var editMode = document.currentScript.getAttribute('editmode');
 
     // Used by queries in onAuthStateChange()
     var inputUsersID = "";
@@ -122,15 +123,30 @@
 
     function SetAdditionalFields()
     {
-        majorDOM.innerHTML = major;
-        minorDOM.innerHTML = minor;
-        graduationDOM.innerHTML = gradYear;
-        websiteDOM.innerHTML = website;
-        websiteDOM.html = "http://" + website;
-        bioDOM.innerHTML = bio;
-        facebookDOM.href = "https://www.facebook.com/" + facebookName;
-        instagramDOM.href = "https://www.instagram.com/" + instagramName;
-        twitterDOM.href = "https://www.twitter.com/" + twitterName;
+        if (editMode)
+        {
+            majorDOM.value = major;
+            minorDOM.value = minor;
+            graduationDOM.value = gradYear;
+            websiteDOM.value = website;
+            websiteDOM.value = website;
+            bioDOM.value = bio;
+            facebookDOM.value = facebookName;
+            instagramDOM.value = instagramName;
+            twitterDOM.value = twitterName;
+        }
+        else
+        {
+            majorDOM.innerHTML = major;
+            minorDOM.innerHTML = minor;
+            graduationDOM.innerHTML = gradYear;
+            websiteDOM.innerHTML = website;
+            websiteDOM.href = "http://" + website;
+            bioDOM.innerHTML = bio;
+            facebookDOM.href = "https://www.facebook.com/" + facebookName;
+            instagramDOM.href = "https://www.instagram.com/" + instagramName;
+            twitterDOM.href = "https://www.twitter.com/" + twitterName;
+        }
     };
 
     firebase.auth().onAuthStateChanged(user => {
