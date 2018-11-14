@@ -35,7 +35,6 @@
                 title: "To delete your account, enter your password.",
                 buttons: {
                     cancel: {
-                        text:       "Nevermind",
                         closeModal: true,
                         value:      0
                     },
@@ -47,19 +46,15 @@
                 }
             })
             .then(value => {
-                if (value == 0) {
-                    // testing
-                    swal({
-                        text: "Account Deletion Cancelled",
-                        icon: "error"
-                    });
-                    return;
-                }
-                else if (value == 1) {
-                    // testing
-                    swal({
+                if (value == 1) {
+                    var user = firebase.auth().currentUser;
+                    user.auth().signOut();
+                    user.delete().then(function() {
+                    window.location.href = "/login";
+                        swal({
                         text: "Account Deletion Successful",
                         icon: "success"
+                        });
                     });
                     return;
                 }
