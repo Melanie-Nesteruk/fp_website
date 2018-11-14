@@ -50,8 +50,7 @@
                 if (value == 1) {
                     var user = firebase.auth().currentUser;
                     user.delete().then(function() {
-                        //user.auth().signOut();
-                        //window.location.href = "/login";
+                        window.location.href = "/login";
                         swal({
                             text: "Account Deletion Successful",
                             icon: "success"
