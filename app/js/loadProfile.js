@@ -51,9 +51,9 @@
     var email = "";
     var website = "";
     var bio = "";
-    var facebook = "";
-    var instagram = "";
-    var twitter = "";
+    var facebookName = "";
+    var instagramName = "";
+    var twitterName = "";
     var isVerified = false;
     
     var calledUser = false;
@@ -119,9 +119,9 @@
                 gradYear = String(doc.get("graduation_year"));
                 website = String(doc.get("website"));
                 bio = String(doc.get("bio"));
-                facebook = String(doc.get("facebook"));
-                instagram = String(doc.get("instagram"));
-                twitter = String(doc.get("twitter"));
+                facebookName = String(doc.get("facebook"));
+                instagramName = String(doc.get("instagram"));
+                twitterName = String(doc.get("twitter"));
 
                 LoadProfile(isVerified);
         })
@@ -136,11 +136,11 @@
         minorDOM.innerHTML = minor;
         graduationDOM.innerHTML = gradYear;
         websiteDOM.innerHTML = website;
-        websiteDOM.html = website;
+        websiteDOM.html = "http://" + website;
         bioDOM.innerHTML = bio;
-        facebookDOM.href = facebook;
-        instagramDOM.href = instagram;
-        twitterDOM.href = twitter;
+        facebookDOM.href = "https://www.facebook.com/" + facebookName;
+        instagramDOM.href = "https://www.instagram.com/" + instagramName;
+        twitterDOM.href = "https://www.twitter.com/" + twitterName;
     };
 
     firebase.auth().onAuthStateChanged(user => {

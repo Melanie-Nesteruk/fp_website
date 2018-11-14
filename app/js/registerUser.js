@@ -122,14 +122,14 @@
         // Create new document in the 'Profiles' collection
         // Fields must be populated later when users provide more information
         db.collection("Profiles").doc(currentUID).set({
-            major: "Fill in Major",
-            minor: "Fill in Minor",
-            bio: "Bio goes here",
-            faculty_position: "test-position",
-            website: "test-website.com",
-            facebook: "facebook-link",
-            instagram: "insta-link",
-            twitter: "twitter-link",
+            major: "Not yet set",
+            minor: "Not yet set",
+            bio: "No bio set",
+            faculty_position: "Not yet set",
+            website: "www.yourwebsitehere.com",
+            facebook: "Not_yet_set",
+            instagram: "Not_yet_set",
+            twitter: "Not_yet_set",
             graduation_year: "2010",
             userID: currentUID
         })
