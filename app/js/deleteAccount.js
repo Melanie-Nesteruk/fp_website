@@ -43,9 +43,8 @@
                         text:       "Delete",
                         closeModal: true,
                         value:      1
-                    }
-                }
-
+                    },
+                },
             })
             .then(value => {
                 if (value == 1) {
