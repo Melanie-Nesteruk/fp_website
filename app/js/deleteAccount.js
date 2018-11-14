@@ -33,14 +33,32 @@
         btnDelAcct.addEventListener('click', e=> {
             swal({
                 title: "To delete your account, enter your password.",
-                content: "input",
-                closeModal: true,
+                buttons: {
+                    cancel: {
+                        text:       "Nevermind",
+                        closeModal: true,
+                        value:      0
+                    },
+                    confirm: {
+                        text:       "Delete",
+                        closeModal: true,
+                        value:      1
+                    }
+                }
             })
             .then(value => {
-                if (value == 1) {
+                if (value == 0) {
                     // testing
                     swal({
-                        text: "Account Deleted Successfully",
+                        text: "Account Deletion Cancelled",
+                        icon: "error"
+                    });
+                    return;
+                }
+                else if (value == 1) {
+                    // testing
+                    swal({
+                        text: "Account Deletion Successful",
                         icon: "success"
                     });
                     return;
