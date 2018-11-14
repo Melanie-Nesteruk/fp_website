@@ -133,12 +133,11 @@
                             lastName = String(doc.get("last_Name"));
                             console.log(inputUsersID, " + ", firstName, " + ", lastName);
                             console.log(doc.id, " => ", doc.data());
+                            LoadProfile(inputUsersID, firstName, lastName); // Should pass stored first & last name but doesnt?
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-                    console.log(inputUsersID, " + ", firstName, " + ", lastName);
-                LoadProfile(inputUsersID, firstName, lastName); // Should pass stored first & last name but doesnt?
             }
         
             // View your own
