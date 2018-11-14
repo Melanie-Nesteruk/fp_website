@@ -118,14 +118,26 @@
             {
                 var email = inputUser + "@kent.edu";
                 
-                var usersRef = db.collection("Users");
-                var query = usersRef.where("email", "==", email);
+                //var usersRef = db.collection("Users");
+                //var query = usersRef.where("email", "==", email);
                 var inputUsersID;
 
-                query.get().then((snapShot) => {
+                /*query.get().then((snapShot) => {
                     var doc = snapShot.docs[0];
                     inputUsersID = doc.get("userID");
                 }).catch((error) => console.log(error));
+                */
+
+                db.collection("Users").where("email", "==", email)
+                    .get()
+                    .then(function(querySnapshot){
+                        querySnapshot.forEach(function(doc){
+                            inputUsersID = doc.id;
+                        });
+                    })
+                    .catch(function(error){
+                        console.log("Error getting document ID: ", error);
+                    });
 
                 LoadProfile(inputUsersID);
             }
