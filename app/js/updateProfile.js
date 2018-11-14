@@ -32,23 +32,51 @@
     const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
 
+    var tempFacultyPos = "Not yet set";
+    var currentUser;
     var initialLoad = true;
 
     // Add signup event
     if (btnSaveDOM != null) {
-        btnSignupDOM.addEventListener('click', e=> { 
+        btnSaveDOM.addEventListener('click', e=> { 
             initialLoad = false;
 
-            swal({
-                text: "Your profile has been saved.",
-                icon: "success"
-            });
+            if (currentUser)
+            {
+                db.collection("Profiles").doc(currentUID).set({
+                    major: majorDOM.value,
+                    minor: minorDOM.value,
+                    bio: bioDOM.value,
+                    faculty_position: tempFacultyPos,
+                    website: websiteDOM.value,
+                    facebook: facebookDOM.value,
+                    instagram: instagramDOM.value,
+                    twitter: twitterDOM.value,
+                    graduation_year: graduationDOM.value,
+                    userID: currentUser.uid
+                })
+                .then(function(){
+                    swal({
+                        text: "Your profile has been saved.",
+                        icon: "success"
+                    });
+                    console.log("Profile documents successfully updated!");
+                })
+                .catch(function(error){
+                    console.error("Error writing document: ", error);
+                });
+            }
+            else
+            {
+                swal({
+                    text: "Error validating user authentication. Please reload the page.",
+                    icon: "failure"
+                });
+            }
         });
     }
 
     firebase.auth().onAuthStateChanged(user => {
-        if(user && !initialLoad) {
-
-        }
+        currentUser = user;
     });
 }());
