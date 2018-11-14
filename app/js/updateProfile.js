@@ -43,7 +43,7 @@
 
             if (currentUser)
             {
-                db.collection("Profiles").doc(currentUID).set({
+                db.collection("Profiles").doc(currentUser.uid).set({
                     major: majorDOM.value,
                     minor: minorDOM.value,
                     bio: bioDOM.value,
