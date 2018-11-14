@@ -83,7 +83,6 @@
         });
     }
 
-    // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB(currentUID, currentEmail){
         console.log('Adding user to firestore.');
 

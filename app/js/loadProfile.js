@@ -50,7 +50,6 @@
         //});
     };
 
-    // TO-DO: Add some sort of parsing functionality to sanitize user-input
     function AddUserToDB(currentUID, currentEmail){
         // Create new document in 'Users' collection
         db.collection("Users").doc(currentUID).set({   // Need to confirm that 'currentUID' is properly converted to a string
@@ -131,9 +130,9 @@
                             inputUsersID = String(doc.id);
                             firstName = String(doc.get("first_Name"));
                             lastName = String(doc.get("last_Name"));
-                            console.log(inputUsersID, " + ", firstName, " + ", lastName);
+                            //console.log(inputUsersID, " + ", firstName, " + ", lastName);
                             console.log(doc.id, " => ", doc.data());
-                            LoadProfile(inputUsersID, firstName, lastName); // Should pass stored first & last name but doesnt?
+                            LoadProfile(inputUsersID, firstName, lastName); // Function call must be here otherwise values aren't passed
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
