@@ -56,6 +56,17 @@
     var twitter = "";
     var isVerified = false;
     
+    var calledUser = false;
+    var calledProfile = false;
+    
+    function CheckState()
+    {
+        if (calledUser && calledProfile)
+        {
+            LoadProfile(isVerified);
+        }
+    }
+
     function LoadProfile(isVerified)
     {
         console.log("Inside loadProfile()");
@@ -170,8 +181,28 @@
                     userType = doc.get("userType");
                     isVerified = doc.get("verified");
 
-                    GetAdditionalFields(currentUser.uid)
-                    LoadProfile(isVerified);
+                    CheckState();
+                    //GetAdditionalFields(currentUser.uid)
+                    //LoadProfile(isVerified);
+                })
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                });
+
+                db.collection('Profiles').doc(currentUser.uid).get()
+                .then(function(querySnapshot){
+                    var doc = querySnapshot;
+                        facultyPos = String(doc.get("faculty_position"));
+                        major = String(doc.get("major"));
+                        minor = String(doc.get("minor"));
+                        gradYear = String(doc.get("graduation_year"));
+                        website = String(doc.get("website"));
+                        bio = String(doc.get("bio"));
+                        facebook = String(doc.get("facebook"));
+                        instagram = String(doc.get("instagram"));
+                        twitter = String(doc.get("twitter"));
+
+                        CheckState();
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
@@ -182,5 +213,8 @@
         {
             // User is not logged in and shouldn't be able to see anyone's profile.
         }
+    }).then(function()
+    {
+        CheckState();
     });
 }());
