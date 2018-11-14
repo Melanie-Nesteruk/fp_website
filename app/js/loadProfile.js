@@ -122,9 +122,8 @@
                 facebook = String(doc.get("facebook"));
                 instagram = String(doc.get("instagram"));
                 twitter = String(doc.get("twitter"));
-                calledProfile = true;
-    
-                CheckState();
+
+                LoadProfile(isVerified);
         })
         .catch(function(error){
             console.log("Error getting document ID: ", error);
@@ -170,26 +169,6 @@
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-
-                    // db.collection('Profiles').doc(inputUsersID).get()
-                    // .then(function(querySnapshot){
-                    //     var doc = querySnapshot;
-                    //     facultyPos = String(doc.get("faculty_position"));
-                    //     major = String(doc.get("major"));
-                    //     minor = String(doc.get("minor"));
-                    //     gradYear = String(doc.get("graduation_year"));
-                    //     website = String(doc.get("website"));
-                    //     bio = String(doc.get("bio"));
-                    //     facebook = String(doc.get("facebook"));
-                    //     instagram = String(doc.get("instagram"));
-                    //     twitter = String(doc.get("twitter"));
-                    //     calledProfile = true;
-    
-                    //     CheckState();
-                    // })
-                    // .catch(function(error){
-                    //     console.log("Error getting document ID: ", error);
-                    // });
             }
         
             // View your own
@@ -204,26 +183,8 @@
                     userType = doc.get("userType");
                     isVerified = doc.get("verified");
                     calledUser = true;
-                })
-                .catch(function(error){
-                    console.log("Error getting document ID: ", error);
-                });
 
-                db.collection('Profiles').doc(currentUser.uid).get()
-                .then(function(querySnapshot){
-                    var doc = querySnapshot;
-                    facultyPos = String(doc.get("faculty_position"));
-                    major = String(doc.get("major"));
-                    minor = String(doc.get("minor"));
-                    gradYear = String(doc.get("graduation_year"));
-                    website = String(doc.get("website"));
-                    bio = String(doc.get("bio"));
-                    facebook = String(doc.get("facebook"));
-                    instagram = String(doc.get("instagram"));
-                    twitter = String(doc.get("twitter"));
-                    calledProfile = true;
-
-                    CheckState();
+                    GetAdditionalFields(currentUser.uid);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
