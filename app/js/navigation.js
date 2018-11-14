@@ -140,10 +140,17 @@
                     .then(value => {
                         if (value == 1) {
                             const promise = firebase.auth().signOut().then(function() {
-                                window.location.href = "/login";
                                 swal({
                                     text: "Logout Successful",
-                                    icon: "success"
+                                    icon: "success",
+                                    buttons: {
+                                        confirm: {
+                                            text:       "Ok",
+                                            closeModal: true,
+                                        }
+                                    }
+                                }).then(value => {
+                                    window.location.href = "/login";
                                 });
                             });
                             return;
