@@ -14,7 +14,12 @@
                     <div class="divTable">
                       <div class="divTableBody">
                         <div class="divTableRow">
-                          <form class="divTableCell" id="filters" style=" width: 40%; pointer-events: auto;">
+                          <div class="divTableCell"><span class="headerLabel" style="text-align: center;">Filters</span></div>
+                          <div class="divTableCell"></div>
+                          <div class="divTableCell"><span class="headerLabel" style="text-align: center;">User List</span></div>
+                        </div>
+                        <div class="divTableRow">
+                          <form class="divTableCell" id="filters" style=" width: 40%; pointer-events: auto; box-shadow: 5px 10px;">
                             <div class="filterLabel filterInput">First name: <input class="filterInput" type="text" name="FirstName" value="First Name"></div>
                             <div class="filterLabel filterInput">Last name: <input class="filterInput" type="text" name="LastName" value="Last Name"></div>
                             <div class="filterLabel filterInput">Photo Interests: <input class="filterInput" type="text" id="photoInterests"></div>
@@ -41,6 +46,7 @@
     <style>
         .filterLabel { font-weight: bold; pointer-events: auto; text-align: left; }
         .filterInput { padding: 3 0 3 0; }
+        .headerLabel { font-size: larger; font-weight: bold; }
     </style>
 
 {% endblock %}
