@@ -55,9 +55,10 @@
                             toDeleteUser.delete().then(function() {
                                 swal({
                                     title: "Your account has been deleted.",
+                                    icon: "success",
                                     buttons: {
                                         confirm: {
-                                            text:       "Continue",
+                                            text: "Continue",
                                             closeModal: true,
                                             value:      1
                                         }

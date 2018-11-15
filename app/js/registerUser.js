@@ -169,7 +169,7 @@
         if(user && !initialLoad) {
             // Successful account creation
             swal({
-                title: "Your account has been created!.",
+                title: "Your account has been created!",
                 icon: "success",
                 buttons: {
                     confirm: {

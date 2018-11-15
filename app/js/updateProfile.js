@@ -57,7 +57,7 @@
                 })
                 .then(function(){
                     swal({
-                        text: "Your profile has been saved.",
+                        text: "Your profile changes have been saved.",
                         icon: "success"
                     });
                     console.log("Profile documents successfully updated!");
