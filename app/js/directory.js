@@ -68,7 +68,7 @@
 
 			var cellNode1 = document.createElement("div");
 			cellNode1.classList.add("divTableCell");
-			cellNode1.setAttribute("style", "weight: bold; width: 30%; text-align: left;")
+			cellNode1.setAttribute("style", "font-weight: bold; width: 30%; text-align: left;")
 			cellNode1.innerHTML = fullName;
 			
 			var cellNode2 = document.createElement("div");
