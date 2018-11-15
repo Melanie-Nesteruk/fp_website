@@ -20,9 +20,17 @@
                         </div>
                         <div class="divTableRow">
                           <form class="divTableCell" id="filters" style=" width: 40%; pointer-events: auto; padding: 5px; border: 1px solid grey; box-shadow: 5px 7px #c8c8c885;">
-                            <div class="filterLabel filterInput">First name: <input class="filterInput" type="text" name="FirstName" value="First Name"></div>
-                            <div class="filterLabel filterInput">Last name: <input class="filterInput" type="text" name="LastName" value="Last Name"></div>
-                            <div class="filterLabel filterInput">Photo Interests: <input class="filterInput" type="text" id="photoInterests"></div>
+                            <div class="filterLabel filterInput">First name: <input class="filterInput" type="text" name="FirstName" placeholder="First Name"></div>
+                            <div class="filterLabel filterInput">Last name: <input class="filterInput" type="" name="LastName" placeholder="Last Name"></div>
+                            <div class="filterLabel filterInput">Photo Interests: 
+                              <select class="filterInput" id="photoInterests">
+                                <option value="none" selected>None</option>
+                                <option value="nature">Nature</option>
+                                <option value="cars">Cars</option>
+                                <option value="music">Music</option>
+                                <option value="people">People</option>
+                              </select>
+                              </div>
                             <div class="filterLabel">Student <input type="checkbox" id="studentCkBox"> 
                              Alumni <input type="checkbox" id="alumniCkBox">
                              Faculty <input type="checkbox" id="facultyCkBox">
