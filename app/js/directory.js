@@ -68,6 +68,8 @@
 
 			if (currentUser)
 			{
+				typeFilters = ["", "", ""];
+				
 				// Student filters
 				if (!studentDOM.checked)
 				{
@@ -144,7 +146,7 @@
 		userType = doc.get("userType");
 		isVerified = doc.get("verified");
 
-		typeFilters = ["", "", ""];
+		//typeFilters = ["", "", ""];
 		fullName = fName + " " + lName;
 		SetUserType();
 
