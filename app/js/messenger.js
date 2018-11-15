@@ -207,7 +207,7 @@
     else { // If user is not authorized
         console.log('User is not authorized to access this webpage');
     }
-	}
+	)}
 	// Real Time Messaging
 	
 	// LOAD THE MESSAGE THREAD FROM FIREBASE
