@@ -67,8 +67,8 @@
 					console.log('No such document!');
 				} else {
 					console.log('doc data: ', doc.data());
-					var first_name = doc.first_Name;
-					var last_name = doc.last_Name;
+					var first_name = String(doc.get("first_Name"));
+					var last_name = String(doc.get("last_Name"));
 					var displayName = first_name + last_name;
 					console.log('full name: ', displayName);
 					var but = document.createElement("button");
