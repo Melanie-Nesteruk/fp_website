@@ -31,7 +31,7 @@
     const email = document.getElementById('txtEmail');
     const password = document.getElementById('txtPassword');
     const password2 = document.getElementById('txtPassword2');
-    const userType = userSelect.options[userSelect.selectedIndex].text;
+    var userType = userSelect.options[userSelect.selectedIndex].text;
 
     var initialLoad = true;
 
@@ -40,7 +40,8 @@
         btnSignup.addEventListener('click', e=> { 
             const auth = firebase.auth();
             initialLoad = false;
-
+            
+            userType = userSelect.options[userSelect.selectedIndex].text;
             // Logout an existing user
             if (firebase.auth().currentUser) {
                 firebase.auth().signOut();
