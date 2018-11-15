@@ -14,14 +14,15 @@
                     <div class="divTable">
                       <div class="divTableBody">
                         <div class="divTableRow">
-                          <form class="divTableCell" id="filters" style="text-align: left; width: 40%; pointer-events: auto;">
+                          <form class="divTableCell" id="filters" style=" width: 40%; pointer-events: auto;">
                             <div class="filterLabel filterInput">First name: <input class="filterInput" type="text" name="FirstName" value="First Name"></div>
                             <div class="filterLabel filterInput">Last name: <input class="filterInput" type="text" name="LastName" value="Last Name"></div>
                             <div class="filterLabel filterInput">Photo Interests: <input class="filterInput" type="text" id="photoInterests"></div>
-                            <div class="filterLabel">Student <input type="checkbox" id="studentCkBox"></div>
-                            <div class="filterLabel">Alumni <input type="checkbox" id="alumniCkBox"></div>
-                            <div class="filterLabel">Faculty <input type="checkbox" id="facultyCkBox"></div>
-                            <div class="filterLabel"><input type="submit" value="Submit" style="text-align: right;"></div>
+                            <div class="filterLabel">Student <input type="checkbox" id="studentCkBox"> 
+                             Alumni <input type="checkbox" id="alumniCkBox">
+                             Faculty <input type="checkbox" id="facultyCkBox">
+                            </div>
+                            <div style="text-align: right;"><input type="submit" value="Submit"></div>
                           </form>
                           <div class="divTableCell" style="width: 10%;"></div>
                           <div class="divTableCell" id="userResults" style="width: 30%;">
@@ -38,7 +39,7 @@
 		  
     <script src="app/js/directory.js"></script>
     <style>
-        .filterLabel { font-weight: bold; pointer-events: auto; }
+        .filterLabel { font-weight: bold; pointer-events: auto; text-align: left; }
         .filterInput { padding: 3 0 3 0; }
     </style>
 
