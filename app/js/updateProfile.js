@@ -57,8 +57,19 @@
                 })
                 .then(function(){
                     swal({
-                        text: "Your profile changes have been saved.",
-                        icon: "success"
+                        title: "Your profile changes have been saved.",
+                        icon: "success",
+                        buttons: {
+                            confirm: {
+                                text: "Continue",
+                                closeModal: true,
+                                value:      1
+                            }
+                        }
+                    })
+                    .then(value => {
+                        window.location.href = "/profile";
+                        return;
                     });
                     console.log("Profile documents successfully updated!");
                 })
