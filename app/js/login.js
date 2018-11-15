@@ -57,6 +57,7 @@
                 text: "You have been logged out.",
                 icon: "success"
             });
+            
             return;
         });
     }
@@ -70,8 +71,19 @@
                 //window.location.href = "/index";
 
                 swal({
-                    text: "You are now signed in!",
-                    icon: "success"
+                    title: "You are now signed in!",
+                    icon: "success",
+                    buttons: {
+                        confirm: {
+                            text: "Continue",
+                            closeModal: true,
+                            value:      1
+                        }
+                    }
+                })
+                .then(value => {
+                    window.location.href = "/index";
+                    return;
                 });
             }
 
