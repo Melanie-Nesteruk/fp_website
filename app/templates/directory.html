@@ -11,20 +11,26 @@
                       <span class="section-heading-upper">Student-Alumni Network</span>
                       <span class="section-heading-lower">Directory</span>
                     </h2>
-          <form>
-            <label>
-            First name: <input type="text" name="FirstName" value="First Name">
-          </label>
-            Last name: <input type="text" name="LastName" value="Last Name"> <br>
-            <br>
-            Photo Interests: <input type="text">
-            Student <input type="checkbox">
-            Alumni <input type="checkbox">
-            Faculty <input type="checkbox"> <br>
-            <input type="submit" value="Submit">
-          </form>
-
-					<ul id = "user-list"></ul>
+                    <div class="divTable">
+                      <div class="divTableBody">
+                        <div class="divTableRow">
+                          <form class="divTableCell" id="filters" style="text-align: left; width: 40%; pointer-events: auto;">
+                            <span id="filterLabel">First name: <input type="text" name="FirstName" value="First Name"></span>
+                            <span id="filterLabel">Last name: <input type="text" name="LastName" value="Last Name"></span>
+                            <br>
+                            <span id="filterLabel">Photo Interests: <input type="text"></span>
+                            <span id="filterLabel">Student <input type="checkbox"></span>
+                            <span id="filterLabel">Alumni <input type="checkbox"></span>
+                            <span id="filterLabel">Faculty <input type="checkbox"></span>
+                            <input type="submit" value="Submit" style="text-align: right;">
+                          </form>
+                          <div class="divTableCell" style="width: 10%;"></div>
+                          <div class="divTableCell" id="userResults">
+                            <ul id="user-list"></ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
