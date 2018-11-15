@@ -141,14 +141,19 @@
             console.error("Error writing document: ", error);
         });
 
-        // Create new document in the 'Blocks' collection
-        // Feilds must be populated at the time of the block
+        
+        // Feilds and documents must be added at the time of the block
         // Blocking requires a merge with the existing feilds
-        db.collection("Blocks").doc(currentUID).set({                  
-            uid: currentUID
+        // Create a new collection 'Blocks' fore each user
+        db.collection("Users").doc(currentUID).collection("Blocks").doc(currentUID).set({
+            placeholder: true           // temporary placeholder feild, overwritten on first block              
+            //At time of block add/merge
+            //New document: uid_blocking
+            //Feilds within document: (bool)block_removed, (timestamp)date_blocked,
+            //Upon block removal, overwrite all feilds of unblocked user set: (bool)block_removed, (timestamp) date_removed 
         })
         .then(function(){
-            console.log("Blocks documents successfully written!");
+            console.log("Blocks collection successfully written!");
         })
         .catch(function(error){
             console.error("Error writing document: ", error);
