@@ -56,9 +56,6 @@
                         sessionID = String(doc.id);
 						found = true;
 						console.log('SESSION ID: ', sessionID);
-						console.log('Found Chat-Group');
-						
-		console.log("FOUND:",found);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -71,14 +68,12 @@
                         sessionID = String(doc.id);
 						found = true;
 						console.log('SESSION ID: ', sessionID);
-						console.log('Found Chat-Group');
-						
-		console.log("FOUND:",found);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
 		if(found == false) {
+			console.log('Adding new session');
 			firestore.collection("Chat-Groups").add({
 				user_1: current_id,
 				user_2: friend_id
@@ -86,18 +81,16 @@
 			firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
                     .get()
                     .then(function(querySnapshot){
-						console.log('Found Chat-Group');
                         var doc = querySnapshot.docs[0];
                         sessionID = String(doc.id);
 						found = true;
-						console.log('SESSION ID: ', sessionID);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
 			
 			firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
-				messages_approved: true
+				messages_approved: "true"
 			})
 			.then(function(){
 				console.log("Messages collection successfully written!");
