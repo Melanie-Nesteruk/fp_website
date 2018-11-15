@@ -62,7 +62,7 @@
                             <h2 class="section-heading mb-5">
                                 <span class="section-heading-upper">Student-Alumni Network</span>
                                 <span class="section-heading-lower">Profile</span>
-                                </h2>
+                            </h2>
                             <div class="divTable">
                                 <div class="divTableBody">
                                     <div class="divTableRow">
@@ -89,7 +89,9 @@
                                             </div>
                                         </div>
                                         <div class="divTableCell" style="text-align: right; vertical-align: top; border-left: none;">
+                                            {% if user %}
                                             <button class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
