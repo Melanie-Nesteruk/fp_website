@@ -74,7 +74,7 @@
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-		if(!found) {
+		if(found == false) {
 			firestore.collection("Chat-Groups").add({
 				user_1: current_id,
 				user_2: friend_id
