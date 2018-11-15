@@ -61,7 +61,7 @@
     function renderFriendsList(doc){
         console.log('Rendering friend...');
 		
-		friendProfile = firestore.collection('Users').doc(doc).get();
+		friendProfile = firestore.collection('Users').doc(doc.id).get();
 		var first_name = friendProfile.first_Name;
 		var last_name = friendProfile.last_Name;
 		var displayName = first_name + last_name;
