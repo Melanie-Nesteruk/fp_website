@@ -169,13 +169,15 @@
 		// }
 		var ignore = false;
 
-		typeFilters.forEach(doNotInclude => {
+		typeFilters.every(function(doNotInclude, index) {
 			if (userType == doNotInclude)
 			{
 				ignore = true;
-				break;
+				return false;
 			}
-		});
+			else
+				return true;
+		  });
 
 		// Verified check
 		if (!isVerified)
