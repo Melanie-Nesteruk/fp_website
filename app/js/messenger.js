@@ -49,7 +49,7 @@
 			// Loads chat messages history and listens for upcoming ones.
 			function loadMessages() {
 				
-				var observer = db.collection('Chat-Groups').where('user_1', '==', 'CA')
+				var observer = firestore.collection('Chat-Groups').where('user_1', '==', 'CA')
 					.onSnapshot(querySnapshot => {
 					querySnapshot.docChanges.forEach(change => {
 						if (change.type === 'added') {
