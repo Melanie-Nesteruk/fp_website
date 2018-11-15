@@ -25,16 +25,24 @@
     var initialLoad = true;
     var currentUser;
 
-    // Used by queries in onAuthStateChange()
     var inputUsersID = "";
     var fName = "";
     var lName = "";
 	var userType = 0;
-    var isVerified = false;
+	var isVerified = false;
+	
+	// filter settings
+	var fNameDOM = getElementById("FirstName");
+	var lNameDOM = getElementById("LastName");
+	var photoInterestsDOM = getElementById("photoInterests");
+	var studentDOM = getElementById("studentChkBox");
+	var alumniDOM = getElementById("alumniChkBox");
+	var facultyDOM = getElementById("facultyChkBox");
+	var filterBtnDOM = getElementById("filterBtn");
  
-    function SetUserType(type)
+    function SetUserType()
     {
-        switch (type)
+        switch (userType)
         {
             case 1:
             userType = "Student";
@@ -51,42 +59,111 @@
         }
     };
 	
+	    // Add signup event
+		if (filterBtnDOM != null) {
+			filterBtnDOM.addEventListener('click', e=> { 
+				initialLoad = false;
+	
+				if (currentUser)
+				{
+					db.collection('Users').get().then((snapshot) => {
+						snapshot.docs.forEach(doc => {
+							renderUser(doc);
+						})
+						swal({
+							text: "The directory has been filtered!",
+							icon: "success"
+						});
+					});
+				}
+				else
+				{
+					swal({
+						text: "Error validating user authentication. Please reload the page.",
+						icon: "failure"
+					});
+				}
+			});
+		}
+
 	function renderUser(doc)
 	{
 		username = doc.get("email").split("@")[0];
 		fName = doc.get("first_Name");
 		lName = doc.get("last_Name");
 		email = doc.get("email");
-		fullName = fName + " " + lName;
+		userType = doc.get("userType");
 		isVerified = doc.get("verified");
 
-		if (isVerified)
+		fullName = fName + " " + lName;
+		SetUserType();
+
+		// First name filter
+		if (fNameDOM.value && fName != fNameDOM.value)
 		{
-			node = document.createElement("div");
-			node.classList.add("divTableRow");
-			node.setAttribute("style", "pointer-events: auto;")
-
-			var cellNode1 = document.createElement("div");
-			cellNode1.classList.add("divTableCell");
-			cellNode1.setAttribute("style", "font-weight: bold; width: 30%; text-align: left;")
-			cellNode1.innerHTML = fullName;
-			
-			var cellNode2 = document.createElement("div");
-			cellNode2.classList.add("divTableCell");
-			cellNode2.setAttribute("style", "width: 30%; text-align: left;")
-			cellNode2.innerHTML = email;
-			
-			var cellNode3 = document.createElement("a");
-			cellNode3.classList.add("divTableCell");
-			cellNode3.setAttribute("style", "width: 30%; text-align: right;")
-			cellNode3.href = "/profile?user=" + username;
-			cellNode3.innerHTML = "View Profile";
-
-			node.appendChild(cellNode1);
-			node.appendChild(cellNode2);
-			node.appendChild(cellNode3);
-			document.getElementById("userList").appendChild(node);
+			return;
 		}
+
+		// Last name filter
+		if (lNameDOM.value && lName != lNameDOM.value)
+		{
+			return;
+		}
+
+		// Photo interests filter
+		// if (lNameDOM.value && lName != lNameDOM.value)
+		// {
+		// 	return;
+		// }
+
+		// Student filter
+		if (studentDOM.checked && userType != "Student")
+		{
+			return;
+		}
+		
+		// Alumni filter
+		if (alumniDOM.checked && userType != "Alumni")
+		{
+			return;
+		}
+
+		// Faculty filter
+		if (facultyDOM.checked && userType != "Faculty")
+		{
+			return;
+		}
+
+		// Verified check
+		if (!isVerified)
+		{
+			return;
+		}
+
+		node = document.createElement("div");
+		node.classList.add("divTableRow");
+		node.setAttribute("style", "pointer-events: auto;")
+
+		var cellNode1 = document.createElement("div");
+		cellNode1.classList.add("divTableCell");
+		cellNode1.setAttribute("style", "font-weight: bold; width: 30%; text-align: left;")
+		cellNode1.innerHTML = fullName;
+		
+		var cellNode2 = document.createElement("div");
+		cellNode2.classList.add("divTableCell");
+		cellNode2.setAttribute("style", "width: 30%; text-align: left;")
+		cellNode2.innerHTML = email;
+		
+		var cellNode3 = document.createElement("a");
+		cellNode3.classList.add("divTableCell");
+		cellNode3.setAttribute("style", "width: 30%; text-align: right;")
+		cellNode3.href = "/profile?user=" + username;
+		cellNode3.innerHTML = "View Profile";
+
+		node.appendChild(cellNode1);
+		node.appendChild(cellNode2);
+		node.appendChild(cellNode3);
+		document.getElementById("userList").appendChild(node);
 	}
 
     firebase.auth().onAuthStateChanged(user => {
