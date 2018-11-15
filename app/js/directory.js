@@ -54,8 +54,8 @@
 	function renderUser(doc)
 	{
 		username = doc.get("email").split("@")[0];
-		fName = doc.get("first_name");
-		lName = doc.get("last_name");
+		fName = doc.get("first_Name");
+		lName = doc.get("last_Name");
 		email = doc.get("email");
 		fullName = fName + " " + lName;
 		isVerified = doc.get("verified");
@@ -67,17 +67,17 @@
 
 			var cellNode1 = document.createElement("div");
 			cellNode1.classList.add("divTableCell");
-			cellNode1.style.add("width: 30%; text-align: left;")
+			cellNode1.setAttribute("style", "width: 30%; text-align: left;")
 			cellNode1.innerHTML = fullName;
 			
 			var cellNode2 = document.createElement("div");
 			cellNode2.classList.add("divTableCell");
-			cellNode2.style.add("width: 30%; text-align: left;")
+			cellNode2.setAttribute("style", "width: 30%; text-align: left;")
 			cellNode2.innerHTML = email;
 			
 			var cellNode3 = document.createElement("a");
 			cellNode3.classList.add("divTableCell");
-			cellNode3.style.add("width: 30%; text-align: right;")
+			cellNode3.setAttribute("style", "width: 30%; text-align: right;")
 			cellNode3.href = "/profile?user=" + username;
 			cellNode3.innerHTML = "View Profile";
 
@@ -92,7 +92,7 @@
         if (user)
         {
 			currentUser = firebase.auth().currentUser;
-			
+
             // Pulls all docs from 'Users' collection in firebase and lists them
 			db.collection('Users').get().then((snapshot) => {
 				snapshot.docs.forEach(doc => {
