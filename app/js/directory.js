@@ -68,6 +68,24 @@
 
 			if (currentUser)
 			{
+				// Student filters
+				if (!studentDOM.checked)
+				{
+					typeFilters[0] = "Student";
+				}
+				
+				// Alumni filter
+				if (!alumniDOM.checked)
+				{
+					typeFilters[1] = "Alumni";
+				}
+		
+				// Faculty filter
+				if (!facultyDOM.checked)
+				{
+					typeFilters[2] = "Faculty";
+				}
+
 				document.getElementById("userList").innerHTML = "";
 				db.collection('Users').get().then((snapshot) => {
 					snapshot.docs.forEach(doc => {
@@ -149,22 +167,22 @@
 		// }
 
 		// Student filters
-		if (!studentDOM.checked)
-		{
-			typeFilters[0] = "Student";
-		}
+		// if (!studentDOM.checked)
+		// {
+		// 	typeFilters[0] = "Student";
+		// }
 		
-		// Alumni filter
-		if (!alumniDOM.checked)
-		{
-			typeFilters[1] = "Alumni";
-		}
+		// // Alumni filter
+		// if (!alumniDOM.checked)
+		// {
+		// 	typeFilters[1] = "Alumni";
+		// }
 
-		// Faculty filter
-		if (!facultyDOM.checked)
-		{
-			typeFilters[2] = "Faculty";
-		}
+		// // Faculty filter
+		// if (!facultyDOM.checked)
+		// {
+		// 	typeFilters[2] = "Faculty";
+		// }
 
 		typeFilters.forEach(doNotInclude => {
 			if (userType == doNotInclude)
