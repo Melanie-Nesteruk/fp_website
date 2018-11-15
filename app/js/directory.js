@@ -117,6 +117,7 @@
 			studentDOM.checked = false;
 			alumniDOM.checked = false;
 			facultyDOM.checked = false;
+			typeFilters = ["", "", ""];
 
 			if (currentUser)
 			{
