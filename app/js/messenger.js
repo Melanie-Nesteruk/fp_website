@@ -190,7 +190,7 @@
 			var messageListElement = document.getElementById('messages');
 			var messageFormElement = document.getElementById('message-form');
 			var messageInputElement = document.getElementById('message');
-			var submitButtonElement = document.getElementById('submit');
+			var sendButtonElement = document.getElementById('sendButton');
 
 			// Saves message on form submit.
 			messageFormElement.addEventListener('submit', onMessageFormSubmit);
