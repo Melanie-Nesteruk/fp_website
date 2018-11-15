@@ -15,13 +15,13 @@
                       <div class="divTableBody">
                         <div class="divTableRow">
                           <form class="divTableCell" id="filters" style="text-align: left; width: 40%; pointer-events: auto;">
-                            <p id="filterLabel">First name: <input type="text" name="FirstName" value="First Name"></p>
-                            <p id="filterLabel">Last name: <input type="text" name="LastName" value="Last Name"></p>
-                            <p id="filterLabel">Photo Interests: <input type="text"></p>
-                            <p id="filterLabel">Student <input type="checkbox"></p>
-                            <p id="filterLabel">Alumni <input type="checkbox"></p>
-                            <p id="filterLabel">Faculty <input type="checkbox"></p>
-                            <input type="submit" value="Submit" style="text-align: right;">
+                            <div id="filterLabel">First name: <input type="text" name="FirstName" value="First Name"></div>
+                            <div id="filterLabel">Last name: <input type="text" name="LastName" value="Last Name"></div>
+                            <div id="filterLabel">Photo Interests: <input type="text"></div>
+                            <div id="filterLabel">Student <input type="checkbox" id="studentCkBox"></div>
+                            <div id="filterLabel">Alumni <input type="checkbox" id="alumniCkBox"></div>
+                            <div id="filterLabel">Faculty <input type="checkbox" id="facultyCkBox"></div>
+                            <div id="filterLabel"><input type="submit" value="Submit" style="text-align: right;"></div>
                           </form>
                           <div class="divTableCell" style="width: 10%;"></div>
                           <div class="divTableCell" id="userResults" style="width: 30%;">
@@ -41,6 +41,7 @@
         .hide {
             visibility: hidden;
         }
+        .filterLabel { font-size: initial; font-weight: bold; padding: 3 0 3 0; pointer-events: auto; }
     </style>
 
 {% endblock %}
