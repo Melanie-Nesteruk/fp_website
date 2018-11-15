@@ -19,7 +19,7 @@
                           <div class="divTableCell headerLabel" style="text-align:center;"0>User List</div>
                         </div>
                         <div class="divTableRow">
-                          <form class="divTableCell" id="filters" style="background: floralwhite; width: 40%; pointer-events: auto; padding: 5px; max-height: 225px; border: 1px solid grey; box-shadow: 5px 7px #c8c8c885;">
+                          <div class="divTableCell" id="filters" style="background: floralwhite; width: 40%; pointer-events: auto; padding: 5px; max-height: 225px; border: 1px solid grey; box-shadow: 5px 7px #c8c8c885;">
                             <div class="filterLabel filterInput">First name: <input class="filterInput" type="text" id="FirstName" placeholder="First Name"></div>
                             <div class="filterLabel filterInput">Last name: <input class="filterInput" type="text" id="LastName" placeholder="Last Name"></div>
                             <div class="filterLabel filterInput">Photo Interests: 
@@ -35,8 +35,8 @@
                              Alumni <input type="checkbox" id="alumniChkBox">
                              Faculty <input type="checkbox" id="facultyChkBox">
                             </div>
-                            <div style="text-align: right;"><button id="filterBtn" value="Submit"></div>
-                          </form>
+                            <div style="text-align: right;"><button id="filterBtn" type="submit" value="Submit"></div>
+                            </div>
                           <div class="divTableCell" style="width: 10%;"></div>
                           <div class="divTableCell" id="userList" style="width: 30%; text-align: left;">
                             <ul id="user-list" style="list-style-type: none;"></ul>
