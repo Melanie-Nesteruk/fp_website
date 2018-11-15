@@ -1,5 +1,6 @@
 (function() {
-	
+	var inputUser = document.currentScript.getAttribute('inputUser');
+	console.log('INPUT USER: ', inputUser);
 	// =======================================================
     // Check for initialized firebase connection
     //

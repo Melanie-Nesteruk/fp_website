@@ -69,7 +69,11 @@ def messages():
 
 @app.route('/messenger')
 def messenger():
-	return render_template("messenger.html", title='Messenger', app=app)
+	user = request.args.get('user', '')
+	if (user):
+		return render_template("messenger.html", title='Messenger', app=app, user=user)
+	else:
+		return render_template("messenger.html", title='Messenger', app=app)
 
 
 @app.route('/reset')

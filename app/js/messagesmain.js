@@ -48,7 +48,7 @@
         console.log('Opening messenger with : ', friend_id);
 		
 		// REDIRECT USER TO THE MESSENGER
-		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?' + value;
+		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?user=' + value;
 		window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
     }
 
