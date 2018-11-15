@@ -1,59 +1,108 @@
-const connectedUserList = document.querySelector('#user-list');
-
-// create element and render users
-function renderConnectedUsers(doc) {
-	console.log('Rendering user...');
-	
-	let li = document.createElement('li');
-	let email = document.createElement('span');
-	let user_id = document.createElement('span');
-	// let 'element' = document.createElement('span');
-	
-	li.setAttribute('data-id', doc.id);
-	email.textContent = doc.data().email;
-	user_id.textContent = doc.data().user_id;
-	// 'element'.textContent = doc.data().'element';
-	
-	li.appendChild(email);
-	li.appendChild(user_id);
-	
-	connectedUserList.appendChild(li);
-	console.log('User added.');
-}
-
-if (!firebase.apps.length) {
-	var config = {
-		apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
-		authDomain: "focal-point-student-alumni-net.firebaseapp.com",
-		databaseURL: "https://focal-point-student-alumni-net.firebaseio.com",
-		projectId: "focal-point-student-alumni-net",
-		storageBucket: "focal-point-student-alumni-net.appspot.com",
-		messagingSenderId: "1002904582612"
-	} 
+(function() {
+    if (!firebase.apps.length) {
+        var config = {
+		    apiKey: "AIzaSyCEuT1gco387t16C2IAmN2bx5bt-n6ea6s",
+		    authDomain: "focal-point-student-alumni-net.firebaseapp.com",
+		    databaseURL: "https://focal-point-student-alumni-net.firebaseio.com",
+		    projectId: "focal-point-student-alumni-net",
+		    storageBucket: "focal-point-student-alumni-net.appspot.com",
+		    messagingSenderId: "1002904582612"
+	    };
 			
-	firebase.initializeApp(config);
-	console.log("initializeApp");
-}
+        var app = firebase.initializeApp(config);
+        console.log("initializeApp in loadProfile.js");
+        //console.log(app);
+    }
 
-// Fetch an instance of the DB
-const firestore = firebase.firestore();
-firestore.settings( {timestampsInSnapshots: true} );
-var user = firebase.auth().currentUser;
-var name, email, photoUrl, uid, emailVerified;
+    // Fetch an instance of the DB
+    const db = firebase.firestore(app);
+    //console.log(db);
 
-if (user != null) {
-	name = user.displayName;
-	email = user.email;
-	photoUrl = user.photoURL;
-	emailVerified = user.emailVerified;
-	uid = user.uid; // The user's ID, unique to the Firebase project. Do NOT use
-                    // this value to authenticate with your backend server, if
-                    // you have one. Use User.getToken() instead.
-}
+    // Disable deprecated features
+    const settings = { timestampsInSnapshots: true };
+    db.settings(settings);
 
-// Pulls all docs from 'Users' collection in firebase and lists them
-firestore.collection('Users').get().then((snapshot) => {
-	snapshot.docs.forEach(doc => {
-		renderConnectedUsers(doc);
-	})
-});
+    var initialLoad = true;
+    var currentUser;
+
+    // Used by queries in onAuthStateChange()
+    var inputUsersID = "";
+    var fName = "";
+    var lName = "";
+	var userType = 0;
+    var isVerified = false;
+ 
+    function SetUserType(type)
+    {
+        switch (type)
+        {
+            case 1:
+            userType = "Student";
+            break;
+            case 2:
+            userType = "Alumni";
+            break;
+            case 3:
+            userType = "Faculty";
+            break;
+            default:
+            userType = "None";
+            break;
+        }
+    };
+	
+	function renderUser(doc)
+	{
+		username = doc.get("email").split("@")[0];
+		fName = doc.get("first_name");
+		lName = doc.get("last_name");
+		email = doc.get("email");
+		fullName = fName + " " + lName;
+		isVerified = doc.get("verified");
+
+		if (isVerified)
+		{
+			node = document.createElement("div");
+			node.classList.add("divTableRow");
+
+			var cellNode1 = document.createElement("div");
+			cellNode1.classList.add("divTableCell");
+			cellNode1.style.add("width: 30%; text-align: left;")
+			cellNode1.innerHTML = fullName;
+			
+			var cellNode2 = document.createElement("div");
+			cellNode2.classList.add("divTableCell");
+			cellNode2.style.add("width: 30%; text-align: left;")
+			cellNode2.innerHTML = email;
+			
+			var cellNode3 = document.createElement("a");
+			cellNode3.classList.add("divTableCell");
+			cellNode3.style.add("width: 30%; text-align: right;")
+			cellNode3.href = "/profile?user=" + username;
+			cellNode3.innerHTML = "View Profile";
+
+			node.appendChild(cellNode1);
+			node.appendChild(cellNode2);
+			node.appendChild(cellNode3);
+			document.getElementById("userList").appendChild(node);
+		}
+	}
+
+    firebase.auth().onAuthStateChanged(user => {
+        if (user)
+        {
+			currentUser = firebase.auth().currentUser;
+			
+            // Pulls all docs from 'Users' collection in firebase and lists them
+			db.collection('Users').get().then((snapshot) => {
+				snapshot.docs.forEach(doc => {
+					renderUser(doc);
+				})
+			});
+        }
+        else
+        {
+            // User is not logged in and shouldn't be able to see any members.
+        }
+    });
+}());
