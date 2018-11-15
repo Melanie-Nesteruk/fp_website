@@ -69,7 +69,7 @@
 			if (currentUser)
 			{
 				typeFilters = ["", "", ""];
-				
+
 				// Student filters
 				if (!studentDOM.checked)
 				{
@@ -167,34 +167,23 @@
 		// {
 		// 	return;
 		// }
-
-		// Student filters
-		// if (!studentDOM.checked)
-		// {
-		// 	typeFilters[0] = "Student";
-		// }
-		
-		// // Alumni filter
-		// if (!alumniDOM.checked)
-		// {
-		// 	typeFilters[1] = "Alumni";
-		// }
-
-		// // Faculty filter
-		// if (!facultyDOM.checked)
-		// {
-		// 	typeFilters[2] = "Faculty";
-		// }
+		var ignore = false;
 
 		typeFilters.forEach(doNotInclude => {
 			if (userType == doNotInclude)
 			{
-				return;
+				ignore = true;
+				break;
 			}
 		});
 
 		// Verified check
 		if (!isVerified)
+		{
+			return;
+		}
+
+		if (ignore)
 		{
 			return;
 		}
