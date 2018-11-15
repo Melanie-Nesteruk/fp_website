@@ -61,8 +61,11 @@
     function renderFriendsList(doc){
         console.log('Rendering friend...');
 		
-		// GET THE USERNAMES INSTEAD OF THE ID FROM FIREBASE
-		
+		friendProfile = firestore.collection('Users').doc(doc.id).get();
+		var first_name = friendProfile.first_Name;
+		var last_name = friendProfile.last_Name;
+		var displayName = first_name + last_name;
+		console.log('full name: ', displayName);
         var but = document.createElement("button");
         but.setAttribute("value", doc.id);
         but.id = doc.id;
@@ -132,7 +135,6 @@
         //	up the conversation.
         //
 
-        console.log('uid: ', uid);
         firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
 				
