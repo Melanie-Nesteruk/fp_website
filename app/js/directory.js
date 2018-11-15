@@ -114,9 +114,9 @@
 			fNameDOM.value = "";
 			lNameDOM.value = "";
 			photoInterestsDOM.selectedIndex = "0";
-			studentDOM.checked = false;
-			alumniDOM.checked = false;
-			facultyDOM.checked = false;
+			studentDOM.checked = true;
+			alumniDOM.checked = true;
+			facultyDOM.checked = true;
 			typeFilters = ["", "", ""];
 
 			if (currentUser)
