@@ -51,12 +51,14 @@
                     var toDeleteUser = firebase.auth().currentUser;
                     var toDeleteUserID = toDeleteUser.uid;
                     db.collection("Profiles").doc(toDeleteUserID).delete().then(function(){
-                        db.collection("Users").doc(toDeleteUserID).delete().then(function(){
-                            toDeleteUser.delete().then(function() {
-                                window.location.href = "/login";
-                                swal({
-                                    text: "Account Deletion Successful",
-                                    icon: "success"
+                        db.collection("Users").doc(toDeleteUserID).collection("Friends").delete().then(function(){
+                            db.collection("Users").doc(toDeleteUserID).delete().then(function(){
+                                toDeleteUser.delete().then(function() {
+                                    window.location.href = "/login";
+                                    swal({
+                                        text: "Account Deletion Successful",
+                                        icon: "success"
+                                    });
                                 });
                             });
                         });
