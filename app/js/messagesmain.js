@@ -64,7 +64,7 @@
 		var friendProfile = firestore.collection('Users').doc(doc.id).get()
 			.then(doc => {
 				if (!doc.exists) {
-					console.log('No such document!;);
+					console.log('No such document!');
 				} else {
 					console.log('doc data: ', doc.data());
 				}
