@@ -96,6 +96,7 @@
 			.catch(function(error){
 				console.error("Error writing collection: ", error);
 			});
+			console.log('SESSION ID: ', sessionID);
 		}
 		
 		// REDIRECT USER TO THE MESSENGER
