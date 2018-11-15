@@ -67,6 +67,16 @@
 					console.log('No such document!');
 				} else {
 					console.log('doc data: ', doc.data());
+					var first_name = friendProfile.first_Name;
+					var last_name = friendProfile.last_Name;
+					var displayName = first_name + last_name;
+					console.log('full name: ', displayName);
+					var but = document.createElement("button");
+					but.setAttribute("value", doc1.id);
+					but.id = doc1.id;
+					but.innerHTML = doc1.id;
+					connectedFriendsList.appendChild(but);
+					attachClickEvent(doc1.id);
 				}
 			})
 			.catch(err => {
