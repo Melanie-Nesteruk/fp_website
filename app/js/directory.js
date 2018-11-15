@@ -40,7 +40,7 @@
 	var alumniDOM = document.getElementById("alumniChkBox");
 	var facultyDOM = document.getElementById("facultyChkBox");
 	var filterBtnDOM = document.getElementById("filterBtn");
-	var clearFilterBtnDOM = document.getElementById("clearFiltersBtn");
+	var clearFiltersBtnDOM = document.getElementById("clearFiltersBtn");
 
     function SetUserType()
     {
