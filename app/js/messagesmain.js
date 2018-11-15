@@ -69,12 +69,11 @@
 					console.log('doc data: ', doc.data());
 					var first_name = String(doc.get("first_Name"));
 					var last_name = String(doc.get("last_Name"));
-					var displayName = first_name + last_name;
-					console.log('full name: ', displayName);
+					var displayName = first_name + ' ' + last_name;
 					var but = document.createElement("button");
 					but.setAttribute("value", doc1.id);
 					but.id = doc1.id;
-					but.innerHTML = doc1.id;
+					but.innerHTML = displayName;
 					connectedFriendsList.appendChild(but);
 					attachClickEvent(doc1.id);
 				}
