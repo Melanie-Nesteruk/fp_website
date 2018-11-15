@@ -77,6 +77,7 @@
 			firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
                     .get()
                     .then(function(querySnapshot){
+						console.log('Found Chat-Group');
                         var doc = querySnapshot.docs[0];
                         sessionID = String(doc.id);
 						found = true;
