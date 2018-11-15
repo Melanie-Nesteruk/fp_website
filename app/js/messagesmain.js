@@ -60,21 +60,11 @@
 
     function renderFriendsList(doc1){
         console.log('Rendering friend...');
-		var first_name, last_name, displayname;
+		
 		var friendProfile = firestore.collection('Users').doc(doc1.id).get()
 			.then(doc => {
 				if (!doc.exists) {
-						first_name = doc.first_Name;
-						last_name = doc.last_Name;
-						displayName = first_name + last_name;
-						console.log('full name: ', displayName);
-						var but = document.createElement("button");
-						but.setAttribute("value", doc1.id);
-						but.id = doc1.id;
-						but.innerHTML = doc1.id;
-						connectedFriendsList.appendChild(but);
-						attachClickEvent(doc1.id);
-						console.log('Friend listed.');
+					console.log('No such document!');
 				} else {
 					console.log('doc data: ', doc.data());
 				}
@@ -82,7 +72,18 @@
 			.catch(err => {
 				console.log('Error getting document', err);
 			});
-	
+		console.log('friendProfile ', friendProfile);
+		var first_name = friendProfile.first_Name;
+		var last_name = friendProfile.last_Name;
+		var displayName = first_name + last_name;
+		console.log('full name: ', displayName);
+        var but = document.createElement("button");
+        but.setAttribute("value", doc1.id);
+        but.id = doc1.id;
+        but.innerHTML = doc1.id;
+        connectedFriendsList.appendChild(but);
+        attachClickEvent(doc1.id);
+        console.log('Friend listed.');
     }
 
     function attachClickEvent(value){
