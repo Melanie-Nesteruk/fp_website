@@ -61,9 +61,19 @@
     function renderFriendsList(doc){
         console.log('Rendering friend...');
 		
-		friendProfile = firestore.collection('Users').doc(doc.id).get();
-		var first_name = friendProfile.first_Name;
-		var last_name = friendProfile.last_Name;
+		var friendProfile = firestore.collection('Users').doc(doc.id).get()
+			.then(doc => {
+				if (!doc.exists) {
+					console.log('No such document!;);
+				} else {
+					console.log('doc data: ', doc.data());
+				}
+			})
+			.catch(err => {
+				console.log('Error getting document', err);
+			});
+		var first_name = friendProfile.data().first_Name;
+		var last_name = friendProfile.data().last_Name;
 		var displayName = first_name + last_name;
 		console.log('full name: ', displayName);
         var but = document.createElement("button");
