@@ -30,6 +30,7 @@
     var lName = "";
 	var userType = 0;
 	var isVerified = false;
+	var typeFilters = ["", "", ""];
 	
 	// filter settings
 	var fNameDOM = document.getElementById("FirstName");
@@ -39,7 +40,8 @@
 	var alumniDOM = document.getElementById("alumniChkBox");
 	var facultyDOM = document.getElementById("facultyChkBox");
 	var filterBtnDOM = document.getElementById("filterBtn");
- 
+	var clearFilterBtnDOM = document.getElementById("clearFiltersBtn");
+
     function SetUserType()
     {
         switch (userType)
@@ -59,33 +61,61 @@
         }
     };
 	
-	    // Add signup event
-		if (filterBtnDOM != null) {
-			filterBtnDOM.addEventListener('click', e=> { 
-				initialLoad = false;
-	
-				if (currentUser)
-				{
-					document.getElementById("userList").innerHTML = "";
-					db.collection('Users').get().then((snapshot) => {
-						snapshot.docs.forEach(doc => {
-							renderUser(doc);
-						})
-						swal({
-							text: "The directory has been filtered!",
-							icon: "success"
-						});
-					});
-				}
-				else
-				{
-					swal({
-						text: "Error validating user authentication. Please reload the page.",
-						icon: "failure"
-					});
-				}
-			});
-		}
+	// Add filter event
+	if (filterBtnDOM != null) {
+		filterBtnDOM.addEventListener('click', e=> { 
+			initialLoad = false;
+
+			if (currentUser)
+			{
+				document.getElementById("userList").innerHTML = "";
+				db.collection('Users').get().then((snapshot) => {
+					snapshot.docs.forEach(doc => {
+						renderUser(doc);
+					})
+				});
+			}
+			else
+			{
+				swal({
+					text: "Error validating user authentication. Please reload the page.",
+					icon: "failure"
+				});
+			}
+		});
+	}
+
+	// Add clear Filters event
+	if (clearFiltersBtnDOM != null) {
+		clearFiltersBtnDOM.addEventListener('click', e=> { 
+			initialLoad = false;
+			
+			// Clear fields and refresh
+			fNameDOM.value = "";
+			lNameDOM.value = "";
+			photoInterestsDOM.selectedIndex = "0";
+			studentDOM.checked = false;
+			alumniDOM.checked = false;
+			facultyDOM.checked = false;
+
+			if (currentUser)
+			{
+				document.getElementById("userList").innerHTML = "";
+				db.collection('Users').get().then((snapshot) => {
+					snapshot.docs.forEach(doc => {
+						renderUser(doc);
+					})
+				});
+			}
+			else
+			{
+				swal({
+					text: "Error validating user authentication. Please reload the page.",
+					icon: "failure"
+				});
+			}
+		});
+	}
 
 	function renderUser(doc)
 	{
@@ -96,6 +126,7 @@
 		userType = doc.get("userType");
 		isVerified = doc.get("verified");
 
+		typeFilters = ["", "", ""];
 		fullName = fName + " " + lName;
 		SetUserType();
 
@@ -117,23 +148,30 @@
 		// 	return;
 		// }
 
-		// Student filter
-		if (studentDOM.checked && userType != "Student")
+		// Student filters
+		if (!studentDOM.checked)
 		{
-			return;
+			typeFilters[0] = "Student";
 		}
 		
 		// Alumni filter
-		if (alumniDOM.checked && userType != "Alumni")
+		if (!alumniDOM.checked)
 		{
-			return;
+			typeFilters[1] = "Alumni";
 		}
 
 		// Faculty filter
-		if (facultyDOM.checked && userType != "Faculty")
+		if (!facultyDOM.checked)
 		{
-			return;
+			typeFilters[2] = "Faculty";
 		}
+
+		typeFilters.forEach(doNotInclude => {
+			if (userType == doNotInclude)
+			{
+				return;
+			}
+		});
 
 		// Verified check
 		if (!isVerified)
