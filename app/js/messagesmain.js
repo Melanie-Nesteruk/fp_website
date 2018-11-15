@@ -55,6 +55,8 @@
                         var doc = querySnapshot.docs[0];
                         sessionID = String(doc.id);
 						found = true;
+						console.log('SESSION ID: ', sessionID);
+						console.log('Found Chat-Group');
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -66,6 +68,8 @@
                         var doc = querySnapshot.docs[0];
                         sessionID = String(doc.id);
 						found = true;
+						console.log('SESSION ID: ', sessionID);
+						console.log('Found Chat-Group');
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -82,6 +86,7 @@
                         var doc = querySnapshot.docs[0];
                         sessionID = String(doc.id);
 						found = true;
+						console.log('SESSION ID: ', sessionID);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -96,7 +101,7 @@
 			.catch(function(error){
 				console.error("Error writing collection: ", error);
 			});
-			console.log('SESSION ID: ', sessionID);
+
 		}
 		
 		// REDIRECT USER TO THE MESSENGER
