@@ -74,7 +74,7 @@
 					but.setAttribute("value", doc1.id);
 					but.id = doc1.id;
 					but.innerHTML = displayName;
-					but.class = "btn btn-primary btn-lg btn-block";
+					but.setAttribute("class", "btn btn-primary btn-lg btn-block");
 					connectedFriendsList.appendChild(but);
 					attachClickEvent(doc1.id);
 				}
