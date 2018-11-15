@@ -32,13 +32,13 @@
 	var isVerified = false;
 	
 	// filter settings
-	var fNameDOM = getElementById("FirstName");
-	var lNameDOM = getElementById("LastName");
-	var photoInterestsDOM = getElementById("photoInterests");
-	var studentDOM = getElementById("studentChkBox");
-	var alumniDOM = getElementById("alumniChkBox");
-	var facultyDOM = getElementById("facultyChkBox");
-	var filterBtnDOM = getElementById("filterBtn");
+	var fNameDOM = document.getElementById("FirstName");
+	var lNameDOM = document.getElementById("LastName");
+	var photoInterestsDOM = document.getElementById("photoInterests");
+	var studentDOM = document.getElementById("studentChkBox");
+	var alumniDOM = document.getElementById("alumniChkBox");
+	var facultyDOM = document.getElementById("facultyChkBox");
+	var filterBtnDOM = document.getElementById("filterBtn");
  
     function SetUserType()
     {
