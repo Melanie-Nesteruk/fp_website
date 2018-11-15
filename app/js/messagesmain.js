@@ -46,7 +46,7 @@
     function openMessengerWith(value){
         var friend_id = String(value);
 		var current_id = String(uid);
-		var sessionID, found=false;
+		var sessionID='', found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
