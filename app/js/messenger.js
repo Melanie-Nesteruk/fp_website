@@ -1,6 +1,6 @@
 (function() {
-	var inputUser = document.currentScript.getAttribute('inputUser');
-	console.log('INPUT USER: ', inputUser);
+	var sessionID = document.currentScript.getAttribute('SID');
+	console.log('SESSION ID: ', sessionID);
 	// =======================================================
     // Check for initialized firebase connection
     //
@@ -49,7 +49,17 @@
 			// Loads chat messages history and listens for upcoming ones.
 			function loadMessages() {
 				
-				var observer = firestore.collection('Chat-Groups').where('user_1', '==', 'CA')
+				var observer = firestore.collection('Chat-Groups').where('user_1', '==', friendUID).where('user_2', '==', currentUID)
+					.onSnapshot(querySnapshot => {
+					querySnapshot.docChanges.forEach(change => {
+						if (change.type === 'added') {
+							displayMessage(snap.key, change.doc.data().name, change.doc.data().text);
+							console.log('New message: ', change.doc.data());
+						}
+					});
+				});
+				
+				var observer1 = firestore.collection('Chat-Groups').where('user_2', '==', friendUID).where('user_1', '==', currentUID)
 					.onSnapshot(querySnapshot => {
 					querySnapshot.docChanges.forEach(change => {
 						if (change.type === 'added') {
@@ -63,7 +73,7 @@
 			// Saves a new message on the Firebase DB.
 			function saveMessage(messageText) {
 			  // Add a new message entry to the Firebase database.
-			  return firebase.database().ref('/messages/').push({
+			  firebase.database().ref('/messages/').push({
 				name: getUserName(),
 				text: messageText,
 				profilePicUrl: getProfilePicUrl()
@@ -142,6 +152,9 @@
 
 			// Displays a Message in the UI.
 			function displayMessage(key, name, text, picUrl, imageUrl) {
+				console.log('Key: ', key);
+				console.log('Name: ', name);
+				console.log('Text: ', text);
 			  var div = document.getElementById(key);
 			  // If an element for that message does not exists yet we create it.
 			  if (!div) {

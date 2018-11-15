@@ -45,10 +45,59 @@
 
     function openMessengerWith(value){
         var friend_id = value;
-        console.log('Opening messenger with : ', friend_id);
+		var current_id = uid;
+		var sessionID, found=false;
+        console.log('Opening messenger with : ', friend_id, '&', current_id);
+		
+		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
+                    .get()
+                    .then(function(querySnapshot){
+                        var doc = querySnapshot.docs[0];
+                        sessionID = String(doc.id);
+						found = true;
+                    })
+                    .catch(function(error){
+                        console.log("Error getting document ID: ", error);
+                    });
+		firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+                    .get()
+                    .then(function(querySnapshot){
+                        var doc = querySnapshot.docs[0];
+                        sessionID = String(doc.id);
+						found = true;
+                    })
+                    .catch(function(error){
+                        console.log("Error getting document ID: ", error);
+                    });
+		if(!found) {
+			firestore.collection("Chat-Groups").add({
+				user_1: current_id,
+				user_2: friend_id
+			});
+			firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+                    .get()
+                    .then(function(querySnapshot){
+                        var doc = querySnapshot.docs[0];
+                        sessionID = String(doc.id);
+						found = true;
+                    })
+                    .catch(function(error){
+                        console.log("Error getting document ID: ", error);
+                    });
+			
+			firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
+				messages_approved: true
+			})
+			.then(function(){
+				console.log("Messages collection successfully written!");
+			})
+			.catch(function(error){
+				console.error("Error writing collection: ", error);
+			});
+		}
 		
 		// REDIRECT USER TO THE MESSENGER
-		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?user=' + value;
+		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
 		window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
     }
 

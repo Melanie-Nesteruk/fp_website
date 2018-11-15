@@ -69,9 +69,9 @@ def messages():
 
 @app.route('/messenger')
 def messenger():
-	user = request.args.get('user', '')
-	if (user):
-		return render_template("messenger.html", title='Messenger', app=app, user=user)
+	SID = request.args.get('SID', '')
+	if (SID):
+		return render_template("messenger.html", title='Messenger', app=app, SID=SID)
 	else:
 		return render_template("messenger.html", title='Messenger', app=app)
 
