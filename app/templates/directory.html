@@ -15,13 +15,13 @@
                       <div class="divTableBody">
                         <div class="divTableRow">
                           <form class="divTableCell" id="filters" style="text-align: left; width: 40%; pointer-events: auto;">
-                            <div id="filterLabel">First name: <input class="filterInput" type="text" name="FirstName" value="First Name"></div>
-                            <div id="filterLabel">Last name: <input class="filterInput" type="text" name="LastName" value="Last Name"></div>
-                            <div id="filterLabel">Photo Interests: <input class="filterInput" type="text" id="photoInterests"></div>
-                            <div id="filterLabel">Student <input type="checkbox" id="studentCkBox"></div>
-                            <div id="filterLabel">Alumni <input type="checkbox" id="alumniCkBox"></div>
-                            <div id="filterLabel">Faculty <input type="checkbox" id="facultyCkBox"></div>
-                            <div id="filterLabel"><input type="submit" value="Submit" style="text-align: right;"></div>
+                            <div class="filterLabel filterInput">First name: <input class="filterInput" type="text" name="FirstName" value="First Name"></div>
+                            <div class="filterLabel filterInput">Last name: <input class="filterInput" type="text" name="LastName" value="Last Name"></div>
+                            <div class="filterLabel filterInput">Photo Interests: <input class="filterInput" type="text" id="photoInterests"></div>
+                            <div class="filterLabel">Student <input type="checkbox" id="studentCkBox"></div>
+                            <div class="filterLabel">Alumni <input type="checkbox" id="alumniCkBox"></div>
+                            <div class="filterLabel">Faculty <input type="checkbox" id="facultyCkBox"></div>
+                            <div class="filterLabel"><input type="submit" value="Submit" style="text-align: right;"></div>
                           </form>
                           <div class="divTableCell" style="width: 10%;"></div>
                           <div class="divTableCell" id="userResults" style="width: 30%;">
@@ -38,8 +38,8 @@
 		  
     <script src="app/js/directory.js"></script>
     <style>
-        .filterLabel { font-weight: bold; padding: 3 0 3 0; }
-        .filterInput { pointer-events: auto; }
+        .filterLabel { font-weight: bold; pointer-events: auto; }
+        .filterInput { padding: 3 0 3 0; }
     </style>
 
 {% endblock %}
