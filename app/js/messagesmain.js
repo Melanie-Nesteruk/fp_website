@@ -44,8 +44,8 @@
     //
 
     function openMessengerWith(value){
-        var friend_id = value;
-		var current_id = uid;
+        var friend_id = String(value);
+		var current_id = String(uid);
 		var sessionID, found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
@@ -59,6 +59,7 @@
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
+					
 		firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
                     .get()
                     .then(function(querySnapshot){
