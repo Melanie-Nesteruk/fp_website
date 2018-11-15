@@ -57,6 +57,8 @@
 						found = true;
 						console.log('SESSION ID: ', sessionID);
 						console.log('Found Chat-Group');
+						
+		console.log("FOUND:",found);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
@@ -70,11 +72,12 @@
 						found = true;
 						console.log('SESSION ID: ', sessionID);
 						console.log('Found Chat-Group');
+						
+		console.log("FOUND:",found);
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-		console.log("FOUND:",found);
 		if(found == false) {
 			firestore.collection("Chat-Groups").add({
 				user_1: current_id,
