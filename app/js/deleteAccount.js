@@ -51,14 +51,21 @@
                     var toDeleteUser = firebase.auth().currentUser;
                     var toDeleteUserID = toDeleteUser.uid;
                     db.collection("Profiles").doc(toDeleteUserID).delete().then(function(){
-                        db.collection("Users").doc(toDeleteUserID).collection("Friends").delete().then(function(){
-                            db.collection("Users").doc(toDeleteUserID).delete().then(function(){
-                                toDeleteUser.delete().then(function() {
+                        db.collection("Users").doc(toDeleteUserID).delete().then(function(){
+                            toDeleteUser.delete().then(function() {
+                                swal({
+                                    title: "Your account has been deleted.",
+                                    buttons: {
+                                        confirm: {
+                                            text:       "Continue",
+                                            closeModal: true,
+                                            value:      1
+                                        }
+                                    }
+                                })
+                                .then(value => {
                                     window.location.href = "/login";
-                                    swal({
-                                        text: "Account Deletion Successful",
-                                        icon: "success"
-                                    });
+                                    return;
                                 });
                             });
                         });

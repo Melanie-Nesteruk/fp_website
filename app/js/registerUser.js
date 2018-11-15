@@ -169,8 +169,19 @@
         if(user && !initialLoad) {
             // Successful account creation
             swal({
-                text: "Your account has been created! You are now logged in.",
-                icon: "success"
+                title: "Your account has been created!.",
+                icon: "success",
+                buttons: {
+                    confirm: {
+                        text: "Continue",
+                        closeModal: true,
+                        value:      1
+                    }
+                }
+            })
+            .then(value => {
+                window.location.href = "/index";
+                return;
             });
             console.log(user);
 
@@ -181,10 +192,6 @@
             var sEmail = String(currentEmail);
 
             AddUserToDB(sID, sEmail);
-
-            // Reload page to clear fields
-            //document.location.reload();       // This breaks database additions
-            //window.location.href = "/index";
         }
     });
 }());
