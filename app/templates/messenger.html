@@ -21,17 +21,24 @@
 		<li class="me">By this User, fourth message</li>
 	</ul>
 	<!-- Messages container -->
-	<div id="footer">
+	<div class="fixed-bottom">
         <form class="form-inline">
-			<div class="form-group mx-sm-3 mb-2">
-				<label for="inputPassword2" class="sr-only">Message:</label>
+			<div class="form-group">
+				<label for="message">Message:</label>
 				<input type="message" class="form-control" id="message" placeholder="Message...">
 			</div>
 			<button type="submit" class="sendButton">Send</button>
 		</form>
 	</div>
 
+	</body>
 <style>
+body {
+	min-height: 400px;
+	margin-bottom: 100px;
+	clear: both;
+}
+	
 .sendButton {
   background-color : #31B0D5;
   color: white;
@@ -89,5 +96,4 @@ ul li{
     <script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="app/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-	</body>
 </html>
