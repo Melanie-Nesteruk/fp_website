@@ -64,19 +64,20 @@
 		var friendProfile = firestore.collection('Users').doc(doc1.id).get()
 			.then(doc => {
 				if (!doc.exists) {
-						first_name = doc.first_Name;
-						last_name = doc.last_Name;
-						displayName = first_name + last_name;
-						console.log('full name: ', displayName);
-						var but = document.createElement("button");
-						but.setAttribute("value", doc1.id);
-						but.id = doc1.id;
-						but.innerHTML = doc1.id;
-						connectedFriendsList.appendChild(but);
-						attachClickEvent(doc1.id);
-						console.log('Friend listed.');
+					console.log('No document exists!');	
 				} else {
 					console.log('doc data: ', doc.data());
+					first_name = doc.first_Name;
+					last_name = doc.last_Name;
+					displayName = first_name + last_name;
+					console.log('full name: ', displayName);
+					var but = document.createElement("button");
+					but.setAttribute("value", doc1.id);
+					but.id = doc1.id;
+					but.innerHTML = doc1.id;
+					connectedFriendsList.appendChild(but);
+					attachClickEvent(doc1.id);
+					console.log('Friend listed.');
 				}
 			})
 			.catch(err => {
