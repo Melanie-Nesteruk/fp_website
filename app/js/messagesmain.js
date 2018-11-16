@@ -101,7 +101,6 @@
 			.catch(function(error){
 				console.error("Error writing collection: ", error);
 			});
-			);
 		}});
 		
 		// REDIRECT USER TO THE MESSENGER
