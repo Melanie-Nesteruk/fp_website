@@ -37,6 +37,34 @@
 	// function isUserBlocked(currentID, friendID){ }
 	
 	
+	function getSessionID(id_1, id_2) {
+		var sesID = '';
+		firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2)
+                    .get()
+                    .then(function(querySnapshot){
+                        var doc = querySnapshot.docs[0];
+                        sesID = String(doc.id);
+						found = true;
+						console.log('1st. SESSION ID: ', sessionID);
+                    })
+                    .catch(function(error){
+                        console.log("Error getting document ID: ", error);
+                    });
+					
+		firestore.collection("Chat-Groups").where("user_2", "==", id_1).where("user_1", "==", id_2)
+                    .get()
+                    .then(function(querySnapshot){
+                        var doc = querySnapshot.docs[0];
+                        sesID = String(doc.id);
+						found = true;
+						console.log('1st. SESSION ID: ', sessionID);
+                    })
+                    .catch(function(error){
+                        console.log("Error getting document ID: ", error);
+                    });
+		return sesID;
+	}
+	
 	
 
     // =======================================================
@@ -46,33 +74,12 @@
     function openMessengerWith(value){
         var friend_id = String(value);
 		var current_id = String(uid);
-		var sessionID='', found=false;
+		var found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
-		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
-                    .get()
-                    .then(function(querySnapshot){
-                        var doc = querySnapshot.docs[0];
-                        sessionID = String(doc.id);
-						found = true;
-						console.log('SESSION ID: ', sessionID);
-                    })
-                    .catch(function(error){
-                        console.log("Error getting document ID: ", error);
-                    });
-					
-		firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
-                    .get()
-                    .then(function(querySnapshot){
-                        var doc = querySnapshot.docs[0];
-                        sessionID = String(doc.id);
-						found = true;
-						console.log('SESSION ID: ', sessionID);
-                    })
-                    .catch(function(error){
-                        console.log("Error getting document ID: ", error);
-                    });
-		if(found == false) {
+		var sessionID = getSessionID(friend_id,current_id);
+		console.log('2nd. SESSION ID: ', sessionID);
+		if(sessionID == '') {
 			console.log('Adding new session');
 			firestore.collection("Chat-Groups").add({
 				user_1: current_id,
