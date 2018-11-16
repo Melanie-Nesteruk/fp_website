@@ -169,6 +169,8 @@
         .catch(function(error){
             console.error("Error writing collection: ", error);
         });
+
+        window.location.reload();   // Attempt to reload page after new user is added 
     };
 
     firebase.auth().onAuthStateChanged(user => {
