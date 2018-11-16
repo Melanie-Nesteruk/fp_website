@@ -73,6 +73,7 @@
 			.get().then(function(results) {
 			if (results.empty) {
 				console.log("No documents found query1!");
+				sessionID='';
 			} else {
                 var doc = results.docs[0];
                 sessionID = String(doc.id);
