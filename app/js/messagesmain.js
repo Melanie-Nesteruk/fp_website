@@ -65,11 +65,12 @@
         var friend_id = String(value);
 		var current_id = String(uid);
 		var found=false;
+		var promise;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		
-		getSessionID(friend_id, current_id).then(function(sesID){
-			var sessionID = sesID
+		promise.then(function(){
+			var sessionID = getSessionID(current_id,friend_id);
 		})
 		.then(function(){
 			if(sessionID == ''){
