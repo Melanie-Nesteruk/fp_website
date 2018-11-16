@@ -65,11 +65,11 @@
         var friend_id = String(value);
 		var current_id = String(uid);
 		var found=false;
-		var promise;
+		var sessionID = '';
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		
-		firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2)
+		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
 			.get().then(function(results) {
 			if (results.empty) {
 				console.log("No documents found query1!");
@@ -81,7 +81,7 @@
         })
 		.then(function(){
 			if(sessionID == ''){
-				firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2)
+				firestore.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
 					.get().then(function(results) {
 						if (results.empty) {
 							console.log("No documents found query1!");
