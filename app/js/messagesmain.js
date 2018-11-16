@@ -66,8 +66,9 @@
 		var current_id = String(uid);
 		var found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
-		
-		var sessionID = getSessionID(current_id,friend_id)
+		(function(){
+			var sessionID = getSessionID(current_id,friend_id);
+		})
 		.then(function(){
 			if(sessionID == ''){
 				sessionID = getSessionID(friend_id,current_id);
