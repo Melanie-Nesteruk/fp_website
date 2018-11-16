@@ -158,7 +158,7 @@
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		
-		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
+		db.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
 			.get().then(function(results) {
 			if (results.empty) {
 				console.log("No documents found query1!");
@@ -173,21 +173,21 @@
         })
 		.then(function(){
 			if(sessionID == ''){
-				firestore.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
+				db.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
 					.get().then(function(results) {
 						if (results.empty) {
 							console.log("No documents found query2!");
-							firestore.collection("Chat-Groups").add({
+							db.collection("Chat-Groups").add({
 								user_1: current_id,
 								user_2: friend_id
 							}).then(function(){
-								firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+								db.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
 									.get()
 									.then(function(querySnapshot){
 										var doc = querySnapshot.docs[0];
 										sessionID = String(doc.id);
 										found = true;
-										firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
+										db.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
 											messages_approved: "true"
 										})
 										console.log("Messages collection successfully written!");
