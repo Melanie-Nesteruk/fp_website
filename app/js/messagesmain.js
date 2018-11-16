@@ -42,7 +42,7 @@
 		var query1 = firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2);
 		query1.get().then(function(results) {
 			if (results.empty) {
-				console.log("No documents found!");
+				console.log("No documents found query1!");
 			} else {
                 var doc = results.docs[0];
                 sesID = String(doc.id);
@@ -55,7 +55,7 @@
 		var query2 = firestore.collection("Chat-Groups").where("user_2", "==", id_1).where("user_1", "==", id_2);
         query2.get().then(function(results) {
 			if (results.empty) {
-				console.log("No documents found!");
+				console.log("No documents found query2!");
 			} else {
                 var doc = results.docs[0];
                 sesID = String(doc.id);
