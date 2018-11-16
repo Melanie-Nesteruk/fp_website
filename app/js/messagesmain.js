@@ -68,11 +68,13 @@
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		var sessionID = getSessionID(current_id,friend_id)
-		.then(if(sessionID == ''){
-			sessionID = getSessionID(friend_id,current_id);
-		}
+		.then(function(){
+			if(sessionID == ''){
+				sessionID = getSessionID(friend_id,current_id);
+			}
 		console.log('2nd. SESSION ID: ', sessionID);
-	).then(if(sessionID == '') {
+		}).then(function(){
+			if(sessionID == '') {
 			console.log('Adding new session');
 			firestore.collection("Chat-Groups").add({
 				user_1: current_id,
@@ -97,7 +99,7 @@
 				console.error("Error writing collection: ", error);
 			});
 			);
-		});
+		}});
 		
 		// REDIRECT USER TO THE MESSENGER
 		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
