@@ -75,7 +75,7 @@
 				console.log("No documents found query1!");
 			} else {
                 var doc = results.docs[0];
-                sesID = String(doc.id);
+                sessionID = String(doc.id);
 				console.log('1st. SESSION ID: ', sessionID);
 			}
         })
@@ -87,12 +87,11 @@
 							console.log("No documents found query1!");
 						} else {
 							var doc = results.docs[0];
-							sesID = String(doc.id);
-							console.log('1st. SESSION ID: ', sessionID);
+							sessionID = String(doc.id);
+							console.log('2nd. SESSION ID: ', sessionID);
 						}
 					})
 			}
-		console.log('2nd. SESSION ID: ', sessionID);
 		}).then(function(){
 			if(sessionID == '') {
 				console.log('Adding new session');
