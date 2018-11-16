@@ -155,18 +155,14 @@
 		var current_id = String(value1);
 		var found=false;
 		var sessionID = '';
-        console.log('Opening messenger with : ', friend_id, '&', current_id);
-		
-		
-		db.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
+        db.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
 			.get().then(function(results) {
 			if (results.empty) {
-				console.log("No documents found query1!");
 				sessionID='';
 			} else {
+				console.log("Opening messenger with: ", inputUser);
                 var doc = results.docs[0];
                 sessionID = String(doc.id);
-				console.log('1st. SESSION ID: ', sessionID);
 				var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
 				window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 			}
@@ -176,7 +172,6 @@
 				db.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
 					.get().then(function(results) {
 						if (results.empty) {
-							console.log("No documents found query2!");
 							db.collection("Chat-Groups").add({
 								user_1: current_id,
 								user_2: friend_id
