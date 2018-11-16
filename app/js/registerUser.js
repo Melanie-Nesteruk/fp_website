@@ -144,9 +144,10 @@
         
         // Feilds and documents must be added at the time of the block
         // Blocking requires a merge with the existing feilds
-        // Create a new collection 'Blocks' fore each user
-        db.collection("Users").doc(currentUID).collection("Blocks").doc(currentUID).set({
-            placeholder: true           // temporary placeholder feild, overwritten on first block              
+        // Create a new collection 'Blocks' for each user
+        // temporary placeholder feild & document needed to create the collection(firebase removes empty collections) 
+        db.collection("Users").doc(currentUID).collection("Blocks").doc("placeholder").set({
+            placeholder: true                        
             //At time of block add/merge
             //New document: uid_blocking
             //Feilds within document: (bool)block_removed, (timestamp)date_blocked,
