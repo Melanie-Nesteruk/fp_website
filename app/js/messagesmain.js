@@ -75,22 +75,25 @@
 		console.log('2nd. SESSION ID: ', sessionID);
 		}).then(function(){
 			if(sessionID == '') {
-			console.log('Adding new session');
-			firestore.collection("Chat-Groups").add({
-				user_1: current_id,
-				user_2: friend_id
-			}).then(firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
-                    .get()
-                    .then(function(querySnapshot){
-                        var doc = querySnapshot.docs[0];
-                        sessionID = String(doc.id);
-						found = true;
-                    })
-                    .catch(function(error){
+				console.log('Adding new session');
+				firestore.collection("Chat-Groups").add({
+					user_1: current_id,
+					user_2: friend_id
+				}).then(function(){
+					firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+						.get()
+						.then(function(querySnapshot){
+							var doc = querySnapshot.docs[0];
+							sessionID = String(doc.id);
+							found = true;
+						})
+						.catch(function(error){
                         console.log("Error getting document ID: ", error);
-                    });
-			).then(firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
-				messages_approved: "true"
+						});
+				}).then(function(){
+					firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
+						messages_approved: "true"
+					})
 			})
 			.then(function(){
 				console.log("Messages collection successfully written!");
