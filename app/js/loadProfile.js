@@ -64,7 +64,7 @@
     if (btnMessage != null) {
         btnMessage.addEventListener('click', e=> {
 			
-		}
+		});
 	}
  
     function LoadProfile(isVerified)
