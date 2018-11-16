@@ -84,7 +84,7 @@
 				firestore.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
 					.get().then(function(results) {
 						if (results.empty) {
-							console.log("No documents found query1!");
+							console.log("No documents found query2!");
 						} else {
 							var doc = results.docs[0];
 							sessionID = String(doc.id);
