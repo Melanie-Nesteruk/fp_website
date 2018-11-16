@@ -69,12 +69,28 @@
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		
-		promise.then(function(){
-			var sessionID = getSessionID(current_id,friend_id);
-		})
+		firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2)
+			.get().then(function(results) {
+			if (results.empty) {
+				console.log("No documents found query1!");
+			} else {
+                var doc = results.docs[0];
+                sesID = String(doc.id);
+				console.log('1st. SESSION ID: ', sessionID);
+			}
+        })
 		.then(function(){
 			if(sessionID == ''){
-				sessionID = getSessionID(friend_id,current_id);
+				firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2)
+					.get().then(function(results) {
+						if (results.empty) {
+							console.log("No documents found query1!");
+						} else {
+							var doc = results.docs[0];
+							sesID = String(doc.id);
+							console.log('1st. SESSION ID: ', sessionID);
+						}
+					})
 			}
 		console.log('2nd. SESSION ID: ', sessionID);
 		}).then(function(){
