@@ -58,14 +58,6 @@
     var instagramName = "";
     var twitterName = "";
     var isVerified = false;
-	
-	
-	// Add message event
-    if (btnMessage != null) {
-        btnMessage.addEventListener('click', e=> {
-			
-		});
-	}
  
     function LoadProfile(isVerified)
     {
@@ -157,6 +149,68 @@
             twitterDOM.href = "https://www.twitter.com/" + twitterName;
         }
     };
+	
+	function openMessengerWith(value1, value2){
+        var friend_id = String(value2);
+		var current_id = String(value1);
+		var found=false;
+		var sessionID = '';
+        console.log('Opening messenger with : ', friend_id, '&', current_id);
+		
+		
+		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
+			.get().then(function(results) {
+			if (results.empty) {
+				console.log("No documents found query1!");
+				sessionID='';
+			} else {
+                var doc = results.docs[0];
+                sessionID = String(doc.id);
+				console.log('1st. SESSION ID: ', sessionID);
+				var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+				window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
+			}
+        })
+		.then(function(){
+			if(sessionID == ''){
+				firestore.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
+					.get().then(function(results) {
+						if (results.empty) {
+							console.log("No documents found query2!");
+							firestore.collection("Chat-Groups").add({
+								user_1: current_id,
+								user_2: friend_id
+							}).then(function(){
+								firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+									.get()
+									.then(function(querySnapshot){
+										var doc = querySnapshot.docs[0];
+										sessionID = String(doc.id);
+										found = true;
+										firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
+											messages_approved: "true"
+										})
+										console.log("Messages collection successfully written!");
+										var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+										window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
+									})
+									.catch(function(error){
+										console.log("Error getting document ID: ", error);
+									});
+							}).catch(function(error){
+								console.error("Error writing collection: ", error);
+							});
+						} else {
+							var doc = results.docs[0];
+							sessionID = String(doc.id);
+							console.log('2nd. SESSION ID: ', sessionID);
+							var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+							window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
+						}
+					})
+			}
+		});
+    };
 
     firebase.auth().onAuthStateChanged(user => {
         if (user)
@@ -179,10 +233,18 @@
                         isVerified = doc.get("verified");
 
                         GetAdditionalFields(inputUsersID);
+						
+						// Add message event
+						if (btnMessage != null) {
+							btnMessage.addEventListener('click', e=> {
+								openMessengerWith(user.uid, inputUsersID);
+							});
+						}
                     })
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
+				
             }
         
             // View your own
