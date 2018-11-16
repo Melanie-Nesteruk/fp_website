@@ -52,19 +52,6 @@
         .catch(function(error){
             console.log("Error getting document ID: ", error);
         });
-		var query2 = firestore.collection("Chat-Groups").where("user_2", "==", id_1).where("user_1", "==", id_2);
-        query2.get().then(function(results) {
-			if (results.empty) {
-				console.log("No documents found query2!");
-			} else {
-                var doc = results.docs[0];
-                sesID = String(doc.id);
-				console.log('1st. SESSION ID: ', sessionID);
-			}
-        })
-        .catch(function(error){
-            console.log("Error getting document ID: ", error);
-        });
 		return sesID;
 	}
 	
@@ -81,6 +68,9 @@
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
 		var sessionID = getSessionID(friend_id,current_id);
+		if(sessionID == ''){
+			sessionID = getSessionID(current_id,friend_id);
+		}
 		console.log('2nd. SESSION ID: ', sessionID);
 		if(sessionID == '') {
 			console.log('Adding new session');
