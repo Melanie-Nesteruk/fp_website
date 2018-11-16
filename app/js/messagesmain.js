@@ -39,29 +39,32 @@
 	
 	function getSessionID(id_1, id_2) {
 		var sesID = '';
-		firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2)
-                    .get()
-                    .then(function(querySnapshot){
-                        var doc = querySnapshot.docs[0];
-                        sesID = String(doc.id);
-						found = true;
-						console.log('1st. SESSION ID: ', sessionID);
-                    })
-                    .catch(function(error){
-                        console.log("Error getting document ID: ", error);
-                    });
-					
-		firestore.collection("Chat-Groups").where("user_2", "==", id_1).where("user_1", "==", id_2)
-                    .get()
-                    .then(function(querySnapshot){
-                        var doc = querySnapshot.docs[0];
-                        sesID = String(doc.id);
-						found = true;
-						console.log('1st. SESSION ID: ', sessionID);
-                    })
-                    .catch(function(error){
-                        console.log("Error getting document ID: ", error);
-                    });
+		var query1 = firestore.collection("Chat-Groups").where("user_1", "==", id_1).where("user_2", "==", id_2);
+		query1.get().then(function(results) {
+			if (results.empty) {
+				console.log("No documents found!");
+			} else {
+                var doc = results.docs[0];
+                sesID = String(doc.id);
+				console.log('1st. SESSION ID: ', sessionID);
+			}
+        })
+        .catch(function(error){
+            console.log("Error getting document ID: ", error);
+        });
+		var query2 = firestore.collection("Chat-Groups").where("user_2", "==", id_1).where("user_1", "==", id_2);
+        query2.get().then(function(results) {
+			if (results.empty) {
+				console.log("No documents found!");
+			} else {
+                var doc = results.docs[0];
+                sesID = String(doc.id);
+				console.log('1st. SESSION ID: ', sessionID);
+			}
+        })
+        .catch(function(error){
+            console.log("Error getting document ID: ", error);
+        });
 		return sesID;
 	}
 	
