@@ -67,9 +67,9 @@
 		var found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
-		var sessionID = getSessionID(friend_id,current_id);
+		var sessionID = getSessionID(current_id,friend_id);
 		if(sessionID == ''){
-			sessionID = getSessionID(current_id,friend_id);
+			sessionID = getSessionID(friend_id,current_id);
 		}
 		console.log('2nd. SESSION ID: ', sessionID);
 		if(sessionID == '') {

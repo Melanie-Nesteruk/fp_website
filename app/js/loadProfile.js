@@ -34,6 +34,7 @@
     const instagramDOM = document.getElementById('instagram');
     const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
+	const btnMessage = document.getElementById('btnMessage');
     var editDOM = document.getElementById('editor');
 
     var initialLoad = true;
@@ -57,6 +58,14 @@
     var instagramName = "";
     var twitterName = "";
     var isVerified = false;
+	
+	
+	// Add message event
+    if (btnMessage != null) {
+        btnMessage.addEventListener('click', e=> {
+			
+		}
+	}
  
     function LoadProfile(isVerified)
     {
