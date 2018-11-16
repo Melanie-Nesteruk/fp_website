@@ -67,18 +67,17 @@
 		var found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
 		
-		var sessionID = getSessionID(current_id,friend_id);
-		if(sessionID == ''){
+		var sessionID = getSessionID(current_id,friend_id)
+		.then(if(sessionID == ''){
 			sessionID = getSessionID(friend_id,current_id);
 		}
 		console.log('2nd. SESSION ID: ', sessionID);
-		if(sessionID == '') {
+	).then(if(sessionID == '') {
 			console.log('Adding new session');
 			firestore.collection("Chat-Groups").add({
 				user_1: current_id,
 				user_2: friend_id
-			});
-			firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+			}).then(firestore.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
                     .get()
                     .then(function(querySnapshot){
                         var doc = querySnapshot.docs[0];
@@ -88,8 +87,7 @@
                     .catch(function(error){
                         console.log("Error getting document ID: ", error);
                     });
-			
-			firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
+			).then(firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
 				messages_approved: "true"
 			})
 			.then(function(){
@@ -98,8 +96,8 @@
 			.catch(function(error){
 				console.error("Error writing collection: ", error);
 			});
-
-		}
+			);
+		});
 		
 		// REDIRECT USER TO THE MESSENGER
 		var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
