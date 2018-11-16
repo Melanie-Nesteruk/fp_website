@@ -66,7 +66,7 @@
 		var current_id = String(uid);
 		var found=false;
         console.log('Opening messenger with : ', friend_id, '&', current_id);
-		(function(){
+		promise.then(function(){
 			var sessionID = getSessionID(current_id,friend_id);
 		})
 		.then(function(){
