@@ -91,16 +91,17 @@
                     console.log("Error getting document ID: ", error);
                 });
     }
-
+ 
     // Takes a current user's UID & the email of another user to check if that user is blocked
-    // Returns true user whos email was passed is being blocked by the given userID (exists in the cUID's blocks collection)
+    // Returns true if user who's email was passed is being blocked by the given userID (exists in the cUID's blocks collection)
     // Returns false otherwise 
     function isBlockedE(cUID, bEmail){
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
-                    return querySnapshot.empty(); // Should be true if there are no documents with the blocked email,
-                })                              // Otherwise (empty) should be false
+                    if(querySnapshot.empty){ return true; } // Should be true if there are no documents with the blocked email,
+                    else { return false; }                  // Otherwise (empty) should be false
+                })                              
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
                     return false;
