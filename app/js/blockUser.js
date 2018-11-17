@@ -142,13 +142,13 @@
                     buttons: {
                         block: {
                             text: "Block",
-                            closeModal: true,
-                            value: 1,
+                            //closeModal: true,
+                            value: 1
                         },
                         cancel: {
                             text: "Cancel",
-                            closeModal: true,
-                            value: 0,
+                            //closeModal: true,
+                            value: 0
                         }
                     }
                 })
