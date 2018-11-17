@@ -138,14 +138,19 @@
                     title: "Are you sure?",
                     icon: "warning",
                     text:  "Blocking " + blockUserProfile + " will prevent you from seeing their profile and sending them messages.",
+                    closeOnClickOutSide: false,
                     buttons: {
-                        cancel: true,
                         block: {
                             text: "Block",
                             closeModal: true,
                             value: 1,
                         },
-                    },
+                        cancel: {
+                            text: "Cancel",
+                            closeModal: true,
+                            value: 0,
+                        }
+                    }
                 })
                 .then(value => {
                     if(value == 1){
