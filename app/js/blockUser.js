@@ -103,7 +103,9 @@
                 })                              // Otherwise (empty) should be false
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
+                    return false;
                 });
+        return false;
     }
 
     // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
