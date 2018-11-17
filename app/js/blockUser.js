@@ -21,10 +21,6 @@
     db.settings(settings);
 
     // Varibles used by block(), addBlocktoDB(), & isBlocked() functions
-    var cUser = firebase.auth().currentUser;
-    var currentUID = cUser.uid;
-    var currentEmail = String(currentUser.email);
-    var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
     var blockUserProfile = document.currentScript.getAttribute('inputUser');
     var blockUserEmail = String(blockUserProfile + "@kent.edu");
     var blockUsersID = "";
@@ -69,8 +65,8 @@
     }
 
     // Add record of currentUser's block to the DB
-    function addBlocktoDB(blockUID, blockEmail){
-        db.collection("Users").doc(currentUID).collection("Blocks").doc(blockUID).set({
+    function addBlocktoDB(cUID, blockUID, blockEmail){
+        db.collection("Users").doc(cUID).collection("Blocks").doc(blockUID).set({
             uid_Blocked: blockUID,
             email_Blocked: blockEmail,
             date_blocked: firebase.firestore.Timestamp.now(),
@@ -85,16 +81,16 @@
     }
     //Upon block removal, overwrite all feilds of unblocked user set: (bool)block_removed, (timestamp) date_removed
 
-    // Add the specified user to the current user's blocks collection
-    // Blocks the current user profile being viewed
-    function block(){
+    // Takes the userID of the current user looking to block another user
+    // Blocks user whose profile is currently being viewed
+    function block(currentUID){
         db.collection("Users").doc(currentUID).collection("Blocks").where("email", "==", blockUserEmail)
             .get()
                 .then(function(querySnapshot){
                     var doc = querySnapshot.docs[0];
                     blockUsersID = String(doc.id);
 
-                    addBlocktoDB(blockUsersID, blockUserEmail);
+                    addBlocktoDB(currentUID, blockUsersID, blockUserEmail);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
@@ -132,7 +128,12 @@
     // Add event listner for block event
     if (btnBlockAcct != null) {
         btnBlockAcct.addEventListener('click', e=> {
-            if(!isBlockedE(currentUID, blockUserEmail)){  // If profile is currently unblocked, ask to block the user
+            var cUser = firebase.auth().currentUser;
+            var curUID = cUser.uid;
+            var currentEmail = String(cUser.email);
+            var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@")); 
+
+            if(!isBlockedE(curUID, blockUserEmail)){  // If profile is currently unblocked, ask to block the user
                 swal({
                     title: "Are you sure?",
                     icon: "warning",
@@ -151,8 +152,8 @@
                     }
                 })
                 .then(value => {
-                    if(value = 1){ 
-                        block();
+                    if(value = 1){
+                        block(curUID);
                         swal({
                             title: "" + blockUserProfile + "was blocked.",
                             icon: "success",
