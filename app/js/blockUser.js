@@ -139,6 +139,7 @@
                     icon: "warning",
                     text:  "Blocking " + blockUserProfile + " will prevent you from seeing their profile and sending them messages.",
                     closeOnClickOutside: false,
+                    closeOnEsc: false,
                     buttons: {
                         block: {
                             text: "Block",
