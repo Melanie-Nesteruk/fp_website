@@ -213,7 +213,7 @@
 					checkSetup();
 
 					// Shortcuts to DOM Elements.
-					var messageListElement = document.getElementById('messenger');
+					var messageListElement = document.getElementById('scrollToBottom');
 					var messageFormElement = document.getElementById('message-form');
 					var messageInputElement = messageFormElement.message;
 					var sendButtonElement = document.getElementById('sendButton');
