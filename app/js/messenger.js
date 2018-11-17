@@ -1,5 +1,5 @@
 (function() {
-	var sessionID = document.currentScript.getAttribute('SID');
+	var sessionID = document.currentScript.getAttribute('sid');
 	console.log('SESSION ID: ', sessionID);
 	const messageList = document.querySelector('#message-list');
 	// =======================================================
