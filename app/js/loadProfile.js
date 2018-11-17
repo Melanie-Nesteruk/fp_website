@@ -155,57 +155,58 @@
 		var current_id = String(value1);
 		var found=false;
 		var sessionID = '';
-		
-        db.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
-			.get().then(function(results) {
-			if (results.empty) {
-				sessionID='';
-			} else {
-				console.log("Opening messenger with: ", inputUser);
-                var doc = results.docs[0];
-                sessionID = String(doc.id);
-				var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
-				window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
-			}
-        })
-		.then(function(){
-			if(sessionID == ''){
-				db.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
-					.get().then(function(results) {
-						if (results.empty) {
-							db.collection("Chat-Groups").add({
-								user_1: current_id,
-								user_2: friend_id
-							}).then(function(){
-								db.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
-									.get()
-									.then(function(querySnapshot){
-										var doc = querySnapshot.docs[0];
-										sessionID = String(doc.id);
-										found = true;
-										db.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
-											messages_approved: "true"
+		if (friend_id != current_id){
+			db.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
+				.get().then(function(results) {
+				if (results.empty) {
+					sessionID='';
+				} else {
+					console.log("Opening messenger with: ", inputUser);
+					var doc = results.docs[0];
+					sessionID = String(doc.id);
+					var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+					window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
+				}
+			})
+			.then(function(){
+				if(sessionID == ''){
+					db.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
+						.get().then(function(results) {
+							if (results.empty) {
+								db.collection("Chat-Groups").add({
+									user_1: current_id,
+									user_2: friend_id
+								}).then(function(){
+									db.collection("Chat-Groups").where("user_2", "==", friend_id).where("user_1", "==", current_id)
+										.get()
+										.then(function(querySnapshot){
+											var doc = querySnapshot.docs[0];
+											sessionID = String(doc.id);
+											found = true;
+											db.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
+												messages_approved: "true"
+											})
+											console.log("Messages collection successfully written!");
+											var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+											window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 										})
-										console.log("Messages collection successfully written!");
-										var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
-										window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
-									})
-									.catch(function(error){
-										console.log("Error getting document ID: ", error);
-									});
-							}).catch(function(error){
-								console.error("Error writing collection: ", error);
-							});
-						} else {
-							var doc = results.docs[0];
-							sessionID = String(doc.id);
-							console.log('2nd. SESSION ID: ', sessionID);
-							var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
-							window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
-						}
-					})
-			}
-		});
+										.catch(function(error){
+											console.log("Error getting document ID: ", error);
+										});
+								}).catch(function(error){
+									console.error("Error writing collection: ", error);
+								});
+							} else {
+								var doc = results.docs[0];
+								sessionID = String(doc.id);
+								console.log('2nd. SESSION ID: ', sessionID);
+								var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+								window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
+							}
+						})
+				}
+			});
+		}
     };
 
     firebase.auth().onAuthStateChanged(user => {

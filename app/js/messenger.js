@@ -76,7 +76,7 @@
 					// Loads chat messages history and listens for upcoming ones.
 					function loadMessages() {
 						
-						var observer = firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
+						var observer = firestore.collection('Chat-Groups').doc(sessionID).collection('Messages').orderBy('timestamp')
 							.onSnapshot(snapshot => {
 								let changes = snapshot.docChanges();
 								changes.forEach(change => {
@@ -92,11 +92,13 @@
 
 					// Saves a new message on the Firebase DB.
 					function saveMessage(messageText) {
+						const timestamp = firebase.firestore.FieldValue.serverTimestamp();
 					  // Add a new message entry to the Firebase database.
 					  return firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
 						.add({
 							fromID: currentUID,
 							text: messageText,
+							timestamp: timestamp
 						});
 					}
 
