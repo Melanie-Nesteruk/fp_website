@@ -96,17 +96,18 @@
     // Returns true if user who's email was passed IS being blocked by the given userID (exists in the cUID's blocks collection)
     // Returns false otherwise 
     function isBlockedE(cUID, bEmail){
+        var isBlocked = false;
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
-                    if(querySnapshot.empty){ return false; } // .empty is true if there are no documents with the blocked email (user is not blocked),
-                    else { return true; }                  // Otherwise (empty) should be false (user is blocked)
+                    if(querySnapshot.empty){ isBlocked = false; } // .empty is true if there are no documents with the blocked email (user is not blocked),
+                    else { isBlocked = true; }                  // Otherwise (empty) should be false (user is blocked)
                 })                              
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
-                    return false;
+                    isBlocked = true;
                 });
-        return false;
+        return isBlocked;
     }
 
     // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
@@ -131,7 +132,7 @@
             var currentEmail = String(cUser.email);
             var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@")); 
 
-            if(isBlockedE(curUID, blockUserEmail)){  // If profile is currently unblocked, ask to block the user
+            if(!(isBlockedE(curUID, blockUserEmail))){  // If profile is currently unblocked, ask to block the user
                 swal({
                     title: "Are you sure?",
                     icon: "warning",
