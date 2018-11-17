@@ -13,13 +13,13 @@
 
         var app = firebase.initializeApp(config);
         console.log("initializeApp in reset.js");
-        console.log(app);
+        //console.log(app);
     }
 
     // Fetch an instance of the DB
     const db = firebase.firestore(app);
-    console.log(db);
-    console.log(firebase.app().name);
+    //console.log(db);
+    //console.log(firebase.app().name);
 
     // Disable deprecated features
     const settings = { timestampsInSnapshots: true };
