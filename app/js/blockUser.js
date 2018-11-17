@@ -63,13 +63,13 @@
     }
 
     // Updates block record in the DB so that user is no longer seen as blocked, does NOT delete block document
-    function removeBlockFromDB(cUID, ubUID, ubEmail){
+    function removeBlockFromDB(cUID, ubUID){
         db.collection("Users").doc(cUID).collection("Blocks").doc(ubUID).set({
             date_unblocked: firebase.firestore.Timestamp.now(),
             block_removed: true                        
         })
         .then(function(){
-            console.log("Block user documents successfully written!");
+            console.log("Blocks documents were successfully overwritten!");
         })
         .catch(function(error){
             console.error("Error writing document: ", error);
@@ -85,7 +85,7 @@
                     var doc = querySnapshot.docs[0];
                     unblockUserID = String(doc.id);
 
-                    removeBlockFromDB(currentUID, unblockUserID, blockUserEmail);
+                    removeBlockFromDB(currentUID, unblockUserID);
                 })
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
@@ -99,7 +99,7 @@
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
-                    if(querySnapshot.empty){ return false; } // Should be true if there are no documents with the blocked email (user is not blocked),
+                    if(querySnapshot.empty){ return false; } // .empty is true if there are no documents with the blocked email (user is not blocked),
                     else { return true; }                  // Otherwise (empty) should be false (user is blocked)
                 })                              
                 .catch(function(error){
