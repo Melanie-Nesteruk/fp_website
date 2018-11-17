@@ -28,6 +28,7 @@
     var currentUID = '';
 	var friendUID = '';
 	var authorized = false;
+	var messageHasBeenSent = false;
     // =======================================================
     // Check for user being logged in
     //
@@ -36,7 +37,7 @@
     firebase.auth().onAuthStateChanged(function(user) {
 		if (user) { // if user is authorized
 			currentUID = user.uid;
-			firestore.collection("Chat-Groups").doc(document.currentScript.getAttribute('sid'))
+			firestore.collection("Chat-Groups").doc(sessionID)
 				.get().then(doc => {
 				if (!doc.exists) {
 					console.log("No documents found!");
@@ -74,11 +75,12 @@
 					// Loads chat messages history and listens for upcoming ones.
 					function loadMessages() {
 						
-						var observer = firestore.collection('Chat-Groups').doc(document.currentScript.getAttribute('sid')).collection('Messages')
+						var observer = firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
 							.onSnapshot(snapshot => {
 								let changes = snapshot.docChanges();
 								changes.forEach(change => {
 									if (change.type == 'added') {
+										messageHasBeenSent = true;
 										displayMessage(change.doc);
 										console.log('New message: ', change.doc.data());
 									}
@@ -90,36 +92,46 @@
 					// Saves a new message on the Firebase DB.
 					function saveMessage(messageText) {
 					  // Add a new message entry to the Firebase database.
-					  firestore.collection('Chat-Groups').doc(document.currentScript.getAttribute('sid')).collection('Messages')
+					  firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
 						.add({
 							fromID: currentUID,
 							text: messageText,
 						});
 					}
 
-					// // Saves the messaging device token to the datastore.
-					// function saveMessagingDeviceToken() {
-					  // firebase.messaging().getToken().then(function(currentToken) {
-						// if (currentToken) {
-						  // console.log('Got FCM device token:', currentToken);
-						  // // Saving the Device Token to the datastore.
-						  // firebase.database().ref('/fcmTokens').child(currentToken)
-							  // .set(firebase.auth().currentUser.uid);
-						// } else {
-						  // // Need to request permissions to show notifications.
-						  // requestNotificationsPermissions();
-						// }
-					  // }).catch(function(error){
-						// console.error('Unable to get messaging token.', error);
-					  // });
-					// }
-
+					// Add each user to each others friends list
+					function addFriendsList() {
+						db.collection("Users").doc(current_id).collection("Friends").doc(friend_id).set({
+							placeholder: true
+						})
+						.then(function(){
+							console.log("Friends collection successfully written!");
+							// Create new collection 'Friends' for each user
+							db.collection("Users").doc(friend_id).collection("Friends").doc(current_id).set({
+							placeholder: true
+							})
+							.then(function(){
+								console.log("Friends collection successfully written!");
+							})
+							.catch(function(error){
+								console.error("Error writing collection: ", error);
+							}); 
+						})
+						.catch(function(error){
+							console.error("Error writing collection: ", error);
+						});
+						
+					}
+					
 					// Triggered when the send new message form is submitted.
 					function onMessageFormSubmit(e) {
 					  e.preventDefault();
 					  // Check that the user entered a message and is signed in.
 					  if (messageInputElement.value && checkSignedInWithMessage()) {
 						saveMessage(messageInputElement.value).then(function() {
+							if (messageHasBeenSent == false){
+								addFriendsList();
+							}
 						  // Clear message text field and re-enable the SEND button.
 						  resetMaterialTextfield(messageInputElement);
 						  toggleButton();

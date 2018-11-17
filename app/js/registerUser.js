@@ -162,7 +162,7 @@
 		
 		// Create new collection 'Friends' for each user
 		db.collection("Users").doc(currentUID).collection("Friends").doc(currentUID).set({
-			uid: currentUID
+			placeholder: true
 		})
 		.then(function(){
             console.log("Friends collection successfully written!");

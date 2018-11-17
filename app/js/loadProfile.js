@@ -155,6 +155,7 @@
 		var current_id = String(value1);
 		var found=false;
 		var sessionID = '';
+		
         db.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
 			.get().then(function(results) {
 			if (results.empty) {
