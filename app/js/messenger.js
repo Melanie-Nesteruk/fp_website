@@ -1,6 +1,5 @@
 (function() {
 	var sessionID = document.currentScript.getAttribute('sessionID');
-	// var sessionID = "SDJbbC0ZioSW8Drx5pdT";
 	console.log('SESSION ID: ', sessionID);
 	const messageList = document.querySelector('#message-list');
 	// =======================================================
@@ -37,6 +36,7 @@
 		// CHECK IF USER IS AUTHORIZED FOR CONVERSATION
     firebase.auth().onAuthStateChanged(function(user) {
 		if (user) { // if user is authorized
+			
 			currentUID = user.uid;
 			firestore.collection("Chat-Groups").doc(sessionID)
 				.get().then(doc => {
@@ -84,6 +84,7 @@
 										messageHasBeenSent = true;
 										displayMessage(change.doc);
 										console.log('New message: ', change.doc.data());
+										
 									}
 								});
 						});
@@ -186,6 +187,7 @@
 						
 						li.appendChild(message);
 						messageList.appendChild(li);
+						messageListElement.scrollTop = messageListElement.scrollHeight;
 					}
 
 					// Enables or disables the submit button depending on the values of the input
@@ -211,7 +213,7 @@
 					checkSetup();
 
 					// Shortcuts to DOM Elements.
-					var messageListElement = document.getElementById('messages');
+					var messageListElement = document.getElementById('messenger');
 					var messageFormElement = document.getElementById('message-form');
 					var messageInputElement = messageFormElement.message;
 					var sendButtonElement = document.getElementById('sendButton');
