@@ -138,16 +138,19 @@
                     title: "Are you sure?",
                     icon: "warning",
                     text:  "Blocking " + blockUserProfile + " will prevent you from seeing their profile and sending them messages.",
-                    closeOnClickOutSide: false,
+                    closeOnClickOutside: false,
                     buttons: {
-                        cancel: {
-                            //closeModal: true,
-                            value: 0
-                        },
                         block: {
                             text: "Block",
-                            //closeModal: true,
-                            value: 1
+                            value: 1,
+                            visible: true,
+                            closeModal: true,  
+                        },
+                        cancel: {
+                            text: "Cancel",
+                            value: 0,
+                            visible: true,
+                            closeModal: true,
                         }
                     }
                 })
