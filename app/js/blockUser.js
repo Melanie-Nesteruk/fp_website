@@ -99,7 +99,7 @@
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
-                    return querySnapshot.empty; // Should be true if there are no documents with the blocked email,
+                    return querySnapshot.empty(); // Should be true if there are no documents with the blocked email,
                 })                              // Otherwise (empty) should be false
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
