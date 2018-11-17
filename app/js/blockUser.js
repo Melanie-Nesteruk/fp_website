@@ -148,7 +148,7 @@
                     },
                 })
                 .then(value => {
-                    if(value = 1){
+                    if(value == 1){
                         block(curUID);
                         swal({
                             title: "" + blockUserProfile + " was blocked.",
