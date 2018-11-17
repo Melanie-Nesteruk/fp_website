@@ -140,15 +140,14 @@
                     text:  "Blocking " + blockUserProfile + " will prevent you from seeing their profile and sending them messages.",
                     closeOnClickOutSide: false,
                     buttons: {
+                        cancel: {
+                            //closeModal: true,
+                            value: 0
+                        },
                         block: {
                             text: "Block",
                             //closeModal: true,
                             value: 1
-                        },
-                        cancel: {
-                            text: "Cancel",
-                            //closeModal: true,
-                            value: 0
                         }
                     }
                 })
