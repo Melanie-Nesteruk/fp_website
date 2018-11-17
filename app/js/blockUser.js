@@ -84,7 +84,7 @@
     // Takes the userID of the current user looking to block another user
     // Blocks user whose profile is currently being viewed
     function block(currentUID){
-        db.collection("Users").doc(currentUID).collection("Blocks").where("email", "==", blockUserEmail)
+        db.collection("Users").where("email", "==", blockUserEmail)
             .get()
                 .then(function(querySnapshot){
                     var doc = querySnapshot.docs[0];
