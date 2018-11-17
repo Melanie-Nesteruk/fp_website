@@ -36,7 +36,7 @@
     firebase.auth().onAuthStateChanged(function(user) {
 		if (user) { // if user is authorized
 			currentUID = user.uid;
-			firestore.collection("Chat-Groups").doc(sessionID)
+			firestore.collection("Chat-Groups").doc(document.currentScript.getAttribute('sid'))
 				.get().then(doc => {
 				if (!doc.exists) {
 					console.log("No documents found!");
@@ -74,7 +74,7 @@
 					// Loads chat messages history and listens for upcoming ones.
 					function loadMessages() {
 						
-						var observer = firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
+						var observer = firestore.collection('Chat-Groups').doc(document.currentScript.getAttribute('sid')).collection('Messages')
 							.onSnapshot(snapshot => {
 								let changes = snapshot.docChanges();
 								changes.forEach(change => {
@@ -90,7 +90,7 @@
 					// Saves a new message on the Firebase DB.
 					function saveMessage(messageText) {
 					  // Add a new message entry to the Firebase database.
-					  firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
+					  firestore.collection('Chat-Groups').doc(document.currentScript.getAttribute('sid')).collection('Messages')
 						.add({
 							fromID: currentUID,
 							text: messageText,
