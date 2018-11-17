@@ -45,9 +45,7 @@
         var friend_id = String(value);
 		var current_id = String(uid);
 		var found=false;
-		var sessionID = '';
-        console.log('Opening messenger with : ', friend_id, '&', current_id);
-		
+		var sessionID = '';		
 		
 		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
 			.get().then(function(results) {
@@ -57,7 +55,6 @@
 			} else {
                 var doc = results.docs[0];
                 sessionID = String(doc.id);
-				console.log('1st. SESSION ID: ', sessionID);
 				var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
 				window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 			}
