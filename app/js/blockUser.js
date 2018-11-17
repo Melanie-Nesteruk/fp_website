@@ -28,42 +28,6 @@
     // Get elements/user input
     const btnBlockAcct = document.getElementById('btnBlockAcct');
 
-    // Returns the current Date/Time in DD/MM/YY format
-    // May or may not need for Timestamp creation
-    function getTimeDate(){
-        var today = new Date();
-        var day = today.getDate();
-        var month = today.getMonth()+1; //(Starts @ zero)
-        var year = today.getFullYear();
-        var hours = today.getHours();
-        var minutes = today.getMinutes();
-        var secounds = today.getSeconds();
-
-        if(day < 10){
-            day = '0' + day;
-        }
-        if(month < 10){
-            month = '0' + month
-        }
-        if(hours < 10){
-            hours = '0' + hours;
-        }
-        if(minutes < 10){
-            minutes = '0' + minutes;
-        }
-        if(secounds < 10){
-            secounds = '0' + secounds;
-        }
-
-        //Short Date
-        //today = day + '/' + month + '/' + year; Short-hand version
-
-        //ISO Date-Time format
-        today = "20" + year + "-" + month + "-" + day + "T" + hours + ":" + minutes + ":" + secounds + "Z";
-
-        return today;
-    }
-
     // Add record of currentUser's block to the DB
     function addBlocktoDB(cUID, blockUID, blockEmail){
         db.collection("Users").doc(cUID).collection("Blocks").doc(blockUID).set({
@@ -95,6 +59,12 @@
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
                 });
+    }
+
+    // Takes the userID of the current user looking to unblock another user
+    // Unblocks the user whose profile is currently being viewed.
+    function unblock(currrentUID){
+
     }
 
     // Takes a current user's UID & the email of another user to check if that user is blocked
@@ -172,7 +142,8 @@
                             }
                         })
                         .then(value => {
-                            window.location.href = "/profile?user=" + currentShortEmail;// Redirect user to their profile after block
+                            // Redirect user to their profile after block
+                            window.location.href = "/profile?user=" + currentShortEmail;
                             return;
                         }); 
                     }
