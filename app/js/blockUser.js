@@ -21,7 +21,8 @@
     db.settings(settings);
 
     // Varibles used by block(), addBlocktoDB(), & isBlocked() functions
-    var currentUID = String(firebase.auth().currentUser.uid);
+    var cUser = firebase.auth().currentUser;
+    var currentUID = cUser.uid;
     var currentEmail = String(currentUser.email);
     var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
     var blockUserProfile = document.currentScript.getAttribute('inputUser');
