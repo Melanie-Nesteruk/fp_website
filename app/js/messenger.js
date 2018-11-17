@@ -165,7 +165,6 @@
 					// Resets the given MaterialTextField.
 					function resetMaterialTextfield(element) {
 					  element.value = '';
-					  element.parentNode.MaterialTextfield.boundUpdateClassesHandler();
 					}
 
 					// Displays a Message in the UI.
