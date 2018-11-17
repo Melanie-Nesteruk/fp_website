@@ -20,10 +20,11 @@
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
 
-    // Varibles used by block(), addBlocktoDB(), & isBlocked() functions
+    // Varibles used by block() / unblock(), addBlocktoDB() / removeBlockFromDB(), & isBlocked() functions
     var blockUserProfile = document.currentScript.getAttribute('inputUser');
     var blockUserEmail = String(blockUserProfile + "@kent.edu");
     var blockUsersID = "";
+    var unblockUserID = "";
 
     // Get elements/user input
     const btnBlockAcct = document.getElementById('btnBlockAcct');
@@ -31,8 +32,8 @@
     // Add record of currentUser's block to the DB
     function addBlocktoDB(cUID, blockUID, blockEmail){
         db.collection("Users").doc(cUID).collection("Blocks").doc(blockUID).set({
-            uid_Blocked: blockUID,
-            email_Blocked: blockEmail,
+            uid_blocked: blockUID,
+            email_blocked: blockEmail,
             date_blocked: firebase.firestore.Timestamp.now(),
             block_removed: false                        
         })
@@ -61,10 +62,34 @@
                 });
     }
 
+    // Updates block record in the DB so that user is no longer seen as blocked, does NOT delete block document
+    function removeBlockFromDB(cUID, ubUID, ubEmail){
+        db.collection("Users").doc(cUID).collection("Blocks").doc(ubUID).set({
+            date_unblocked: firebase.firestore.Timestamp.now(),
+            block_removed: true                        
+        })
+        .then(function(){
+            console.log("Block user documents successfully written!");
+        })
+        .catch(function(error){
+            console.error("Error writing document: ", error);
+        });
+    }
+
     // Takes the userID of the current user looking to unblock another user
     // Unblocks the user whose profile is currently being viewed.
     function unblock(currrentUID){
+        db.collection("Users").doc(currrentUID).collection("Blocks").where("email_blocked", "==", blockUserEmail)
+            .get()
+                .then(function(querySnapshot){
+                    var doc = querySnapshot.docs[0];
+                    unblockUserID = String(doc.id);
 
+                    removeBlockFromDB(currentUID, unblockUserID, blockUserEmail);
+                })
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                });
     }
 
     // Takes a current user's UID & the email of another user to check if that user is blocked
@@ -78,7 +103,9 @@
                 })                              // Otherwise (empty) should be false
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
+                    return false;
                 });
+        return false;
     }
 
     // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
@@ -151,7 +178,51 @@
                 });
             }
             else{   // Otherwise ask to unblock the user
-
+                swal({
+                    title: "Are you sure?",
+                    icon: "info",
+                    text:  "Please confirm you want to unblock " + blockUserProfile + ".",
+                    closeOnClickOutside: false,
+                    closeOnEsc: false,
+                    buttons: {
+                        block: {
+                            text: "Unblock",
+                            value: 1,
+                            visible: true,
+                            closeModal: true,  
+                        },
+                        cancel: {
+                            text: "Cancel",
+                            value: 0,
+                            visible: true,
+                            closeModal: true,
+                        }
+                    }
+                })
+                .then(value => {
+                    if(value == 1){
+                        unblock(curUID);
+                        swal({
+                            title: "" + blockUserProfile + " was unblocked.",
+                            icon: "success",
+                            closeOnClickOutside: false,
+                            closeOnEsc: false,
+                            buttons: {
+                                confirm: {
+                                    text: "Continue",
+                                    closeModal: true,
+                                    value:      1
+                                }
+                            }
+                        })
+                        .then(value => {
+                            // Reload the page after unblocking
+                            window.location.href = "/profile?user=" + blockUserProfile;
+                            return;
+                        }); 
+                    }
+                    return;
+                });
             }
             return;
         }); 
