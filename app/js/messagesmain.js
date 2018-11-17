@@ -55,7 +55,7 @@
 			} else {
                 var doc = results.docs[0];
                 sessionID = String(doc.id);
-				var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?SID=' + sessionID;
+				var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?sid=' + sessionID;
 				window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 			}
         })
