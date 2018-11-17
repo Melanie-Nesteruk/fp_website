@@ -187,6 +187,7 @@
 						
 						li.appendChild(message);
 						messageList.appendChild(li);
+						var messageListElement = document.getElementById('scrollToBottom');
 						messageListElement.scrollTop = messageListElement.scrollHeight;
 					}
 
