@@ -93,7 +93,7 @@
 					// Saves a new message on the Firebase DB.
 					function saveMessage(messageText) {
 					  // Add a new message entry to the Firebase database.
-					  firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
+					  return firestore.collection('Chat-Groups').doc(sessionID).collection('Messages')
 						.add({
 							fromID: currentUID,
 							text: messageText,
