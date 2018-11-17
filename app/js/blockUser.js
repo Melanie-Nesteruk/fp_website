@@ -161,6 +161,8 @@
                         swal({
                             title: "" + blockUserProfile + " was blocked.",
                             icon: "success",
+                            closeOnClickOutside: false,
+                            closeOnEsc: false,
                             buttons: {
                                 confirm: {
                                     text: "Continue",
