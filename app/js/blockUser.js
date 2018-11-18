@@ -131,10 +131,8 @@
                 });
     }
 
-    // Add event listner for block event
-    if (btnBlockAcct != null) {
-        btnBlockAcct.addEventListener('click', function(){
-            var cUser = firebase.auth().currentUser;
+    function blockSequence(){
+        var cUser = firebase.auth().currentUser;
             var curUID = cUser.uid;
             var currentEmail = String(cUser.email);
             var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
@@ -242,7 +240,13 @@
                     icon: "error"
                 });
             }
-            return;
-        }); 
+        return;
+    } 
+
+    // Add event listner for block event
+    if (btnBlockAcct != null) {
+        btnBlockAcct.addEventListener('click', function(){
+            blockSequence();
+        })
     }
 }());
