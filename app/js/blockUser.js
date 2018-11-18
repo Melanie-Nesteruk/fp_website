@@ -140,7 +140,7 @@
             //blockState = isBlockedE(curUID, blockUserEmail);
             //console.log("BlockState = ", blockState); 
 
-            db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
+            db.collection("Users").doc(curUID).collection("Blocks").where("email_blocked", "==", blockUserEmail)
             .get()
                 .then(function(querySnapshot){
                     if(Number(querySnapshot.size) == 0){ // if .size = 0 there are no documents (user is NOT blocked )
