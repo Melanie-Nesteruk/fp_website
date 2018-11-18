@@ -176,7 +176,7 @@
 						let li = document.createElement('li');
 						let message = document.createElement('span');
 						
-						li.setAttribute('data-id', doc.id);
+						li.setAttribute('id', doc.id);
 						message.textContent = doc.data().text;
 						var fromID = String(doc.data().fromID);
 						if(currentUID == fromID){
