@@ -105,7 +105,7 @@
                 .then(function(querySnapshot){
                     console.log("Inside isBlockedE query");
                     console.log(querySnapshot.size);
-                    if(querySnapshot.size == 0){ return 1; } // if .size = 0 there are no documents (user is NOT blocked )
+                    if(Number(querySnapshot.size) == 0){ return 1; } // if .size = 0 there are no documents (user is NOT blocked )
                     else { return 0; }
                 })                              
                 .catch(function(error){
@@ -135,9 +135,11 @@
             var cUser = firebase.auth().currentUser;
             var curUID = cUser.uid;
             var currentEmail = String(cUser.email);
-            var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@")); 
+            var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
+            var blockState = isBlockedE(curUID, blockUserEmail);
+            console.log("BlockState = ", blockState); 
 
-            if(isBlockedE(curUID, blockUserEmail) == 1){  // If profile is currently unblocked, ask to block the user
+            if(blockState == 1){  // If profile is currently unblocked, ask to block the user
                 swal({
                     title: "Are you sure?",
                     icon: "warning",
@@ -184,7 +186,7 @@
                     return;
                 });
             }
-            else if(isBlockedE(curUID, blockUserEmail) == 0){   // Otherwise ask to unblock the user
+            else if(blockState == 0){   // Otherwise ask to unblock the user
                 swal({
                     title: "Are you sure?",
                     icon: "info",
@@ -231,7 +233,7 @@
                     return;
                 });
             }
-            else{   // An error occured checking blocks
+            else{   // An error occured checking blocks (blockState = 2)
                 swal({
                     text: "An error occured while blocking.",
                     icon: "error"
