@@ -34,7 +34,7 @@
     //	Check if users are on blocked list
     //
 	function isBlockedID(cUID, bUID){
-			db.collection("Users").doc(cUID).collection("Blocks").where("uid_blocked", "==", bUID)
+			firestore.collection("Users").doc(cUID).collection("Blocks").where("uid_blocked", "==", bUID)
 				.get()
 					.then(function(querySnapshot){
 						return !querySnapshot.empty; // Should be true if there are no documents with the blocked UID,
