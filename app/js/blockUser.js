@@ -101,19 +101,20 @@
     // Return 1 if user IS NOT blocked
     // Return 2 if an error has occured
     function isBlockedE(cUID, bEmail){
+        var bVal = 2;
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
                     console.log("Inside isBlockedE query");
                     console.log(querySnapshot.size);
-                    if(Number(querySnapshot.size) == 0){ return 1; } // if .size = 0 there are no documents (user is NOT blocked )
-                    else { return 0; }
+                    if(Number(querySnapshot.size) == 0){ bVal = 1; } // if .size = 0 there are no documents (user is NOT blocked )
+                    else { bVal = 0; }
                 })                              
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
-                    return 2;
+                    bVal = 2;
                 });
-        return 2; // Something went wrong
+        return bVal; 
     }
 
     // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
