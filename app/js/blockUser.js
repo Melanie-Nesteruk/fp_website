@@ -95,19 +95,22 @@
     // Takes a current user's UID & the email of another user to check if that user is blocked
     // Returns true if user who's email was passed IS being blocked by the given userID (exists in the cUID's blocks collection)
     // Returns false otherwise 
+
+    // Return 0 if user IS blocked
+    // Return 1 if user IS NOT blocked
+    // Return 2 if an error has occured
     function isBlockedE(cUID, bEmail){
-        var isBlocked = false;
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
-                    if(querySnapshot.empty){ isBlocked = false; } // .empty is true if there are no documents with the blocked email (user is not blocked),
-                    else { isBlocked = true; }                  // Otherwise (empty) should be false (user is blocked)
+                    if(querySnapshot.size == 0){ return 1; } // if .size = 0 there are no documents (user is NOT blocked )
+                    else { return 0; }
                 })                              
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
-                    isBlocked = true;
+                    return 2;
                 });
-        return isBlocked;
+        return 2; // Something went wrong
     }
 
     // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
@@ -132,7 +135,7 @@
             var currentEmail = String(cUser.email);
             var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@")); 
 
-            if(!(isBlockedE(curUID, blockUserEmail))){  // If profile is currently unblocked, ask to block the user
+            if(isBlockedE(curUID, blockUserEmail) == 1){  // If profile is currently unblocked, ask to block the user
                 swal({
                     title: "Are you sure?",
                     icon: "warning",
@@ -179,7 +182,7 @@
                     return;
                 });
             }
-            else{   // Otherwise ask to unblock the user
+            else if(isBlockedE(curUID, blockUserEmail) == 0){   // Otherwise ask to unblock the user
                 swal({
                     title: "Are you sure?",
                     icon: "info",
@@ -224,6 +227,12 @@
                         }); 
                     }
                     return;
+                });
+            }
+            else{   // An error occured checking blocks
+                swal({
+                    text: "An error occured while blocking.",
+                    icon: "error"
                 });
             }
             return;
