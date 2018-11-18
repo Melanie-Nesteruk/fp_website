@@ -204,7 +204,7 @@
         firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
 				blockID = doc.id;
-				var blocked = isBlockedID(uid, blockID).then(function(){
+				isBlockedID(uid, blockID).then(blocked => {
 					console.log("Blocked? : ", blocked);
 					if(!blocked){
 						renderFriendsList(doc);
