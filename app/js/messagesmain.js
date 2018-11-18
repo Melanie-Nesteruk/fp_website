@@ -33,8 +33,16 @@
     // =======================================================
     //	Check if users are on blocked list
     //
-
-	// function isUserBlocked(currentID, friendID){ }
+	function isBlockedID(cUID, bUID){
+			db.collection("Users").doc(cUID).collection("Blocks").where("uid_blocked", "==", bUID)
+				.get()
+					.then(function(querySnapshot){
+						return !querySnapshot.empty; // Should be true if there are no documents with the blocked UID,
+					})                              // Otherwise (empty) should be false
+					.catch(function(error){
+						console.log("Error getting document ID: ", error);
+					});
+	}
 	
 	
     // =======================================================
@@ -195,13 +203,12 @@
 
         firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
-				
-				// DO A CHECK 'BLOCK' Function
-				// if (!blocked)
-					// renderFriendsList(doc);
-				// else do nothing
-				
-                renderFriendsList(doc);
+				var blocked = isBlockedID(cUID, bUID).then(function(){
+					console.log("Blocked? : ", blocked);
+					if(!blocked){
+						renderFriendsList(doc);
+					}
+				});
             })
         });
         
