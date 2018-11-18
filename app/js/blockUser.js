@@ -25,6 +25,7 @@
     var blockUserEmail = String(blockUserProfile + "@kent.edu");
     var blockUsersID = "";
     var unblockUserID = "";
+    var blockState = 0;
 
     // Get elements/user input
     const btnBlockAcct = document.getElementById('btnBlockAcct');
@@ -131,12 +132,13 @@
 
     // Add event listner for block event
     if (btnBlockAcct != null) {
-        btnBlockAcct.addEventListener('click', e=> {
+        btnBlockAcct.addEventListener('click', function(){
             var cUser = firebase.auth().currentUser;
             var curUID = cUser.uid;
             var currentEmail = String(cUser.email);
             var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
-            var blockState = isBlockedE(curUID, blockUserEmail);
+
+            blockState = isBlockedE(curUID, blockUserEmail);
             console.log("BlockState = ", blockState); 
 
             if(blockState == 1){  // If profile is currently unblocked, ask to block the user
