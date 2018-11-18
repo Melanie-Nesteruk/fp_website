@@ -187,6 +187,7 @@
 						
 						li.appendChild(message);
 						messageList.appendChild(li);
+						var messageListElement= document.getElementById(doc.id);
 						messageListElement.scrollTop = messageListElement.scrollHeight;
 					}
 
@@ -213,7 +214,6 @@
 					checkSetup();
 
 					// Shortcuts to DOM Elements.
-					var messageListElement = document.getElementById('scrollToBottom');
 					var messageFormElement = document.getElementById('message-form');
 					var messageInputElement = messageFormElement.message;
 					var sendButtonElement = document.getElementById('sendButton');
