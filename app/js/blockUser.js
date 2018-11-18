@@ -103,6 +103,8 @@
         db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
             .get()
                 .then(function(querySnapshot){
+                    console.log("Inside isBlockedE query");
+                    console.log(querySnapshot.size);
                     if(querySnapshot.size == 0){ return 1; } // if .size = 0 there are no documents (user is NOT blocked )
                     else { return 0; }
                 })                              
