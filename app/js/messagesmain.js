@@ -200,10 +200,8 @@
 						console.log("Error getting document ID: ", error);
 					});
 						
-					}
 				});
-            })
-        });
+            });
         
     } else { // If user is not authorized
         console.log('User is not authorized to access this webpage');
