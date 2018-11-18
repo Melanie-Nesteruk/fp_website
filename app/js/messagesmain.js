@@ -30,20 +30,6 @@
     }
     */
 	
-    // =======================================================
-    //	Check if users are on blocked list
-    //
-	function isBlockedID(cUID, bUID){
-			firestore.collection("Users").doc(cUID).collection("Blocks").where("uid_blocked", "==", bUID)
-				.get()
-					.then(function(querySnapshot){
-						return !querySnapshot.empty; // Should be true if there are no documents with the blocked UID,
-					})                              // Otherwise (empty) should be false
-					.catch(function(error){
-						console.log("Error getting document ID: ", error);
-					});
-	}
-	
 	
     // =======================================================
     //	Create elements and render friends list
@@ -200,14 +186,20 @@
         //  each friend's name. 'Message' button click will bring
         //	up the conversation.
         //
-		var blockID = '';
+		
         firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
-				blockID = doc.id;
-				isBlockedID(uid, blockID).then(blocked => {
-					console.log("Blocked? : ", blocked);
-					if(!blocked){
-						renderFriendsList(doc);
+				firestore.collection("Users").doc(uid).collection("Blocks").where("uid_blocked", "==", doc.id)
+				.get()
+					.then(function(querySnapshot){
+						if(querySnapshot.empty) {		// Should be true if there are no documents with the blocked UID,
+							renderFriendsList(doc);		// Otherwise (empty) should be false
+						}
+					})                             
+					.catch(function(error){
+						console.log("Error getting document ID: ", error);
+					});
+						
 					}
 				});
             })
