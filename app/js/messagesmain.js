@@ -200,10 +200,11 @@
         //  each friend's name. 'Message' button click will bring
         //	up the conversation.
         //
-
+		var blockID = '';
         firestore.collection('Users').doc(uid).collection('Friends').get().then((snapshot) => {
             snapshot.docs.forEach(doc => {
-				var blocked = isBlockedID(cUID, bUID).then(function(){
+				blockID = doc.id;
+				var blocked = isBlockedID(uid, bUID).then(function(){
 					console.log("Blocked? : ", blocked);
 					if(!blocked){
 						renderFriendsList(doc);
