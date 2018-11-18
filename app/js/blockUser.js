@@ -25,7 +25,6 @@
     var blockUserEmail = String(blockUserProfile + "@kent.edu");
     var blockUsersID = "";
     var unblockUserID = "";
-    var blockState = 0;
 
     // Get elements/user input
     const btnBlockAcct = document.getElementById('btnBlockAcct');
@@ -92,10 +91,6 @@
                     console.log("Error getting document ID: ", error);
                 });
     }
- 
-    // Takes a current user's UID & the email of another user to check if that user is blocked
-    // Returns true if user who's email was passed IS being blocked by the given userID (exists in the cUID's blocks collection)
-    // Returns false otherwise 
 
     // Return 0 if user IS blocked
     // Return 1 if user IS NOT blocked
@@ -106,9 +101,9 @@
             .get()
                 .then(function(querySnapshot){
                     console.log("Inside isBlockedE query");
-                    console.log(querySnapshot.size);
-                    if(Number(querySnapshot.size) == 0){ bVal = 1; } // if .size = 0 there are no documents (user is NOT blocked )
-                    else { bVal = 0; }
+                    console.log("Snapshot size = ", querySnapshot.size);
+                    if(Number(querySnapshot.size) == 0){ bVal = 1; } // if .size = 0 there are no documents in the query(user NOT blocked)  
+                    else { bVal = 0; }                               // Otherwise user IS blocked
                 })                              
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
@@ -131,7 +126,11 @@
                 });
     }
 
-    function blockSequence(){
+
+    // Main block / unblock functionality
+    // Query from isBlockedE() with block & unblock functionality nested inside it 
+    // (because firebase asynchronous queries are finicky and annoying)
+    function blockUnblockSequence(){
         var cUser = firebase.auth().currentUser;
         var curUID = cUser.uid;
         var currentEmail = String(cUser.email);
@@ -241,10 +240,10 @@
         return;
     } 
 
-    // Add event listner for block event
+    // Add event listner for block / unblock event
     if (btnBlockAcct != null) {
         btnBlockAcct.addEventListener('click', function(){
-            blockSequence();
+            blockUnblockSequence();
         })
     }
 }());
