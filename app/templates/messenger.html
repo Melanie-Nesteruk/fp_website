@@ -29,12 +29,11 @@
     <!--<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script>-->
 	</head>
 	
-
+	<div class = "wrapper">
 	<ul id="message-list">
 		
 	</ul>
-	<div id = "scrollToBottom">
-	</div>
+	
 	<!-- Messages container -->
 	<div class="footer">
         <form class="form-inline" id="message-form" action="#">
@@ -44,7 +43,12 @@
 			<button id="sendButton" type="submit" class="sendButton">Send</button>
 		</form>
 	</div>
+	</div>
 <style>
+.wrapper {
+	min-height: 100%;
+	margin-bottom: -50px;
+}
 
 .sendButton {
   background-color : #31B0D5;
