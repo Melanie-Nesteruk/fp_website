@@ -79,8 +79,8 @@
 
     // Takes the userID of the current user looking to unblock another user
     // Unblocks the user whose profile is currently being viewed.
-    function unblock(currrentUID){
-        db.collection("Users").doc(currrentUID).collection("Blocks").where("email_blocked", "==", blockUserEmail)
+    function unblock(currentUID){
+        db.collection("Users").doc(currentUID).collection("Blocks").where("email_blocked", "==", blockUserEmail)
             .get()
                 .then(function(querySnapshot){
                     var doc = querySnapshot.docs[0];
@@ -133,14 +133,11 @@
 
     function blockSequence(){
         var cUser = firebase.auth().currentUser;
-            var curUID = cUser.uid;
-            var currentEmail = String(cUser.email);
-            var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
+        var curUID = cUser.uid;
+        var currentEmail = String(cUser.email);
+        var currentShortEmail = currentEmail.substring(0, currentEmail.indexOf("@"));
 
-            //blockState = isBlockedE(curUID, blockUserEmail);
-            //console.log("BlockState = ", blockState); 
-
-            db.collection("Users").doc(curUID).collection("Blocks").where("email_blocked", "==", blockUserEmail)
+        db.collection("Users").doc(curUID).collection("Blocks").where("email_blocked", "==", blockUserEmail)
             .get()
                 .then(function(querySnapshot){
                     if(Number(querySnapshot.size) == 0){ // if .size = 0 there are no documents (user is NOT blocked )
@@ -241,107 +238,6 @@
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
                 });
-
-            /*if(blockState == 1){  // If profile is currently unblocked, ask to block the user
-                swal({
-                    title: "Are you sure?",
-                    icon: "warning",
-                    text:  "Blocking " + blockUserProfile + " will prevent you from seeing their profile and sending them messages.",
-                    closeOnClickOutside: false,
-                    closeOnEsc: false,
-                    buttons: {
-                        block: {
-                            text: "Block",
-                            value: 1,
-                            visible: true,
-                            closeModal: true,  
-                        },
-                        cancel: {
-                            text: "Cancel",
-                            value: 0,
-                            visible: true,
-                            closeModal: true,
-                        }
-                    }
-                })
-                .then(value => {
-                    if(value == 1){
-                        block(curUID);
-                        swal({
-                            title: "" + blockUserProfile + " was blocked.",
-                            icon: "success",
-                            closeOnClickOutside: false,
-                            closeOnEsc: false,
-                            buttons: {
-                                confirm: {
-                                    text: "Continue",
-                                    closeModal: true,
-                                    value:      1
-                                }
-                            }
-                        })
-                        .then(value => {
-                            // Redirect user to their profile after block
-                            window.location.href = "/profile?user=" + currentShortEmail;
-                            return;
-                        }); 
-                    }
-                    return;
-                });
-            }
-            else if(blockState == 0){   // Otherwise ask to unblock the user
-                swal({
-                    title: "Are you sure?",
-                    icon: "info",
-                    text:  "Please confirm you want to unblock " + blockUserProfile + ".",
-                    closeOnClickOutside: false,
-                    closeOnEsc: false,
-                    buttons: {
-                        block: {
-                            text: "Unblock",
-                            value: 1,
-                            visible: true,
-                            closeModal: true,  
-                        },
-                        cancel: {
-                            text: "Cancel",
-                            value: 0,
-                            visible: true,
-                            closeModal: true,
-                        }
-                    }
-                })
-                .then(value => {
-                    if(value == 1){
-                        unblock(curUID);
-                        swal({
-                            title: "" + blockUserProfile + " was unblocked.",
-                            icon: "success",
-                            closeOnClickOutside: false,
-                            closeOnEsc: false,
-                            buttons: {
-                                confirm: {
-                                    text: "Continue",
-                                    closeModal: true,
-                                    value:      1
-                                }
-                            }
-                        })
-                        .then(value => {
-                            // Reload the page after unblocking
-                            window.location.href = "/profile?user=" + blockUserProfile;
-                            return;
-                        }); 
-                    }
-                    return;
-                });
-            }
-            else{   // An error occured checking blocks (blockState = 2)
-                swal({
-                    text: "An error occured while blocking.",
-                    icon: "error"
-                });
-            }*/
         return;
     } 
 
