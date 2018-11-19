@@ -92,41 +92,6 @@
                 });
     }
 
-    // Return 0 if user IS blocked
-    // Return 1 if user IS NOT blocked
-    // Return 2 if an error has occured
-    function isBlockedE(cUID, bEmail){
-        var bVal = 2;
-        db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
-            .get()
-                .then(function(querySnapshot){
-                    console.log("Inside isBlockedE query");
-                    console.log("Snapshot size = ", querySnapshot.size);
-                    if(Number(querySnapshot.size) == 0){ bVal = 1; } // if .size = 0 there are no documents in the query(user NOT blocked)  
-                    else { bVal = 0; }                               // Otherwise user IS blocked
-                })                              
-                .catch(function(error){
-                    console.log("Error getting document ID: ", error);
-                    bVal = 2;
-                });
-        return bVal; 
-    }
-
-    // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
-    // Returns true if cUID is blocking bUID
-    // Returns false otherwise
-    function isBlockedID(cUID, bUID){
-        db.collection("Users").doc(cUID).collection("Blocks").where("uid_blocked", "==", bUID)
-            .get()
-                .then(function(querySnapshot){
-                    return querySnapshot.empty; // Should be true if there are no documents with the blocked UID,
-                })                              // Otherwise (empty) should be false
-                .catch(function(error){
-                    console.log("Error getting document ID: ", error);
-                });
-    }
-
-
     // Main block / unblock functionality
     // Query from isBlockedE() with block & unblock functionality nested inside it 
     // (because firebase asynchronous queries are finicky and annoying)
@@ -245,5 +210,43 @@
         btnBlockAcct.addEventListener('click', function(){
             blockUnblockSequence();
         })
+    }
+
+    //////////////////////
+    //(Example Queries)///
+    //////////////////////
+
+    // Return 0 if user IS blocked
+    // Return 1 if user IS NOT blocked
+    // Return 2 if an error has occured
+    function isBlockedE(cUID, bEmail){
+        var bVal = 2;
+        db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", bEmail)
+            .get()
+                .then(function(querySnapshot){
+                    console.log("Inside isBlockedE query");
+                    console.log("Snapshot size = ", querySnapshot.size);
+                    if(Number(querySnapshot.size) == 0){ bVal = 1; } // if .size = 0 there are no documents in the query(user NOT blocked)  
+                    else { bVal = 0; }                               // Otherwise user IS blocked
+                })                              
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                    bVal = 2;
+                });
+        return bVal; 
+    }
+
+    // Takes a current user's UID & a blocked user's UID to check if the current user blocked the other UID
+    // Returns true if cUID is blocking bUID
+    // Returns false otherwise
+    function isBlockedID(cUID, bUID){
+        db.collection("Users").doc(cUID).collection("Blocks").where("uid_blocked", "==", bUID)
+            .get()
+                .then(function(querySnapshot){
+                    return querySnapshot.empty; // Should be true if there are no documents with the blocked UID (User is not blocked),
+                })                              // Otherwise (empty) should be false (User is blocked)
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                });
     }
 }());

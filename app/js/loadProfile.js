@@ -59,7 +59,7 @@
     var twitterName = "";
     var isVerified = false;
  
-    function LoadProfile(isVerified)
+    function LoadProfile(isVerified, UID)
     {
         console.log("Inside loadProfile()");
 
@@ -69,7 +69,7 @@
         }
 
         SetBasicFields();
-        SetAdditionalFields();
+        SetAdditionalFields(UID);
     };
     
     function SetBasicFields()
@@ -115,15 +115,16 @@
                 instagramName = String(doc.get("instagram"));
                 twitterName = String(doc.get("twitter"));
 
-                LoadProfile(isVerified);
+                LoadProfile(isVerified, userID);
         })
         .catch(function(error){
             console.log("Error getting document ID: ", error);
         });
     };
 
-    function SetAdditionalFields()
+    function SetAdditionalFields(currentProfileID)
     {
+
         if (editMode)
         {
             majorDOM.value = major;
@@ -138,15 +139,40 @@
         }
         else
         {
-            majorDOM.innerHTML = major;
-            minorDOM.innerHTML = minor;
-            graduationDOM.innerHTML = gradYear;
-            websiteDOM.innerHTML = website;
-            websiteDOM.href = "http://" + website;
-            bioDOM.innerHTML = bio;
-            facebookDOM.href = "https://www.facebook.com/" + facebookName;
-            instagramDOM.href = "https://www.instagram.com/" + instagramName;
-            twitterDOM.href = "https://www.twitter.com/" + twitterName;
+            db.collection("Users").doc(currentUser.uid).collection("Blocks").where("uid_blocked", "==", currentProfileID)
+            .get()
+                .then(function(querySnapshot){
+                    // Should be true if there are no documents with the blocked UID (User is not blocked)
+                    // Then display the whole profile
+                    if(querySnapshot.empty){ 
+                        majorDOM.innerHTML = major;
+                        minorDOM.innerHTML = minor;
+                        graduationDOM.innerHTML = gradYear;
+                        websiteDOM.innerHTML = website;
+                        websiteDOM.href = "http://" + website;
+                        bioDOM.innerHTML = bio;
+                        facebookDOM.href = "https://www.facebook.com/" + facebookName;
+                        instagramDOM.href = "https://www.instagram.com/" + instagramName;
+                        twitterDOM.href = "https://www.twitter.com/" + twitterName;
+                    }
+                    // Otherwise (empty) should be false (User is blocked)
+                    // Display a limited (blocked) profile
+                    else{
+                        majorDOM.innerHTML = "Unblock to view major";
+                        minorDOM.innerHTML = "Unblock to view minor";
+                        graduationDOM.innerHTML = "Unblock to view graduation year";
+                        websiteDOM.innerHTML = "Unblock to access website";
+                        websiteDOM.href = "Unblock to access website";
+                        bioDOM.innerHTML = "Unblock to view bio";
+                        facebookDOM.href = "Unblock to access Facebook";
+                        instagramDOM.href = "Unblock to access Instagram"
+                        twitterDOM.href = "Unblock to access Twitter";
+                    } 
+                })                              
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                });
+            
         }
     };
 	
