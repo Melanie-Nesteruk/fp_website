@@ -167,8 +167,8 @@
             })
             .then(value => {
                 if (value == 1) {
-                    db.collection("Profiles").doc(uidToDelete).delete().then(function(){
-                        db.collection("Users").doc(uidToDelete).delete().then(function(){
+                    // db.collection("Profiles").doc(uidToDelete).delete().then(function(){
+                    //     db.collection("Users").doc(uidToDelete).delete().then(function(){
                             db.collection("Users").doc(uidToDelete).update({
                                 to_delete: true
                             }).then(function() {
@@ -188,8 +188,8 @@
                                     window.location.reload();
                                 });
                             });
-                        });
-                    });
+                    //     });
+                    // });
                     return;
                 }
             });
