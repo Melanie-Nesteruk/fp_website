@@ -13,6 +13,13 @@
         firebase.initializeApp(config);
     }
     
+    // Fetch an instance of the DB
+    const db = firebase.firestore(app);
+
+    // Disable deprecated features
+    const settings = { timestampsInSnapshots: true };
+    db.settings(settings);
+
     var initialLoad = true;
 
     firebase.auth().onAuthStateChanged(function() {
@@ -23,13 +30,6 @@
         else {
             // Show "Mailing List" and "Login"
             setNavigation(false);
-            // if (!initialLoad) {
-            //     window.location.href = "/login";
-            //     swal({
-            //         text: "You have been signed out.",
-            //         icon: "success"
-            //     });
-            // }
         }
         
     });
@@ -105,6 +105,38 @@
                 node.appendChild(linkNode);
                 document.getElementById("navBarList").appendChild(node);
             }
+
+            // If Admin, add "Manage Users" link
+            db.collection('Users').doc(firebase.auth().currentUser.uid).get()
+                .then(function(querySnapshot){
+                    var doc = querySnapshot;
+                    if (doc.get("admin"))
+                    {
+                        node = document.getElementById("manageUsersNav");
+                        if (!node) {
+                            node = document.createElement("LI");
+                            node.classList.add("nav-item");
+                            node.classList.add("px-lg-4");
+                            node.id = "manageUsersNav";
+                            
+                            var linkNode = document.createElement("a");
+                            linkNode.classList.add("nav-link");
+                            linkNode.classList.add("text-uppercase");
+                            linkNode.classList.add("text-expanded");
+                            linkNode.id = "manageUsers";
+                            linkNode.href = "/manage-users";
+                            var textNode = document.createTextNode("Manage Users");
+                
+                            linkNode.appendChild(textNode); 
+                            node.appendChild(linkNode);
+                            document.getElementById("navBarList").appendChild(node);
+                        }
+                    }
+                })
+                .catch(function(error){
+                    console.log("Error getting \"admin\" user field for navigation: ", error);
+                });
+
 
             // Add "Logout" nav link
             node = document.getElementById("logoutNav");
