@@ -219,7 +219,7 @@
 					var sendButtonElement = document.getElementById('sendButton');
 
 					// Saves message on form submit.
-					sendButtonElement.addEventListener('onclick', onMessageFormSubmit);
+					sendButtonElement.addEventListener('click', onMessageFormSubmit);
 
 					// Toggle for the button.
 					messageInputElement.addEventListener('keyup', toggleButton);
