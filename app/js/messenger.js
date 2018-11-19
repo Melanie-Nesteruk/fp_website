@@ -104,14 +104,14 @@
 
 					// Add each user to each others friends list
 					function addFriendsList() {
-						firestore.collection("Users").doc(current_id).collection("Friends").doc(friend_id).set({
+						firestore.collection("Users").doc(currentUID).collection("Friends").doc(friendUID).set({
 							placeholder: true
 						})
 						.then(function(){
 							console.log("Friends collection successfully written!");
 							// Create new collection 'Friends' for each user
-							firestore.collection("Users").doc(friend_id).collection("Friends").doc(current_id).set({
-							placeholder: true
+							firestore.collection("Users").doc(friendUID).collection("Friends").doc(currentUID).set({
+								placeholder: true
 							})
 							.then(function(){
 								console.log("Friends collection successfully written!");
