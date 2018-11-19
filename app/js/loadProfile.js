@@ -75,7 +75,22 @@
     function SetBasicFields()
     {
         fullNameDOM.innerHTML = fName + " " + lName;
-        emailDOM.innerHTML = email;
+
+        db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", String(inputUser + "@kent.edu"))
+            .get()
+                .then(function(querySnapshot){
+                    if(querySnapshot.empty){// Should be true if there are no documents with the blocked UID (User is not blocked),
+                        emailDOM.innerHTML = email;
+                    }
+                    else{
+                        emailDOM.innerHTML = "Unblock to view content";
+                    }
+                })                              // Otherwise (empty) should be false (User is blocked)
+                .catch(function(error){
+                    console.log("Error getting document ID: ", error);
+                });
+        
+
         SetUserType(userType);
     };
 
@@ -158,12 +173,12 @@
                     // Otherwise (empty) should be false (User is blocked)
                     // Display a limited (blocked) profile
                     else{
-                        majorDOM.innerHTML = "Unblock to view major";
-                        minorDOM.innerHTML = "Unblock to view minor";
-                        graduationDOM.innerHTML = "Unblock to view graduation year";
-                        websiteDOM.innerHTML = "Unblock to access website";
-                        websiteDOM.href = "Unblock to access website";
-                        bioDOM.innerHTML = "Unblock to view bio";
+                        majorDOM.innerHTML = "Unblock to view content";
+                        minorDOM.innerHTML = "Unblock to view content";
+                        graduationDOM.innerHTML = "Unblock to view content";
+                        websiteDOM.innerHTML = "Unblock to access content";
+                        websiteDOM.href = "Unblock to access content";
+                        bioDOM.innerHTML = "Unblock to view content";
                         facebookDOM.href = "Unblock to access Facebook";
                         instagramDOM.href = "Unblock to access Instagram"
                         twitterDOM.href = "Unblock to access Twitter";
@@ -172,7 +187,6 @@
                 .catch(function(error){
                     console.log("Error getting document ID: ", error);
                 });
-            
         }
     };
 	
