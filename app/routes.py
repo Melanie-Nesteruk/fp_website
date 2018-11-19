@@ -52,7 +52,7 @@ def directory():
     return render_template("directory.html", title='Directory', app=app)
 
 @app.route('/manage-users')
-def directory():
+def manageUsers():
     return render_template("manageUsers.html", title='Manage Users', app=app)
 
 @app.route('/profile')
