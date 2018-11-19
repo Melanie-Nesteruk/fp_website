@@ -145,8 +145,8 @@
         {
             var cellNode5 = document.createElement("div");
             cellNode5.classList.add("divTableCell");
-            cellNode5.setAttribute("style", "font-weight: bold; font-color: red; width: 20%; text-align: left;")
-            cellNode5.innerHTML = "Marked for Deletion";
+            cellNode5.setAttribute("style", "font-weight: bold; color: red; width: 20%; text-align: right;")
+            cellNode5.innerHTML = "Awaiting Deletion";
         }
         else
         {
