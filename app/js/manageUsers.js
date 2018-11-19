@@ -142,7 +142,8 @@
         cellNode4.innerHTML = "View Profile";
         
         var cellNode5 = document.createElement("a");
-		cellNode5.classList.add("divTableCell");
+        cellNode5.classList.add("divTableCell");
+        cellNode5.id = fullName;
 		cellNode5.setAttribute("style", "width: 20%; text-align: right;")
 		cellNode5.href = "javascript:void(0);";
         cellNode5.innerHTML = "Delete Account";
