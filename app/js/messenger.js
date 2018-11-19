@@ -81,7 +81,6 @@
 								let changes = snapshot.docChanges();
 								changes.forEach(change => {
 									if (change.type == 'added') {
-										messageHasBeenSent = true;
 										displayMessage(change.doc);
 										console.log('New message: ', change.doc.data());
 										
@@ -116,6 +115,7 @@
 							})
 							.then(function(){
 								console.log("Friends collection successfully written!");
+								messageHasBeenSent = true;
 							})
 							.catch(function(error){
 								console.error("Error writing collection: ", error);
