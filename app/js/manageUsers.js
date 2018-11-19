@@ -14,6 +14,15 @@
         //console.log(app);
     }
 
+    var admin = require("firebase-admin");
+
+    var serviceAccount = require("path/to/serviceAccountKey.json");
+
+    admin.initializeApp({
+    credential: admin.credential.cert(serviceAccount),
+    databaseURL: "https://focal-point-student-alumni-net.firebaseio.com"
+    });
+
     // Fetch an instance of the DB
     const db = firebase.firestore(app);
     //console.log(db);
@@ -149,8 +158,8 @@
                                 }
                             })
                             .then(value => {
-                                console.log("Users successfully verified!");
-                                window.location("/manage-users");
+                                console.log("User successfully verified!");
+                                window.reload();
                             });
                         })
                         .catch(function(error){
@@ -170,8 +179,53 @@
         var cellNode5 = document.createElement("a");
 		cellNode5.classList.add("divTableCell");
 		cellNode5.setAttribute("style", "width: 20%; text-align: right;")
-		cellNode5.href = "/profile?user=" + username;
-		cellNode5.innerHTML = "Delete Account";
+		cellNode5.href = "javascript:void(0);";
+        cellNode5.innerHTML = "Delete Account";
+        cellNode5.onclick = function () {
+            nameToDelete = this.id;
+            uidToDelete = this.parentNode.id;
+            swal({
+                title: "Are you sure you want to delete " + nameToDelete + "?",
+                text:  "Click anywhere else to cancel.",
+                buttons: {
+                    cancel: {
+                        closeModal: true,
+                        value:      0
+                    },
+                    confirm: {
+                        text:       "Delete",
+                        closeModal: true,
+                        value:      1
+                    }
+                }
+            })
+            .then(value => {
+                if (value == 1) {
+                    db.collection("Profiles").doc(uidToDelete).delete().then(function(){
+                        db.collection("Users").doc(uidToDelete).delete().then(function(){
+                            admin.auth().deleteUser(uidToDelete).then(function() {
+                                swal({
+                                    title: nameToDelete + "'s account has been deleted.",
+                                    icon: "success",
+                                    buttons: {
+                                        confirm: {
+                                            text: "Continue",
+                                            closeModal: true,
+                                            value:      1
+                                        }
+                                    }
+                                })
+                                .then(value => {
+                                    console.log("User successfully deleted!");
+                                    window.location.reload();
+                                });
+                            });
+                        });
+                    });
+                    return;
+                }
+            });
+        }
 
 		node.appendChild(cellNode1);
 		node.appendChild(cellNode2);
