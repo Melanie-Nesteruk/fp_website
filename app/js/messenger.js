@@ -215,7 +215,7 @@
 
 					// Shortcuts to DOM Elements.
 					var messageFormElement = document.getElementById('message-form');
-					var messageInputElement = messageFormElement.message;
+					var messageInputElement = document.getElementById('messagebox');
 					var sendButtonElement = document.getElementById('sendButton');
 
 					// Saves message on form submit.
