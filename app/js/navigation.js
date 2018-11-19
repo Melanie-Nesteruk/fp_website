@@ -113,6 +113,7 @@
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
+                node.classList.add("hide");
                 node.id = "manageUsersNav";
                 
                 document.getElementById("navBarList").appendChild(node);
@@ -133,6 +134,7 @@
             
                         linkNode.appendChild(textNode); 
                         document.getElementById("manageUsersNav").appendChild(linkNode);
+                        document.getElementById("manageUsersNav").classList.remove("hide");
                     }
                 })
                 .catch(function(error){
