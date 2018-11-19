@@ -112,6 +112,7 @@
             userType: currentUserType,
             userID: currentUID,
             verified: false,
+            verified_by: "NA",
             admin: false
         })
         .then(function(){

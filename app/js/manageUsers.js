@@ -108,8 +108,11 @@
             cellNode3.href = "javascript:void(0);";
             cellNode3.innerHTML = "Verify User";
             cellNode3.onclick = function() {
+                nameToVerify = this.id;
+                uidToVerify = this.parentNode.id;
+
                 swal({
-                    title: "Are you sure you want to verify " + this.id + "?",
+                    title: "Are you sure you want to verify " + nameToVerify + "?",
                     text:  "Click anywhere else to cancel.",
                     buttons: {
                         cancel: {
@@ -125,14 +128,13 @@
                 })
                 .then(value => {
                     if (value == 1) {
-                        var uidToVerify = this.parentNode.id;
-                        db.collection("Users").doc(uidToVerify).set({   // Need to confirm that 'currentUID' is properly converted to a string
+                        db.collection("Users").doc(uidToVerify).update({
                             verified: true,
                             verified_by: currentUser.uid
                         })
                         .then(function(){
                             swal({
-                                title: this.id + " has been successfully verified!",
+                                title: nameToVerify + " has been successfully verified!",
                                 icon: "success",
                                 text:  "Click Ok to continue.",
                                 closeOnClickOutside: false,
