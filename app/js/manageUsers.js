@@ -47,15 +47,15 @@
 		lName = doc.get("last_Name");
 		email = doc.get("email");
         isAdmin = doc.get("admin");
-		isVerified = doc.get("verified");
-
-		//typeFilters = ["", "", ""];
-		fullName = fName + " " + lName;
+        isVerified = doc.get("verified");
+        markedForDeletion = doc.get("to_delete");
 
         if (isAdmin)
         {
             return;
         }
+        
+        fullName = fName + " " + lName;
 
 		node = document.createElement("div");
         node.classList.add("divTableRow");
