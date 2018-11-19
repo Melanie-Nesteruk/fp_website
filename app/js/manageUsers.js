@@ -11,21 +11,19 @@
 			
         var app = firebase.initializeApp(config);
         console.log("initializeApp in loadProfile.js");
-        //console.log(app);
     }
 
-    var admin = require("firebase-admin");
+    // var admin = require("firebase-admin");
 
-    var serviceAccount = require("path/to/serviceAccountKey.json");
+    // var serviceAccount = require("path/to/serviceAccountKey.json");
 
-    admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://focal-point-student-alumni-net.firebaseio.com"
-    });
+    // admin.initializeApp({
+    // credential: admin.credential.cert(serviceAccount),
+    // databaseURL: "https://focal-point-student-alumni-net.firebaseio.com"
+    // });
 
     // Fetch an instance of the DB
     const db = firebase.firestore(app);
-    //console.log(db);
 
     // Disable deprecated features
     const settings = { timestampsInSnapshots: true };
@@ -40,35 +38,6 @@
 	var userType = 0;
 	var isVerified = false;
 	var typeFilters = ["", "", ""];
-	
-	// filter settings
-	var fNameDOM = document.getElementById("FirstName");
-	var lNameDOM = document.getElementById("LastName");
-	var photoInterestsDOM = document.getElementById("photoInterests");
-	var studentDOM = document.getElementById("studentChkBox");
-	var alumniDOM = document.getElementById("alumniChkBox");
-	var facultyDOM = document.getElementById("facultyChkBox");
-	var filterBtnDOM = document.getElementById("filterBtn");
-	var clearFiltersBtnDOM = document.getElementById("clearFiltersBtn");
-
-    function SetUserType()
-    {
-        switch (userType)
-        {
-            case 1:
-            userType = "Student";
-            break;
-            case 2:
-            userType = "Alumni";
-            break;
-            case 3:
-            userType = "Faculty";
-            break;
-            default:
-            userType = "None";
-            break;
-        }
-    };
 
 	function renderUser(doc)
 	{
@@ -77,15 +46,11 @@
 		fName = doc.get("first_Name");
 		lName = doc.get("last_Name");
 		email = doc.get("email");
-        userType = doc.get("userType");
         isAdmin = doc.get("admin");
 		isVerified = doc.get("verified");
 
 		//typeFilters = ["", "", ""];
 		fullName = fName + " " + lName;
-		SetUserType();
-
-		var ignore = false;
 
         if (isAdmin)
         {
@@ -203,9 +168,11 @@
                 if (value == 1) {
                     db.collection("Profiles").doc(uidToDelete).delete().then(function(){
                         db.collection("Users").doc(uidToDelete).delete().then(function(){
-                            admin.auth().deleteUser(uidToDelete).then(function() {
+                            db.collection("Users").doc(uidToDelete).update({
+                                to_delete: true
+                            }).then(function() {
                                 swal({
-                                    title: nameToDelete + "'s account has been deleted.",
+                                    title: nameToDelete + "'s account has been marked for deletion.",
                                     icon: "success",
                                     buttons: {
                                         confirm: {
@@ -216,7 +183,7 @@
                                     }
                                 })
                                 .then(value => {
-                                    console.log("User successfully deleted!");
+                                    console.log("User successfully marked for deletion!");
                                     window.location.reload();
                                 });
                             });
