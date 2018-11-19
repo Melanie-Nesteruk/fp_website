@@ -76,7 +76,7 @@
     {
         fullNameDOM.innerHTML = fName + " " + lName;
 
-        db.collection("Users").doc(cUID).collection("Blocks").where("email_blocked", "==", String(inputUser + "@kent.edu"))
+        db.collection("Users").doc(currentUser.uid).collection("Blocks").where("email_blocked", "==", String(inputUser + "@kent.edu"))
             .get()
                 .then(function(querySnapshot){
                     if(querySnapshot.empty){// Should be true if there are no documents with the blocked UID (User is not blocked),
