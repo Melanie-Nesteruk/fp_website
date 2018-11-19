@@ -47,15 +47,15 @@
 		lName = doc.get("last_Name");
 		email = doc.get("email");
         isAdmin = doc.get("admin");
-		isVerified = doc.get("verified");
-
-		//typeFilters = ["", "", ""];
-		fullName = fName + " " + lName;
+        isVerified = doc.get("verified");
+        markedForDeletion = doc.get("to_delete");
 
         if (isAdmin)
         {
             return;
         }
+        
+        fullName = fName + " " + lName;
 
 		node = document.createElement("div");
         node.classList.add("divTableRow");
@@ -124,7 +124,7 @@
                             })
                             .then(value => {
                                 console.log("User successfully verified!");
-                                window.reload();
+                                window.location.reload();
                             });
                         })
                         .catch(function(error){
@@ -141,58 +141,64 @@
 		cellNode4.href = "/profile?user=" + username;
         cellNode4.innerHTML = "View Profile";
         
-        var cellNode5 = document.createElement("a");
-        cellNode5.classList.add("divTableCell");
-        cellNode5.id = fullName;
-		cellNode5.setAttribute("style", "width: 20%; text-align: right;")
-		cellNode5.href = "javascript:void(0);";
-        cellNode5.innerHTML = "Delete Account";
-        cellNode5.onclick = function () {
-            nameToDelete = this.id;
-            uidToDelete = this.parentNode.id;
-            swal({
-                title: "Are you sure you want to delete " + nameToDelete + "?",
-                text:  "Click anywhere else to cancel.",
-                buttons: {
-                    cancel: {
-                        closeModal: true,
-                        value:      0
-                    },
-                    confirm: {
-                        text:       "Delete",
-                        closeModal: true,
-                        value:      1
+        if (markedForDeletion)
+        {
+            var cellNode5 = document.createElement("div");
+            cellNode5.classList.add("divTableCell");
+            cellNode5.setAttribute("style", "font-weight: bold; color: red; width: 20%; text-align: right;")
+            cellNode5.innerHTML = "Awaiting Deletion";
+        }
+        else
+        {
+            var cellNode5 = document.createElement("a");
+            cellNode5.classList.add("divTableCell");
+            cellNode5.id = fullName;
+            cellNode5.setAttribute("style", "width: 20%; text-align: right;")
+            cellNode5.href = "javascript:void(0);";
+            cellNode5.innerHTML = "Delete Account";
+            cellNode5.onclick = function () {
+                nameToDelete = this.id;
+                uidToDelete = this.parentNode.id;
+                swal({
+                    title: "Are you sure you want to delete " + nameToDelete + "?",
+                    text:  "Click anywhere else to cancel.",
+                    buttons: {
+                        cancel: {
+                            closeModal: true,
+                            value:      0
+                        },
+                        confirm: {
+                            text:       "Delete",
+                            closeModal: true,
+                            value:      1
+                        }
                     }
-                }
-            })
-            .then(value => {
-                if (value == 1) {
-                    // db.collection("Profiles").doc(uidToDelete).delete().then(function(){
-                    //     db.collection("Users").doc(uidToDelete).delete().then(function(){
-                            db.collection("Users").doc(uidToDelete).update({
-                                to_delete: true
-                            }).then(function() {
-                                swal({
-                                    title: nameToDelete + "'s account has been marked for deletion.",
-                                    icon: "success",
-                                    buttons: {
-                                        confirm: {
-                                            text: "Continue",
-                                            closeModal: true,
-                                            value:      1
-                                        }
+                })
+                .then(value => {
+                    if (value == 1) {
+                        db.collection("Users").doc(uidToDelete).update({
+                            to_delete: true
+                        }).then(function() {
+                            swal({
+                                title: nameToDelete + "'s account has been marked for deletion.",
+                                icon: "success",
+                                buttons: {
+                                    confirm: {
+                                        text: "Continue",
+                                        closeModal: true,
+                                        value:      1
                                     }
-                                })
-                                .then(value => {
-                                    console.log("User successfully marked for deletion!");
-                                    window.location.reload();
-                                });
+                                }
+                            })
+                            .then(value => {
+                                console.log("User successfully marked for deletion!");
+                                window.location.reload();
                             });
-                    //     });
-                    // });
-                    return;
-                }
-            });
+                        });
+                        return;
+                    }
+                });
+            }
         }
 
 		node.appendChild(cellNode1);
