@@ -111,7 +111,8 @@
             email: currentEmail,                          
             userType: currentUserType,
             userID: currentUID,
-            verified: false
+            verified: false,
+            admin: false
         })
         .then(function(){
             console.log("Users documents successfully written!");
