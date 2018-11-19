@@ -84,7 +84,8 @@
         }
 
 		node = document.createElement("div");
-		node.classList.add("divTableRow");
+        node.classList.add("divTableRow");
+        node.id = uid;
 		node.setAttribute("style", "pointer-events: auto;")
 
 		var cellNode1 = document.createElement("div");
@@ -98,7 +99,8 @@
 		cellNode2.innerHTML = email;
         
         var cellNode3 = document.createElement("a");
-		cellNode3.classList.add("divTableCell");
+        cellNode3.classList.add("divTableCell");
+        cellNode3.id = fullName;
         cellNode3.setAttribute("style", "width: 20%; text-align: right;")
         
         if (!isVerified)
@@ -107,7 +109,7 @@
             cellNode3.innerHTML = "Verify User";
             cellNode3.onclick = function() {
                 swal({
-                    title: "Are you sure you want to verify " + fullName + "?",
+                    title: "Are you sure you want to verify " + this.id + "?",
                     text:  "Click anywhere else to cancel.",
                     buttons: {
                         cancel: {
@@ -123,14 +125,14 @@
                 })
                 .then(value => {
                     if (value == 1) {
-                        var uidToVerify = uid;
+                        var uidToVerify = this.parentNode.id;
                         db.collection("Users").doc(uidToVerify).set({   // Need to confirm that 'currentUID' is properly converted to a string
                             verified: true,
                             verified_by: currentUser.uid
                         })
                         .then(function(){
                             swal({
-                                title: fullName + " has been successfully verified!",
+                                title: this.id + " has been successfully verified!",
                                 icon: "success",
                                 text:  "Click Ok to continue.",
                                 closeOnClickOutside: false,
