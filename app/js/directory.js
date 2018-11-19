@@ -99,7 +99,7 @@
 			{
 				swal({
 					text: "Error validating user authentication. Please reload the page.",
-					icon: "failure"
+					icon: "error"
 				});
 			}
 		});
@@ -132,7 +132,7 @@
 			{
 				swal({
 					text: "Error validating user authentication. Please reload the page.",
-					icon: "failure"
+					icon: "error"
 				});
 			}
 		});

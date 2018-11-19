@@ -1,5 +1,47 @@
 {% extends "base.html" %}
 
-
 {% block content %}
+
+   <section class="page-section cta">
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-12 mx-auto">
+                  <div class="cta-inner text-center rounded" style="pointer-events:none;">
+                    <h2 class="section-heading mb-5">
+                      <span class="section-heading-upper">Student-Alumni Network</span>
+                      <span class="section-heading-lower">Manage Users</span>
+                    </h2>
+                    <div class="divTable">
+                      <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableCell" style="text-align:center; width: 100%;">User the options below to Verify new users or Delete a user account.</div>
+                        </div>
+                        <div class="divTableRow">
+                          <div class="divTableCell headerLabel" style="text-align:center; width: 100%;">Registered Users</div>
+                        </div>
+                        <div class="divTableRow">
+                          <div class="divTableCell" id="userList" style="background: floralwhite; width: 40%; pointer-events: auto; padding: 5px; max-height: 225px; border: 1px solid grey; box-shadow: 5px 7px #c8c8c885;">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+		  
+    <script src="app/js/manageUsers.js"></script>
+
+    <style>
+      .divTable{ display: table; width: 100%; }
+      .divTableRow { display: table-row; }
+      .divTableHeading { display: table-header-group;}
+      .divTableCell, .divTableHead { display: table-cell;}
+      .divTableBody { display: table-row-group;}
+      .filterLabel { font-weight: bold; pointer-events: auto; text-align: left; }
+      .filterInput { padding: 3 0 3 0; }
+      .headerLabel { font-size: larger; font-weight: bold; }
+    </style>
+
 {% endblock %}
