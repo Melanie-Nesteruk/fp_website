@@ -105,7 +105,56 @@
         {
             cellNode3.href = "javascript:void(0);";
             cellNode3.innerHTML = "Verify User";
-            cellNode3.onclick = VerifyUser(uid);
+            cellNode3.onclick = function() {
+                swal({
+                    title: "Are you sure you want to verify " + fullName + "?",
+                    text:  "Click anywhere else to cancel.",
+                    buttons: {
+                        cancel: {
+                            closeModal: true,
+                            value:      0
+                        },
+                        confirm: {
+                            text:       "Confirm",
+                            closeModal: true,
+                            value:      1
+                        }
+                    }
+                })
+                .then(value => {
+                    if (value == 1) {
+                        var uidToVerify = uid;
+                        db.collection("Users").doc(uidToVerify).set({   // Need to confirm that 'currentUID' is properly converted to a string
+                            verified: true,
+                            verified_by: currentUser.uid
+                        })
+                        .then(function(){
+                            swal({
+                                title: fullName + " has been successfully verified!",
+                                icon: "success",
+                                text:  "Click Ok to continue.",
+                                closeOnClickOutside: false,
+                                closeOnEsc: false,
+                                buttons: {
+                                    cancel: {
+                                        text: "Ok",
+                                        value: 1,
+                                        visible: true,
+                                        closeModal: true,
+                                    }
+                                }
+                            })
+                            .then(value => {
+                                console.log("Users successfully verified!");
+                                window.location("/manage-users");
+                            });
+                        })
+                        .catch(function(error){
+                            console.error("Error verifying user: ", error);
+                        });
+                    }
+                });
+            }
         }
 
 		var cellNode4 = document.createElement("a");
@@ -127,59 +176,6 @@
         node.appendChild(cellNode5);
 		document.getElementById("userList").appendChild(node);
 	}
-
-    function VerifyUser(uid)
-    {
-        swal({
-            title: "Are you sure you want to verify " + fullName + "?",
-            text:  "Click anywhere else to cancel.",
-            buttons: {
-                cancel: {
-                    closeModal: true,
-                    value:      0
-                },
-                confirm: {
-                    text:       "Confirm",
-                    closeModal: true,
-                    value:      1
-                }
-            }
-        })
-        .then(value => {
-            if (value == 1) {
-                var uidToVerify = uid;
-                db.collection("Users").doc(uidToVerify).set({   // Need to confirm that 'currentUID' is properly converted to a string
-                    verified: true,
-                    verified_by: currentUser.uid
-                })
-                .then(function(){
-                    swal({
-                        title: fullName + " has been successfully verified!",
-                        icon: "success",
-                        text:  "Click Ok to continue.",
-                        closeOnClickOutside: false,
-                        closeOnEsc: false,
-                        buttons: {
-                            cancel: {
-                                text: "Ok",
-                                value: 1,
-                                visible: true,
-                                closeModal: true,
-                            }
-                        }
-                    })
-                    .then(value => {
-                        console.log("Users successfully verified!");
-                        window.location("/manage-users");
-                    });
-                })
-                .catch(function(error){
-                    console.error("Error verifying user: ", error);
-                });
-                return;
-            }
-        });
-    }
 
     firebase.auth().onAuthStateChanged(user => {
         if (user)
