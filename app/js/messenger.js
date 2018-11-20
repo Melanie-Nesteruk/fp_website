@@ -211,7 +211,7 @@
 					sendButtonElement.addEventListener('click', onMessageFormSubmit);
 
 					// Toggle for the button.
-					messageInputElement.addEventListener('keyup', function(){
+					messageInputElement.addEventListener('keyup', function(e){
 						if (e.keyCode == 13){
 							onMessageFormSubmit(e);
 						}
