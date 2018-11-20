@@ -138,7 +138,6 @@
 							}
 						  // Clear message text field and re-enable the SEND button.
 						  resetMaterialTextfield(messageInputElement);
-						  toggleButton();
 						});
 					  }
 					}
@@ -191,17 +190,6 @@
 						messageListElement.scrollTop = messageListElement.scrollHeight;
 					}
 
-					// Enables or disables the submit button depending on the values of the input
-					// fields.
-					function toggleButton() {
-					  if (messageInputElement.value) {
-						onMessageFormSubmit();
-						sendButtonElement.removeAttribute('disabled');
-					  } else {
-						sendButtonElement.setAttribute('disabled', 'true');
-					  }
-					}
-
 					// Checks that the Firebase SDK has been correctly setup and configured.
 					function checkSetup() {
 					  if (!window.firebase || !(firebase.app instanceof Function) || !firebase.app().options) {
@@ -223,9 +211,11 @@
 					sendButtonElement.addEventListener('click', onMessageFormSubmit);
 
 					// Toggle for the button.
-					messageInputElement.addEventListener('keyup', toggleButton);
-					messageInputElement.addEventListener('change', toggleButton);
-
+					messageInputElement.addEventListener('keyup', function(){
+						if (e.keyCode === 13){
+							onMessageFormSubmit(e);
+						}
+					});
 					// We load currently existing chat messages and listen to new ones.
 					loadMessages();
 						} else {
