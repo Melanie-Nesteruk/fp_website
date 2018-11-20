@@ -212,7 +212,7 @@
 
 					// Toggle for the button.
 					messageInputElement.addEventListener('keyup', function(){
-						if (e.keyCode === 13){
+						if (e.keyCode == 13){
 							onMessageFormSubmit(e);
 						}
 					});
