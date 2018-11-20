@@ -4,7 +4,7 @@
 	
 	var iframe = document.getElementById('iframe-messages');
 	var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-	const messageList = innerDoc.querySelector('#message-list');
+	const messageList = innerDoc.getElementById('message-list');
 	// =======================================================
     // Check for initialized firebase connection
     //
