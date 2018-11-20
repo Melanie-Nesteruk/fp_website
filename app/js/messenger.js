@@ -129,7 +129,7 @@
 					
 					// Triggered when the send new message form is submitted.
 					function onMessageFormSubmit(e) {
-					  e.preventDefault();
+					  // e.preventDefault();
 					  // Check that the user entered a message and is signed in.
 					  if (messageInputElement.value && checkSignedInWithMessage()) {
 						saveMessage(messageInputElement.value).then(function() {
