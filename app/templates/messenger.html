@@ -28,11 +28,7 @@
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-database.js"></script>
     <!--<script src="https://www.gstatic.com/firebasejs/5.5.6/firebase-messaging.js"></script>-->
 	</head>
-	<iframe src="https://focalpointkent.pythonanywhere.com/messenger" frameborder="0" style="overflow:hidden;height:100%;width:100%" height="100%" width="100%" id="iframe-messages">
-		<ul id="message-list">
-		
-		</ul>
-	</iframe>
+
 	<!-- Messages container -->
 		<div class="footer">
 			<div class="form-inline" id="message-form" action="#">
@@ -45,8 +41,11 @@
 			<button id="sendButton" type="submit" class="sendButton">Send</button>
 			</div>
 		</div>
+		<footer style="height:75px;">
+			<p>Focal point</p>
+		</footer>
 <style>
-iframe, div {
+div {
 	background: linear-gradient(to bottom right, #ffffff 0%, #ccffcc 100%);
 }
 

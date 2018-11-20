@@ -1,10 +1,8 @@
 (function() {
 	var sessionID = document.currentScript.getAttribute('sessionID');
 	console.log('SESSION ID: ', sessionID);
+	const messageList = document.querySelector('#message-list');
 	
-	var iframe = document.getElementById('iframe-messages');
-	var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-	const messageList = innerDoc.getElementById('message-list');
 	// =======================================================
     // Check for initialized firebase connection
     //
