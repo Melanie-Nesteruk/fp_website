@@ -111,7 +111,7 @@
 							console.log("Friends collection successfully written!");
 							// Create new collection 'Friends' for each user
 							firestore.collection("Users").doc(friendUID).collection("Friends").doc(currentUID).set({
-								placeholder: true
+							placeholder: true
 							})
 							.then(function(){
 								console.log("Friends collection successfully written!");
@@ -215,11 +215,11 @@
 
 					// Shortcuts to DOM Elements.
 					var messageFormElement = document.getElementById('message-form');
-					var messageInputElement = document.getElementById('messagebox');
+					var messageInputElement = messageFormElement.message;
 					var sendButtonElement = document.getElementById('sendButton');
 
 					// Saves message on form submit.
-					sendButtonElement.addEventListener('submit', onMessageFormSubmit);
+					messageFormElement.addEventListener('submit', onMessageFormSubmit);
 
 					// Toggle for the button.
 					messageInputElement.addEventListener('keyup', toggleButton);
