@@ -113,7 +113,8 @@
             userID: currentUID,
             verified: false,
             verified_by: "NA",
-            admin: false
+            admin: false,
+            date_joined: firebase.firestore.Timestamp.now()
         })
         .then(function(){
             console.log("Users documents successfully written!");
