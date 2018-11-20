@@ -195,6 +195,7 @@
 					// fields.
 					function toggleButton() {
 					  if (messageInputElement.value) {
+						onMessageFormSubmit();
 						sendButtonElement.removeAttribute('disabled');
 					  } else {
 						sendButtonElement.setAttribute('disabled', 'true');
