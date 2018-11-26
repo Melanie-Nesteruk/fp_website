@@ -26,6 +26,10 @@
     if (txtPassword != null)
     {
         txtPassword.addEventListener('keyup', e=> {
+            if (event.keyCode !== 13) {
+                return;
+            }
+            
             // Get email and password
             const email = txtEmail.value;
             const pass = txtPassword.value;
