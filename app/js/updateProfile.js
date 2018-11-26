@@ -60,6 +60,7 @@
                     .then(function(){
                         // Add HTML elements
                         node = document.createElement("button");
+                        node.classList.add("btn");
                         node.classList.add("btnInterest");
                         node.setAttribute("type", "submit");
                         node.id = newInterest;
