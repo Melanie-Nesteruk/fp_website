@@ -88,6 +88,7 @@
         }
 
         SetAdditionalFields(UID);
+        LoadInterests();
     };
     
     function SetBasicFields()
@@ -149,6 +150,36 @@
                 twitterName = String(doc.get("twitter"));
 
                 LoadProfile(isVerified, userID);
+                    function LoadInterests()
+    {
+        // Load current photo interests
+        db.collection('Profiles').doc(currentUser.uid).get()
+        .then(function(querySnapshot){
+            var doc = querySnapshot;
+            photoInterests = doc.get("photo_interests");
+    
+            // Add HTML elements
+            photoInterests.forEach(element => {
+                node = document.createElement("button");
+                node.classList.add("btnInterest");
+                node.setAttribute("type", "submit");
+                node.id = element;
+                node.innerHTML = element;
+                node.addEventListener('click', e=> {
+                        var toRemove = photoInterests.find(element);
+                        photoInterests.splice(toRemove, 1);
+    
+                        // Add HTML elements
+                        interestsDIVDOM.removeChild(this);
+                });
+                interestsDIVDOM.appendChild(node);
+            });
+    
+        })
+        .catch(function(error){
+            console.log("Error getting existing user photo interests: ", error);
+        });
+    };
         })
         .catch(function(error){
             console.log("Error getting document ID: ", error);
@@ -288,6 +319,32 @@
 			});
 		}
     };
+
+    function LoadInterests()
+    {
+        // Load current photo interests
+        db.collection('Profiles').doc(currentUser.uid).get()
+        .then(function(querySnapshot){
+            var doc = querySnapshot;
+            photoInterests = doc.get("photo_interests");
+    
+            // Add HTML elements
+            photoInterests.forEach(element => {
+                node = document.createElement("button");
+                node.classList.add("btn btnInterest");
+                node.setAttribute("type", "submit");
+                node.id = element;
+                node.innerHTML = element;
+               
+                interestsDIVDOM.appendChild(node);
+            });
+    
+        })
+        .catch(function(error){
+            console.log("Error getting existing user photo interests: ", error);
+        });
+    };
+
 
     firebase.auth().onAuthStateChanged(user => {
         if (user)
