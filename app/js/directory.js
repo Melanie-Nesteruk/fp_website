@@ -125,6 +125,7 @@
 			alumniDOM.checked = true;
 			facultyDOM.checked = true;
 			typeFilters = ["", "", ""];
+			interestFilter = null;
 
 			if (currentUser)
 			{
