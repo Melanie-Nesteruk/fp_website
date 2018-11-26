@@ -330,8 +330,9 @@
     
             // Add HTML elements
             photoInterests.forEach(element => {
-                node = document.createElement("button");
-                node.classList.add("btn btnInterest");
+                var node = document.createElement("button");
+                node.classList.add("btn");
+                node.classList.add("btnInterest");
                 node.setAttribute("type", "submit");
                 node.id = element;
                 node.innerHTML = element;
