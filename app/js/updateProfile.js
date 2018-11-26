@@ -22,7 +22,7 @@
 
     // Get elements/user input
     const btnSaveDOM = document.getElementById('btnSaveChanges');
-
+    const facultyDOM = document.getElementById('facultyPos');
     const majorDOM = document.getElementById('major');
     const minorDOM = document.getElementById('minor');
     const graduationDOM = document.getElementById('graduation');
@@ -32,9 +32,7 @@
     const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
 
-    var tempFacultyPos = "Not yet set";
     var currentUser;
-    var initialLoad = true;
 
     // Add signup event
     if (btnSaveDOM != null) {
@@ -47,7 +45,7 @@
                     major: majorDOM.value,
                     minor: minorDOM.value,
                     bio: bioDOM.value,
-                    faculty_position: tempFacultyPos,
+                    faculty_position: facultyDOM.value,
                     website: websiteDOM.value,
                     facebook: facebookDOM.value,
                     instagram: instagramDOM.value,
