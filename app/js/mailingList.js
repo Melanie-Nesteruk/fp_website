@@ -65,7 +65,7 @@
         console.log('Adding email to Mailing List');
 
         // Create new document in 'Users' collection
-        db.collection("Mailing List").doc(email).set({   
+        db.collection("Mailing-List").doc(email).set({   
             first_Name: fName,
             last_Name: lName,
             email: email,
