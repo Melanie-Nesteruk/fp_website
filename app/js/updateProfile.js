@@ -31,7 +31,7 @@
     const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
     const interestsDIVDOM = document.getElementById('interestsDIV');
-    const addInterestDOM = document.getElementById('inputInterest');
+    const interestListDOM = document.getElementById('interestList');
     const btnAddInterestDOM = document.getElementById('btnAddInterest');
     const btnSaveDOM = document.getElementById('btnSaveChanges');
     
@@ -48,66 +48,36 @@
                 // Get current interests from DB
                 db.collection('Profiles').doc(currentUser.uid).get()
                 .then(function(querySnapshot){
-                    newInterest = addInterestDOM.value;
+                    newInterest = interestListDOM.options[interestListDOM.selectedIndex].text;
                     var doc = querySnapshot;
                     photoInterests = doc.get("photo_interests");
-                    photoInterests.push(newInterest);
 
-                    db.collection("Profiles").doc(currentUser.uid).set({
-                        // Add new interest to DB
-                        photo_interests: photoInterests
-                    })
-                    .then(function(){
-                        // Add HTML elements
-                        node = document.createElement("button");
-                        node.classList.add("btn");
-                        node.classList.add("btnInterest");
-                        node.setAttribute("type", "submit");
-                        node.id = newInterest;
-                        node.innerHTML = newInterest;
-                        node.addEventListener('click', e=> {
-                            db.collection('Profiles').doc(currentUser.uid).get()
-                            .then(function(querySnapshot){
-                                newInterest = addInterestDOM.value;
-                                var doc = querySnapshot;
-                                photoInterests = doc.get("photo_interests");
-                                photoInterests.splice(photoInterests.find(this.id));
+                    // Already exists in interests; ignore it.
+                    if (photoInterests.find(newInterest) >= 0 || interestListDOM.selectedIndex == 0)
+                    {
+                        interestListDOM.selectedIndex = 0;
+                        return;
+                    }
+                    // Push it
+                    else
+                    {
+                        photoInterests.push(newInterest);
+                    }
 
-                                db.collection("Profiles").doc(currentUser.uid).set({
-                                    // Add new interest to DB
-                                    photo_interests: photoInterests
-                                })
-                                .then(function(){
-                                    // Add HTML elements
-                                    interestsDIVDOM.removeChild(this);
-                                })
-                                .catch(function(error){
-                                    console.error("Error writing document: ", error);
-                                });
-
-                            })
-                            .catch(function(error){
-                                console.log("Error getting existing user photo interests: ", error);
-                            });
-                        });
-
-                        addInterestDOM.value = "";
-                        interestsDIVDOM.appendChild(node);
-                    })
-                    .catch(function(error){
-                        console.error("Error writing document: ", error);
+                    node = document.createElement("button");
+                    node.classList.add("btn");
+                    node.classList.add("btnInterest");
+                    node.setAttribute("type", "submit");
+                    node.id = newInterest;
+                    node.innerHTML = newInterest;
+                    node.addEventListener('click', e=> {
+                        photoInterests.splice(photoInterests.find(e.target.id), 1);
+                        interestsDIVDOM.removeChild(document.getElementById(e.target.id));
                     });
-
+                    interestsDIVDOM.appendChild(node);
                 })
                 .catch(function(error){
                     console.log("Error getting existing user photo interests: ", error);
-                });
-            }
-            else
-            {
-                swal({
-                    text: "Error validating user authentication. Please reload the page.",
-                    icon: "error"
                 });
             }
         });

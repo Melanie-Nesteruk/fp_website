@@ -51,7 +51,13 @@
                                             </div>
                                             <hr>
                                             <div class="inputDiv" style="text-align: center;">
-                                                <input type="text" id="inputInterest" style="width: 70%; margin-right: 2px;">
+                                                <select id="interestList" style="width: 70%; margin-right: 2px;">
+                                                    <option value="default" selected>Choose an option...</option>
+                                                    <option value="nature">Nature</option>
+                                                    <option value="cars">Cars</option>
+                                                    <option value="music">Music</option>
+                                                    <option value="people">People</option>
+                                                </select>
                                                 <button type="submit" id="btnAddInterest">Add</button>
                                                 <div style="margin: 5px;">
                                                     Click on an interest to remove it from the list.

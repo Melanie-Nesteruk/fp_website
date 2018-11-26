@@ -292,12 +292,7 @@
     };
 
     function LoadInterests()
-    {
-        // if (interestsDIVDOM.classList.contains("editInterests"))
-        // {
-        //     interestsDIVDOM.classList.remove("editInterests");
-        // }
-        
+    {   
         // Load current photo interests
         db.collection('Profiles').doc(currentUser.uid).get()
         .then(function(querySnapshot){
