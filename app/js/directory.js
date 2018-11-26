@@ -147,51 +147,6 @@
 
 	function renderUser(doc)
 	{
-		username = doc.get("email").split("@")[0];
-		fName = doc.get("first_Name");
-		lName = doc.get("last_Name");
-		email = doc.get("email");
-		userType = doc.get("userType");
-		isVerified = doc.get("verified");
-
-		//typeFilters = ["", "", ""];
-		fullName = fName + " " + lName;
-		SetUserType();
-
-		// First name filter
-		if (fNameDOM.value && fName != fNameDOM.value)
-		{
-			return;
-		}
-
-		// Last name filter
-		if (lNameDOM.value && lName != lNameDOM.value)
-		{
-			return;
-		}
-		
-		var ignore = false;
-		
-		typeFilters.every(function(doNotInclude, index) {
-			if (userType == doNotInclude)
-			{
-				ignore = true;
-				return false;
-			}
-			else
-			return true;
-		});
-		
-		// Verified check
-		if (!isVerified)
-		{
-			return;
-		}
-
-		if (ignore)
-		{
-			return;
-		}
 
 		// Load current photo interests
         db.collection('Profiles').doc(currentUser.uid).get()
@@ -199,6 +154,52 @@
             var doc2 = querySnapshot;
             var photoInterests = doc2.get("photo_interests");
 			if (interestFilter && !photoInterests.includes(interestFilter))
+			{
+				return;
+			}
+
+			username = doc.get("email").split("@")[0];
+			fName = doc.get("first_Name");
+			lName = doc.get("last_Name");
+			email = doc.get("email");
+			userType = doc.get("userType");
+			isVerified = doc.get("verified");
+	
+			//typeFilters = ["", "", ""];
+			fullName = fName + " " + lName;
+			SetUserType();
+	
+			// First name filter
+			if (fNameDOM.value && fName != fNameDOM.value)
+			{
+				return;
+			}
+	
+			// Last name filter
+			if (lNameDOM.value && lName != lNameDOM.value)
+			{
+				return;
+			}
+			
+			var ignore = false;
+			
+			typeFilters.every(function(doNotInclude, index) {
+				if (userType == doNotInclude)
+				{
+					ignore = true;
+					return false;
+				}
+				else
+				return true;
+			});
+			
+			// Verified check
+			if (!isVerified)
+			{
+				return;
+			}
+	
+			if (ignore)
 			{
 				return;
 			}
