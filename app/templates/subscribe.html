@@ -11,15 +11,27 @@
                       <span class="section-heading-upper">Focal Point</span>
                       <span class="section-heading-lower">Sign Up for our Mailing List</span>
                     </h2>
-                    <div class="form-group" style="pointer-events: auto;">
-                        <label for="user_name">Name:</label>
-                        <input type="text" id="user_name" required="true">
-                    <br>
-                        <label for="user_email">Email:&nbsp;</label>
-                        <input type="email" id="user_email" required="true">
-                        <br>
-                        <button type="submit">Submit</button>
+                    
+                    <div class="form-group" style="width: 35%; pointer-events: auto; margin: 0 auto; display: flex;">
+                      <div style="flex: 0 0 30%; text-align: left;">
+                          <label for="user_firstName">Name:</label>
+                          <br>
+                          <label for="user_LastName">&nbsp;</label>
+                          <br>
+                          <label for="user_email">Email:</label>
+                          <br>
+                        </div>
+                      
+                        <div style="text-align: left;">
+                          <input id="txtFirstName" type="text" placeholder="First Name" name="first_name" required="true">
+                          <input id="txtLastName" type="text" placeholder="Last Name" name="last_name" required="true">
+                          <br>
+                          <input id="txtEmail" type="text" placeholder="example@kent.edu" name="email" required="true">
+                          <br>
+                          <button id="btnSignup" type="submit">Register</button>
+                        </div>
                     </div>
+
                     <p class="mb-0">
                       <small>
                         <em>Follow us on social media</em>
@@ -35,22 +47,6 @@
             </div>
           </section>
 
-
-   <!-- <section class="page-section cta">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <div class="cta-inner text-center rounded">
-              <h2 class="section-heading mb-4">
-                <span class="section-heading-upper">Our Promise</span>
-                <span class="section-heading-lower">To You</span>
-              </h2>
-              <p class="mb-0">When you walk into our shop to start your day, we are dedicated to providing you with friendly service, a welcoming atmosphere, and above all else, excellent products made with the highest quality ingredients. If you are not satisfied, please let us know and we will do whatever we can to make things right!</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  -->
+          <script src="app/js/mailingList.js"></script>
 
 {% endblock %}
