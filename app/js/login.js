@@ -131,7 +131,6 @@
                 console.log(user);
                 txtEmail.value = "";
                 txtPassword.value = "";
-                //window.location.href = "/index";
 
                 swal({
                     title: "You are now signed in!",
