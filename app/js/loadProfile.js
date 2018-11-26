@@ -40,7 +40,8 @@
     const instagramDOM = document.getElementById('instagram');
     const twitterDOM = document.getElementById('twitter');
     const bioDOM = document.getElementById('bio');
-	const btnMessage = document.getElementById('btnMessage');
+    const btnMessage = document.getElementById('btnMessage');
+    const interestsDIVDOM = document.getElementById('interestsDIV');
     var editDOM = document.getElementById('editor');
 
     var initialLoad = true;
