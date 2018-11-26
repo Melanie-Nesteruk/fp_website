@@ -20,7 +20,51 @@
 
     var initialLoad = true;
 
-    // Add login event
+    // Add login event listeners
+
+    // Input "Enter" key listener
+    if (txtPassword != null)
+    {
+        txtPassword.addEventListener('keyup', e=> {
+            // Get email and password
+            const email = txtEmail.value;
+            const pass = txtPassword.value;
+            const auth = firebase.auth();
+
+            initialLoad = false;
+
+            // Logout an existing user
+            if (firebase.auth().currentUser) {
+                user.auth().signOut();
+
+                swal({
+                    title: "User is already logged in. You have been logged out.",
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: "Continue",
+                            closeModal: true,
+                            value:      1
+                        }
+                    }
+                })
+                .then(value => {
+                    // Sign in
+                    const promise = auth.signInWithEmailAndPassword(email, pass);
+                    promise.catch(e => swal(e.message));
+                });
+                return;
+            }
+            else
+            {
+                // Sign in
+                const promise = auth.signInWithEmailAndPassword(email, pass);
+                promise.catch(e => swal(e.message));
+            }
+        });
+    }
+
+    // Button listener
     if (btnLogin != null) {
         btnLogin.addEventListener('click', e=> {
             // Get email and password
@@ -33,16 +77,31 @@
             // Logout an existing user
             if (firebase.auth().currentUser) {
                 user.auth().signOut();
+                
                 swal({
-                    text: "User is already logged in. You have been logged out.",
-                    icon: "warning"
+                    title: "User is already logged in. You have been logged out.",
+                    icon: "warning",
+                    buttons: {
+                        confirm: {
+                            text: "Continue",
+                            closeModal: true,
+                            value:      1
+                        }
+                    }
+                })
+                .then(value => {
+                    // Sign in
+                    const promise = auth.signInWithEmailAndPassword(email, pass);
+                    promise.catch(e => swal(e.message));
                 });
                 return;
             }
-
-            // Sign in
-            const promise = auth.signInWithEmailAndPassword(email, pass);
-            promise.catch(e => swal(e.message));
+            else
+            {
+                // Sign in
+                const promise = auth.signInWithEmailAndPassword(email, pass);
+                promise.catch(e => swal(e.message));
+            }
         });
     }
 
