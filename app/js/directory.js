@@ -31,6 +31,7 @@
 	var userType = 0;
 	var isVerified = false;
 	var typeFilters = ["", "", ""];
+	var interestFilter;
 	
 	// filter settings
 	var fNameDOM = document.getElementById("FirstName");
@@ -86,6 +87,12 @@
 				if (!facultyDOM.checked)
 				{
 					typeFilters[2] = "Faculty";
+				}
+
+				interestFilter = null;
+				if (photoInterestsDOM.selectedIndex != 0)
+				{
+					interestFilter = photoInterestsDOM.options[photoInterestsDOM.selectedIndex].text;
 				}
 
 				document.getElementById("userList").innerHTML = "";
@@ -162,14 +169,9 @@
 		{
 			return;
 		}
-
-		// Photo interests filter
-		// if (lNameDOM.value && lName != lNameDOM.value)
-		// {
-		// 	return;
-		// }
+		
 		var ignore = false;
-
+		
 		typeFilters.every(function(doNotInclude, index) {
 			if (userType == doNotInclude)
 			{
@@ -177,9 +179,9 @@
 				return false;
 			}
 			else
-				return true;
-		  });
-
+			return true;
+		});
+		
 		// Verified check
 		if (!isVerified)
 		{
@@ -191,30 +193,44 @@
 			return;
 		}
 
-		node = document.createElement("div");
-		node.classList.add("divTableRow");
-		node.setAttribute("style", "pointer-events: auto;")
+		// Load current photo interests
+        db.collection('Profiles').doc(currentUser.uid).get()
+        .then(function(querySnapshot){
+            var doc2 = querySnapshot;
+            var photoInterests = doc2.get("photo_interests");
+			if (interestFilter && !photoInterests.includes(interestFilter))
+			{
+				return;
+			}
 
-		var cellNode1 = document.createElement("div");
-		cellNode1.classList.add("divTableCell");
-		cellNode1.setAttribute("style", "font-weight: bold; width: 30%; text-align: left;")
-		cellNode1.innerHTML = fullName;
-		
-		var cellNode2 = document.createElement("div");
-		cellNode2.classList.add("divTableCell");
-		cellNode2.setAttribute("style", "width: 30%; text-align: left;")
-		cellNode2.innerHTML = email;
-		
-		var cellNode3 = document.createElement("a");
-		cellNode3.classList.add("divTableCell");
-		cellNode3.setAttribute("style", "width: 30%; text-align: right;")
-		cellNode3.href = "/profile?user=" + username;
-		cellNode3.innerHTML = "View Profile";
+			node = document.createElement("div");
+			node.classList.add("divTableRow");
+			node.setAttribute("style", "pointer-events: auto;")
 
-		node.appendChild(cellNode1);
-		node.appendChild(cellNode2);
-		node.appendChild(cellNode3);
-		document.getElementById("userList").appendChild(node);
+			var cellNode1 = document.createElement("div");
+			cellNode1.classList.add("divTableCell");
+			cellNode1.setAttribute("style", "font-weight: bold; width: 30%; text-align: left;")
+			cellNode1.innerHTML = fullName;
+			
+			var cellNode2 = document.createElement("div");
+			cellNode2.classList.add("divTableCell");
+			cellNode2.setAttribute("style", "width: 30%; text-align: left;")
+			cellNode2.innerHTML = email;
+			
+			var cellNode3 = document.createElement("a");
+			cellNode3.classList.add("divTableCell");
+			cellNode3.setAttribute("style", "width: 30%; text-align: right;")
+			cellNode3.href = "/profile?user=" + username;
+			cellNode3.innerHTML = "View Profile";
+
+			node.appendChild(cellNode1);
+			node.appendChild(cellNode2);
+			node.appendChild(cellNode3);
+			document.getElementById("userList").appendChild(node);
+        })
+        .catch(function(error){
+            console.log("Error getting existing user photo interests: ", error);
+        });
 	}
 
     firebase.auth().onAuthStateChanged(user => {
