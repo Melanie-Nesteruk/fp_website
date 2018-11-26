@@ -145,11 +145,11 @@
 		});
 	}
 
-	function renderUser(doc)
+	function renderUser(doc, uID)
 	{
 
 		// Load current photo interests
-        db.collection('Profiles').doc(currentUser.uid).get()
+        db.collection('Profiles').doc(uID).get()
         .then(function(querySnapshot){
             var doc2 = querySnapshot;
             var photoInterests = doc2.get("photo_interests");
@@ -242,7 +242,7 @@
             // Pulls all docs from 'Users' collection in firebase and lists them
 			db.collection('Users').get().then((snapshot) => {
 				snapshot.docs.forEach(doc => {
-					renderUser(doc);
+					renderUser(doc, doc.get("userID"));
 				})
 			});
         }
