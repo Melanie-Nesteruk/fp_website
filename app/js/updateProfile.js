@@ -38,6 +38,35 @@
     var currentUser, newInterest;
     var photoInterests = [];
 
+    // Load current photo interests
+    db.collection('Profiles').doc(currentUser.uid).get()
+    .then(function(querySnapshot){
+        var doc = querySnapshot;
+        photoInterests = doc.get("photo_interests");
+
+        // Add HTML elements
+        photoInterests.forEach(element => {
+            node = document.createElement("button");
+            node.classList.add("btnInterest");
+            node.setAttribute("type", "submit");
+            node.id = element;
+            node.innerHTML = element;
+            node.addEventListener('click', e=> {
+                    var toRemove = photoInterests.find(element);
+                    photoInterests.splice(toRemove, 1);
+
+                    // Add HTML elements
+                    interestsDIVDOM.removeChild(this);
+            });
+            interestsDIVDOM.appendChild(node);
+        });
+
+    })
+    .catch(function(error){
+        console.log("Error getting existing user photo interests: ", error);
+    });
+
+
     // Add "New Interest" event
     if (btnAddInterestDOM != null) {
         btnAddInterestDOM.addEventListener('click', e=> { 
@@ -90,6 +119,7 @@
                             });
                         });
 
+                        addInterestDOM.value = "";
                         interestsDIVDOM.appendChild(node);
                     })
                     .catch(function(error){
