@@ -307,7 +307,11 @@
                 node.setAttribute("type", "submit");
                 node.id = element;
                 node.innerHTML = element;
-               
+                node.addEventListener('click', e=> {
+                    var indexToRemove = photoInterests.indexOf(e.target.id);
+                    photoInterests.splice(indexToRemove, 1);
+                    interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                });
                 interestsDIVDOM.appendChild(node);
             });
     
