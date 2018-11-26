@@ -32,6 +32,7 @@
     const password = document.getElementById('txtPassword');
     const password2 = document.getElementById('txtPassword2');
     var userType = userSelect.options[userSelect.selectedIndex].text;
+    var photoInterests = ["Nature"];
 
     var initialLoad = true;
 
@@ -135,6 +136,7 @@
             instagram: "Not_yet_set",
             twitter: "Not_yet_set",
             graduation_year: "2022",
+            photo_interests: photoInterests,
             userID: currentUID
         })
         .then(function(){
