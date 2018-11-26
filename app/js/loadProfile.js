@@ -79,7 +79,7 @@
         if (userType == "Faculty")
         {
             fieldParentDOM.removeChild(majorDIVDOM);
-            fieldParentDOM.removeChild(majorDIVDOM);
+            fieldParentDOM.removeChild(minorDIVDOM);
             fieldParentDOM.removeChild(graduationDIVDOM);
         }
         else
@@ -160,10 +160,17 @@
 
         if (editMode)
         {
-            facultyDOM.value = facultyPos;
-            majorDOM.value = major;
-            minorDOM.value = minor;
-            graduationDOM.value = gradYear;
+            if (userType == "Faculty")
+            {
+                facultyDOM.value = facultyPos;
+            }
+            else
+            {
+                majorDOM.value = major;
+                minorDOM.value = minor;
+                graduationDOM.value = gradYear;
+            }
+
             websiteDOM.value = website;
             websiteDOM.value = website;
             bioDOM.value = bio;
@@ -179,9 +186,16 @@
                     // Should be true if there are no documents with the blocked UID (User is not blocked)
                     // Then display the whole profile
                     if(querySnapshot.empty){ 
-                        majorDOM.innerHTML = major;
-                        minorDOM.innerHTML = minor;
-                        graduationDOM.innerHTML = gradYear;
+                        if (userType == "Faculty")
+                        {
+                            facultyDOM.innerHTML = facultyPos;
+                        }
+                        else
+                        {
+                            majorDOM.innerHTML = major;
+                            minorDOM.innerHTML = minor;
+                            graduationDOM.innerHTML = gradYear;
+                        }
                         websiteDOM.innerHTML = website;
                         websiteDOM.href = "http://" + website;
                         bioDOM.innerHTML = bio;
@@ -192,9 +206,16 @@
                     // Otherwise (empty) should be false (User is blocked)
                     // Display a limited (blocked) profile
                     else{
-                        majorDOM.innerHTML = "Unblock to view content";
-                        minorDOM.innerHTML = "Unblock to view content";
-                        graduationDOM.innerHTML = "Unblock to view content";
+                        if (userType == "Faculty")
+                        {
+                            facultyDOM.innerHTML = "Unblock to access content";
+                        }
+                        else
+                        {
+                            majorDOM.innerHTML = "Unblock to access content";
+                            minorDOM.innerHTML = "Unblock to access content";
+                            graduationDOM.innerHTML = "Unblock to access content";
+                        }
                         websiteDOM.innerHTML = "Unblock to access content";
                         websiteDOM.href = "Unblock to access content";
                         bioDOM.innerHTML = "Unblock to view content";
