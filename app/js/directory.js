@@ -131,7 +131,7 @@
 				document.getElementById("userList").innerHTML = "";
 				db.collection('Users').get().then((snapshot) => {
 					snapshot.docs.forEach(doc => {
-						renderUser(doc);
+						renderUser(doc, doc.get("userID"));
 					})
 				});
 			}
