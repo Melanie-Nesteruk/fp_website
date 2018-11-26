@@ -71,10 +71,12 @@
                     node.id = newInterest;
                     node.innerHTML = newInterest;
                     node.addEventListener('click', e=> {
-                        photoInterests.splice(photoInterests.find(e.target.id), 1);
+                        var indexToRemove = photoInterests.indexOf(e.target.id);
+                        photoInterests.splice(indexToRemove, 1);
                         interestsDIVDOM.removeChild(document.getElementById(e.target.id));
                     });
                     interestsDIVDOM.appendChild(node);
+                    interestListDOM.selectedIndex = 0;
                 })
                 .catch(function(error){
                     console.log("Error getting existing user photo interests: ", error);
@@ -139,7 +141,7 @@
         currentUser = user;
         if (currentUser)
         {
-            //interestsDIVDOM.classList.add("editInterests");
+
         }
     });
 }());
