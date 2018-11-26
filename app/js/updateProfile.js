@@ -53,7 +53,7 @@
                     photoInterests = doc.get("photo_interests");
 
                     // Already exists in interests; ignore it.
-                    if (photoInterests.find(newInterest) >= 0 || interestListDOM.selectedIndex == 0)
+                    if (photoInterests.includes(newInterest) || interestListDOM.selectedIndex == 0)
                     {
                         interestListDOM.selectedIndex = 0;
                         return;
