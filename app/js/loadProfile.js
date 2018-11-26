@@ -23,11 +23,16 @@
     db.settings(settings);
 
     // Get page elements to alter
+    const fieldParentDOM = document.getElementById('fieldParent');
     const fullNameDOM = document.getElementById('name');
     const userTypeDOM = document.getElementById('userType');
+    const facultyDIVDOM = document.getElementById('facultyDIV');
     const facultyDOM = document.getElementById('facultyPos');
+    const majorDIVDOM = document.getElementById('majorDIV');
     const majorDOM = document.getElementById('major');
+    const minorDIVDOM = document.getElementById('minorDIV');
     const minorDOM = document.getElementById('minor');
+    const graduationDIVDOM = document.getElementById('graduationDIV');
     const graduationDOM = document.getElementById('graduation');
     const emailDOM = document.getElementById('email');
     const websiteDOM = document.getElementById('website');
@@ -73,13 +78,13 @@
 
         if (userType == "Faculty")
         {
-            majorDOM.remove();
-            minorDOM.remove();
-            graduationDOM.remove();
+            fieldParentDOM.removeChild(majorDIVDOM);
+            fieldParentDOM.removeChild(majorDIVDOM);
+            fieldParentDOM.removeChild(graduationDIVDOM);
         }
         else
         {
-            facultyDOM.remove();
+            fieldParentDOM.removeChild(facultyDIVDOM);
         }
 
         SetAdditionalFields(UID);

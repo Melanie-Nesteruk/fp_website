@@ -21,9 +21,10 @@
                                         <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
                                             <span class="bioHeader" id="name"></span>
                                             <span class="labelValue" id="userType"></span>
-                                            <div class="bioLabel inputDiv">Major: <input type="text" id="major"></div>
-                                            <div class="bioLabel inputDiv">Minor: <input type="text" id="minor"></div>
-                                            <div class="bioLabel inputDiv">Graduation: <input type="number" id="graduation"></div>
+                                            <div class="bioLabel inputDiv" id="facultyDIV">Faculty Position: <input type="text" id="facultyPos"></div>
+                                            <div class="bioLabel inputDiv" id="majorDIV">Major: <input type="text" id="major"></div>
+                                            <div class="bioLabel inputDiv" id="minorDIV">Minor: <input type="text" id="minor"></div>
+                                            <div class="bioLabel inputDiv" id="graduationDIV">Graduation: <input type="number" id="graduation"></div>
                                             <p></p>
                                             <div class="bioLabel">Email: <span class="labelValue" id="email"></span></div>
                                             <div class="bioLabel inputDiv">Website: <input type="text" id="website"></div>
@@ -69,16 +70,16 @@
                                         <div class="divTableCell" style="width: 210px; height: 200px; text-align: left;">
                                             <img src="app/img/default-avatar.png"/>
                                         </div>
-                                        <div class="divTableCell" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
+                                        <div class="divTableCell" id="fieldParent" style="text-align: left; vertical-align: top; padding: 0 0 0 10;">
                                             <span class="bioHeader" id="name"></span><!--<button style="text-align: right;" class="btnBlock"><i class="fa fa-ellipsis-h" style="font-size: 24px; color:gray;"></i></button></span> -->
                                             <span class="labelValue" id="userType"></span>
                                             {% if not user and not edit %}
                                             <span class="btnEdit" id="editor"><a href="/profile?edit=true" style="pointer-events: auto;">Edit Profile</a></span>
                                             {% endif %}
-                                            <div class="bioLabel">Faculty Position: <span class="labelValue" id="facultyPos"></span></div>
-                                            <div class="bioLabel">Major: <span class="labelValue" id="major"></span></div>
-                                            <div class="bioLabel">Minor: <span class="labelValue" id="minor"></span></div>
-                                            <div class="bioLabel">Graduation: <span class="labelValue" id="graduation"></span></div>
+                                            <div class="bioLabel" id="facultyDIV">Faculty Position: <span class="labelValue" id="facultyPos"></span></div>
+                                            <div class="bioLabel" id="majorDIV">Major: <span class="labelValue" id="major"></span></div>
+                                            <div class="bioLabel" id="minorDIV">Minor: <span class="labelValue" id="minor"></span></div>
+                                            <div class="bioLabel" id="graduationDIV">Graduation: <span class="labelValue" id="graduation"></span></div>
                                             <p></p>
                                             <div class="bioLabel">Email: <span class="labelValue" id="email"></span></div>
                                             <div class="bioLabel">Website: <a class="labelValue" id="website" href="http://www.yourwebsite.com" style="pointer-events: auto;"></a></div>
