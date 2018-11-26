@@ -25,6 +25,7 @@
     // Get page elements to alter
     const fullNameDOM = document.getElementById('name');
     const userTypeDOM = document.getElementById('userType');
+    const facultyDOM = document.getElementById('facultyPos');
     const majorDOM = document.getElementById('major');
     const minorDOM = document.getElementById('minor');
     const graduationDOM = document.getElementById('graduation');
@@ -69,6 +70,18 @@
         }
 
         SetBasicFields();
+
+        if (userType == "Faculty")
+        {
+            majorDOM.remove();
+            minorDOM.remove();
+            graduationDOM.remove();
+        }
+        else
+        {
+            facultyDOM.remove();
+        }
+
         SetAdditionalFields(UID);
     };
     
@@ -142,6 +155,7 @@
 
         if (editMode)
         {
+            facultyDOM.value = facultyPos;
             majorDOM.value = major;
             minorDOM.value = minor;
             graduationDOM.value = gradYear;
