@@ -29,7 +29,7 @@
             if (event.keyCode !== 13) {
                 return;
             }
-            
+
             // Get email and password
             const email = txtEmail.value;
             const pass = txtPassword.value;
@@ -39,7 +39,7 @@
 
             // Logout an existing user
             if (firebase.auth().currentUser) {
-                user.auth().signOut();
+                firebase.auth().signOut();
 
                 swal({
                     title: "User is already logged in. You have been logged out.",
@@ -80,7 +80,7 @@
 
             // Logout an existing user
             if (firebase.auth().currentUser) {
-                user.auth().signOut();
+                firebase.auth().signOut();
                 
                 swal({
                     title: "User is already logged in. You have been logged out.",
