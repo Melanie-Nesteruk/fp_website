@@ -93,8 +93,7 @@
                     confirmButtonText: 'Verify Account',
                 })
                 .then((value) => {
-                    console.log(value);
-                    if (value == 1) {
+                    if (value) {
                         db.collection("Users").doc(uidToVerify).update({
                             verified: true,
                             verified_by: currentUser.uid
@@ -115,7 +114,7 @@
                                     }
                                 }
                             })
-                            .then(value => {
+                            .then((value) => {
                                 console.log("User successfully verified!");
                                 window.location.reload();
                             });
@@ -167,7 +166,7 @@
                         }
                     }
                 })
-                .then(value => {
+                .then((value) => {
                     if (value) {
                         db.collection("Users").doc(uidToDelete).update({
                             to_delete: true
@@ -183,7 +182,7 @@
                                     }
                                 }
                             })
-                            .then(value => {
+                            .then((value) => {
                                 console.log("User successfully marked for deletion!");
                                 window.location.reload();
                             });

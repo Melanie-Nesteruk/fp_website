@@ -30,11 +30,8 @@
 	<div class="page-wrap" id = "messages-container">
 		<ul id="message-list"></ul>
 	</div>
-	<footer class ="message-buffer">
-		<p>Focal Point</p>
-	</footer>
 	<!-- Messages container -->
-		<div class="footer">
+		<div class="message-footer">
 			<div class="form-inline" id="message-form" action="#">
 				<div class="form-group" style="
 					width: 70%;
@@ -45,7 +42,14 @@
 			<button id="sendButton" type="submit" class="sendButton">Send</button>
 			</div>
 		</div>
+	<footer class ="message-buffer">
+		Focal Point
+	</footer>
 <style>
+.footer {
+  height: 50px;
+}
+
 html, body {
 	height: 100%;
 }
@@ -78,7 +82,7 @@ body {
   height: 100%;
 }
 
-.footer {
+.message-footer {
   position: fixed;
   bottom: -5px;
   width: 100%;
