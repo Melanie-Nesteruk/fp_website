@@ -133,17 +133,10 @@
                 txtPassword.value = "";
 
                 swal({
-                    title: "You are now signed in!",
-                    icon: "success",
-                    buttons: {
-                        confirm: {
-                            text: "Continue",
-                            closeModal: true,
-                            value:      1
-                        }
-                    }
-                })
-                .then(value => {
+                    title: 'You are now signed in!"',
+                    type: 'success',
+                    confirmButtonText: "Continue"
+                }).then(value => {
                     window.location.href = "/index";
                     return;
                 });
