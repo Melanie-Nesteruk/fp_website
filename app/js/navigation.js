@@ -269,6 +269,11 @@
         if (navLinks.hasOwnProperty(index)) {
             var link = navLinks[index];
 
+            if (!link)
+            {
+                continue;
+            }
+
             // TypeError: link is null, next line
             if (currentPage == link.id) {
                 if (!link.classList.contains("active")) {
