@@ -63,9 +63,9 @@
                                 window.location.href = "/login";
                                 return;
                             });
-                        }
-                    }
-                }
+                        });
+                    });
+                });
             });
             return;
         });
