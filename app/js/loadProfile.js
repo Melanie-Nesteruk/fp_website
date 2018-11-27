@@ -89,7 +89,7 @@
         }
 
         SetAdditionalFields(UID);
-        LoadInterests();
+        LoadInterests(UID);
     };
     
     function SetBasicFields()
@@ -291,10 +291,10 @@
 		}
     };
 
-    function LoadInterests()
+    function LoadInterests(uID)
     {   
         // Load current photo interests
-        db.collection('Profiles').doc(currentUser.uid).get()
+        db.collection('Profiles').doc(uID).get()
         .then(function(querySnapshot){
             var doc = querySnapshot;
             photoInterests = doc.get("photo_interests");
