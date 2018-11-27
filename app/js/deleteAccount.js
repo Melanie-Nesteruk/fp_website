@@ -42,7 +42,7 @@
                     autocapitalize: 'off',
                     autocorrect: 'off'
                 }
-            }).then(function(inputValue) {
+            }, function(inputValue) {
                     swal({
                         title: 'NICE ' + inputValue,
                         type: 'success'
