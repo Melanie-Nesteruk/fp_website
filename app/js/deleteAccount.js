@@ -40,16 +40,16 @@
             },
             function(inputValue) {
                 if (inputValue === false)
-                    return false
+                    return false;
                 if (inputValue === "") {
                     swal.showInputError("Please type in your password");
-                    return false
+                    return false;
                 }
 
                 var toDeleteUser = firebase.auth().currentUser;
                 var toDeleteUserID = toDeleteUser.uid;
-                db.collection("Profiles").doc(toDeleteUserID).delete().then(function(){
-                    db.collection("Users").doc(toDeleteUserID).delete().then(function(){
+                db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
+                    db.collection("Users").doc(toDeleteUserID).delete().then(function() {
                         toDeleteUser.delete().then(function() {
                             swal({
                                 title: "Your account has been deleted.",
@@ -72,31 +72,5 @@
                 return;
             }
         );
-    }};
-            
-    // Add password reset event
- //   if (btnDelAcct != null) {
- //       btnDelAcct.addEventListener('click', e=> {
- //           swal({
- //               title: "Are you sure?",
- //               text:  "Click anywhere else to cancel.",
- //               buttons: {
- //                   cancel: {
- //                       closeModal: true,
- //                       value:      0
- //                   },
- //                   confirm: {
- //                       text:       "Delete",
- //                       closeModal: true,
- //                       value:      1
- //                   }
- //               }
- //           })
- //           .then(value => {
- //               if (value == 1) {
- //               }
- //           });
- //           return;
- //       });
- //   }
+    });
 }());
