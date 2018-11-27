@@ -368,28 +368,6 @@
                     node.setAttribute("tabindex", "-1");
                     node.id = toAdd;
                     node.innerHTML = toAdd;
-                    node.addEventListener('click', e=> {
-                        db.collection('Profiles').doc(currentUser.uid).get()
-                        .then(function(querySnapshot){
-                            var doc = querySnapshot;
-                            interests = doc.get("photo_interests");
-                            var indexToRemove = interests.indexOf(e.target.id);
-                            interests.splice(indexToRemove, 1);
-                            db.collection("Profiles").doc(currentUser.uid).update({
-                                photo_interests: interests
-                            })
-                            .then(function(){
-                                interestsDIVDOM.removeChild(document.getElementById(e.target.id));
-                                if (interests.length == 0)
-                                {
-                                AddNewInterest("None", true); 
-                                }
-                            })
-                            .catch(function(error){
-                                console.error("Error removing photo interest: ", error);
-                            });
-                        });
-                    });
                     interestsDIVDOM.appendChild(node);
                     interestListDOM.selectedIndex = 0;
                 })
