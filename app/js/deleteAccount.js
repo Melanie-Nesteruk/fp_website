@@ -31,29 +31,35 @@
     if (btnDelAcct != null) {
         btnDelAcct.addEventListener('click', e=> {
             swal({
-                title: "Delete Account",
-                text: "This cannot be undone!",
-                content: {
-                    element: "input",
-                    attributes: {
-                        placeholder: "Type your password",
-                        type: "password"
-                    }
+                title: 'Delete Account',
+                text: 'This cannot be undone!',
+                showCancelButton: true,
+                cancelButtonText: 'Cancel',
+                confirmButtonText: 'Delete Account',
+                input: 'password',
+                inputPlaceholder: 'Confirm your password',
+                inputAttributes: {
+                    autocapitalize: 'off',
+                    autocorrect: 'off'
                 }
-            }).then(function(password) {
-                var toDeleteUser = firebase.auth().currentUser;
-                var toDeleteUserID = toDeleteUser.uid;
-                const credential = {
-                    user.email,
-                    password
-                };
-
-                user.reauthenticateAndRetrieveDataWithCredential(credential).then() {
+            }, function(inputValue) {
                     swal({
-                        title: 'NICE',
+                        title: 'NICE ' + inputValue,
                         type: 'success'
                     });
-                }
+                //var toDeleteUser = firebase.auth().currentUser;
+                //var toDeleteUserID = toDeleteUser.uid;
+                //const credential = {
+                //    user.email,
+                //    password
+                //};
+
+                //user.reauthenticateAndRetrieveDataWithCredential(credential).then() {
+                //    swal({
+                //        title: 'NICE',
+                //        type: 'success'
+                //    });
+                //}
             });
             return;
         });

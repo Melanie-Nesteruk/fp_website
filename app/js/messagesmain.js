@@ -1,36 +1,8 @@
 (function() {
-    console.log("in messagesmain.js");
         
     const connectedUserList = document.querySelector('#connected-user-list');
     const connectedFriendsList = document.querySelector('#connected-friends-list');
 
-	
-    // =======================================================
-    // create element and render users
-    //
-    /*
-    function renderUsers(doc){
-        console.log('Rendering user...');
-        
-        let li = document.createElement('li');
-        let email = document.createElement('span');
-        let user_id = document.createElement('span');
-        // let 'element' = document.createElement('span');
-        
-        li.setAttribute('data-id', doc.id);
-        email.textContent = doc.data().email;
-        user_id.textContent = doc.data().user_id;
-        // 'element'.textContent = doc.data().'element';
-        
-        li.appendChild(email);
-        li.appendChild(user_id);
-        
-        connectedUserList.appendChild(li);
-        console.log('User listed.');
-    }
-    */
-	
-	
     // =======================================================
     //	Create elements and render friends list
     //
@@ -44,7 +16,6 @@
 		firestore.collection("Chat-Groups").where("user_1", "==", friend_id).where("user_2", "==", current_id)
 			.get().then(function(results) {
 			if (results.empty) {
-				console.log("No documents found query1!");
 				sessionID='';
 			} else {
                 var doc = results.docs[0];
@@ -58,7 +29,6 @@
 				firestore.collection("Chat-Groups").where("user_1", "==", current_id).where("user_2", "==", friend_id)
 					.get().then(function(results) {
 						if (results.empty) {
-							console.log("No documents found query2!");
 							firestore.collection("Chat-Groups").add({
 								user_1: current_id,
 								user_2: friend_id
@@ -72,7 +42,6 @@
 										firestore.collection("Chat-Groups").doc(sessionID).collection("Messages").add({
 											messages_approved: "true"
 										})
-										console.log("Messages collection successfully written!");
 										var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?sid=' + sessionID;
 										window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 									})
@@ -85,7 +54,6 @@
 						} else {
 							var doc = results.docs[0];
 							sessionID = String(doc.id);
-							console.log('2nd. SESSION ID: ', sessionID);
 							var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?sid=' + sessionID;
 							window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 						}
@@ -101,24 +69,24 @@
     //
 
     function renderFriendsList(doc1){
-        console.log('Rendering friend...');
-		
 		var friendProfile = firestore.collection('Users').doc(doc1.id).get()
 			.then(doc => {
 				if (!doc.exists) {
-					console.log('No such document!');
+					
 				} else {
-					console.log('doc data: ', doc.data());
-					var first_name = String(doc.get("first_Name"));
-					var last_name = String(doc.get("last_Name"));
-					var displayName = first_name + ' ' + last_name;
-					var but = document.createElement("button");
-					but.setAttribute("value", doc1.id);
-					but.id = doc1.id;
-					but.innerHTML = displayName;
-					but.setAttribute("class", "btn btn-primary btn-lg btn-block");
-					connectedFriendsList.appendChild(but);
-					attachClickEvent(doc1.id);
+					if (!(doc1.id == doc.id)){
+						console.log('doc data: ', doc.data());
+						var first_name = String(doc.get("first_Name"));
+						var last_name = String(doc.get("last_Name"));
+						var displayName = first_name + ' ' + last_name;
+						var but = document.createElement("button");
+						but.setAttribute("value", doc1.id);
+						but.id = doc1.id;
+						but.innerHTML = displayName;
+						but.setAttribute("class", "btn btn-primary btn-lg btn-block");
+						connectedFriendsList.appendChild(but);
+						attachClickEvent(doc1.id);
+					}
 				}
 			})
 			.catch(err => {
@@ -151,9 +119,7 @@
             storageBucket: "focal-point-student-alumni-net.appspot.com",
             messagingSenderId: "1002904582612"
         } 
-                
         firebase.initializeApp(config);
-        console.log("initializeApp");
     }
 
     // =======================================================
@@ -170,7 +136,6 @@
 
     firebase.auth().onAuthStateChanged(function(user) {
     if (user) { // if user is authorized
-        console.log('User is signed in');
         name = user.displayName;
         email = user.email;
         photoUrl = user.photoURL;
