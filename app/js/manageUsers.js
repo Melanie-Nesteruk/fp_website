@@ -86,29 +86,43 @@
                 uidToVerify = this.parentNode.id;
 
                 swal({
-                    title: 'Are you sure you want to verify ' + nameToVerify + '?',
-                    text:  'Click anywhere else to cancel.',
-                    showCancelButton: true,
-                    cancelButtonText: 'Cancel',
-                    confirmButtonText: 'Verify User',
+                    title: "Are you sure you want to verify " + nameToVerify + "?",
+                    text:  "Click anywhere else to cancel.",
+                    buttons: {
+                        cancel: {
+                            closeModal: true,
+                            value:      0
+                        },
+                        confirm: {
+                            text:       "Confirm",
+                            closeModal: true,
+                            value:      1
+                        }
+                    }
                 })
-                .then(function(value) => {
-                    if (value) {
+                .then(value => {
+                    if (value == 1) {
                         db.collection("Users").doc(uidToVerify).update({
                             verified: true,
                             verified_by: currentUser.uid
                         })
-                        .then(function() {
+                        .then(function(){
                             swal({
-                                title: nameToVerify + ' has been successfully verified!',
-                                type: 'success',
-                                text: 'Click OK to continue.",
+                                title: nameToVerify + " has been successfully verified!",
+                                icon: "success",
+                                text:  "Click Ok to continue.",
                                 closeOnClickOutside: false,
                                 closeOnEsc: false,
-                                showCancelButton: false,
-                                confirmButtonText: 'OK',
+                                buttons: {
+                                    cancel: {
+                                        text: "Ok",
+                                        value: 1,
+                                        visible: true,
+                                        closeModal: true,
+                                    }
+                                }
                             })
-                            .then((value) => {
+                            .then(value => {
                                 console.log("User successfully verified!");
                                 window.location.reload();
                             });
@@ -167,12 +181,14 @@
                         }).then(function() {
                             swal({
                                 title: nameToDelete + "'s account has been marked for deletion.",
-                                text: 'Click OK to continue.",
-                                closeOnClickOutside: false,
-                                closeOnEsc: false,
-                                showCancelButton: false,
-                                confirmButtonText: 'OK',
-                                type: "success",
+                                icon: "success",
+                                buttons: {
+                                    confirm: {
+                                        text: "Continue",
+                                        closeModal: true,
+                                        value:      1
+                                    }
+                                }
                             })
                             .then(value => {
                                 console.log("User successfully marked for deletion!");
