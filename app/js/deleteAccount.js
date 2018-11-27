@@ -57,9 +57,6 @@
                     rawPassword
                 );
 
-                console.log(toDeleteUser.email);
-                console.log(rawPassword);
-
                 toDeleteUser.reauthenticateWithCredential(credential).then(() => {
                     db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
                         db.collection("Users").doc(toDeleteUserID).delete().then(function() {
