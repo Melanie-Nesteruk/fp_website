@@ -1,5 +1,5 @@
 (function() {
-        
+       
     const connectedUserList = document.querySelector('#connected-user-list');
     const connectedFriendsList = document.querySelector('#connected-friends-list');
 
