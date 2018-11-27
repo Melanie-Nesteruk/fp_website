@@ -121,6 +121,13 @@
             else
             {
                 interests.push(toAdd);
+
+                // If list is empty and a new interest is added, remove the "None" interest
+                if (interests.includes("None") && interests.length == 1 && !safeGuard)
+                {
+                    interests.splice(0, 1);
+                    interestsDIVDOM.removeChild(document.getElementById("None"));
+                }
                 db.collection("Profiles").doc(currentUser.uid).update({
                     photo_interests: interests
                 })
