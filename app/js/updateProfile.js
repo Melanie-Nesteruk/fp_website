@@ -113,7 +113,7 @@
 
             if (currentUser)
             {
-                db.collection("Profiles").doc(currentUser.uid).set({
+                db.collection("Profiles").doc(currentUser.uid).update({
                     major: majorDOM.value,
                     minor: minorDOM.value,
                     bio: bioDOM.value,
