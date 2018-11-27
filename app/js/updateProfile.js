@@ -80,7 +80,7 @@
                                     photoInterests = doc.get("photo_interests");
                                     var indexToRemove = photoInterests.indexOf(e.target.id);
                                     photoInterests.splice(indexToRemove, 1);
-                                    db.collection("Profiles").doc(currentUser.uid).set({
+                                    db.collection("Profiles").doc(currentUser.uid).update({
                                         photo_interests: photoInterests
                                     })
                                     .then(function(){
