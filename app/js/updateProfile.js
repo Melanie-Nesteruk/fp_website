@@ -36,7 +36,7 @@
     const btnSaveDOM = document.getElementById('btnSaveChanges');
     
     var currentUser, newInterest;
-    var photoInterests = [];
+    var interests = [];
 
     // Add "New Interest" event
     if (btnAddInterestDOM != null) {
@@ -45,28 +45,8 @@
 
             if (currentUser)
             {
-                // Get current interests from DB
-                db.collection('Profiles').doc(currentUser.uid).get()
-                .then(function(querySnapshot){
-                    newInterest = interestListDOM.options[interestListDOM.selectedIndex].text;
-                    var doc = querySnapshot;
-                    photoInterests = doc.get("photo_interests");
-
-                    // Already exists in interests; ignore it.
-                    if (photoInterests.includes(newInterest) || interestListDOM.selectedIndex == 0)
-                    {
-                        interestListDOM.selectedIndex = 0;
-                        return;
-                    }
-                    // Push it
-                    else
-                    {
-                        AddNewInterest(photoInterests, newInterest);
-                    }
-                })
-                .catch(function(error){
-                    console.log("Error getting existing user photo interests: ", error);
-                });
+                newInterest = interestListDOM.options[interestListDOM.selectedIndex].text;
+                AddNewInterest(newInterest, false);
             }
         });
     }
@@ -89,7 +69,7 @@
                     twitter: twitterDOM.value,
                     graduation_year: graduationDOM.value,
                     userID: currentUser.uid,
-                    // photo_interests: photoInterests // Photo interests are saved automatically
+                    // photo_interests: interests // Photo interests are saved automatically
                 })
                 .then(function(){
                     swal({
@@ -123,47 +103,67 @@
         });
     }
 
-    function AddNewInterest(interests, toAdd)
+    function AddNewInterest(toAdd, safeGuard)
     {
-        interests.push(toAdd);
-        db.collection("Profiles").doc(currentUser.uid).update({
-            photo_interests: interests
-        })
-        .then(function(){
-            node = document.createElement("button");
-            node.classList.add("btn");
-            node.classList.add("btnInterest");
-            node.setAttribute("type", "submit");
-            node.setAttribute("tabindex", "-1");
-            node.id = toAdd;
-            node.innerHTML = toAdd;
-            node.addEventListener('click', e=> {
-                db.collection('Profiles').doc(currentUser.uid).get()
-                .then(function(querySnapshot){
-                    var doc = querySnapshot;
-                    interests = doc.get("photo_interests");
-                    var indexToRemove = interests.indexOf(e.target.id);
-                    interests.splice(indexToRemove, 1);
-                    db.collection("Profiles").doc(currentUser.uid).update({
-                        photo_interests: interests
-                    })
-                    .then(function(){
-                        interestsDIVDOM.removeChild(document.getElementById(e.target.id));
-                        if (interests.length == 0)
-                        {
-                           AddNewInterest("None"); 
-                        }
-                    })
-                    .catch(function(error){
-                        console.error("Error removing photo interest: ", error);
+        // Get current interests from DB
+        db.collection('Profiles').doc(currentUser.uid).get()
+        .then(function(querySnapshot){
+            var doc = querySnapshot;
+            interests = doc.get("photo_interests");
+
+            // Already exists in interests, ignore it.
+            if (interests.includes(newInterest) || interestListDOM.selectedIndex == 0 && !safeGuard)
+            {
+                interestListDOM.selectedIndex = 0;
+                return;
+            }
+            // Push it
+            else
+            {
+                interests.push(toAdd);
+                db.collection("Profiles").doc(currentUser.uid).update({
+                    photo_interests: interests
+                })
+                .then(function(){
+                    node = document.createElement("button");
+                    node.classList.add("btn");
+                    node.classList.add("btnInterest");
+                    node.setAttribute("type", "submit");
+                    node.setAttribute("tabindex", "-1");
+                    node.id = toAdd;
+                    node.innerHTML = toAdd;
+                    node.addEventListener('click', e=> {
+                        db.collection('Profiles').doc(currentUser.uid).get()
+                        .then(function(querySnapshot){
+                            var doc = querySnapshot;
+                            interests = doc.get("photo_interests");
+                            var indexToRemove = interests.indexOf(e.target.id);
+                            interests.splice(indexToRemove, 1);
+                            db.collection("Profiles").doc(currentUser.uid).update({
+                                photo_interests: interests
+                            })
+                            .then(function(){
+                                interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                                if (interests.length == 0)
+                                {
+                                AddNewInterest("None", true); 
+                                }
+                            })
+                            .catch(function(error){
+                                console.error("Error removing photo interest: ", error);
+                            });
+                        });
                     });
+                    interestsDIVDOM.appendChild(node);
+                    interestListDOM.selectedIndex = 0;
+                })
+                .catch(function(error){
+                    console.error("Error adding photo interest: ", error);
                 });
-            });
-            interestsDIVDOM.appendChild(node);
-            interestListDOM.selectedIndex = 0;
+            }
         })
         .catch(function(error){
-            console.error("Error adding photo interest: ", error);
+            console.log("Error getting existing user photo interests: ", error);
         });
     }
 

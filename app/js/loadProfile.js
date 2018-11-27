@@ -297,11 +297,11 @@
         db.collection('Profiles').doc(uID).get()
         .then(function(querySnapshot){
             var doc = querySnapshot;
-            photoInterests = doc.get("photo_interests");
+            var interests = doc.get("photo_interests");
     
             // Add HTML elements
-            photoInterests.forEach(element => {
-                var node = document.createElement("button");
+            interests.forEach(element => {
+                node = document.createElement("button");
                 node.classList.add("btn");
                 node.classList.add("btnInterest");
                 node.setAttribute("type", "submit");
@@ -309,17 +309,21 @@
                 node.id = element;
                 node.innerHTML = element;
                 node.addEventListener('click', e=> {
-                    db.collection('Profiles').doc(uID).get()
+                    db.collection('Profiles').doc(currentUser.uid).get()
                     .then(function(querySnapshot){
                         var doc = querySnapshot;
-                        photoInterests = doc.get("photo_interests");
-                        var indexToRemove = photoInterests.indexOf(e.target.id);
-                        photoInterests.splice(indexToRemove, 1);
-                        db.collection("Profiles").doc(uID).update({
-                            photo_interests: photoInterests
+                        interests = doc.get("photo_interests");
+                        var indexToRemove = interests.indexOf(e.target.id);
+                        interests.splice(indexToRemove, 1);
+                        db.collection("Profiles").doc(currentUser.uid).update({
+                            photo_interests: interests
                         })
                         .then(function(){
                             interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                            if (interests.length == 0)
+                            {
+                            AddNewInterest("None", true); 
+                            }
                         })
                         .catch(function(error){
                             console.error("Error removing photo interest: ", error);
@@ -335,6 +339,69 @@
         });
     };
 
+    function AddNewInterest(toAdd, safeGuard)
+    {
+        // Get current interests from DB
+        db.collection('Profiles').doc(currentUser.uid).get()
+        .then(function(querySnapshot){
+            var doc = querySnapshot;
+            var interests = doc.get("photo_interests");
+
+            // Already exists in interests, ignore it.
+            if (interests.includes(newInterest) || interestListDOM.selectedIndex == 0 && !safeGuard)
+            {
+                interestListDOM.selectedIndex = 0;
+                return;
+            }
+            // Push it
+            else
+            {
+                interests.push(toAdd);
+                db.collection("Profiles").doc(currentUser.uid).update({
+                    photo_interests: interests
+                })
+                .then(function(){
+                    node = document.createElement("button");
+                    node.classList.add("btn");
+                    node.classList.add("btnInterest");
+                    node.setAttribute("type", "submit");
+                    node.setAttribute("tabindex", "-1");
+                    node.id = toAdd;
+                    node.innerHTML = toAdd;
+                    node.addEventListener('click', e=> {
+                        db.collection('Profiles').doc(currentUser.uid).get()
+                        .then(function(querySnapshot){
+                            var doc = querySnapshot;
+                            interests = doc.get("photo_interests");
+                            var indexToRemove = interests.indexOf(e.target.id);
+                            interests.splice(indexToRemove, 1);
+                            db.collection("Profiles").doc(currentUser.uid).update({
+                                photo_interests: interests
+                            })
+                            .then(function(){
+                                interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                                if (interests.length == 0)
+                                {
+                                AddNewInterest("None", true); 
+                                }
+                            })
+                            .catch(function(error){
+                                console.error("Error removing photo interest: ", error);
+                            });
+                        });
+                    });
+                    interestsDIVDOM.appendChild(node);
+                    interestListDOM.selectedIndex = 0;
+                })
+                .catch(function(error){
+                    console.error("Error adding photo interest: ", error);
+                });
+            }
+        })
+        .catch(function(error){
+            console.log("Error getting existing user photo interests: ", error);
+        });
+    }
 
     firebase.auth().onAuthStateChanged(user => {
         if (user)
