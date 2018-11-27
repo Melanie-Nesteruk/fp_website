@@ -68,6 +68,7 @@
                     node.classList.add("btn");
                     node.classList.add("btnInterest");
                     node.setAttribute("type", "submit");
+                    node.setAttribute("tabindex", "-1");
                     node.id = newInterest;
                     node.innerHTML = newInterest;
                     node.addEventListener('click', e=> {
@@ -139,9 +140,5 @@
 
     firebase.auth().onAuthStateChanged(user => {
         currentUser = user;
-        if (currentUser)
-        {
-
-        }
     });
 }());

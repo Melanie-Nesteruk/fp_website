@@ -305,6 +305,7 @@
                 node.classList.add("btn");
                 node.classList.add("btnInterest");
                 node.setAttribute("type", "submit");
+                node.setAttribute("tabindex", "-1");
                 node.id = element;
                 node.innerHTML = element;
                 node.addEventListener('click', e=> {
