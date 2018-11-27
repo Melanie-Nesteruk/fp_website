@@ -42,9 +42,10 @@
                     autocapitalize: 'off',
                     autocorrect: 'off'
                 }
-            }, function(inputValue) {
+            }.then(function(inputValue) {
+                    console.log(inputValue);
                     swal({
-                        title: 'NICE ' + inputValue,
+                        title: 'NICE ${inputValue}',
                         type: 'success'
                     });
                 //var toDeleteUser = firebase.auth().currentUser;
