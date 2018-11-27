@@ -346,7 +346,7 @@
         .then(function(querySnapshot){
             var doc = querySnapshot;
             var interests = doc.get("photo_interests");
-
+            var interestListDOM = document.getElementById('interestList');
             // Already exists in interests, ignore it.
             if (interests.includes(toAdd) || interestListDOM.selectedIndex == 0 && !safeGuard)
             {
