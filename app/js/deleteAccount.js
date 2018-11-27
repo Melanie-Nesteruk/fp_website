@@ -57,10 +57,10 @@
                     rawPassword
                 );
 
-                console.log(toDeleteUserID.email);
+                console.log(toDeleteUser.email);
                 console.log(rawPassword);
 
-                toDeleteUserID.reauthenticate(credential).then(() => {
+                toDeleteUser.reauthenticate(credential).then(() => {
                     db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
                         db.collection("Users").doc(toDeleteUserID).delete().then(function() {
                             toDeleteUser.delete().then(function() {
