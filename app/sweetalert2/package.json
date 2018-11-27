@@ -1,0 +1,225 @@
+{
+  "_args": [
+    [
+      {
+        "raw": "sweetalert2",
+        "scope": null,
+        "escapedName": "sweetalert2",
+        "name": "sweetalert2",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "/home/focalpointkent/github/fp_website/app/sweetalert"
+    ]
+  ],
+  "_from": "sweetalert2@latest",
+  "_hasShrinkwrap": false,
+  "_id": "sweetalert2@7.29.2",
+  "_inCache": true,
+  "_location": "/sweetalert2",
+  "_nodeVersion": "10.13.0",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/sweetalert2_7.29.2_1543238790995_0.1923260943810512"
+  },
+  "_npmUser": {
+    "name": "limonte",
+    "email": "limon.monte@gmail.com"
+  },
+  "_npmVersion": "6.4.1",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "sweetalert2",
+    "scope": null,
+    "escapedName": "sweetalert2",
+    "name": "sweetalert2",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/sweetalert2/-/sweetalert2-7.29.2.tgz",
+  "_shasum": "e79b0e1bb22fa55b377b1907ac18eb89c0c5f643",
+  "_shrinkwrap": null,
+  "_spec": "sweetalert2",
+  "_where": "/home/focalpointkent/github/fp_website/app/sweetalert",
+  "author": {
+    "name": "Limon Monte",
+    "email": "limon.monte@gmail.com",
+    "url": "https://limonte.github.io"
+  },
+  "bugs": {
+    "url": "https://github.com/sweetalert2/sweetalert2/issues"
+  },
+  "contributors": [
+    {
+      "name": "Matthew Francis Brunetti",
+      "email": "zenflow87@gmail.com",
+      "url": "https://github.com/zenflow"
+    },
+    {
+      "name": "Morgan Touverey-Quilling",
+      "email": "mtouverey@alembic-dev.com",
+      "url": "https://github.com/toverux"
+    },
+    {
+      "name": "Joseph Schultz",
+      "url": "https://github.com/acupajoe"
+    },
+    {
+      "name": "Sam Turrell",
+      "email": "sam@samturrell.co.uk",
+      "url": "https://github.com/samturrell"
+    },
+    {
+      "name": "Johan Fagerberg",
+      "url": "https://github.com/birjolaxew"
+    },
+    {
+      "name": "Giuseppe Verni",
+      "url": "https://github.com/gverni"
+    }
+  ],
+  "dependencies": {},
+  "description": "A beautiful, responsive, customizable and accessible (WAI-ARIA) replacement for JavaScript's popup boxes, supported fork of sweetalert",
+  "devDependencies": {
+    "@babel/core": "^7.1.5",
+    "@babel/plugin-transform-object-assign": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
+    "@semantic-release/changelog": "^3.0.1",
+    "@semantic-release/exec": "^3.3.0",
+    "@semantic-release/git": "^7.0.5",
+    "babel-loader": "^8.0.4",
+    "babel-plugin-array-includes": "^2.0.3",
+    "browser-sync": "^2.26.3",
+    "bundlesize": "^0.17.0",
+    "coveralls": "^3.0.2",
+    "custom-event-polyfill": "^1.0.6",
+    "detect-browser": "^3.0.0",
+    "eslint": "^5.9.0",
+    "execa": "^1.0.0",
+    "git-state": "^4.0.0",
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^3.9.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-css2js": "^1.1.2",
+    "gulp-eslint": "^5.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-load-plugins": "^1.5.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-rollup": "^2.16.2",
+    "gulp-sass": "^4.0.2",
+    "gulp-sass-lint": "^1.3.4",
+    "gulp-tslint": "^8.1.2",
+    "gulp-typescript": "^5.0.0-alpha.3",
+    "gulp-uglify": "^3.0.0",
+    "is-ci": "^1.1.0",
+    "jquery": "^3.3.1",
+    "karma": "^3.1.1",
+    "karma-chrome-launcher": "^2.2.0",
+    "karma-coverage": "^1.1.2",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-ie-launcher": "^1.0.0",
+    "karma-qunit": "^2.0.0",
+    "karma-sauce-launcher": "^1.2.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "^0.0.32",
+    "karma-webpack": "^4.0.0-rc.2",
+    "merge2": "^1.2.3",
+    "mkdirp": "^0.5.1",
+    "pify": "^4.0.1",
+    "promise-polyfill": "^8.1.0",
+    "qunit": "^2.8.0",
+    "rimraf": "^2.6.2",
+    "rollup": "^0.67.0",
+    "rollup-plugin-babel": "^4.0.1",
+    "rollup-plugin-json": "^3.0.0",
+    "semantic-release": "^15.10.8",
+    "sinon": "^7.1.1",
+    "tslint": "^5.8.0",
+    "typescript": "^3.1.6",
+    "webpack": "^4.25.1"
+  },
+  "directories": {},
+  "dist": {
+    "integrity": "sha512-p+Zp2ly8vf9jGlzlUOmpVDZZoRHHatTHa3H3OnXVInQKJ5HHQr5Vg8XnledhS4Iih6TdSadbdGZ8Y4gE+OUgOQ==",
+    "shasum": "e79b0e1bb22fa55b377b1907ac18eb89c0c5f643",
+    "tarball": "https://registry.npmjs.org/sweetalert2/-/sweetalert2-7.29.2.tgz",
+    "fileCount": 72,
+    "unpackedSize": 510486,
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJb+/SHCRA9TVsSAnZWagAAkg4P/1bRatI/7gpmzpJyUuNb\nxoBIoaq4PKIJmv+OLWltj9NzJu+9p1WtlFI9zGIScFNC16E5mJVHjob/e/H1\nHqZTzZUT7GMSjT2kC9QNFPvkPlAeKQGVt3hyX8T3yktpHS3DIHnomHGua9IM\nZQCr5Mj9bPMwbpwql03KkHUlXjLLgbX7zCJ38YXxF/+c5jry6En88lyAHZa+\nsgnemf3Z+tlm4QRgJmw7J3ioWRfht81MCCAyZnseGPF8lKGqtuZqD0m0zO1s\nHBWnWtnxeFRl7x0xhi9Xra31KZwm1m/jraDXBNyhh/L2v6V7MdsPa0QQ/zqM\ntcIWviD6gZ2XyACTttmJX2wBn8eZ7Q3c40AnswENJL+NBPhFCequIwe2HLGd\np6aS3eB6AUiMZVv8rIbV9vFpqhRjpygsJyOgcen45ZiBevhlIs0h6NlP1g2J\ndYxmRQV0N88KR6AKahDTxNxV80QROAkSs5jSRDvf6xfeQdGaCbu3XSAi4sfc\n0SZQrOtsMrs9w9tPgIfNcLPt9TaXApliS3vOkthi71aLpHFEqZUvW+BI0+zE\nRYV8i0BEUoxCRGZNzI7bUVCLXwFJhz+uHyItSybdJfbwF/vTX5vThpn3FBVZ\nbuV/JutuwbmwvMAIiEWGMOdIwSjzEro9/IKr6Ynno0rgB0CLgRco/+edcnV7\nmCM3\r\n=w1zZ\r\n-----END PGP SIGNATURE-----\r\n"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "gitHead": "6099fc9666353bcc659c938ffdb34d7ff0c80e5e",
+  "homepage": "https://sweetalert2.github.io/",
+  "jsnext:main": "src/sweetalert2.js",
+  "keywords": [
+    "sweetalert",
+    "sweetalert2",
+    "alert",
+    "prompt",
+    "confirm"
+  ],
+  "license": "MIT",
+  "main": "dist/sweetalert2.all.js",
+  "maintainers": [
+    {
+      "name": "acupajoe",
+      "email": "joseph@acupajoe.io"
+    },
+    {
+      "name": "limonte",
+      "email": "limon.monte@gmail.com"
+    },
+    {
+      "name": "samturrell",
+      "email": "sam@samturrell.co.uk"
+    },
+    {
+      "name": "toverux",
+      "email": "morgan.touverey@outlook.fr"
+    },
+    {
+      "name": "zen_flow",
+      "email": "zenflow87@gmail.com"
+    }
+  ],
+  "name": "sweetalert2",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sweetalert2/sweetalert2.git"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "check": "npm run check:lint && npm run check:bundlesize && npm run check:require-in-node && npm run check:qunit && npm run check:qunit:minified && npm run check:ts",
+    "check:bundlesize": "bundlesize -f dist/sweetalert2.all.min.js -s 15kB",
+    "check:jsdelivr": "curl --location 'https://cdn.jsdelivr.net/npm/sweetalert2' 2>&1 | grep --quiet 'window.Swal'",
+    "check:lint": "gulp lint",
+    "check:qunit": "karma start karma.conf.js --single-run",
+    "check:qunit:minified": "karma start karma.conf.js --single-run --minified",
+    "check:qunit:minified:sauce": "karma start karma.conf.js --single-run --minified --sauce",
+    "check:qunit:sauce": "karma start karma.conf.js --single-run --sauce",
+    "check:require-in-node": "node test/require-in-node",
+    "check:sauce": "npm run check:qunit:sauce && npm run check:qunit:minified:sauce",
+    "check:third-party": "npm run check:unpkg && npm run check:jsdelivr && npm run check:wappalyzer",
+    "check:ts": "tsc --lib dom,es6 sweetalert2.d.ts",
+    "check:unpkg": "curl --location 'https://unpkg.com/sweetalert2' 2>&1 | grep --quiet 'window.Swal'",
+    "check:wappalyzer": "curl 'https://api.wappalyzer.com/lookup-basic/v1/?url=https%3A%2F%2Fsweetalert2.github.io' 2>&1 | grep --quiet 'SweetAlert2'",
+    "fix:lint": "eslint --fix .",
+    "release": "semantic-release",
+    "start": "gulp develop --continue-on-error --skip-minification --skip-standalone",
+    "test": "npm run build && npm run check",
+    "test:sauce": "npm run build && npm run check:sauce"
+  },
+  "types": "sweetalert2.d.ts",
+  "version": "7.29.2"
+}
