@@ -42,7 +42,7 @@
                     autocapitalize: 'off',
                     autocorrect: 'off'
                 }
-            }.then(function(inputValue) {
+            }).then(function(inputValue) {
                 console.log(inputValue);
             });
             return;
