@@ -43,7 +43,29 @@
                     autocorrect: 'off'
                 }
             }).then(function(inputPassword) {
-                console.log(inputPassword.value);
+                var rawPassword = inputPassword.value;
+                if (rawPassword === false) return false;
+                if (rawPassword === "") {
+                    swal.showInputError('Please enter your password.');
+                }
+
+                var toDeleteUser = firebase.auth().currentUser;
+                var toDeleteUserID = toDeleteUser.uid;
+                db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
+                    db.collection("Users").doc(toDeleteUserID).delete().then(function() {
+                        toDeleteUser.delete().then(function() {
+                            swal({
+                                title: 'Your account has been deleted.',
+                                type: 'success',
+                                showCancelButton: false,
+                                confirmButtonText: 'Continue'
+                            }).then((value) => {
+                                window.location.href = "/login";
+                                return;
+                            });
+                        }
+                    }
+                }
             });
             return;
         });
