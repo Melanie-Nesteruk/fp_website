@@ -162,7 +162,6 @@
                     initialLoad = false;
                     swal({
                         title: 'Are you sure you want to logout?',
-                        text:  'Click anywhere else to cancel.',
                         showCancelButton: true,
                         cancelButtonText: 'Cancel',
                         confirmButtonText: 'Logout',
