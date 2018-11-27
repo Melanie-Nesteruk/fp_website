@@ -31,10 +31,10 @@
     if (btnDelAcct != null) {
         btnDelAcct.addEventListener('click', e=> {
             swal({
+                title: "Delete Account",
+                text: "This cannot be undone!",
+                closeOnConfirm: false,
                 content: {
-                    title: "Delete Account",
-                    text: "This cannot be undone!",
-                    closeOnConfirm: false,
                     element: "input",
                     attributes: {
                         placeholder: "Type your password",
