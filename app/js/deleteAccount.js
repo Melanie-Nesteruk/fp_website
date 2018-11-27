@@ -43,24 +43,7 @@
                     autocorrect: 'off'
                 }
             }.then(function(inputValue) {
-                    console.log(inputValue);
-                    swal({
-                        title: 'NICE ${inputValue}',
-                        type: 'success'
-                    });
-                //var toDeleteUser = firebase.auth().currentUser;
-                //var toDeleteUserID = toDeleteUser.uid;
-                //const credential = {
-                //    user.email,
-                //    password
-                //};
-
-                //user.reauthenticateAndRetrieveDataWithCredential(credential).then() {
-                //    swal({
-                //        title: 'NICE',
-                //        type: 'success'
-                //    });
-                //}
+                console.log(inputValue);
             });
             return;
         });
