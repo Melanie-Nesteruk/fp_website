@@ -35,6 +35,7 @@
                 text: "This cannot be undone!",
                 showCancelButton: true,
                 closeOnConfirm: false,
+                animation: "slide-from-top",
                 inputPlaceholder: "Confirm your password"
             },
             function(inputValue) {
@@ -70,8 +71,8 @@
                 });
                 return;
             }
-        });
-    });
+        );
+    }};
             
     // Add password reset event
  //   if (btnDelAcct != null) {
