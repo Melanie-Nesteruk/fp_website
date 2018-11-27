@@ -42,8 +42,8 @@
                     autocapitalize: 'off',
                     autocorrect: 'off'
                 }
-            }).then(function(inputValue) {
-                console.log(inputValue);
+            }).then(function(inputPassword) {
+                console.log(inputPassword.value);
             });
             return;
         });
