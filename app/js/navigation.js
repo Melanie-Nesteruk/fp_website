@@ -162,7 +162,6 @@
                     initialLoad = false;
                     swal({
                         title: 'Are you sure you want to logout?',
-                        text:  'Click anywhere else to cancel.',
                         showCancelButton: true,
                         cancelButtonText: 'Cancel',
                         confirmButtonText: 'Logout',
@@ -174,8 +173,9 @@
                     });
                     return;
                 });
-                    // const promise = firebase.auth().signOut();
-                    // promise.catch(e => swal(e.message));
+
+                // const promise = firebase.auth().signOut();
+                // promise.catch(e => swal(e.message));
                 
                 var textNode = document.createTextNode("Logout");
     

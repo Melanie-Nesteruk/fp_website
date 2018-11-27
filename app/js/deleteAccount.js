@@ -40,7 +40,22 @@
                         type: "password"
                     }
                 }
+            }).then(function(password) {
+                var toDeleteUser = firebase.auth().currentUser;
+                var toDeleteUserID = toDeleteUser.uid;
+                const credential = {
+                    user.email,
+                    password
+                };
+
+                user.reauthenticateAndRetrieveDataWithCredential(credential).then() {
+                    swal({
+                        title: 'NICE',
+                        type: 'success'
+                    });
+                }
             });
+            return;
         });
     }
 }());
