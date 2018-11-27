@@ -20,6 +20,7 @@
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
 
+    var currentPage = document.currentScript.getAttribute('title').toLowerCase();
     var initialLoad = true;
 
     firebase.auth().onAuthStateChanged(function() {
@@ -242,7 +243,6 @@
 
     function highlightCurrentPage()
     {
-        var currentPage = document.currentScript.getAttribute('title').toLowerCase();
         var moreThanOneWord = currentPage.split(" ");
         if (moreThanOneWord > 1)
         {
