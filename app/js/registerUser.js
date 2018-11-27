@@ -47,16 +47,18 @@
             if (firebase.auth().currentUser) {
                 firebase.auth().signOut();
                 swal({
-                    text: "User already logged in. You have been logged out.",
-                    icon: "error"
+                    text: 'User already logged in. You have been logged out.',
+                    type: 'error',
+                    button: 'Continue'
                 });
             }
 
             // Verify name is given
             if (firstName.value == "" || lastName.value == "") {
                 swal({
-                    text: "Please enter your full name.",
-                    icon: "error"
+                    text: 'Please enter your full name.',
+                    type: 'error',
+                    button: 'Continue'
                 });
                 return;
             }
@@ -64,8 +66,9 @@
             // Verify email is from kent.edu
             if (/@kent.edu\s*$/.test(email.value) == false) {
                 swal({
-                    text: "The email is invalid, expected a kent.edu address.",
-                    icon: "error"
+                    text: 'The email is invalid, expected a kent.edu address.',
+                    type: 'error',
+                    button: 'Continue'
                 });
                 return;
             }
@@ -73,8 +76,9 @@
             // Verify passwords match
             if (password.value != password2.value) {
                 swal({
-                    text: "The passwords do not match.",
-                    icon: "error"
+                    text: 'The passwords do not match.',
+                    type: 'error',
+                    button: 'Continue'
                 });
                 return;
             }
@@ -181,17 +185,10 @@
         if(user && !initialLoad) {
             // Successful account creation
             swal({
-                title: "Your account has been created!",
-                icon: "success",
-                buttons: {
-                    confirm: {
-                        text: "Continue",
-                        closeModal: true,
-                        value:      1
-                    }
-                }
-            })
-            .then(value => {
+                title: 'Your account has been created!',
+                type: 'success',
+                button: 'Continue'
+            }).then((value) => {
                 window.location.href = "/index";
                 return;
             });
