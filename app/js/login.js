@@ -121,7 +121,7 @@
                 txtPassword.value = "";
 
                 swal({
-                    title: 'You are now signed in!"',
+                    title: 'You are now signed in!',
                     type: 'success',
                     confirmButtonText: 'Continue'
                 }).then((value) => {
