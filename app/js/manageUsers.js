@@ -88,19 +88,12 @@
                 swal({
                     title: "Are you sure you want to verify " + nameToVerify + "?",
                     text:  "Click anywhere else to cancel.",
-                    buttons: {
-                        cancel: {
-                            closeModal: true,
-                            value:      0
-                        },
-                        confirm: {
-                            text:       "Confirm",
-                            closeModal: true,
-                            value:      1
-                        }
-                    }
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel',
+                    confirmButtonText: 'Verify Account',
                 })
-                .then(value => {
+                .then((value) => {
+                    console.log(value);
                     if (value == 1) {
                         db.collection("Users").doc(uidToVerify).update({
                             verified: true,
@@ -175,7 +168,7 @@
                     }
                 })
                 .then(value => {
-                    if (value == 1) {
+                    if (value) {
                         db.collection("Users").doc(uidToDelete).update({
                             to_delete: true
                         }).then(function() {
