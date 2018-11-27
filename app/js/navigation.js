@@ -31,7 +31,7 @@
             // Show "Mailing List" and "Login"
             setNavigation(false);
         }
-        
+        highlightCurrentPage();
     });
         
     function setNavigation(loggedIn) {
@@ -240,51 +240,55 @@
         }
     }
 
-    var currentPage = document.currentScript.getAttribute('title').toLowerCase();
-    var moreThanOneWord = currentPage.split(" ");
-    if (moreThanOneWord > 1)
+    function highlightCurrentPage()
     {
-        currentPage = "";
-        moreThanOneWord.forEach(element => {
-            currentPage += element;
-        });
-    }
-
-    var navLinks = {
-        index: document.getElementById('home'),
-        about: document.getElementById('about'),
-        work: document.getElementById('work'),
-        events: document.getElementById('events'),
-        socialMedia: document.getElementById('socialmedia'),
-        subscribe: document.getElementById('subscribe'),
-        login: document.getElementById('login'),
-        register: document.getElementById('register'),
-        profile: document.getElementById('profile'),
-        directory: document.getElementById('directory'),
-        messages: document.getElementById('messages'),
-        manageUsers: document.getElementById('manageUsers')
-    };
-
-    for (index in navLinks) {
-        if (navLinks.hasOwnProperty(index)) {
-            var link = navLinks[index];
-
-            if (!link)
-            {
-                continue;
-            }
-
-            // TypeError: link is null, next line
-            if (currentPage == link.id) {
-                if (!link.classList.contains("active")) {
-                    link.classList.add('active');
-                }
-            }
-            else {
-                if (link.classList.contains("active")) {
-                    link.classList.remove('active');
-                }
-            }
+        var currentPage = document.currentScript.getAttribute('title').toLowerCase();
+        var moreThanOneWord = currentPage.split(" ");
+        if (moreThanOneWord > 1)
+        {
+            currentPage = "";
+            moreThanOneWord.forEach(element => {
+                currentPage += element;
+            });
         }
-    };
+
+        var navLinks = {
+            index: document.getElementById('home'),
+            about: document.getElementById('about'),
+            work: document.getElementById('work'),
+            events: document.getElementById('events'),
+            socialMedia: document.getElementById('socialmedia'),
+            subscribe: document.getElementById('subscribe'),
+            login: document.getElementById('login'),
+            register: document.getElementById('register'),
+            profile: document.getElementById('profile'),
+            directory: document.getElementById('directory'),
+            messages: document.getElementById('messages'),
+            manageUsers: document.getElementById('manageUsers')
+        };
+
+        for (index in navLinks) {
+            if (navLinks.hasOwnProperty(index)) {
+                var link = navLinks[index];
+
+                if (!link)
+                {
+                    continue;
+                }
+
+                // TypeError: link is null, next line
+                if (currentPage == link.id) {
+                    if (!link.classList.contains("active")) {
+                        link.classList.add('active');
+                    }
+                }
+                else {
+                    if (link.classList.contains("active")) {
+                        link.classList.remove('active');
+                    }
+                }
+            }
+        };
+    }
+    
 }());
