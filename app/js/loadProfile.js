@@ -309,9 +309,22 @@
                 node.id = element;
                 node.innerHTML = element;
                 node.addEventListener('click', e=> {
-                    var indexToRemove = photoInterests.indexOf(e.target.id);
-                    photoInterests.splice(indexToRemove, 1);
-                    interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                    db.collection('Profiles').doc(uID).get()
+                    .then(function(querySnapshot){
+                        var doc = querySnapshot;
+                        photoInterests = doc.get("photo_interests");
+                        var indexToRemove = photoInterests.indexOf(e.target.id);
+                        photoInterests.splice(indexToRemove, 1);
+                        db.collection("Profiles").doc(uID).update({
+                            photo_interests: photoInterests
+                        })
+                        .then(function(){
+                            interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                        })
+                        .catch(function(error){
+                            console.error("Error removing photo interest: ", error);
+                        });
+                    });
                 });
                 interestsDIVDOM.appendChild(node);
             });
