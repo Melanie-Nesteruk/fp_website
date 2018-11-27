@@ -187,9 +187,8 @@
             swal({
                 title: 'Your account has been created!',
                 type: 'success',
-                // closes automatically in 2 seconds
-                timer: 2000,
-            }).then((result) => {
+                button: 'Continue'
+            }).then((value) => {
                 window.location.href = "/index";
                 return;
             });
