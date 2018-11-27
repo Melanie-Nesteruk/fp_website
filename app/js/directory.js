@@ -240,10 +240,11 @@
         {
 			currentUser = firebase.auth().currentUser;
 
-			db.collection('User').doc(currentUser.uid).get()
+			db.collection('Users').doc(currentUser.uid).get()
                 .then(function(querySnapshot){
-                    var doc = querySnapshot;
-					if(doc.get("verified"))
+					var doc = querySnapshot;
+					var tempIsVerified = doc.get("verified");
+					if(tempIsVerified)
 					{
 						// Pulls all docs from 'Users' collection in firebase and lists them
 						db.collection('Users').get().then((snapshot) => {
