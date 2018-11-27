@@ -60,10 +60,10 @@
                 console.log(toDeleteUser.email);
                 console.log(rawPassword);
 
-                toDeleteUser.reauthenticate(credential).then(() => {
+                toDeleteUser.auth.reauthenticate(credential).then(() => {
                     db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
                         db.collection("Users").doc(toDeleteUserID).delete().then(function() {
-                            toDeleteUser.delete().then(function() {
+                            toDeleteUser.auth.delete().then(function() {
                                 swal({
                                     title: 'Your account has been deleted.',
                                     type: 'success',
