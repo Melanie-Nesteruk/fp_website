@@ -33,27 +33,12 @@
             swal({
                 title: "Delete Account",
                 text: "This cannot be undone!",
-                closeOnConfirm: false,
                 content: {
                     element: "input",
                     attributes: {
                         placeholder: "Type your password",
-                        type: "password",
-                    },
-                }
-            }).then(uPass => {
-                var toDeleteUser = firebase.auth().currentUser;
-                var toDeleteUserID = toDeleteUser.uid;
-                const credential = firebase.auth.EmailAuthProvider.credential(
-                    user.email,
-                    uPass
-                );
-
-                user.reauthenticateAndRetrieveDataWithCredential(credential).then() {
-                    swal({
-                        title "NICE",
-                        icon: success
-                    });
+                        type: "password"
+                    }
                 }
             });
         });
