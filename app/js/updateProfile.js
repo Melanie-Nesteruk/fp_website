@@ -62,22 +62,42 @@
                     else
                     {
                         photoInterests.push(newInterest);
+                        db.collection("Profiles").doc(currentUser.uid).set({
+                            photo_interests: photoInterests
+                        })
+                        .then(function(){
+                            node = document.createElement("button");
+                            node.classList.add("btn");
+                            node.classList.add("btnInterest");
+                            node.setAttribute("type", "submit");
+                            node.setAttribute("tabindex", "-1");
+                            node.id = newInterest;
+                            node.innerHTML = newInterest;
+                            node.addEventListener('click', e=> {
+                                db.collection('Profiles').doc(currentUser.uid).get()
+                                .then(function(querySnapshot){
+                                    var doc = querySnapshot;
+                                    photoInterests = doc.get("photo_interests");
+                                    var indexToRemove = photoInterests.indexOf(e.target.id);
+                                    photoInterests.splice(indexToRemove, 1);
+                                    db.collection("Profiles").doc(currentUser.uid).set({
+                                        photo_interests: photoInterests
+                                    })
+                                    .then(function(){
+                                        interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                                    })
+                                    .catch(function(error){
+                                        console.error("Error removing photo interest: ", error);
+                                    });
+                                });
+                            });
+                            interestsDIVDOM.appendChild(node);
+                            interestListDOM.selectedIndex = 0;
+                        })
+                        .catch(function(error){
+                            console.error("Error adding photo interest: ", error);
+                        });
                     }
-
-                    node = document.createElement("button");
-                    node.classList.add("btn");
-                    node.classList.add("btnInterest");
-                    node.setAttribute("type", "submit");
-                    node.setAttribute("tabindex", "-1");
-                    node.id = newInterest;
-                    node.innerHTML = newInterest;
-                    node.addEventListener('click', e=> {
-                        var indexToRemove = photoInterests.indexOf(e.target.id);
-                        photoInterests.splice(indexToRemove, 1);
-                        interestsDIVDOM.removeChild(document.getElementById(e.target.id));
-                    });
-                    interestsDIVDOM.appendChild(node);
-                    interestListDOM.selectedIndex = 0;
                 })
                 .catch(function(error){
                     console.log("Error getting existing user photo interests: ", error);
@@ -104,7 +124,7 @@
                     twitter: twitterDOM.value,
                     graduation_year: graduationDOM.value,
                     userID: currentUser.uid,
-                    photo_interests: photoInterests
+                    // photo_interests: photoInterests // Photo interests are saved automatically
                 })
                 .then(function(){
                     swal({
