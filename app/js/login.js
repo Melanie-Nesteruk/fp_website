@@ -42,17 +42,10 @@
                 firebase.auth().signOut();
 
                 swal({
-                    title: "User is already logged in. You have been logged out.",
-                    icon: "warning",
-                    buttons: {
-                        confirm: {
-                            text: "Continue",
-                            closeModal: true,
-                            value:      1
-                        }
-                    }
-                })
-                .then(value => {
+                    title: 'User is already logged in. You have been logged out.',
+                    type: 'warning',
+                    confirmButtonText: 'Continue'
+                }).then((value) => {
                     // Sign in
                     const promise = auth.signInWithEmailAndPassword(email, pass);
                     promise.catch(e => swal(e.message));
@@ -83,17 +76,11 @@
                 firebase.auth().signOut();
                 
                 swal({
-                    title: "User is already logged in. You have been logged out.",
-                    icon: "warning",
-                    buttons: {
-                        confirm: {
-                            text: "Continue",
-                            closeModal: true,
-                            value:      1
-                        }
-                    }
+                    title: 'User is already logged in. You have been logged out.',
+                    type: 'warning',
+                    confirmButtonText: 'Continue'
                 })
-                .then(value => {
+                .then((value) => {
                     // Sign in
                     const promise = auth.signInWithEmailAndPassword(email, pass);
                     promise.catch(e => swal(e.message));
@@ -117,8 +104,9 @@
             promise.catch(e => swal(e.message));
 
             swal({
-                text: "You have been logged out.",
-                icon: "success"
+                text: 'You have been logged out.',
+                type: 'success',
+                confirmButtonText: 'Continue'
             });
             
             return;
@@ -135,8 +123,8 @@
                 swal({
                     title: 'You are now signed in!"',
                     type: 'success',
-                    confirmButtonText: "Continue"
-                }).then(value => {
+                    confirmButtonText: 'Continue'
+                }).then((value) => {
                     window.location.href = "/index";
                     return;
                 });
