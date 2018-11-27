@@ -244,27 +244,28 @@
     function highlightCurrentPage()
     {
         var moreThanOneWord = currentPage.split(" ");
-        if (moreThanOneWord > 1)
+        if (moreThanOneWord.length > 1)
         {
             currentPage = "";
             moreThanOneWord.forEach(element => {
                 currentPage += element;
             });
         }
+        currentPage += "Nav";
 
         var navLinks = {
-            index: document.getElementById('home'),
-            about: document.getElementById('about'),
-            work: document.getElementById('work'),
-            events: document.getElementById('events'),
-            socialMedia: document.getElementById('socialmedia'),
-            subscribe: document.getElementById('subscribe'),
-            login: document.getElementById('login'),
-            register: document.getElementById('register'),
-            profile: document.getElementById('profile'),
-            directory: document.getElementById('directory'),
-            messages: document.getElementById('messages'),
-            manageUsers: document.getElementById('manageUsers')
+            index: document.getElementById('homeNav'),
+            about: document.getElementById('aboutNav'),
+            work: document.getElementById('workNav'),
+            events: document.getElementById('eventsNav'),
+            socialMedia: document.getElementById('socialMediaNav'),
+            subscribe: document.getElementById('subscribeNav'),
+            login: document.getElementById('loginNav'),
+            register: document.getElementById('registerNav'),
+            profile: document.getElementById('profileNav'),
+            directory: document.getElementById('directoryNav'),
+            messages: document.getElementById('messagesNav'),
+            manageUsers: document.getElementById('manageUsersNav')
         };
 
         for (index in navLinks) {
