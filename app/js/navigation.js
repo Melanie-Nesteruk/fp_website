@@ -109,7 +109,7 @@
 
             // If Admin, add "Manage Users" link
             // Add placeholder navigation to keep order of links
-            node = document.getElementById("manageUsersNav");
+            node = document.getElementById("manageNav");
             if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
@@ -133,11 +133,11 @@
                         var textNode = document.createTextNode("Manage Users");
             
                         linkNode.appendChild(textNode); 
-                        document.getElementById("manageUsersNav").appendChild(linkNode);
+                        document.getElementById("manageNav").appendChild(linkNode);
                     }
                     else
                     {
-                        document.getElementById("manageUsersNav").remove();
+                        document.getElementById("manageNav").remove();
                     }
                 })
                 .catch(function(error){
