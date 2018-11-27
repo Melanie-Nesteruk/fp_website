@@ -32,7 +32,7 @@
     const password = document.getElementById('txtPassword');
     const password2 = document.getElementById('txtPassword2');
     var userType = userSelect.options[userSelect.selectedIndex].text;
-    var photoInterests = ["Nature"];
+    var photoInterests = ["None"];
 
     var initialLoad = true;
 
