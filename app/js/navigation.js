@@ -166,14 +166,15 @@
                         showCancelButton: true,
                         cancelButtonText: 'Cancel',
                         confirmButtonText: 'Logout',
-                    }).then((value) => {
-                        const promise = firebase.auth().signOut().then(function() {
-                            window.location.href = "/login";
+                    }, function() {
+                            const promise = firebase.auth().signOut().then(function() {
+                                window.location.href = "/login";
+                            });
+                            return;
                         });
-                        return;
                     });
                     return;
-                });
+                }
                     // const promise = firebase.auth().signOut();
                     // promise.catch(e => swal(e.message));
                 
