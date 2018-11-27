@@ -168,7 +168,7 @@
                     }
                 })
                 .then(value => {
-                    if (value == 1) {
+                    if (value) {
                         db.collection("Users").doc(uidToDelete).update({
                             to_delete: true
                         }).then(function() {
