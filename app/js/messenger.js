@@ -1,6 +1,5 @@
 (function() {
 	var sessionID = document.currentScript.getAttribute('sessionID');
-	console.log('SESSION ID: ', sessionID);
 	const messageList = document.querySelector('#message-list');
 	
 	// =======================================================
@@ -17,7 +16,6 @@
         } 
                 
         firebase.initializeApp(config);
-        console.log("initializeApp");
     }
 
     // =======================================================
@@ -42,23 +40,18 @@
 			firestore.collection("Chat-Groups").doc(sessionID)
 				.get().then(doc => {
 				if (!doc.exists) {
-					console.log("No documents found!");
+					
 				} else {
-					console.log('Document found!');
 					var user_1 = String(doc.get("user_1"));
 					var user_2 = String(doc.get("user_2"));
 					if (user_1 == currentUID){
-						console.log('user_1 is current user');
 						friendUID = user_2;
 						authorized = true;
 					} else if (user_2 == currentUID){
-						console.log('user_2 is current user');
 						friendUID = user_1;
 						authorized = true;
 					}
 					else {
-						
-						console.log('Invalid Session ID!');
 					}
 				}
 			})
@@ -83,8 +76,6 @@
 								changes.forEach(change => {
 									if (change.type == 'added') {
 										displayMessage(change.doc);
-										console.log('New message: ', change.doc.data());
-										
 									}
 								});
 						});
@@ -109,13 +100,11 @@
 							placeholder: true
 						})
 						.then(function(){
-							console.log("Friends collection successfully written!");
 							// Create new collection 'Friends' for each user
 							firestore.collection("Users").doc(friendUID).collection("Friends").doc(currentUID).set({
 							placeholder: true
 							})
 							.then(function(){
-								console.log("Friends collection successfully written!");
 								messageHasBeenSent = true;
 							})
 							.catch(function(error){
@@ -172,7 +161,6 @@
 
 					// Displays a Message in the UI.
 					function displayMessage(doc) {
-						console.log('Message data being displayed: ', doc.data());
 						let li = document.createElement('li');
 						let message = document.createElement('span');
 						
