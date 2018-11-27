@@ -72,9 +72,9 @@
 		var friendProfile = firestore.collection('Users').doc(doc1.id).get()
 			.then(doc => {
 				if (!doc.exists) {
-					
+					console.log("no doc exists");
 				} else {
-					if (!(doc1.id == doc.id)){
+					if (doc1.id == doc.id){
 						console.log('doc data: ', doc.data());
 						var first_name = String(doc.get("first_Name"));
 						var last_name = String(doc.get("last_Name"));
