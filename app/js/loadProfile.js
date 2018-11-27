@@ -348,7 +348,7 @@
             var interests = doc.get("photo_interests");
 
             // Already exists in interests, ignore it.
-            if (interests.includes(newInterest) || interestListDOM.selectedIndex == 0 && !safeGuard)
+            if (interests.includes(toAdd) || interestListDOM.selectedIndex == 0 && !safeGuard)
             {
                 interestListDOM.selectedIndex = 0;
                 return;
