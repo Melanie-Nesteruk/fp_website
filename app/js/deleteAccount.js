@@ -31,45 +31,16 @@
     if (btnDelAcct != null) {
         btnDelAcct.addEventListener('click', e=> {
             swal({
-                title: "Delete Account",
-                text: "This cannot be undone!",
-                showCancelButton: true,
-                closeOnConfirm: false,
-                animation: "slide-from-top",
-                inputPlaceholder: "Confirm your password"
-            },
-            function(inputValue) {
-                if (inputValue === false)
-                    return false;
-                if (inputValue === "") {
-                    swal.showInputError("Please type in your password");
-                    return false;
+                content: {
+                    title: "Delete Account",
+                    text: "This cannot be undone!",
+                    closeOnConfirm: false,
+                    element: "input",
+                    attributes: {
+                        placeholder: "Type your password",
+                        type: "password",
+                    },
                 }
-
-                var toDeleteUser = firebase.auth().currentUser;
-                var toDeleteUserID = toDeleteUser.uid;
-                db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
-                    db.collection("Users").doc(toDeleteUserID).delete().then(function() {
-                        toDeleteUser.delete().then(function() {
-                            swal({
-                                title: "Your account has been deleted.",
-                                icon: "success",
-                                buttons: {
-                                    confirm: {
-                                        text: "Continue",
-                                        closeModal: true,
-                                        value:      1
-                                    }
-                                }
-                            })
-                            .then(value => {
-                                window.location.href = "/login";
-                                return;
-                            });
-                        });
-                    });
-                });
-                return;
             });
         });
     }
