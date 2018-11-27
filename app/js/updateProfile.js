@@ -62,7 +62,7 @@
                     else
                     {
                         photoInterests.push(newInterest);
-                        db.collection("Profiles").doc(currentUser.uid).set({
+                        db.collection("Profiles").doc(currentUser.uid).update({
                             photo_interests: photoInterests
                         })
                         .then(function(){
