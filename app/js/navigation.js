@@ -171,10 +171,10 @@
                                 window.location.href = "/login";
                             });
                             return;
-                        });
-                    });
+                        }
+                    );
                     return;
-                }
+                });
                     // const promise = firebase.auth().signOut();
                     // promise.catch(e => swal(e.message));
                 
@@ -185,7 +185,8 @@
                 document.getElementById("navBarList").appendChild(node);
             }
         }
-        else {
+        else 
+        {
             var profile = document.getElementById("profileNav");
             var directory = document.getElementById("directoryNav");
             var messages = document.getElementById("messagesNav");
