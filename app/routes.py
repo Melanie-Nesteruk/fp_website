@@ -53,7 +53,7 @@ def directory():
 
 @app.route('/manage-users')
 def manageUsers():
-    return render_template("manageUsers.html", title='Manage Users', app=app)
+    return render_template("manageUsers.html", title="Manage Users", app=app)
 
 @app.route('/profile')
 def profile():
