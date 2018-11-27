@@ -61,42 +61,7 @@
                     // Push it
                     else
                     {
-                        photoInterests.push(newInterest);
-                        db.collection("Profiles").doc(currentUser.uid).update({
-                            photo_interests: photoInterests
-                        })
-                        .then(function(){
-                            node = document.createElement("button");
-                            node.classList.add("btn");
-                            node.classList.add("btnInterest");
-                            node.setAttribute("type", "submit");
-                            node.setAttribute("tabindex", "-1");
-                            node.id = newInterest;
-                            node.innerHTML = newInterest;
-                            node.addEventListener('click', e=> {
-                                db.collection('Profiles').doc(currentUser.uid).get()
-                                .then(function(querySnapshot){
-                                    var doc = querySnapshot;
-                                    photoInterests = doc.get("photo_interests");
-                                    var indexToRemove = photoInterests.indexOf(e.target.id);
-                                    photoInterests.splice(indexToRemove, 1);
-                                    db.collection("Profiles").doc(currentUser.uid).update({
-                                        photo_interests: photoInterests
-                                    })
-                                    .then(function(){
-                                        interestsDIVDOM.removeChild(document.getElementById(e.target.id));
-                                    })
-                                    .catch(function(error){
-                                        console.error("Error removing photo interest: ", error);
-                                    });
-                                });
-                            });
-                            interestsDIVDOM.appendChild(node);
-                            interestListDOM.selectedIndex = 0;
-                        })
-                        .catch(function(error){
-                            console.error("Error adding photo interest: ", error);
-                        });
+                        AddNewInterest(photoInterests, newInterest);
                     }
                 })
                 .catch(function(error){
@@ -155,6 +120,50 @@
                     icon: "error"
                 });
             }
+        });
+    }
+
+    function AddNewInterest(interests, toAdd)
+    {
+        interests.push(toAdd);
+        db.collection("Profiles").doc(currentUser.uid).update({
+            photo_interests: interests
+        })
+        .then(function(){
+            node = document.createElement("button");
+            node.classList.add("btn");
+            node.classList.add("btnInterest");
+            node.setAttribute("type", "submit");
+            node.setAttribute("tabindex", "-1");
+            node.id = toAdd;
+            node.innerHTML = toAdd;
+            node.addEventListener('click', e=> {
+                db.collection('Profiles').doc(currentUser.uid).get()
+                .then(function(querySnapshot){
+                    var doc = querySnapshot;
+                    interests = doc.get("photo_interests");
+                    var indexToRemove = interests.indexOf(e.target.id);
+                    interests.splice(indexToRemove, 1);
+                    db.collection("Profiles").doc(currentUser.uid).update({
+                        photo_interests: interests
+                    })
+                    .then(function(){
+                        interestsDIVDOM.removeChild(document.getElementById(e.target.id));
+                        if (interests.length == 0)
+                        {
+                           AddNewInterest("None"); 
+                        }
+                    })
+                    .catch(function(error){
+                        console.error("Error removing photo interest: ", error);
+                    });
+                });
+            });
+            interestsDIVDOM.appendChild(node);
+            interestListDOM.selectedIndex = 0;
+        })
+        .catch(function(error){
+            console.error("Error adding photo interest: ", error);
         });
     }
 
