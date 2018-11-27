@@ -161,20 +161,30 @@
                 linkNode.addEventListener('click', e=> {
                     initialLoad = false;
                     swal({
-                        title: 'Are you sure you want to logout?',
-                        text:  'Click anywhere else to cancel.',
-                        showCancelButton: true,
-                        cancelButtonText: 'Cancel',
-                        confirmButtonText: 'Logout',
-                    }, function() {
+                        title: "Are you sure you want to logout?",
+                        text:  "Click anywhere else to cancel.",
+                        buttons: {
+                            cancel: {
+                                closeModal: true,
+                                value:      0
+                            },
+                            confirm: {
+                                text:       "Logout",
+                                closeModal: true,
+                                value:      1
+                            }
+                        }
+                    })
+                    .then((value) => {
+                        if (value == 1) {
                             const promise = firebase.auth().signOut().then(function() {
                                 window.location.href = "/login";
                             });
                             return;
-                        });
+                        }
                     });
                     return;
-                }
+                });
                     // const promise = firebase.auth().signOut();
                     // promise.catch(e => swal(e.message));
                 
