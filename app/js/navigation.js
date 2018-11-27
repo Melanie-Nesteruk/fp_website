@@ -114,7 +114,7 @@
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
-                node.id = "manageUsersNav";
+                node.id = "manageNav";
                 
                 document.getElementById("navBarList").appendChild(node);
 
@@ -258,14 +258,14 @@
             about: document.getElementById('aboutNav'),
             work: document.getElementById('workNav'),
             events: document.getElementById('eventsNav'),
-            socialMedia: document.getElementById('socialMediaNav'),
+            socialMedia: document.getElementById('socialNav'),
             subscribe: document.getElementById('subscribeNav'),
             login: document.getElementById('loginNav'),
             register: document.getElementById('registerNav'),
             profile: document.getElementById('profileNav'),
             directory: document.getElementById('directoryNav'),
             messages: document.getElementById('messagesNav'),
-            manageUsers: document.getElementById('manageUsersNav')
+            manageUsers: document.getElementById('manageNav')
         };
 
         for (index in navLinks) {
