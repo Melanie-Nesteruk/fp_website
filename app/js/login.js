@@ -134,14 +134,9 @@
 
                 swal({
                     title: "You are now signed in!",
-                    icon: "success",
-                    buttons: {
-                        confirm: {
-                            text: "Continue",
-                            closeModal: true,
-                            value:      1
-                        }
-                    }
+                    type: "success",
+                    showCancelButton: true,
+                    confirmButtonText: "Continue"
                 })
                 .then(value => {
                     window.location.href = "/index";
