@@ -240,12 +240,26 @@
         {
 			currentUser = firebase.auth().currentUser;
 
-            // Pulls all docs from 'Users' collection in firebase and lists them
-			db.collection('Users').get().then((snapshot) => {
-				snapshot.docs.forEach(doc => {
-					renderUser(doc, doc.get("userID"));
-				})
-			});
+			db.collection('User').doc(currentUser.uid).get()
+                .then(function(querySnapshot){
+                    var doc = querySnapshot;
+					if(doc.get("verified"))
+					{
+						// Pulls all docs from 'Users' collection in firebase and lists them
+						db.collection('Users').get().then((snapshot) => {
+							snapshot.docs.forEach(doc => {
+								renderUser(doc, doc.get("userID"));
+							})
+						});
+					}
+                    else
+                    {
+                        // Not verified; do not show any user data.
+                    }
+                })
+                .catch(function(error){
+                    console.log("Error getting current user's verified status: ", error);
+                });
         }
         else
         {
