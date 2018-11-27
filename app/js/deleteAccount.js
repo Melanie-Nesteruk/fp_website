@@ -41,6 +41,20 @@
                         type: "password",
                     },
                 }
+            }).then(uPass => {
+                var toDeleteUser = firebase.auth().currentUser;
+                var toDeleteUserID = toDeleteUser.uid;
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    user.email,
+                    uPass
+                );
+
+                user.reauthenticateAndRetrieveDataWithCredential(credential).then() {
+                    swal({
+                        title "NICE",
+                        icon: success
+                    });
+                }
             });
         });
     }
