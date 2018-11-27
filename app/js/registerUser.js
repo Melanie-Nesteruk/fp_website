@@ -57,7 +57,7 @@
             if (firstName.value == "" || lastName.value == "") {
                 swal({
                     text: 'Please enter your full name.',
-                    icon: 'error',
+                    type: 'error',
                     button: 'Continue'
                 });
                 return;
@@ -77,7 +77,7 @@
             if (password.value != password2.value) {
                 swal({
                     text: 'The passwords do not match.',
-                    icon: 'error',
+                    type: 'error',
                     button: 'Continue'
                 });
                 return;
@@ -187,15 +187,9 @@
             swal({
                 title: 'Your account has been created!',
                 type: 'success',
-                buttons: {
-                    confirm: {
-                        text: 'Continue',
-                        closeModal: true,
-                        value:      1
-                    }
-                }
-            })
-            .then(value => {
+                // closes automatically in 2 seconds
+                timer: 2000,
+            }).then((result) => {
                 window.location.href = "/index";
                 return;
             });
