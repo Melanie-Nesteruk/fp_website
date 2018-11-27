@@ -51,17 +51,28 @@
 
                 var toDeleteUser = firebase.auth().currentUser;
                 var toDeleteUserID = toDeleteUser.uid;
-                db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
-                    db.collection("Users").doc(toDeleteUserID).delete().then(function() {
-                        toDeleteUser.delete().then(function() {
-                            swal({
-                                title: 'Your account has been deleted.',
-                                type: 'success',
-                                showCancelButton: false,
-                                confirmButtonText: 'Continue'
-                            }).then((value) => {
-                                window.location.href = "/login";
-                                return;
+
+                const credential = firebase.auth.EmailAuthProvider.credential(
+                    toDeleteUser.email,
+                    rawPassword
+                );
+
+                console.log(toDeleteUserID.email);
+                console.log(rawPassword);
+
+                toDeleteUserID.reauthenticate(credential).then(() => {
+                    db.collection("Profiles").doc(toDeleteUserID).delete().then(function() {
+                        db.collection("Users").doc(toDeleteUserID).delete().then(function() {
+                            toDeleteUser.delete().then(function() {
+                                swal({
+                                    title: 'Your account has been deleted.',
+                                    type: 'success',
+                                    showCancelButton: false,
+                                    confirmButtonText: 'Continue'
+                                }).then((value) => {
+                                    window.location.href = "/login";
+                                    return;
+                                });
                             });
                         });
                     });
