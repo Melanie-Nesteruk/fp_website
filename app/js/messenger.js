@@ -160,9 +160,7 @@
 						var fromID = String(doc.data().fromID);
 						if(currentUID == fromID){
 							control = '<li style="width:100%">' +
-										'<div class="msj macro">' +
-										'<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
-											'<div class="text text-l">' +
+										'<div class="msj macro"><div class="text text-l">' +
 												'<p>'+ text +'</p>' +
 											'</div>' +
 										'</div>' +
@@ -172,9 +170,7 @@
 											'<div class="msj-rta macro">' +
 												'<div class="text text-r">' +
 													'<p>'+text+'</p>' +
-												'</div>' +
-											'<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' +                                
-									  '</li>';
+												'</div></li>';
 						}
 						$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
 					}
