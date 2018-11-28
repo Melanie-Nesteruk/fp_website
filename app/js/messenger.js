@@ -156,8 +156,6 @@
 						
 						var control = "";
     
-						
-						li.setAttribute('id', doc.id);
 						var text = doc.data().text;
 						var fromID = String(doc.data().fromID);
 						if(currentUID == fromID){
