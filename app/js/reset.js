@@ -52,7 +52,7 @@
                 }).then((value) => {
                     window.location.href = "/login";
                     return;
-                }
+                });
             }).catch(function(error) {
                 swal({
                     text: "Something went wrong...",
