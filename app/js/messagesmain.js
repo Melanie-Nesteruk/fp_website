@@ -56,7 +56,7 @@
 							sessionID = String(doc.id);
 							var messengerURL = 'https://focalpointkent.pythonanywhere.com/messenger?sid=' + sessionID;
 							var iframeDOM = document.getElementById("messengerIframe");
-							iframeDOM.src = messengerURL + '_blank' + 'height=500,width=400,top=100,left=100';
+							iframeDOM.src = messengerURL + '_blank' + 'top=100,left=100';
 						}
 					})
 			}
