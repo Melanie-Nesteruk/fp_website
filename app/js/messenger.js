@@ -161,7 +161,7 @@
 						if(currentUID == fromID){
 							control = '<li style="width:100%">' +
 										'<div class="msj macro"><div class="text text-l">' +
-												'<p>'+ text +'</p>' +
+												'<p style="text-align:left;">'+ text +'</p>' +
 											'</div>' +
 										'</div>' +
 									'</li>';
@@ -169,7 +169,7 @@
 							 control = '<li style="width:100%;">' +
 											'<div class="msj-rta macro">' +
 												'<div class="text text-r">' +
-													'<p>'+text+'</p>' +
+													'<p style="text-align:right;>'+text+'</p>' +
 												'</div></li>';
 						}
 						$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
