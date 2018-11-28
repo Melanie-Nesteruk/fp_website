@@ -107,89 +107,62 @@
                     if(Number(querySnapshot.size) == 0){ // if .size = 0 there are no documents (user is NOT blocked )
                         swal({
                             title: "Are you sure?",
-                            icon: "warning",
+                            type: "warning",
                             text:  "Blocking " + blockUserProfile + " will prevent you from seeing their profile and sending them messages.",
-                            closeOnClickOutside: false,
-                            closeOnEsc: false,
-                            buttons: {
-                                block: {
-                                    text: "Block",
-                                    value: 1,
-                                    visible: true,
-                                    closeModal: true,  
-                                },
-                                cancel: {
-                                    text: "Cancel",
-                                    value: 0,
-                                    visible: true,
-                                    closeModal: true,
-                                }
-                            }
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: true,
+                            showConfirmButton: true,
+                            confirmButtonText: "Block",
+                            showCancelButton: true,
+                            cancelButtonText: "Cancel"
                         })
-                        .then(value => {
-                            if(value == 1){
+                        .then((result) => {
+                            if(result.value){
                                 block(curUID);
                                 swal({
                                     title: "" + blockUserProfile + " was blocked.",
-                                    icon: "success",
-                                    closeOnClickOutside: false,
-                                    closeOnEsc: false,
-                                    buttons: {
-                                        confirm: {
-                                            text: "Continue",
-                                            closeModal: true,
-                                            value:      1
-                                        }
-                                    }
-                                })
-                                .then(value => {
-                                    // Redirect user to their profile after block
-                                    window.location.href = "/profile?user=" + currentShortEmail;
-                                    return;
-                                }); 
+                                    type: "success",
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    allowEnterKey: true,
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Continue"
+                                    })
+                                    .then((result) => {
+                                        // Redirect user to their profile after block
+                                        window.location.href = "/profile?user=" + currentShortEmail;
+                                        return;
+                                    }); 
                             }
-                            return;
-                        });
+                        })
                     } 
                     else { // Otherwise the user is blocked
                         swal({
                             title: "Are you sure?",
-                            icon: "info",
+                            type: "info",
                             text:  "Please confirm you want to unblock " + blockUserProfile + ".",
-                            closeOnClickOutside: false,
-                            closeOnEsc: false,
-                            buttons: {
-                                block: {
-                                    text: "Unblock",
-                                    value: 1,
-                                    visible: true,
-                                    closeModal: true,  
-                                },
-                                cancel: {
-                                    text: "Cancel",
-                                    value: 0,
-                                    visible: true,
-                                    closeModal: true,
-                                }
-                            }
+                            allowOutsideClick: false,
+                            allowEscapeKey: false,
+                            allowEnterKey: true,
+                            showConfirmButton: true,
+                            confirmButtonText: "Unblock",
+                            showCancelButton: true,
+                            cancelButtonText: "Cancel"
                         })
-                        .then(value => {
-                            if(value == 1){
+                        .then((result) => {
+                            if(result.value){
                                 unblock(curUID);
                                 swal({
                                     title: "" + blockUserProfile + " was unblocked.",
-                                    icon: "success",
-                                    closeOnClickOutside: false,
-                                    closeOnEsc: false,
-                                    buttons: {
-                                        confirm: {
-                                            text: "Continue",
-                                            closeModal: true,
-                                            value:      1
-                                        }
-                                    }
+                                    type: "success",
+                                    allowOutsideClick: false,
+                                    allowEscapeKey: false,
+                                    allowEnterKey: true,
+                                    showConfirmButton: true,
+                                    confirmButtonText: "Continue"
                                 })
-                                .then(value => {
+                                .then((result) => {
                                     // Reload the page after unblocking
                                     window.location.href = "/profile?user=" + blockUserProfile;
                                     return;
