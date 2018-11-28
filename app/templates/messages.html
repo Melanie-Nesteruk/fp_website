@@ -13,11 +13,18 @@
                       <span class="section-heading-lower">Messages</span>
                     </h2>
 					<div class="form-group" style="pointer-events: auto; margin: 0 auto;">
-						<div style="width: fit-content;">
-							<div class="friendsList" id = "connected-friends-list">
-							</div>
-							<br>
-						</div>
+            <div class="divTable">
+                <div class="divTableBody">
+                    <div class="divTableRow">
+                      <div class="divTableCell friendsList" id="connected-friends-list" style="width: fit-content;">
+                        
+                      </div>
+                      <iframe class="divTableCell" id="messengerIframe" width="70%" height="315" src="https://focalpointkent.pythonanywhere.com" frameborder="0">
+                      </iframe>
+                    </div>
+                </div>
+            </div>
+            <br>
 					</div>
                   </div>
                 </div>
@@ -28,6 +35,13 @@
     <script src="app/js/messagesmain.js"></script>
 	<script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
     <style>
+        .divTable{ display: table; width: 100%; }
+        .divTableRow { display: table-row; }
+        .divTableHeading { display: table-header-group;}
+        .divTableCell, .divTableHead { display: table-cell;}
+        .divTableHeading { display: table-header-group;}
+        .divTableFoot { display: table-footer-group;}
+        .divTableBody { display: table-row-group;}
         .hide {
             visibility: hidden;
         }
