@@ -20,6 +20,7 @@
     const settings = { timestampsInSnapshots: true };
     db.settings(settings);
 
+    var currentPage = document.currentScript.getAttribute('title').toLowerCase();
     var initialLoad = true;
 
     firebase.auth().onAuthStateChanged(function() {
@@ -47,6 +48,7 @@
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
+                node.classList.add("dropdown");
                 node.id = "profileNav";
                 
                 var linkNode = document.createElement("a");
@@ -61,6 +63,23 @@
                 linkNode.appendChild(textNode); 
                 node.appendChild(linkNode);
                 document.getElementById("navBarList").appendChild(node);
+                
+                node = document.createElement("div");
+                node.classList.add("dropdown-content");
+
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+
+                linkNode.id = "accountSettingsNav";
+                linkNode.href = "/account-settings";
+                var textNode = document.createTextNode("Account Settings");
+
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+
+                document.getElementById("profileNav").appendChild(node);
             }
 
             // Add "Directory" nav link
@@ -108,12 +127,12 @@
 
             // If Admin, add "Manage Users" link
             // Add placeholder navigation to keep order of links
-            node = document.getElementById("manageUsersNav");
+            node = document.getElementById("manageNav");
             if (!node) {
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
-                node.id = "manageUsersNav";
+                node.id = "manageNav";
                 
                 document.getElementById("navBarList").appendChild(node);
 
@@ -132,11 +151,11 @@
                         var textNode = document.createTextNode("Manage Users");
             
                         linkNode.appendChild(textNode); 
-                        document.getElementById("manageUsersNav").appendChild(linkNode);
+                        document.getElementById("manageNav").appendChild(linkNode);
                     }
                     else
                     {
-                        document.getElementById("manageUsersNav").remove();
+                        document.getElementById("manageNav").remove();
                     }
                 })
                 .catch(function(error){
@@ -242,29 +261,29 @@
 
     function highlightCurrentPage()
     {
-        var currentPage = document.currentScript.getAttribute('title').toLowerCase();
         var moreThanOneWord = currentPage.split(" ");
-        if (moreThanOneWord > 1)
+        if (moreThanOneWord.length > 1)
         {
             currentPage = "";
             moreThanOneWord.forEach(element => {
                 currentPage += element;
             });
         }
+        currentPage += "Nav";
 
         var navLinks = {
-            index: document.getElementById('home'),
-            about: document.getElementById('about'),
-            work: document.getElementById('work'),
-            events: document.getElementById('events'),
-            socialMedia: document.getElementById('socialmedia'),
-            subscribe: document.getElementById('subscribe'),
-            login: document.getElementById('login'),
-            register: document.getElementById('register'),
-            profile: document.getElementById('profile'),
-            directory: document.getElementById('directory'),
-            messages: document.getElementById('messages'),
-            manageUsers: document.getElementById('manageUsers')
+            index: document.getElementById('homeNav'),
+            about: document.getElementById('aboutNav'),
+            work: document.getElementById('workNav'),
+            events: document.getElementById('eventsNav'),
+            socialMedia: document.getElementById('socialNav'),
+            subscribe: document.getElementById('subscribeNav'),
+            login: document.getElementById('loginNav'),
+            register: document.getElementById('registerNav'),
+            profile: document.getElementById('profileNav'),
+            directory: document.getElementById('directoryNav'),
+            messages: document.getElementById('messagesNav'),
+            manageUsers: document.getElementById('manageNav')
         };
 
         for (index in navLinks) {

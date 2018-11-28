@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+    <section class="page-section cta">
+            <div class="container">
+              <div class="row">
+                <div class="col-xl-12 mx-auto">
+                  <div class="cta-inner text-center rounded" style="pointer-events:none;">
+                    <h2 class="section-heading mb-5">
+                      <span class="section-heading-upper">Student-Alumni Network</span>
+                      <span class="section-heading-lower">Account Settings</span>
+                    </h2>
+                    <div class="form-group" style="pointer-events:auto; margin: 0;">
+                        <label for="user_name">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                        <input id="txtEmail" type="text" placeholder="example@kent.edu" name="email" required="true">
+                        <br>
+                        <label for="user_password">Password:</label>
+                        <input id="txtPassword" type="password" placeholder="Password" name="psw" required="true">
+                        <br>
+                        <button id="btnLogin" type="submit">Login</button>
+                        <button id="btnLogout" class="hide" type="submit">Logout</button>
+                    </div>
+                    <p class="mb-0" style="pointer-events:auto;">
+                      Not yet registered? <a href="/register">Create an account!</a>
+                    </p>
+                    <p class="mb-0" style="pointer-events:auto;">
+                      Forgot your password? <a href="/reset">Reset it here.</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+    <script type="text/javascript" src="app/js/login.js"></script>
+    <style>
+        .hide {
+            visibility: hidden;
+        }
+    </style>
+
+{% endblock %}

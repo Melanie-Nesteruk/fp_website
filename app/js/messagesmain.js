@@ -1,5 +1,5 @@
 (function() {
-        
+       
     const connectedUserList = document.querySelector('#connected-user-list');
     const connectedFriendsList = document.querySelector('#connected-friends-list');
 
@@ -83,7 +83,7 @@
 						but.setAttribute("value", doc1.id);
 						but.id = doc1.id;
 						but.innerHTML = displayName;
-						but.setAttribute("class", "btn btn-primary btn-lg btn-block");
+						but.setAttribute("class", "btn btn-primary btn-lg btnMessage");
 						connectedFriendsList.appendChild(but);
 						attachClickEvent(doc1.id);
 					}

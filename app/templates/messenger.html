@@ -7,6 +7,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="app/bootstrap/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
 
     <!-- Custom fonts for this template -->
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -14,9 +15,6 @@
 
     <!--Font Awesome-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-
-    <!--Sweet Alert-->
-    <script src="app/sweetalert/dist/sweetalert.min.js"></script>
 
     <!--Firebase-->
     <script src="https://www.gstatic.com/firebasejs/5.5.7/firebase-app.js"></script>
@@ -27,110 +25,115 @@
 	</head>
 	
 	
-	<div class="page-wrap" id = "messages-container">
-		<ul id="message-list"></ul>
-	</div>
-	<!-- Messages container -->
-		<div class="message-footer">
-			<div class="form-inline" id="message-form" action="#">
-				<div class="form-group" style="
-					width: 70%;
-					height: 100%;"
-					>
-					<input type="text" class="form-control" id="messagebox" style="width: 100%;">
-				</div>
-			<button id="sendButton" type="submit" class="sendButton">Send</button>
-			</div>
-		</div>
-	<footer class ="message-buffer">
-		Focal Point
-	</footer>
+	
+	
+    <body>
+        <div class="frame">
+            <ul></ul>
+            <div>
+                <div class="msj-rta macro">                        
+                    <div class="text text-r" style="background:#141414 !important">
+                        <input class="mytext" placeholder="Type a message"/>
+                    </div> 
+
+                </div>
+                               
+            </div>
+        </div>       
+    </body>
 <style>
-.footer {
-  height: 50px;
+.mytext{
+    border:0;padding:10px;background:whitesmoke;
+}
+.text{
+    width:95%;display:flex;flex-direction:column;
+}
+.text > p:first-of-type{
+    width:100%;margin-top:0;color:#070707margin-bottom:auto;line-height: 15px;font-size: 16px;
+}
+.text > p:last-of-type{
+    width:100%;color:#070707;margin-bottom:2px;margin-top:auto;
+}
+.text-l{
+    text-align:left;float:left;padding-right:10px;font-size: 16px;
+}        
+.text-r{
+    text-align:right;float:right;padding-left:10px;font-size: 16px;
 }
 
-html, body {
-	height: 100%;
+.macro{
+    margin-bottom:5px;margin-top:5px;width:85%;border-radius:5px;padding:5px;display:flex;
 }
-
-.page-wrap {
-	min-height: 100%;
-	margin-bottom: -50px;
+.msj-rta{
+    float:right;background:#0084ff;
 }
-
-.page-wrap:after {
-	content: "";
-	display: block;
+.msj{
+    float:left;background:#e2e2e2;
 }
-
-.message-buffer, .page-wrap:after {
-	height: 50px;
+.frame{
+    background:linear-gradient(to bottom right, #ffffff 0%, #ccffcc 100%);
+    height:100%;
+    overflow:hidden;
+    padding:0;
 }
-
-body {
-	background: linear-gradient(to bottom right, #ffffff 0%, #ccffcc 100%);
+.frame > div:last-of-type{
+    position:absolute;bottom:0;width:100%;display:flex;
 }
-
-.sendButton {
-  background-color : #31B0D5;
-  color: white;
-  padding: 10px 20px;
-  border-radius: 4px;
-  border-color: #46b8da;
-  width: 30%;
-  height: 100%;
+body > div > div > div:nth-child(2) > span{
+    background: whitesmoke;padding: 10px;font-size: 21px;border-radius: 50%;
 }
-
-.message-footer {
-  position: fixed;
-  bottom: -5px;
-  width: 100%;
+body > div > div > div.msj-rta.macro{
+    margin:auto;margin-left:1%;
 }
-
-ul{
-  list-style: none;
-  margin: 0;
-  padding: 0;
+ul {
+    width:100%;
+    list-style-type: none;
+    padding:18px;
+    position:absolute;
+    bottom:47px;
+    display:flex;
+    flex-direction: column;
+    top:0;
+    overflow-y:scroll;
 }
-
-ul li{
-  display:inline-block;
-  clear: both;
-  padding: 20px;
-  border-radius: 30px;
-  margin-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-  max-width: 80%;
+.msj:before{
+    width: 0;
+    height: 0;
+    content:"";
+    top:-5px;
+    left:-14px;
+    position:relative;
+    border-style: solid;
+    border-width: 0 13px 13px 0;
+    border-color: transparent #e2e2e2 transparent transparent;            
 }
-
-.him{
-  background: #eee;
-  float: left;
+.msj-rta:after{
+    width: 0;
+    height: 0;
+    content:"";
+    top:-5px;
+    left:14px;
+    position:relative;
+    border-style: solid;
+    border-width: 13px 13px 0 0;
+    border-color: #0084ff transparent transparent transparent;           
+}  
+input:focus{
+    outline: none;
+}        
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+    color: #d4d4d4;
 }
-
-.me{
-  float: right;
-  background: #0084ff;
-  color: #fff;
+::-moz-placeholder { /* Firefox 19+ */
+    color: #d4d4d4;
 }
-
-.him + .me{
-  border-bottom-right-radius: 5px;
+:-ms-input-placeholder { /* IE 10+ */
+    color: #d4d4d4;
 }
-
-.me + .me{
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
-
-.me:last-of-type {
-  border-bottom-right-radius: 30px;
-}
-
+:-moz-placeholder { /* Firefox 18- */
+    color: #d4d4d4;
+}  
 </style>
 	<script src="app/js/messenger.js" sessionID="{{ sid }}"></script>
-    <script src="app/bootstrap/vendor/jquery/jquery.min.js"></script>
     <script src="app/bootstrap/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
 </html>

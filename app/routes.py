@@ -53,7 +53,7 @@ def directory():
 
 @app.route('/manage-users')
 def manageUsers():
-    return render_template("manageUsers.html", title='Manage Users', app=app)
+    return render_template("manageUsers.html", title="Manage Users", app=app)
 
 @app.route('/profile')
 def profile():
@@ -66,6 +66,10 @@ def profile():
         return render_template("profile.html", title='Profile', app=app, editmode=True)
     else:
         return render_template("profile.html", title='Profile', app=app)
+
+@app.route('/account-settings')
+def accountSetting():
+    return render_template("accountSettings.html", title='Account Settings', app=app)
 
 @app.route('/messages')
 def messages():
