@@ -50,6 +50,18 @@
                 }
 
                 var toDeleteUser = firebase.auth().currentUser;
+                if (!toDeleteUser)
+                {
+                    swal({
+                        title: 'Please sign in to delete your account.',
+                        type: 'error',
+                        confirmButtonText: 'Continue'
+                    }).then((value) => {
+                        window.location.href = "/login";
+                        return;
+                    });
+                }
+
                 var toDeleteUserID = toDeleteUser.uid;
 
                 const credential = firebase.auth.EmailAuthProvider.credential(

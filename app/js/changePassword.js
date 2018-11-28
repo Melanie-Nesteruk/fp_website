@@ -32,6 +32,18 @@
 
             var user = firebase.auth().currentUser;
             
+            if (!user)
+            {
+                swal({
+                    title: 'Please sign in to change your password.',
+                    type: 'error',
+                    confirmButtonText: 'Continue'
+                }).then((value) => {
+                    window.location.href = "/login";
+                    return;
+                });
+            }
+
             const credential = firebase.auth.EmailAuthProvider.credential(
                 user.email,
                 oldPass
