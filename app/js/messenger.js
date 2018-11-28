@@ -164,30 +164,52 @@
 					  return false;
 					}
 
-					// Resets the given MaterialTextField.
-					function resetMaterialTextfield(element) {
-					  element.value = '';
-					}
+					//=================================================
+					//=================================================
+					//=================================================
+					// Begin the mess
+					
+					var me = {};
+					me.avatar = "https://lh6.googleusercontent.com/-lr2nyjhhjXw/AAAAAAAAAAI/AAAAAAAARmE/MdtfUmC0M4s/photo.jpg?sz=48";
 
+					var you = {};
+					you.avatar = "https://a11.t26.net/taringa/avatares/9/1/2/F/7/8/Demon_King1/48x48_5C5.jpg";
+           
 					// Displays a Message in the UI.
 					function displayMessage(doc) {
-						let li = document.createElement('li');
-						let message = document.createElement('span');
+						
+						var control = "";
+    
 						
 						li.setAttribute('id', doc.id);
-						message.textContent = doc.data().text;
+						var text = doc.data().text;
 						var fromID = String(doc.data().fromID);
 						if(currentUID == fromID){
-							li.setAttribute('class', 'me');
+							control = '<li style="width:100%">' +
+										'<div class="msj macro">' +
+										'<div class="avatar"><img class="img-circle" style="width:100%;" src="'+ me.avatar +'" /></div>' +
+											'<div class="text text-l">' +
+												'<p>'+ text +'</p>' +
+											'</div>' +
+										'</div>' +
+									'</li>';
 						} else {
-							li.setAttribute('class', 'him');
+							 control = '<li style="width:100%;">' +
+											'<div class="msj-rta macro">' +
+												'<div class="text text-r">' +
+													'<p>'+text+'</p>' +
+												'</div>' +
+											'<div class="avatar" style="padding:0px 0px 0px 10px !important"><img class="img-circle" style="width:100%;" src="'+you.avatar+'" /></div>' +                                
+									  '</li>';
 						}
-						
-						li.appendChild(message);
-						messageList.appendChild(li);
-						var messageListElement= document.getElementById(doc.id);
-						messageListElement.scrollTop = messageListElement.scrollHeight;
+						$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
 					}
+					
+					// End the mess
+					//=================================================
+					//=================================================
+					//=================================================
+					
 
 					// Checks that the Firebase SDK has been correctly setup and configured.
 					function checkSetup() {
@@ -201,20 +223,31 @@
 					// Checks that Firebase has been imported.
 					checkSetup();
 
-					// Shortcuts to DOM Elements.
-					var messageFormElement = document.getElementById('message-form');
-					var messageInputElement = document.getElementById('messagebox');
-					var sendButtonElement = document.getElementById('sendButton');
-
 					// Saves message on form submit.
 					sendButtonElement.addEventListener('click', onMessageFormSubmit);
 
 					// Toggle for the button.
-					messageInputElement.addEventListener('keyup', function(e){
-						if (e.keyCode == 13){
-							onMessageFormSubmit(e);
+					$(".mytext").on("keydown", function(e){
+						if (e.which == 13){
+							console.log("Saving message to firebase");
+							var text = $(this).val();
+							// Check that the user entered a message and is signed in.
+							if (text !== "" && checkSignedInWithMessage()) {
+								saveMessage(text).then(function() {
+									if (messageHasBeenSent == false){
+										addFriendsList();
+									}
+								// Clear message text field and re-enable the SEND button.
+								$(this).val('');
+								});
+							}
 						}
 					});
+
+					$('body > div > div > div:nth-child(2) > span').click(function(){
+						$(".mytext").trigger({type: 'keydown', which: 13, keyCode: 13});
+					})
+					
 					// We load currently existing chat messages and listen to new ones.
 					loadMessages();
 						} else {
@@ -226,20 +259,5 @@
 			console.log('User is not authorized to access this webpage');
 		}
 	})
-	// Real Time Messaging
-	
-	// LOAD THE MESSAGE THREAD FROM FIREBASE
-		
-		// IF (me)
-			// Create 'me' li element in doc
-		// ELSE (him)
-			// Create 'him' li element in doc
-			
-	// Text box with send button
-		// Each message sent to firebase
-	
-	
-	
-	
-	
+
 }());
