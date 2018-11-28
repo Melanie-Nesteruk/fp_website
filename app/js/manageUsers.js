@@ -97,7 +97,7 @@
                             verified: true,
                             verified_by: currentUser.uid
                         })
-                        .then(function(){
+                        .then(function(value){
                             swal({
                                 title: nameToVerify + " has been successfully verified!",
                                 icon: "success",
@@ -168,7 +168,7 @@
                     if (value) {
                         db.collection("Users").doc(uidToDelete).update({
                             to_delete: true
-                        }).then(function() {
+                        }).then(function(value) {
                             swal({
                                 title: nameToDelete + "'s account has been marked for deletion.",
                                 icon: "success",
