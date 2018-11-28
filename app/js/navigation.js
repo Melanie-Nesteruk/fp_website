@@ -48,6 +48,7 @@
                 node = document.createElement("LI");
                 node.classList.add("nav-item");
                 node.classList.add("px-lg-4");
+                node.classList.add("dropdown");
                 node.id = "profileNav";
                 
                 var linkNode = document.createElement("a");
@@ -61,6 +62,23 @@
 
                 linkNode.appendChild(textNode); 
                 node.appendChild(linkNode);
+                document.getElementById("navBarList").appendChild(node);
+                
+                node = document.createElement("div");
+                node.classList.add("dropdown-content");
+
+                var linkNode = document.createElement("a");
+                linkNode.classList.add("nav-link");
+                linkNode.classList.add("text-uppercase");
+                linkNode.classList.add("text-expanded");
+
+                linkNode.id = "accountSettingsNav";
+                linkNode.href = "/account-settings";
+                var textNode = document.createTextNode("Account Settings");
+
+                linkNode.appendChild(textNode); 
+                node.appendChild(linkNode);
+
                 document.getElementById("navBarList").appendChild(node);
             }
 
