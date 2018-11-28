@@ -49,12 +49,12 @@
                 window.location.href = "/login";
                 swal({
                     text: "The link to reset your password has been sent to your email.",
-                    icon: "success"
+                    type: "success"
                 });
             }).catch(function(error) {
                 swal({
                     text: "Something went wrong...",
-                    icon: "error"
+                    type: "error"
                 });
                 console.log("Password reset failed in reset.js");
                 return;

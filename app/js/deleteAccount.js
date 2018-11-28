@@ -42,7 +42,7 @@
                     autocapitalize: 'off',
                     autocorrect: 'off'
                 }
-            }).then(function(inputPassword) {
+            }, function(inputPassword) {
                 var rawPassword = inputPassword.value;
                 if (rawPassword === false) return false;
                 if (rawPassword === "") {
