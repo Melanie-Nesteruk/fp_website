@@ -70,7 +70,7 @@
 					// Loads chat messages history and listens for upcoming ones.
 					function loadMessages() {
 						
-						var observer = firestore.collection('Chat-Groups').doc(sessionID).collection('Messages').orderBy('timestamp').limit(12)
+						var observer = firestore.collection('Chat-Groups').doc(sessionID).collection('Messages').orderBy('timestamp')
 							.onSnapshot(snapshot => {
 								let changes = snapshot.docChanges();
 								changes.forEach(change => {
