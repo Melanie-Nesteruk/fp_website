@@ -12,22 +12,50 @@
                       <span class="section-heading-upper">Student-Alumni Network</span>
                       <span class="section-heading-lower">Account Settings</span>
                     </h2>
-                    <div class="form-group" style="pointer-events:auto; margin: 0;">
-                        <label for="user_name">Email:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                        <input id="txtEmail" type="text" placeholder="example@kent.edu" name="email" required="true">
-                        <br>
-                        <label for="user_password">Password:</label>
-                        <input id="txtPassword" type="password" placeholder="Password" name="psw" required="true">
-                        <br>
-                        <button id="btnLogin" type="submit">Login</button>
-                        <button id="btnLogout" class="hide" type="submit">Logout</button>
+                    <div class="divTable">
+                        <div class="divTableBody">
+                            <div class="divTableRow">
+                                <div class="divTableCell" style="text-align: center">
+                                    <strong>Change Password</strong>
+                                </div>
+                                <div class="divTableCell">
+                                </div>
+                                <div class="divTableCell" style="text-align: center">
+                                    <strong>Delete Your Account</strong>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="divTableRow">
+                                <div class="divTableCell" style="width: 45%; text-align: right;">
+                                        <div class="form-group" style="width: 35%; pointer-events: auto; margin: 0 auto; display: flex;">
+                                            <div style="flex: 0 0 30%; text-align: left;">
+                                                <label for="user_old_password">Old Password:</label>
+                                                <br>
+                                                <label for="user_password">New Password:</label>
+                                                <br>
+                                                <label for="user_password">Re-enter:</label>
+                                                </div>
+                                            
+                                                <div style="text-align: left;">
+                                                    <input id="txtOldPassword" type="text" placeholder="Old password" name="oldpsw" required="true">
+                                                    <br>
+                                                    <input id="txtPassword" type="password" placeholder="New Password" name="psw" required="true">
+                                                    <br>
+                                                    <input id="txtPassword2" type="password" placeholder="Re-type Password" name="psw" required="true">
+                                                    <br>
+                                                    <button id="btnConfirmPassword" type="submit">Change Password</button>
+                                                </div>
+                                        </div>
+                                </div>
+                                <div class="divTableCell" style="width: 10%;">
+
+                                </div>
+                                <div class="divTableCell" style="width: 45%; text-align: left;">
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <p class="mb-0" style="pointer-events:auto;">
-                      Not yet registered? <a href="/register">Create an account!</a>
-                    </p>
-                    <p class="mb-0" style="pointer-events:auto;">
-                      Forgot your password? <a href="/reset">Reset it here.</a>
-                    </p>
                   </div>
                 </div>
               </div>
@@ -36,6 +64,10 @@
 
     <script type="text/javascript" src="app/js/login.js"></script>
     <style>
+        .divTable{ display: table; width: 100%; }
+        .divTableRow { display: table-row; }
+        .divTableHeading { display: table-header-group;}
+        .divTableCell, .divTableHead { display: table-cell;}
         .hide {
             visibility: hidden;
         }
