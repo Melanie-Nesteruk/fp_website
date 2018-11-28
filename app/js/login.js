@@ -102,7 +102,7 @@
             initialLoad = false;
             const promise = firebase.auth().signOut();
             promise.catch(e => swal(e.message));
-
+    
             swal({
                 text: 'You have been logged out.',
                 type: 'success',
