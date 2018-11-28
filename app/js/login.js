@@ -104,7 +104,7 @@
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
                 confirmButtonText: 'Logout',
-            }, function() {
+            }.then(function(value) {
                 initialLoad = false;
                 const promise = firebase.auth().signOut();
                 promise.catch(e => swal(e.message));
