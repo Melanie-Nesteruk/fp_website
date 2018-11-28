@@ -184,7 +184,8 @@
                         showCancelButton: true,
                         cancelButtonText: 'Cancel',
                         confirmButtonText: 'Logout',
-                    }).then(function() {
+                    },
+                    function() {
                         const promise = firebase.auth().signOut().then(function() {
                             window.location.href = "/login";
                         });

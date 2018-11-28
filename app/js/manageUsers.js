@@ -163,30 +163,28 @@
                             value:      1
                         }
                     }
-                })
-                .then((value) => {
-                    if (value) {
-                        db.collection("Users").doc(uidToDelete).update({
-                            to_delete: true
-                        }).then(function(value) {
-                            swal({
-                                title: nameToDelete + "'s account has been marked for deletion.",
-                                icon: "success",
-                                buttons: {
-                                    confirm: {
-                                        text: "Continue",
-                                        closeModal: true,
-                                        value:      1
-                                    }
+                },
+                function(value) => {
+                    db.collection("Users").doc(uidToDelete).update({
+                        to_delete: true
+                    }).then(function(value) {
+                        swal({
+                            title: nameToDelete + "'s account has been marked for deletion.",
+                            icon: "success",
+                            buttons: {
+                                confirm: {
+                                    text: "Continue",
+                                    closeModal: true,
+                                    value:      1
                                 }
-                            })
-                            .then((value) => {
-                                console.log("User successfully marked for deletion!");
-                                window.location.reload();
-                            });
+                            }
+                        })
+                        .then((value) => {
+                            console.log("User successfully marked for deletion!");
+                            window.location.reload();
                         });
-                        return;
-                    }
+                    });
+                    return;
                 });
             }
         }
