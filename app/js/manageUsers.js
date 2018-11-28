@@ -87,7 +87,6 @@
 
                 swal({
                     title: "Are you sure you want to verify " + nameToVerify + "?",
-                    text:  "Click anywhere else to cancel.",
                     showCancelButton: true,
                     cancelButtonText: 'Cancel',
                     confirmButtonText: 'Verify Account',
@@ -102,12 +101,11 @@
                             swal({
                                 title: nameToVerify + " has been successfully verified!",
                                 icon: "success",
-                                text:  "Click Ok to continue.",
                                 closeOnClickOutside: false,
                                 closeOnEsc: false,
                                 buttons: {
                                     cancel: {
-                                        text: "Ok",
+                                        text: "OK",
                                         value: 1,
                                         visible: true,
                                         closeModal: true,
