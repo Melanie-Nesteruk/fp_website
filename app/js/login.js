@@ -107,7 +107,7 @@
             }).then(function() {
                 initialLoad = false;
                 const promise = firebase.auth().signOut();
-                promise.catch(e => swal(e.message);
+                promise.catch(e => swal(e.message));
                 return;
             });
             return;
