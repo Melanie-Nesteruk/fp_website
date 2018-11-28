@@ -1,14 +1,4 @@
 (function() {
-	window.onload = function() {
-    if (window.jQuery) {  
-        // jQuery is loaded  
-        alert("Yeah!");
-    } else {
-        // jQuery is not loaded
-        alert("Doesn't Work");
-    }
-}
-	
 	var sessionID = document.currentScript.getAttribute('sessionID');
 	const messageList = document.querySelector('#message-list');
 	
@@ -126,21 +116,7 @@
 						});
 						
 					}
-					
-					// Triggered when the send new message form is submitted.
-					function onMessageFormSubmit(e) {
-					  // e.preventDefault();
-					  // Check that the user entered a message and is signed in.
-					  if (messageInputElement.value && checkSignedInWithMessage()) {
-						saveMessage(messageInputElement.value).then(function() {
-							if (messageHasBeenSent == false){
-								addFriendsList();
-							}
-						  // Clear message text field and re-enable the SEND button.
-						  resetMaterialTextfield(messageInputElement);
-						});
-					  }
-					}
+
 
 					// Triggers when the auth state change for instance when the user signs-in or signs-out.
 					function authStateObserver(user) {
@@ -180,8 +156,6 @@
 						
 						var control = "";
     
-						
-						li.setAttribute('id', doc.id);
 						var text = doc.data().text;
 						var fromID = String(doc.data().fromID);
 						if(currentUID == fromID){
@@ -223,9 +197,7 @@
 					// Checks that Firebase has been imported.
 					checkSetup();
 
-					// Saves message on form submit.
-					sendButtonElement.addEventListener('click', onMessageFormSubmit);
-
+					
 					// Toggle for the button.
 					$(".mytext").on("keydown", function(e){
 						if (e.which == 13){
