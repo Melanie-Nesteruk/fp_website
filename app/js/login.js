@@ -103,7 +103,7 @@
                 title: 'Are you sure you want to logout?',
                 showCancelButton: true,
                 cancelButtonText: 'Cancel',
-                confirmButtonText: 'Logout,
+                confirmButtonText: 'Logout',
             }).then(function() {
                 initialLoad = false;
                 const promise = firebase.auth().signOut();
