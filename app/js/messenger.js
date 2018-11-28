@@ -169,7 +169,7 @@
 							 control = '<li style="width:100%;">' +
 											'<div class="msj-rta macro">' +
 												'<div class="text text-r">' +
-													'<p style="text-align:right;>'+text+'</p>' +
+													'<p style="text-align:right;">'+text+'</p>' +
 												'</div></li>';
 						}
 						$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
