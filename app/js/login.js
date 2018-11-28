@@ -97,21 +97,21 @@
     }
 
     // Add logout event
-    if (btnLogout != null) {
-        btnLogout.addEventListener('click', e=> {
-            initialLoad = false;
-            const promise = firebase.auth().signOut();
-            promise.catch(e => swal(e.message));
-
-            swal({
-                text: 'You have been logged out.',
-                type: 'success',
-                confirmButtonText: 'Continue'
-            });
-            
-            return;
-        });
-    }
+    //if (btnLogout != null) {
+    //    btnLogout.addEventListener('click', e=> {
+    //        initialLoad = false;
+    //        const promise = firebase.auth().signOut();
+    //        promise.catch(e => swal(e.message));
+    //
+    //        swal({
+    //            text: 'You have been logged out.',
+    //            type: 'success',
+    //            confirmButtonText: 'Continue'
+    //        });
+    //        
+    //        return;
+    //    });
+    //}
 
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
