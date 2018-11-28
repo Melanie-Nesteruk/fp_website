@@ -32,8 +32,13 @@
 
             var user = firebase.auth().currentUser;
             
+            const credential = firebase.auth.EmailAuthProvider.credential(
+                user.email,
+                oldPass
+            );
+
             // Verify old password
-            user.reauthenticateAndRetrieveDataWithCredential(oldPass).then(function() {
+            user.reauthenticateAndRetrieveDataWithCredential(credential).then(function() {
 
                 // User re-authenticated, continue to change password.
 
