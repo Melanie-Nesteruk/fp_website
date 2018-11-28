@@ -58,8 +58,8 @@
                         confirmButtonText: 'Continue'
                     }).then((value) => {
                         window.location.href = "/login";
-                        return;
                     });
+                    return;
                 }
 
                 var toDeleteUserID = toDeleteUser.uid;

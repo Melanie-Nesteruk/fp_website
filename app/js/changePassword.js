@@ -40,8 +40,8 @@
                     confirmButtonText: 'Continue'
                 }).then((value) => {
                     window.location.href = "/login";
-                    return;
                 });
+                return;
             }
 
             const credential = firebase.auth.EmailAuthProvider.credential(
@@ -60,9 +60,8 @@
                         title: 'The new password fields do not match!',
                         type: 'error',
                         confirmButtonText: 'Continue'
-                    }).then((value) => {
-                        return;
                     });
+                    return;
                 }
 
                 user.updatePassword(newPass).then(function() {
