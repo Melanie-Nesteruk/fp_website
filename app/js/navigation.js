@@ -79,7 +79,7 @@
                 linkNode.appendChild(textNode); 
                 node.appendChild(linkNode);
 
-                document.getElementById("navBarList").appendChild(node);
+                document.getElementById("profileNav").appendChild(node);
             }
 
             // Add "Directory" nav link
