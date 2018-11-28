@@ -67,6 +67,10 @@ def profile():
     else:
         return render_template("profile.html", title='Profile', app=app)
 
+@app.route('/account-settings')
+def accountSetting():
+    return render_template("accountSettings.html", title='Account Settings', app=app)
+
 @app.route('/messages')
 def messages():
     return render_template("messages.html", title='Messages', app=app)
