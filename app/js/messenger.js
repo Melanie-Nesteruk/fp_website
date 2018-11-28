@@ -160,16 +160,16 @@
 						var fromID = String(doc.data().fromID);
 						if(currentUID == fromID){
 							control = '<li style="width:100%">' +
-										'<div class="msj macro"><div class="text text-l">' +
-												'<p style="text-align:left;">'+ text +'</p>' +
+										'<div class="msj-rta macro"><div class="text text-r">' +
+												'<p style="text-align:right;">'+ text +'</p>' +
 											'</div>' +
 										'</div>' +
 									'</li>';
 						} else {
 							 control = '<li style="width:100%;">' +
-											'<div class="msj-rta macro">' +
-												'<div class="text text-r">' +
-													'<p style="text-align:right;">'+text+'</p>' +
+											'<div class="msj macro">' +
+												'<div class="text text-l">' +
+													'<p style="text-align:left;">'+text+'</p>' +
 												'</div></li>';
 						}
 						$("ul").append(control).scrollTop($("ul").prop('scrollHeight'));
