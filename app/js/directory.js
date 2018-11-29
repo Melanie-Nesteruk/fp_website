@@ -68,39 +68,56 @@
 		filterBtnDOM.addEventListener('click', e=> { 
 			initialLoad = false;
 
-			if (currentUser && tempIsVerified)
+			if (currentUser)
 			{
-				typeFilters = ["", "", ""];
+				db.collection('Users').doc(currentUser.uid).get()
+                .then(function(querySnapshot){
+					var doc = querySnapshot;
+					var tempIsVerified = doc.get("verified");
+					if(tempIsVerified)
+					{
+						typeFilters = ["", "", ""];
 
-				// Student filters
-				if (!studentDOM.checked)
-				{
-					typeFilters[0] = "Student";
-				}
-				
-				// Alumni filter
-				if (!alumniDOM.checked)
-				{
-					typeFilters[1] = "Alumni";
-				}
-		
-				// Faculty filter
-				if (!facultyDOM.checked)
-				{
-					typeFilters[2] = "Faculty";
-				}
+					// Student filters
+					if (!studentDOM.checked)
+					{
+						typeFilters[0] = "Student";
+					}
+					
+					// Alumni filter
+					if (!alumniDOM.checked)
+					{
+						typeFilters[1] = "Alumni";
+					}
+			
+					// Faculty filter
+					if (!facultyDOM.checked)
+					{
+						typeFilters[2] = "Faculty";
+					}
 
-				interestFilter = null;
-				if (photoInterestsDOM.selectedIndex != 0)
-				{
-					interestFilter = photoInterestsDOM.options[photoInterestsDOM.selectedIndex].text;
-				}
+					interestFilter = null;
+					if (photoInterestsDOM.selectedIndex != 0)
+					{
+						interestFilter = photoInterestsDOM.options[photoInterestsDOM.selectedIndex].text;
+					}
 
-				document.getElementById("userList").innerHTML = "";
-				db.collection('Users').get().then((snapshot) => {
-					snapshot.docs.forEach(doc => {
-						renderUser(doc, doc.get("userID"));
-					})
+					document.getElementById("userList").innerHTML = "";
+					db.collection('Users').get().then((snapshot) => {
+						snapshot.docs.forEach(doc => {
+							renderUser(doc, doc.get("userID"));
+						})
+					});
+					}
+					else
+					{
+						swal({
+							title: "Error: Your account has not yet been verified.",
+							text: "Please wait for an admin to verify your account.",
+							icon: "error"
+						});
+						return;
+					}
 				});
 			}
 			else
@@ -128,13 +145,30 @@
 			typeFilters = ["", "", ""];
 			interestFilter = null;
 
-			if (currentUser && tempIsVerified)
+			if (currentUser)
 			{
-				document.getElementById("userList").innerHTML = "";
-				db.collection('Users').get().then((snapshot) => {
-					snapshot.docs.forEach(doc => {
-						renderUser(doc, doc.get("userID"));
-					})
+				db.collection('Users').doc(currentUser.uid).get()
+                .then(function(querySnapshot){
+					var doc = querySnapshot;
+					var tempIsVerified = doc.get("verified");
+					if(tempIsVerified)
+					{
+						document.getElementById("userList").innerHTML = "";
+						db.collection('Users').get().then((snapshot) => {
+							snapshot.docs.forEach(doc => {
+								renderUser(doc, doc.get("userID"));
+							})
+						});
+					}
+					else
+					{
+						swal({
+							title: "Error: Your account has not yet been verified.",
+							text: "Please wait for an admin to verify your account.",
+							icon: "error"
+						});
+						return;
+					}
 				});
 			}
 			else
