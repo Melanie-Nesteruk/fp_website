@@ -67,7 +67,7 @@
 		filterBtnDOM.addEventListener('click', e=> { 
 			initialLoad = false;
 
-			if (currentUser)
+			if (currentUser && tempIsVerified)
 			{
 				typeFilters = ["", "", ""];
 
@@ -127,7 +127,7 @@
 			typeFilters = ["", "", ""];
 			interestFilter = null;
 
-			if (currentUser)
+			if (currentUser && tempIsVerified)
 			{
 				document.getElementById("userList").innerHTML = "";
 				db.collection('Users').get().then((snapshot) => {
