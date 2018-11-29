@@ -197,7 +197,6 @@
 					// Toggle for the button.
 					$(".mytext").on("keydown", function(e){
 						if (e.which == 13){
-							console.log("Saving message to firebase");
 							var text = $(this).val();
 							$(this).val('');
 							// Check that the user entered a message and is signed in.
