@@ -46,7 +46,7 @@
 										window.open(messengerURL, '_blank', 'height=500,width=400,top=100,left=100');
 									})
 									.catch(function(error){
-										console.log("Error getting document ID: ", error);
+										console.log("Error getting document: ", error);
 									});
 							}).catch(function(error){
 								console.error("Error writing collection: ", error);
@@ -72,10 +72,8 @@
 		var friendProfile = firestore.collection('Users').doc(doc1.id).get()
 			.then(doc => {
 				if (!doc.exists) {
-					console.log("no doc exists");
 				} else {
 					if (!(uid == doc.id)){
-						console.log('doc data: ', doc.data());
 						var first_name = String(doc.get("first_Name"));
 						var last_name = String(doc.get("last_Name"));
 						var displayName = first_name + ' ' + last_name;
@@ -162,7 +160,7 @@
 						}
 					})                             
 					.catch(function(error){
-						console.log("Error getting document ID: ", error);
+						console.log("Error getting document: ", error);
 					});
 						
 				});
