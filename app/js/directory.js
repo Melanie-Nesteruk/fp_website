@@ -32,6 +32,7 @@
 	var isVerified = false;
 	var typeFilters = ["", "", ""];
 	var interestFilter;
+	var tempIsVerified;
 	
 	// filter settings
 	var fNameDOM = document.getElementById("FirstName");
